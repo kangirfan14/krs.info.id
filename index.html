@@ -1,0 +1,1824 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="logoatas.png">
+    <title>KRS.info | #karangsarineweru</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <style>
+      :root {
+        --bg: #f8fafc;
+        --text-dark: #0f172a;
+        --blood-red: #8b0000;
+        --blood-gradient: linear-gradient(
+          135deg,
+          #4a0404 0%,
+          #8b0000 50%,
+          #ee1d23 100%
+        );
+        --border-light: rgba(139, 0, 0, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text-dark);
+        overflow-x: hidden;
+        background-image: radial-gradient(
+          rgba(139, 0, 0, 0.03) 1.5px,
+          transparent 1.5px
+        );
+        background-size: 30px 30px;
+      }
+
+      /* --- NAVBAR AWAL --- */
+      .navbar {
+        position: fixed;
+        top: 15px;
+        left: 0;
+        right: 0;
+        margin: 0 auto; /* Cara paling stabil buat nengahin navbar */
+        width: 92%;
+        max-width: 1200px;
+        height: 70px;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        border: 2px solid #8b0000;
+        display: flex;
+        align-items: center;
+        /* Hapus transform: translateX(-50%) karena bikin posisi goyang saat ganti lebar */
+        transition: all 0.4s ease-in-out;
+      }
+
+      /* --- PERBAIKAN: NAVBAR SAAT DI-SCROLL --- */
+      .navbar.scrolled {
+        top: 0;
+        width: 100%;
+        max-width: none;
+        height: 65px;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+      }
+
+      .nav-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px; /* Jarak aman dari bingkai merah */
+        box-sizing: border-box; /* Biar padding nggak nambah lebar */
+      }
+
+      /* --- LOGO DI NAVBAR (PRESISI & RAPI) --- */
+      .nav-logo img {
+        height: 32px; /* Ukuran standar yang paling elegan untuk navbar */
+        width: auto; /* Menjaga rasio gambar agar tidak gepeng */
+        display: block;
+        transition: all 0.3s ease; /* Transisi halus saat scroll */
+        filter: drop-shadow(
+          0 2px 5px rgba(0, 0, 0, 0.05)
+        ); /* Bayangan tipis agar tajam */
+      }
+
+      /* --- LOGO SAAT DI-SCROLL (BIKIN SEDIKIT LEBIH KECIL) --- */
+      .navbar.scrolled .nav-logo img {
+        height: 28px; /* Sedikit mengecil saat navbar memadat/scrolled */
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 25px;
+        list-style: none;
+        align-items: center;
+      }
+      .nav-links a {
+        color: var(--text-dark);
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 13px;
+        transition: 0.3s;
+        text-transform: uppercase;
+      }
+      .nav-links a:hover {
+        color: var(--blood-red);
+      }
+
+      .btn-kirim {
+        background: var(--blood-gradient);
+        color: #fff !important;
+        padding: 10px 20px;
+        border-radius: 12px;
+        font-weight: 800 !important;
+        font-size: 12px !important;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 5px 15px rgba(139, 0, 0, 0.2);
+        text-decoration: none;
+      }
+
+      /* --- HERO --- */
+      .hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 20px;
+      }
+      .hero-title-box {
+        width: 100%;
+        max-width: 320px;
+        margin-bottom: 20px;
+      }
+      .hero-title-img {
+        width: 100%;
+        filter: drop-shadow(0 10px 20px rgba(139, 0, 0, 0.1));
+      }
+      #jargon-text {
+        font-family: "Syne", sans-serif;
+        font-size: 1.1rem;
+        color: #64748b;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 30px;
+      }
+
+      /* BINGKAI NGOBROL SINI */
+      .btn-ngobrol {
+        background: #fff;
+        color: var(--blood-red);
+        padding: 18px 35px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 800;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        border: 2px solid var(--blood-red);
+        transition: 0.4s;
+        box-shadow: 0 10px 25px rgba(139, 0, 0, 0.1);
+      }
+      .btn-ngobrol:hover {
+        background: var(--blood-red);
+        color: #fff;
+        transform: scale(1.05);
+      }
+
+      /* --- SECTIONS --- */
+      section {
+        padding: 100px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .section-header h2 {
+        font-family: "Syne", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 50px;
+        text-align: center;
+        background: var(--blood-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* --- VIDEO PROFILE (KEMBALI) --- */
+      .video-wrapper {
+        aspect-ratio: 16/9;
+        width: 100%;
+        border-radius: 30px;
+        overflow: hidden;
+        border: 8px solid #fff;
+        outline: 1px solid var(--border-light);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+      }
+
+      /* --- BERITA --- */
+      .content-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid var(--border-light);
+        border-radius: 24px;
+        padding: 25px;
+        transition: 0.4s;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+      }
+      .card:hover {
+        border-color: var(--blood-red);
+      }
+      .card img {
+        width: 100%;
+        border-radius: 18px;
+        margin-bottom: 20px;
+        aspect-ratio: 16/10;
+        object-fit: cover;
+      }
+
+      .news-preview {
+        font-size: 14px;
+        color: #64748b;
+        line-height: 1.6;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .card.expanded .news-preview {
+        display: block;
+        -webkit-line-clamp: unset;
+      }
+      .btn-baca {
+        color: var(--blood-red);
+        font-weight: 800;
+        border: none;
+        background: none;
+        cursor: pointer;
+        margin-top: 15px;
+        font-size: 13px;
+      }
+
+      /* --- AGENDA --- */
+      .agenda-item {
+        background: var(--blood-gradient);
+        border-radius: 20px;
+        padding: 25px;
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        color: #fff;
+        margin-bottom: 20px;
+        transition: 0.3s;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .date-box {
+        min-width: 70px;
+        height: 70px;
+        background: #fff;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--blood-red);
+      }
+      .date-box .day {
+        font-size: 24px;
+        font-weight: 800;
+      }
+      .date-box .month {
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      /* --- HUBUNGI KAMI (KEMBALI) --- */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      .contact-btn {
+        background: #fff;
+        border: 1px solid var(--border-light);
+        border-radius: 20px;
+        padding: 25px;
+        text-align: center;
+        text-decoration: none;
+        color: var(--text-dark);
+        transition: 0.3s;
+      }
+      .contact-btn:hover {
+        border-color: var(--blood-red);
+        transform: translateY(-5px);
+      }
+      .contact-btn i {
+        font-size: 30px;
+        margin-bottom: 10px;
+      }
+      .contact-btn.ig i {
+        color: #e1306c;
+      }
+      .contact-btn.wa i {
+        color: #25d366;
+      }
+
+      /* --- MOBILE --- */
+      .nav-links.active ~ .nav-container .hamburger i,
+      .hamburger:active i {
+        color: #8b0000;
+        transform: scale(1.1);
+        transition: 0.3s;
+      }
+
+      .hamburger {
+        display: none !important; /* Paksa muncul */
+        background: none !important;
+        border: none !important;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        z-index: 9999; /* Biar nggak ketutup apapun */
+        width: 45px;
+        height: 45px;
+        align-items: center;
+        justify-content: center;
+        outline: none;
+      }
+
+      .hamburger i {
+        font-size: 28px; /* Ukuran icon digedein dikit biar jelas */
+        color: #8b0000; /* Pakai Merah Darah biar kelihatan di layar putih */
+        transition: 0.3s;
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          height: 60px; /* Tinggi yang pas untuk mobile */
+          width: 92%; /* Tetap melayang */
+          padding: 0 5px; /* Memberikan sedikit ruang internal agar konten tidak mepet border luar */
+        }
+        .nav-logo img {
+          height: 26px; /* Lebih kecil sedikit untuk layar HP agar space lega */
+        }
+        .hamburger {
+          /* Di mobile, kita paksa muncul lagi */
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          width: 45px;
+          height: 45px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .nav-links.active {
+          display: flex; /* Munculkan kembali saat menu dibuka (active) */
+        }
+        .nav-container {
+          padding: 0 10px; /* Jarak antara logo/hamburger dengan bingkai merah darah */
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+        }
+        .nav-links {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 75%;
+          height: 100vh;
+          background: #fff;
+          flex-direction: column;
+          padding: 100px 30px;
+          transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+        }
+        .nav-links.active {
+          right: 0;
+        }
+        .nav-links li {
+          width: 100%;
+          border-bottom: 1px solid #f1f5f9;
+          padding-bottom: 15px;
+        }
+        .agenda-item {
+          flex-direction: column;
+          text-align: center;
+        }
+        .section-header h2 {
+          font-size: 2rem;
+        }
+      }
+
+      footer {
+        padding: 50px 20px;
+        text-align: center;
+        font-size: 12px;
+        color: #94a3b8;
+        font-weight: 700;
+      }
+      .navbar.scrolled {
+        top: 0;
+        width: 100%;
+        border-radius: 0;
+        height: 65px;
+        /* Menghilangkan outline samping saat menempel di atas agar lebih clean */
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        border-bottom: 2px solid #8b0000;
+      }
+
+      /* --- ANIMASI MENGKILAU (SHIMMER) --- */
+      .nav-logo,
+      .hero-title-box {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+      }
+
+      /* --- ANIMASI MENGKILAU VERSI ELEGAN (LEBIH LAMBAT) --- */
+      .nav-logo::after,
+      .hero-title-box::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -150%;
+        width: 50%;
+        height: 200%;
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.6) 50%,
+          /* Sedikit lebih terang biar keliatan meski lambat */
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: rotate(30deg);
+        /* Ganti ke 8s agar kilauan lewat setiap 8 detik sekali */
+        animation: shimmer 8s infinite ease-in-out;
+      }
+
+      @keyframes shimmer {
+        0% {
+          left: -150%;
+        }
+        15% {
+          left: 150%;
+        } /* Kilauan lewat dengan cepat di awal */
+        100% {
+          left: 150%;
+        } /* Sisa waktu digunakan untuk menunggu (pause) sebelum muncul lagi */
+      }
+
+      /* --- ANIMASI JARGON POP-UP --- */
+      #jargon-text {
+        display: inline-block;
+        animation: popUp 1s ease-out; /* Animasi saat pertama load */
+      }
+
+      /* Animasi Jargon bernapas pelan (agar tidak kaku) */
+      .jargon-active {
+        animation: pulsePop 3s infinite ease-in-out !important;
+      }
+
+      @keyframes popUp {
+        0% {
+          transform: scale(0.5);
+          opacity: 0;
+        }
+        70% {
+          transform: scale(1.1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes pulsePop {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      @media (min-width: 769px) {
+        .nav-links a {
+          padding: 8px 16px;
+          border-radius: 50px;
+          border: 2px solid transparent;
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          color: var(--text-dark);
+        }
+
+        .nav-links a.active-link {
+          border-color: #8b0000; /* Merah Darah */
+          color: #8b0000 !important;
+          background: rgba(139, 0, 0, 0.05);
+        }
+      }
+
+      .hamburger:active {
+        transform: scale(0.9);
+        color: #8b0000; /* Berubah jadi merah darah saat ditekan */
+      }
+
+      button#hamburger {
+        border: none !important;
+        outline: none !important;
+        appearance: none !important;
+        -webkit-appearance: none !important;
+      }
+
+      /* --- CONTAINER UTAMA --- */
+      .video-container-wrapper {
+        position: relative;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 10px;
+        z-index: 1;
+      }
+
+      /* --- ANIMASI CAHAYA DI BELAKANG (GLOW) --- */
+      .video-container-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        background: rgba(139, 0, 0, 0.5); /* Merah darah transparan */
+        filter: blur(50px); /* Membuat efek blur/cahaya */
+        z-index: -1;
+        border-radius: 30px;
+        /* Animasi cahaya berdenyut */
+        animation: glowPulse 4s infinite ease-in-out;
+      }
+
+      @keyframes glowPulse {
+        0% {
+          opacity: 0.4;
+          transform: translate(-50%, -50%) scale(0.95);
+        }
+        50% {
+          opacity: 0.8;
+          transform: translate(-50%, -50%) scale(1.05);
+        }
+        100% {
+          opacity: 0.4;
+          transform: translate(-50%, -50%) scale(0.95);
+        }
+      }
+
+      /* --- BINGKAI MERAH DARAH --- */
+      .video-card {
+        background: #fff;
+        border: 3px solid #8b0000; /* Merah Darah */
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .video-card iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        display: block;
+      }
+
+      .video-info {
+        padding: 20px;
+        border-top: 1px solid #eee;
+      }
+
+      .video-info h3 {
+        color: #8b0000;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      /* --- CARD BERITA PREMIUM --- */
+      .news-card-premium {
+        max-width: 1000px;
+        margin: 40px auto;
+        background: #fff;
+        border: 3px solid #8b0000; /* Merah Darah Tebal & Mewah */
+        border-radius: 25px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* --- FOTO 16:9 --- */
+      .news-image-box {
+        width: 100%;
+        aspect-ratio: 16 / 9; /* Kunci Resolusi Pas */
+        overflow: hidden;
+        border-radius: 15px;
+        position: relative;
+      }
+
+      .news-image-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .news-card-premium:hover img {
+        transform: scale(1.05); /* Efek zoom tipis */
+      }
+
+      /* --- TEXT STYLING --- */
+      .news-header-info {
+        font-weight: 800;
+        font-size: 0.85rem;
+        color: #8b0000;
+        margin-bottom: 10px;
+      }
+
+      .news-title {
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: #1a1a1a;
+        line-height: 1.2;
+        margin-bottom: 15px;
+      }
+
+      .news-excerpt {
+        font-size: 1.05rem;
+        color: #444;
+        line-height: 1.6;
+      }
+
+      /* --- LOGIKA EXPAND (MELEBARKAN BINGKAI) --- */
+      .news-full-text {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.6s ease,
+          opacity 0.4s ease;
+        opacity: 0;
+      }
+
+      .news-card-premium.active .news-full-text {
+        max-height: 500px;
+        opacity: 1;
+        margin-top: 15px;
+      }
+
+      .btn-expand {
+        background: none;
+        border: none;
+        color: #8b0000;
+        font-weight: 800;
+        cursor: pointer;
+        text-decoration: underline;
+        padding: 0;
+        margin-top: 10px;
+        font-size: 0.95rem;
+      }
+
+      /* --- TOMBOL PINDAH FILE (ELEGANT BUTTON) --- */
+      .archive-container {
+        text-align: center;
+        margin-top: 30px;
+      }
+      .btn-archive {
+        display: inline-block;
+        padding: 15px 40px;
+        background: #8b0000;
+        color: #fff !important;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        letter-spacing: 1px;
+        transition: 0.3s;
+      }
+
+      .btn-archive:hover {
+        background: #5a0000;
+        transform: translateY(-3px);
+      }
+
+      /* --- CONTACT SECTION --- */
+      .contact-section {
+        padding: 80px 20px;
+        background-color: #fff;
+        text-align: center;
+      }
+
+      .contact-section h2 {
+        color: #8b0000;
+        font-weight: 900;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+
+      .contact-container p {
+        color: #666;
+        margin-bottom: 40px;
+      }
+
+      /* --- SOCIAL GRID LAYOUT --- */
+      .social-grid {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .social-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 30px;
+        background: #fff;
+        border: 2px solid #8b0000; /* Bingkai Merah Darah */
+        border-radius: 15px;
+        text-decoration: none;
+        color: #1a1a1a;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        min-width: 280px;
+      }
+
+      .social-icon {
+        font-size: 30px;
+        color: #8b0000;
+        transition: 0.3s;
+      }
+
+      .social-text {
+        text-align: left;
+      }
+
+      .social-text span {
+        font-weight: 900;
+        font-size: 1rem;
+        display: block;
+        color: #8b0000;
+      }
+
+      .social-text p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: #777;
+      }
+
+      /* --- HOVER EFFECTS --- */
+      .social-item:hover {
+        background-color: #8b0000;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(139, 0, 0, 0.2);
+      }
+
+      .social-item:hover .social-icon,
+      .social-item:hover .social-text span,
+      .social-item:hover .social-text p {
+        color: #fff;
+      }
+
+      /* Responsif Mobile */
+      @media (max-width: 600px) {
+        .social-item {
+          width: 100%;
+        }
+      }
+
+/* --- AGENDA SECTION STYLING --- */
+.agenda-section {
+    padding: 80px 20px;
+    background-color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.agenda-main-title {
+    text-align: left;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #1a1a1a;
+    margin-bottom: 50px;
+    letter-spacing: -2px;
+}
+
+.agenda-main-title span {
+    color: #8b0000;
+    -webkit-text-stroke: 1px #8b0000;
+    -webkit-text-fill-color: transparent;
+}
+
+.agenda-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* --- CARD STYLE (ELEGANT & BOLD) --- */
+.agenda-card-modern {
+    display: flex;
+    align-items: stretch;
+    background: #fff;
+    border: 3px solid #8b0000; /* Bingkai Merah Darah Ikonik */
+    border-radius: 30px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.agenda-card-modern:hover {
+    transform: scale(1.02);
+    box-shadow: 20px 20px 0px rgba(139, 0, 0, 0.1);
+}
+
+/* --- DATE BADGE (GEN Z TOUCH) --- */
+.agenda-date-badge {
+    background-color: #8b0000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    min-width: 140px;
+    text-align: center;
+}
+
+.agenda-date-badge .day {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.agenda-date-badge .month {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+/* --- INFO SIDE --- */
+.agenda-info {
+    padding: 30px;
+    flex-grow: 1;
+    position: relative;
+}
+
+.agenda-status {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.agenda-status.upcoming { background: #eee; color: #555; }
+.agenda-status.ongoing { background: #8b0000; color: #fff; }
+
+.agenda-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.agenda-details {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #8b0000;
+}
+
+.agenda-details i { margin-right: 5px; }
+
+.agenda-desc {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.btn-reminder {
+    background: transparent;
+    border: 2px solid #8b0000;
+    color: #8b0000;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-reminder:hover {
+    background: #8b0000;
+    color: #fff;
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+    .agenda-card-modern {
+        flex-direction: column;
+    }
+    .agenda-date-badge {
+        flex-direction: row;
+        gap: 10px;
+        min-width: auto;
+        padding: 15px;
+    }
+    .agenda-date-badge .day { font-size: 2rem; }
+    .agenda-main-title { font-size: 2.2rem; }
+}
+
+/* --- JUDUL TENGAH --- */
+.agenda-main-title {
+    text-align: center; /* KUNCI DI TENGAH */
+    font-size: 3rem;
+    font-weight: 900;
+    color: #1a1a1a;
+    margin-bottom: 60px;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+}
+
+.agenda-main-title span {
+    color: #8b0000;
+    -webkit-text-stroke: 1px #8b0000;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- BUTTON GROUPING --- */
+.btn-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.btn-reminder, .btn-link-doc, .btn-upload-doc {
+    display: inline-block;
+    padding: 12px 20px;
+    border: 2px solid #8b0000;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.8rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s;
+    background: transparent;
+    color: #8b0000;
+}
+
+.btn-reminder:hover, .btn-link-doc:hover, .btn-upload-doc:hover {
+    background: #8b0000;
+    color: #fff !important;
+}
+
+/* --- KHUSUS TOMBOL UPLOAD --- */
+.btn-upload-doc {
+    background-color: #f9f9f9;
+}
+
+/* --- TOMBOL DOKUMENTASI SATU PINTU --- */
+.btn-doc-single {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background-color: #8b0000; /* Merah Darah Solid */
+    color: #fff !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    border: 2px solid #8b0000;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(139, 0, 0, 0.2);
+}
+
+.btn-doc-single:hover {
+    background-color: transparent;
+    color: #8b0000 !important;
+    box-shadow: 0 8px 25px rgba(139, 0, 0, 0.3);
+    transform: translateY(-3px);
+}
+
+.btn-doc-single i {
+    margin-left: 8px;
+    font-size: 1rem;
+}
+
+/* Penyesuaian Responsif Mobile */
+@media (max-width: 768px) {
+    .btn-doc-single {
+        width: 100%; /* Di HP jadi lebar penuh biar gampang diklik */
+        text-align: center;
+    }
+}
+
+.btn-reminder-auto {
+    background-color: transparent;
+    border: 2px solid #8b0000;
+    color: #8b0000;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+.btn-reminder-auto:hover {
+    background-color: #8b0000;
+    color: #fff;
+}
+
+/* --- STATUS TAG --- */
+.agenda-status-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: #8b0000; /* Merah Darah */
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 900;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+/* --- META INFO (WAKTU & LOKASI) --- */
+.agenda-meta-info {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.agenda-meta-info i {
+    color: #8b0000; /* Icon Merah Darah */
+    margin-right: 5px;
+}
+
+/* --- DESKRIPSI SINGKAT --- */
+.agenda-short-desc {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    border-left: 3px solid #eee;
+    padding-left: 15px;
+}
+
+/* --- PERBAIKAN BINGKAI CARD --- */
+.agenda-card-modern {
+    display: flex;
+    background: #fff;
+    border: 3px solid #8b0000;
+    border-radius: 25px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+}
+
+.agenda-card-modern:hover {
+    transform: translateY(-5px);
+    box-shadow: 10px 10px 0px rgba(139, 0, 0, 0.1);
+}
+
+/* RESPONSIVE UNTUK HP */
+@media (max-width: 768px) {
+    .agenda-card-modern { flex-direction: column; }
+    .agenda-meta-info { flex-direction: column; gap: 5px; }
+}
+
+/* --- BAJU TOMBOL INGATKAN SAYA --- */
+.btn-reminder-direct {
+    display: inline-block;
+    width: fit-content;
+    padding: 12px 25px;
+    background-color: #8b0000; /* Merah Darah Solid */
+    color: #fff !important;
+    border: 2px solid #8b0000;
+    border-radius: 50px; /* Bentuk Kapsul */
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(139, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* EFEK HOVER (GEN Z STYLE) */
+.btn-reminder-direct:hover {
+    background-color: transparent;
+    color: #8b0000 !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(139, 0, 0, 0.3);
+}
+
+/* EFEK SAAT AKTIF (DIKLIK) */
+.btn-reminder-direct:active {
+    transform: scale(0.95);
+}
+
+/* WARNA KHUSUS KALAU SUDAH AKTIF */
+.btn-reminder-direct.activated {
+    background-color: #27ae60;
+    border-color: #27ae60;
+}
+
+/* --- STATUS SELESAI (WARNA LEBIH GELAP) --- */
+.agenda-status-tag.status-done {
+    background-color: #333; /* Warna gelap indikasi arsip/selesai */
+    color: #fff;
+}
+
+/* --- BAJU TOMBOL LIHAT DOKUMENTASI --- */
+.btn-doc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    background-color: #8b0000; /* Merah Darah Solid */
+    color: #fff !important;
+    border: 2px solid #8b0000;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-decoration: none; /* Biar garis bawah link hilang */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(139, 0, 0, 0.2);
+    width: fit-content;
+}
+
+.btn-doc-link:hover {
+    background-color: transparent;
+    color: #8b0000 !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(139, 0, 0, 0.3);
+}
+
+.btn-doc-link i {
+    font-size: 1rem;
+}
+
+/* Biar rapi di HP */
+@media (max-width: 768px) {
+    .btn-doc-link {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+.agenda-date-badge {
+    background: #8b0000; /* Warna Merah Bingai */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    min-width: 80px;
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+.agenda-date-badge .day {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.agenda-date-badge .month {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 2px 0;
+}
+
+/* TAHUN - Kita kasih garis biar tegas */
+.agenda-date-badge .year {
+    font-size: 12px;
+    font-weight: 400;
+    border-top: 1px solid rgba(255, 255, 255, 0.4); /* Garis halus di atas tahun */
+    padding-top: 3px;
+    margin-top: 3px;
+    display: block; /* Pastikan dia turun ke bawah */
+    opacity: 0.9;
+}
+
+.status-label {
+    width: fit-content;        /* Kunciannya di sini: biar lebarnya pas tulisan */
+    padding: 4px 12px;         /* Kasih ruang kiri-kanan biar gak sesak */
+    border-radius: 20px;       /* Biar agak lonjong cakep kayak pil */
+    font-size: 0.7rem;         /* Ukuran tulisan agak kecil biar rapi */
+    font-weight: 800;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 8px;        /* Kasih jarak ke judul di bawahnya */
+    display: flex;             /* Opsional: biar gampang ngatur posisi teks */
+    align-items: center;
+}
+
+/* Warna masing-masing status (Pastikan tetap ada) */
+.status-label.mendatang { background: #f39c12; }
+.status-label.berlangsung { background: #e74c3c; }
+.status-label.selesai { background: #7f8c8d; }
+.pulse {
+    animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+}
+
+.btn-documentation {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #2980b9;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+}
+
+/* Gaya untuk Meta Info (Jam & Lokasi) */
+.agenda-meta-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 10px 0;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.agenda-meta-info i {
+    color: #8b0000; /* Warna merah sesuai tema */
+    margin-right: 5px;
+}
+
+/* Gaya untuk Deskripsi Singkat */
+.agenda-description {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    border-left: 3px solid #eee;
+    padding-left: 10px;
+}
+
+/* Perbaikan untuk Badge Tanggal agar Tahun muncul */
+.agenda-date-badge {
+    background: #8b0000;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 85px;
+}
+
+.agenda-date-badge .year {
+    font-size: 0.75rem;
+    margin-top: 5px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    width: 100%;
+    padding-top: 3px;
+}
+
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" id="mainNav">
+      <div class="nav-container">
+        <a href="#home" class="nav-logo"> <img src="krs.png" alt="Logo" /> </a>
+        <ul class="nav-links" id="menu">
+          <li><a href="#home">Beranda</a></li>
+          <li><a href="#Berita">Berita</a></li>
+          <li><a href="#agenda">Agenda</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+          <li>
+            <a href="https://forms.gle/dTcjsJgK8dRCVYjZA" class="btn-kirim"
+              ><i class="fa-solid fa-paper-plane"></i> Kirim Berita</a
+            >
+          </li>
+        </ul>
+        <button class="hamburger" id="hamburger">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+      </div>
+    </nav>
+
+    <header id="home" class="hero">
+      <div class="hero-title-box" data-aos="zoom-in">
+        <img src="krs.png" class="hero-title-img" alt="KRS Logo" />
+      </div>
+      <p id="jargon-text">Kreativitas Tanpa Batas</p>
+      <a href="#kontak" class="btn-ngobrol" data-aos="fade-up">
+        <i class="fa-solid fa-comment-dots"></i> NGOBROL SINI
+      </a>
+    </header>
+
+    <section class="video-section">
+      <div class="video-container-wrapper">
+        <div class="video-card">
+          <iframe
+            src="https://www.youtube.com/embed/UOyG1afD61Y"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+
+          <div class="video-info">
+            <h3>VIDEO PROFIL DESA KARANGSARI</h3>
+            <p>Tonton Videonya.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="Berita" class="news-section">
+      <div class="section-header" data-aos="fade-up"><h2>Berita</h2></div>
+      <div class="news-card-premium">
+        <div class="news-image-box">
+          <img src="krsberita.png" alt="desawisata" />
+          <div class="news-badge">TERBARU</div>
+        </div>
+
+        <div class="news-main-content">
+          <div class="news-header-info">
+            <span class="location">Matangaji, CIREBON</span>
+            <span class="divider">|</span>
+            <span class="date">08 Oktober 2025</span>
+          </div>
+
+          <h2 class="news-title">
+            PENYERAHAN SK  DESA WISATA KARANGSARI
+          </h2>
+
+          <p class="news-excerpt">
+            Pada 08 Oktober 2025 di Matangaji, Desa Karangsari resmi menyandang status sebagai 
+            Desa Wisata setelah Kuwu Casmari menerima SK dari Pemerintah Kabupaten Cirebon dalam 
+            ajang Anugerah Desa Wisata yang diikuti 30 desa lainnya.
+          </p>
+
+          <div class="news-full-text">
+            <p>
+              Momen bersejarah ini dimeriahkan 
+            dengan kirab budaya dan pameran produk unggulan yang mempertegas identitas ekonomi lokal,
+             mulai dari kain tenun yang elegan, kerupuk khas Karangsari yang legendaris, hingga kerajinan tusuk sate. 
+             Melalui semangat #karangsarineweru, pencapaian ini menjadi titik awal transformasi desa dalam mengembangkan 
+             potensi pariwisata berbasis budaya dan kreativitas warga yang siap bersaing di kancah yang lebih luas.
+            </p>
+          </div>
+          
+          <button class="btn-expand" onclick="toggleNews(this)">
+            BACA SELENGKAPNYA
+          </button>
+        </div>
+
+      </div>
+    
+<div class="news-card-premium" data-aos="fade-up">
+    <div class="news-image-box">
+      <img src="juara1.png" alt="deskripsi" />
+      <div class="news-badge">BARU</div>
+    </div>
+
+    <div class="news-main-content">
+      <div class="news-header-info">
+        <span class="location">Kota Sumber, CIREBON</span>
+        <span class="divider">|</span>
+        <span class="date">08 Agustus 2024</span>
+      </div>
+
+      <h2 class="news-title">RUMAH PRODUKSI FILM ASAL KARANGSARI JUARA 1</h2>
+
+      <p class="news-excerpt">Prestasi Membanggakan @dolanan_film Pertahankan Juara Satu Lomba Video Pendek Kabupaten Cirebon.</p>
+
+      <div class="news-full-text">
+        <p>Tim produksi video pendek kebanggaan Karangsari, @dolanan_film, kembali menorehkan prestasi gemilang
+             sebagai juara bertahan dalam lomba video pendek yang diselenggarakan oleh DPPKBP3A Kabupaten Cirebon.
+              Penghargaan ini diberikan langsung di Taman Hutan Kota Sumber pada 08 Agustus 2024 kepada Ardiansyah 
+              sebagai perwakilan tim. Keberhasilan mempertahankan gelar juara satu selama dua tahun berturut-turut ini 
+              membuahkan apresiasi berupa trofi serta sertifikat resmi yang ditandatangani langsung oleh Pj Bupati Cirebon. 
+              Pencapaian ini membuktikan bahwa kreativitas sineas muda Karangsari terus berkembang dan diakui secara luas di tingkat daerah.</p>
+      </div>
+      
+      <button class="btn-expand" onclick="toggleNews(this)">BACA SELENGKAPNYA</button>
+    </div>
+  </div>
+
+      <div class="archive-container">
+        <a href="berita.html" class="btn-archive">BACA BERITA LAINNYA</a>
+      </div>
+    </section>
+
+   <section id="agenda" class="agenda-section">
+    <div class="agenda-container">
+        
+        <h2 class="agenda-main-title">AGENDA </h2>
+
+<div class="agenda-card-modern" 
+     data-event-start="2026-06-13T07:00:00" 
+     data-event-end="2026-06-13T15:00:00"
+     data-banner="_MG_0349.JPG"> <div class="agenda-date-badge">
+        <span class="day">13</span>
+        <span class="month">JUNI</span>
+        <span class="year">2026</span>
+    </div>
+    
+    <div class="agenda-info">
+        <div class="status-label">MENDATANG</div>
+        
+        <h3 class="agenda-title">HAFLAHAKHIRUSANNAH ARIFIN BILLAH</h3>
+        
+        <div class="agenda-meta-info">
+            <span class="agenda-time">
+                <i class="fa-solid fa-clock"></i> 07:00 WIB
+            </span>
+            <span class="agenda-loc">
+                <i class="fa-solid fa-location-dot"></i> Yayasan Pendidikan Arifin Billah, Tajug Gede
+            </span>
+        </div>
+
+        <p class="agenda-description">
+            Bakal ada karnaval siswa & siswi serta Serimpi Karangsari
+        </p>
+
+        <div class="button-container">
+            <button class="btn-reminder-direct">
+                Ingatkan Saya <i class="fa-solid fa-bell"></i>
+            </button>
+
+            <a href="https://google.com" class="btn-documentation" style="display: none;">
+                Lihat Dokumentasi <i class="fa-solid fa-camera"></i>
+            </a>
+        </div>
+    </div>
+</div>
+     
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="kontak" class="contact-section">
+      <div class="contact-container">
+        <h2>HUBUNGI KAMI</h2>
+        <p>
+         Malu Bertanya Sesat Dijalan.
+        </p>
+
+        <div class="social-grid">
+          <a
+            href="https://whatsapp.com/channel/0029VbChcab7z4kkZVe58h2g
+"
+            target="_blank"
+            class="social-item"
+          >
+            <div class="social-icon">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <div class="social-text">
+              <span>WHATSAPP</span>
+              <p>Saluran Informasi Resmi</p>
+            </div>
+          </a>
+
+          <a
+            href="https://www.instagram.com/krs.info_id?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+            target="_blank"
+            class="social-item"
+          >
+            <div class="social-icon">
+              <i class="fa-brands fa-instagram"></i>
+            </div>
+            <div class="social-text">
+              <span>INSTAGRAM</span>
+              <p>Gage Mampir</p>
+            </div>
+          </a>
+
+          <a
+            href="https://www.tiktok.com/@krs.info_id?is_from_webapp=1&sender_device=pc
+"
+            target="_blank"
+            class="social-item"
+          >
+            <div class="social-icon">
+              <i class="fa-brands fa-tiktok"></i>
+            </div>
+            <div class="social-text">
+              <span>TIKTOK</span>
+              <p>Yuk Follow Kami</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>&copy; 2026 KRS.INFO — #karangsarineweru</footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 800, once: true });
+
+      // NAVBAR FLOATING LOGIC
+      const sections = document.querySelectorAll("section, header");
+      const navItems = document.querySelectorAll(".nav-links a");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+
+          // Logika deteksi: Jika posisi scroll sudah melewati tengah section
+          if (pageYOffset >= sectionTop - sectionHeight / 3) {
+            current = section.getAttribute("id");
+          }
+
+          const nav = document.getElementById("mainNav"); // Pastikan ID ini sesuai dengan tag <nav id="mainNav">
+          if (window.scrollY > 30) {
+            nav.classList.add("scrolled");
+          } else {
+            nav.classList.remove("scrolled");
+          }
+        });
+
+        navItems.forEach((a) => {
+          a.classList.remove("active-link");
+          // Jika href menu sama dengan ID section yang sedang aktif
+          if (a.getAttribute("href").includes(current)) {
+            a.classList.add("active-link");
+          }
+        });
+      });
+
+      // MENU MOBILE
+      const ham = document.getElementById("hamburger");
+      const menu = document.getElementById("menu");
+
+      ham.addEventListener("click", (e) => {
+        e.stopPropagation();
+        menu.classList.toggle("active");
+        // Bagian ganti icon (fa-xmark) sudah dihapus agar tetap garis tiga
+      });
+
+      document.addEventListener("click", (event) => {
+        if (
+          menu.classList.contains("active") &&
+          !menu.contains(event.target) &&
+          !ham.contains(event.target)
+        ) {
+          menu.classList.remove("active");
+        }
+
+        // Jika menu sedang terbuka DAN klik bukan di dalam menu atau tombol hamburger
+        if (
+          menu.classList.contains("active") &&
+          !isClickInsideMenu &&
+          !isClickInsideHam
+        ) {
+          menu.classList.remove("active");
+          const icon = ham.querySelector("i");
+          icon.classList.add("fa-bars-staggered");
+          icon.classList.remove("fa-xmark");
+        }
+
+        document.querySelectorAll(".nav-links a").forEach((link) => {
+          link.addEventListener("click", () => {
+            menu.classList.remove("active");
+          });
+        });
+      });
+
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.remove("active");
+          const icon = ham.querySelector("i");
+          icon.classList.add("fa-bars-staggered");
+          icon.classList.remove("fa-xmark");
+        });
+      });
+      // NEWS TOGGLE
+      function toggleNews(btn) {
+        const card = btn.parentElement;
+        card.classList.toggle("expanded");
+        btn.innerHTML = card.classList.contains("expanded")
+          ? 'TUTUP <i class="fa-solid fa-chevron-up"></i>'
+          : 'BACA SELENGKAPNYA <i class="fa-solid fa-chevron-down"></i>';
+      }
+
+      // JARGON ENGINE DENGAN EFEK POP-UP
+      const jargons = [
+        "#karangsarineweru",
+        "Kirim berita saya sendiri",
+        "Melek Teknologi",
+      ];
+      let jargonIndex = 0;
+
+      setInterval(() => {
+        const el = document.getElementById("jargon-text");
+        if (el) {
+          // Hilangkan dulu animasinya
+          el.style.animation = "none";
+          el.style.opacity = 0;
+
+          setTimeout(() => {
+            jargonIndex = (jargonIndex + 1) % jargons.length;
+            el.textContent = jargons[jargonIndex];
+            el.style.opacity = 1;
+            // Pasang lagi animasinya agar nge-pop setiap ganti teks
+            el.style.animation =
+              "popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+          }, 100);
+        }
+      }, 4000);
+      // Script untuk mengatur oval merah pada menu yang diklik
+      const links = document.querySelectorAll(".nav-links a");
+
+      links.forEach((link) => {
+        link.addEventListener("click", function () {
+          // Hapus class active-link dari semua menu
+          links.forEach((l) => l.classList.remove("active-link"));
+
+          // Tambahkan class active-link ke menu yang baru saja diklik
+          this.classList.add("active-link");
+        });
+      });
+
+      // Set otomatis 'Home' sebagai active saat pertama kali buka
+      document.querySelector('a[href="#home"]').classList.add("active-link");
+
+      window.dispatchEvent(new Event("scroll"));
+
+      function toggleNews(btn) {
+        const card = btn.closest(".news-card-premium");
+        card.classList.toggle("active");
+
+        if (card.classList.contains("active")) {
+          btn.textContent = "TUTUP BERITA";
+        } else {
+          btn.textContent = "BACA SELENGKAPNYA";
+        }
+      }
+
+// 1. DAFTARKAN SERVICE WORKER
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(() => {
+        console.log("Service Worker KRS Aktif!");
+    }).catch(err => console.error("SW Gagal:", err));
+}
+
+// 2. FUNGSI UTAMA NOTIFIKASI (Sekarang Banner-nya Masuk)
+function sikatNotif(judul, pesan, bannerUrl = null, tipe = 'info') {
+    if (Notification.permission === "granted") {
+        const audio = new Audio('notifkrs.mp3'); 
+        audio.play().catch(e => console.log("Audio butuh interaksi"));
+
+        const options = {
+            body: pesan,
+            icon: "logo-krs.png",
+            badge: "logo-krs.png",
+            vibrate: [500, 110, 500, 110, 450],
+            tag: 'agenda-krs',
+            image: bannerUrl, // SEKARANG SUDAH ADA ISI DARI PARAMETER
+            requireInteraction: (tipe === 'sekarang') 
+        };
+
+        const n = new Notification(judul, options);
+        n.onclick = () => { window.focus(); n.close(); };
+    }
+}
+
+// 3. SISTEM PENGINGAT (FIXED: DATA DIKIRIM LENGKAP)
+function initReminderSystem() {
+    document.addEventListener('click', async function(e) {
+        const btn = e.target.closest('.btn-reminder-direct');
+        if (!btn) return;
+
+        const card = btn.closest('.agenda-card-modern');
+        const titleEl = card.querySelector('.agenda-title');
+        
+        if (!titleEl) return console.error("Elemen .agenda-title tidak ditemukan!");
+        
+        const title = titleEl.innerText;
+        const bannerUrl = card.getAttribute('data-banner'); // AMBIL LINK DARI HTML
+        const startTimeStr = card.getAttribute('data-event-start');
+        
+        if (!startTimeStr) return alert("Atribut data-event-start hilang!");
+
+        const startTime = new Date(startTimeStr);
+        const now = new Date().getTime();
+        const delayH = startTime.getTime() - now;
+
+        const permission = await Notification.requestPermission();
+        
+        if (permission === "granted") {
+            if (delayH > 0) {
+                btn.innerHTML = "AKTIF! <i class='fa-solid fa-check'></i>";
+                btn.style.background = "#27ae60";
+                btn.disabled = true;
+
+                alert("Sip gais! Notif Berhasil Dijadwalkan.");
+
+                // --- KIRIM KE SERVICE WORKER (DENGAN BANNER) ---
+                const reg = await navigator.serviceWorker.ready;
+                reg.active.postMessage({
+                    title: "📢 SEKARANG BANGET!",
+                    body: `Waktunya ${title}`,
+                    delay: delayH,
+                    type: 'sekarang',
+                    banner: bannerUrl // SEKARANG DIKIRIM KE SW!
+                });
+
+                // Timer Internal
+                setTimeout(() => {
+                    sikatNotif("📢 SEKARANG!", title, bannerUrl, 'sekarang');
+                    alert("Udah Waktunya " + title);
+                }, delayH);
+
+            } else {
+                alert("Jam sudah lewat!");
+            }
+        }
+    });
+}
+
+// 4. UPDATE STATUS
+function updateAgendaStatus() {
+    const now = new Date();
+    document.querySelectorAll('.agenda-card-modern').forEach(card => {
+        const startAttr = card.getAttribute('data-event-start');
+        const endAttr = card.getAttribute('data-event-end');
+        if (!startAttr || !endAttr) return;
+
+        const start = new Date(startAttr);
+        const end = new Date(endAttr);
+        const label = card.querySelector('.status-label');
+        const btnR = card.querySelector('.btn-reminder-direct');
+        const btnD = card.querySelector('.btn-documentation');
+
+        if (now < start) {
+            if (label) { label.innerText = "MENDATANG"; label.className = "status-label mendatang"; }
+        } else if (now >= start && now <= end) {
+            if (label) { label.innerText = "SEDANG BERLANGSUNG"; label.className = "status-label berlangsung pulse"; }
+            if (btnR) btnR.style.display = "none";
+        } else {
+            if (label) { label.innerText = "SELESAI"; label.className = "status-label selesai"; }
+            if (btnR) btnR.style.display = "none";
+            if (btnD) btnD.style.display = "block";
+        }
+    });
+}
+
+// 5. RUNNING
+document.addEventListener('DOMContentLoaded', () => {
+    updateAgendaStatus();
+    initReminderSystem();
+    setInterval(updateAgendaStatus, 10000);
+});
+    </script>
+  </body>
+</html>

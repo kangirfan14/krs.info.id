@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="logoatas.png">
+    <title>
+        Arsip Berita - KRS.info</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #fcfcfc; font-family: 'Poppins', sans-serif; color: #1a1a1a; overflow-x: hidden; }
+
+        /* --- HEADER --- */
+        .archive-header {
+            background: #8b0000;
+            color: #fff;
+            padding: 100px 20px 160px;
+            text-align: center;
+            position: relative;
+            z-index: 1; /* Di bawah konten */
+        }
+
+        .btn-back-home {
+            position: absolute;
+            top: 30px;
+            left: 5%;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .archive-header h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; margin-bottom: 10px; }
+
+        /* --- CONTENT WRAPPER --- */
+        .archive-content {
+            max-width: 1200px;
+            margin: -90px auto 80px; /* Naik ke atas header */
+            padding: 0 20px;
+            position: relative;
+            z-index: 10; /* Pastikan di atas header, TIDAK ketutup */
+        }
+
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        /* --- CARD PREMIUM (BISA MEMANJANG) --- */
+        .archive-card {
+            background: #fff;
+            border: 3px solid #8b0000;
+            border-radius: 25px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 550px; /* Tinggi awal */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Saat Aktif, Bingkai Memanjang */
+        .archive-card.expanded {
+            max-height: 2000px; /* Tinggi maksimal saat terbuka */
+        }
+
+        .img-box {
+            width: 100%;
+            aspect-ratio: 16 / 9; /* Kunci Resolusi */
+            overflow: hidden;
+            border-bottom: 2px solid #8b0000;
+        }
+
+        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        .card-body { padding: 25px; flex-grow: 1; }
+        .meta { color: #8b0000; font-weight: 800; font-size: 0.75rem; margin-bottom: 10px; display: block; }
+        .card-body h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 15px; }
+
+        /* --- TEKS LENGKAP (HIDDEN AWAL) --- */
+        .full-text {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            color: #444;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .archive-card.expanded .full-text {
+            max-height: 1000px;
+            opacity: 1;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+
+        /* --- TOMBOL ELEGANT --- */
+        .btn-toggle {
+            background: none;
+            border: none;
+            color: #8b0000;
+            font-weight: 800;
+            cursor: pointer;
+            padding: 0;
+            margin-top: 20px;
+            text-align: left;
+            text-decoration: underline;
+            font-size: 0.9rem;
+        }
+
+        footer { text-align: center; padding: 40px; color: #999; font-size: 0.8rem; }
+
+        @media (max-width: 768px) {
+            .archive-grid { grid-template-columns: 1fr; }
+            .archive-content { margin-top: -60px; }
+        }
+
+        /* --- GANTI KODE .btn-back-home LAMA DENGAN INI --- */
+.btn-back-home {
+    position: absolute;
+    top: 30px;
+    left: 5%;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.1); /* Background transparan tipis */
+    border: 2px solid #fff; /* Bingkai putih */
+    border-radius: 50px; /* Bentuk kapsul */
+    backdrop-filter: blur(5px); /* Efek kaca (glassmorphism) */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 100;
+}
+
+.btn-back-home:hover {
+    background: #fff; /* Berubah jadi putih saat hover */
+    color: #8b0000; /* Teks jadi merah tua sesuai tema header */
+    transform: translateX(-5px); /* Sedikit bergeser ke kiri */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.btn-back-home i {
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.btn-back-home:hover i {
+    transform: scale(1.2); /* Ikon panah membesar sedikit */
+}
+    </style>
+</head>
+<body>
+
+    <header class="archive-header">
+        <a href="index.html#Berita" class="btn-back-home"><i class="fa-solid fa-arrow-left"></i> BALIK KE BERANDA</a>
+        <h1>ARSIP BERITA</h1>
+        <p>Dokumentasi resmi seluruh kegiatan dan informasi Desa Karangsari.</p>
+    </header>
+
+    <main class="archive-content">
+        <div class="archive-grid">
+            
+            <article class="archive-card">
+                <div class="img-box">
+                    <img src="wacana.png" alt="Berita">
+                </div>
+                <div class="card-body">
+                    <span class="meta">Karangsari, Weru, CIREBON</span>
+                    <h3>Wacana pembangunan Buper dan Alun - Alun Di Karangsari</h3>
+                    <p class="short-desc">Harapan warga Desa Karangsari untuk memiliki fasilitas publik yang representatif kini menyisakan tanda tanya besar.</p>
+                    
+                    <div class="full-text">
+                        <p>Dalam video profil resmi Desa Wisata Karangsari, pemerintah desa sempat memaparkan rencana 
+                            ambisius pembangunan Bumi Perkemahan (Buper) di area belakang GOR Karangsari, serta pembangunan 
+                            Alun-Alun Gentong yang direncanakan berlokasi di samping GOR, tepat di dekat kawasan Pasar Karangsari.</p>
+                        <p>Integrasi kedua proyek ini digadang-gadang akan menjadi motor penggerak ekonomi baru bagi warga lokal 
+                            dan memperkuat posisi Karangsari sebagai destinasi wisata unggulan di Kabupaten Cirebon. Namun, pantauan
+                             di lapangan menunjukkan kondisi yang jauh dari rencana tersebut. Lahan yang semula diproyeksikan untuk area 
+                             perkemahan hingga saat ini masih berupa hamparan sawah yang aktif ditanami padi.</p>
+                             <p> Ketidakjelasan jadwal eksekusi pembangunan ini mulai menimbulkan pertanyaan di tengah masyarakat.
+                                 Meskipun bukti rencana tersebut telah terpublikasi secara luas melalui dokumentasi video desa, 
+                                 belum ada tanda-tanda pengerjaan fisik maupun sosialisasi lanjutan mengenai kapan proyek ini akan dimulai. 
+                                 Warga berharap agar wacana yang telah menjadi konsumsi publik tersebut segera menemui titik terang, sehingga
+                                 lahan tersebut dapat benar-benar memberikan manfaat nyata sesuai dengan visi Desa Wisata yang telah dicanangkan.</p>
+                    </div>
+
+                    <button class="btn-toggle" onclick="toggleCard(this)">BACA SELENGKAPNYA</button>
+                </div>
+            </article>
+
+            <article class="archive-card">
+                <div class="img-box">
+                    <img src=" " alt="LOAD..">
+                </div>
+                <div class="card-body">
+                    <span class="meta"> </span>
+                    <h3>WEBSITE DALAM MASA PENGEMBANGAN..</h3>
+                    <p class="short-desc">Terus Pantau Update Di Web Ini</p>
+                    
+                    <div class="full-text">
+                        <p> .</p>
+                    </div>
+
+                    <button class="btn-toggle" onclick="toggleCard(this)">BACA SELENGKAPNYA</button>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <footer>&copy; 2026 KRS.INFO — #karangsarineweru</footer>
+
+    <script>
+        function toggleCard(btn) {
+            const card = btn.closest('.archive-card');
+            card.classList.toggle('expanded');
+            
+            if (card.classList.contains('expanded')) {
+                btn.textContent = 'TUTUP BERITA';
+            } else {
+                btn.textContent = 'BACA SELENGKAPNYA';
+            }
+        }
+    </script>
+</body>
+</html>
