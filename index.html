@@ -1321,7 +1321,123 @@
     padding-top: 3px;
 }
 
+/* Container */
+.propose-agenda-container {
+    padding: 24px;
+    max-width: 800px;
+    margin: 40px auto;
+}
 
+/* Kartu: iOS Super-Ellipse & Ultra Blur */
+.propose-card {
+    background: rgba(15, 15, 15, 0.7); /* Base gelap iOS */
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    
+    /* Bingkai halus dengan gradasi Merah Darah di satu sisi */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 6px solid #8a0303; 
+    
+    border-radius: 28px; /* Sudut melengkung khas iOS */
+    padding: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    
+    /* Shadow lembut yang dalam */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glossy Shine Effect */
+.propose-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 50%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+.propose-content {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    z-index: 2;
+}
+
+/* Ikon: Minimalis & Premium */
+.propose-icon {
+    font-size: 2.2rem;
+    color: #ffffff;
+    background: linear-gradient(145deg, #8a0303, #5e0202);
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px; /* Squircle style */
+    box-shadow: 0 10px 20px rgba(138, 3, 3, 0.3);
+}
+
+/* Typography: SF Pro Style (Clean & Bold) */
+.propose-text h4 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.5px; /* Khas Apple font spacing */
+}
+
+.propose-text p {
+    margin: 4px 0 0;
+    color: rgba(255, 255, 255, 0.7); /* Muted white */
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+/* Tombol: iOS Action Button Style */
+.btn-propose {
+    background: #ffffff; /* Kontras tinggi: Putih di atas Gelap */
+    color: #000000 !important;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 18px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+    border: none;
+}
+
+.btn-propose:hover {
+    transform: scale(1.03);
+    background: #f0f0f0;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .propose-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 35px 24px;
+    }
+    .propose-content {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .btn-propose {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+}
     </style>
   </head>
   <body>
@@ -1456,7 +1572,7 @@
 
 <div class="agenda-card-modern" 
      data-event-start="2026-06-13T07:00:00" 
-     data-event-end="2026-06-13T15:00:00"
+     data-event-end="2026-06-13T14:59:00"
      data-banner="_MG_0349.JPG"> <div class="agenda-date-badge">
         <span class="day">13</span>
         <span class="month">JUNI</span>
@@ -1466,7 +1582,7 @@
     <div class="agenda-info">
         <div class="status-label">MENDATANG</div>
         
-        <h3 class="agenda-title">HAFLAHAKHIRUSANNAH ARIFIN BILLAH</h3>
+        <h3 class="agenda-title">HAFLAH AKHIRUSSANAH ARIFIN BILLAH</h3>
         
         <div class="agenda-meta-info">
             <span class="agenda-time">
@@ -1492,14 +1608,31 @@
         </div>
     </div>
 </div>
-     
-
 
 
 
             </div>
+            
         </div>
+        
     </div>
+
+
+    
+    <div class="propose-agenda-container">
+    <div class="propose-card">
+        <div class="propose-content">
+            <i class="fa-solid fa-calendar-plus propose-icon"></i>
+            <div class="propose-text">
+                <h4>Punya Agenda?</h4>
+                <p>Bagikan acara atau kegiatanmu di sini biar semua tahu!</p>
+            </div>
+        </div>
+        <a href="https://forms.gle/KZfLLNxtZg6rDPca6" target="_blank" class="btn-propose">
+            Kirim Agenda <i class="fa-solid fa-paper-plane"></i>
+        </a>
+    </div>
+</div>
 </section>
 
     <section id="kontak" class="contact-section">
@@ -1653,7 +1786,7 @@
       // JARGON ENGINE DENGAN EFEK POP-UP
       const jargons = [
         "#karangsarineweru",
-        "Kirim berita saya sendiri",
+        "Kirim berita kamu sendiri",
         "Melek Teknologi",
       ];
       let jargonIndex = 0;
@@ -1704,18 +1837,22 @@
         }
       }
 
-// 1. DAFTARKAN SERVICE WORKER
+// ==========================================
+// 1. REGISTRASI SERVICE WORKER
+// ==========================================
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').then(() => {
-        console.log("Service Worker KRS Aktif!");
+    navigator.serviceWorker.register('sw.js').then(reg => {
+        console.log("Service Worker KRS Siap!");
     }).catch(err => console.error("SW Gagal:", err));
 }
 
-// 2. FUNGSI UTAMA NOTIFIKASI (Sekarang Banner-nya Masuk)
-function sikatNotif(judul, pesan, bannerUrl = null, tipe = 'info') {
+// ==========================================
+// 2. FUNGSI UTAMA NOTIFIKASI (SOUND & BANNER)
+// ==========================================
+function sikatNotif(judul, pesan, bannerUrl = null) {
     if (Notification.permission === "granted") {
         const audio = new Audio('notifkrs.mp3'); 
-        audio.play().catch(e => console.log("Audio butuh interaksi"));
+        audio.play().catch(e => console.log("Audio standby"));
 
         const options = {
             body: pesan,
@@ -1723,8 +1860,8 @@ function sikatNotif(judul, pesan, bannerUrl = null, tipe = 'info') {
             badge: "logo-krs.png",
             vibrate: [500, 110, 500, 110, 450],
             tag: 'agenda-krs',
-            image: bannerUrl, // SEKARANG SUDAH ADA ISI DARI PARAMETER
-            requireInteraction: (tipe === 'sekarang') 
+            image: bannerUrl, 
+            requireInteraction: true 
         };
 
         const n = new Notification(judul, options);
@@ -1732,93 +1869,146 @@ function sikatNotif(judul, pesan, bannerUrl = null, tipe = 'info') {
     }
 }
 
-// 3. SISTEM PENGINGAT (FIXED: DATA DIKIRIM LENGKAP)
-function initReminderSystem() {
+// ==========================================
+// 3. SISTEM PENGINGAT MULTI-TIME (1 HARI, 30 MIN, LIVE)
+// ==========================================
+async function initReminderSystem() {
     document.addEventListener('click', async function(e) {
         const btn = e.target.closest('.btn-reminder-direct');
         if (!btn) return;
 
+        // Cek Izin Notifikasi
+        const permission = await Notification.requestPermission();
+        if (permission !== "granted") {
+            alert("izinkan notifikasi di browser agar pengingat muncul!");
+            return;
+        }
+
         const card = btn.closest('.agenda-card-modern');
-        const titleEl = card.querySelector('.agenda-title');
-        
-        if (!titleEl) return console.error("Elemen .agenda-title tidak ditemukan!");
-        
-        const title = titleEl.innerText;
-        const bannerUrl = card.getAttribute('data-banner'); // AMBIL LINK DARI HTML
+        const title = card.querySelector('.agenda-title').innerText;
+        const bannerUrl = card.getAttribute('data-banner');
         const startTimeStr = card.getAttribute('data-event-start');
         
-        if (!startTimeStr) return alert("Atribut data-event-start hilang!");
+        // ID Unik agar LocalStorage tidak tertukar
+        const agendaId = card.getAttribute('data-event-id') || title.replace(/\s+/g, '-').toLowerCase();
 
-        const startTime = new Date(startTimeStr);
+        // FIX: Format waktu agar terbaca di iPhone/Android (Ganti spasi jadi T)
+        const eventTime = new Date(startTimeStr.replace(' ', 'T')).getTime();
         const now = new Date().getTime();
-        const delayH = startTime.getTime() - now;
 
-        const permission = await Notification.requestPermission();
-        
-        if (permission === "granted") {
-            if (delayH > 0) {
-                btn.innerHTML = "AKTIF! <i class='fa-solid fa-check'></i>";
-                btn.style.background = "#27ae60";
-                btn.disabled = true;
+        if (eventTime > now) {
+            // SIMPAN STATUS KE MEMORI (Reload-proof)
+            localStorage.setItem('pengingat-' + agendaId, 'aktif');
 
-                alert("Sip gais! Notif Berhasil Dijadwalkan.");
+            // Update Tampilan Tombol
+            btn.innerHTML = "AKTIF! <i class='fa-solid fa-check'></i>";
+            btn.style.background = "#27ae60";
+            btn.disabled = true;
 
-                // --- KIRIM KE SERVICE WORKER (DENGAN BANNER) ---
-                const reg = await navigator.serviceWorker.ready;
-                reg.active.postMessage({
-                    title: "📢 SEKARANG BANGET!",
-                    body: `Waktunya ${title}`,
-                    delay: delayH,
-                    type: 'sekarang',
-                    banner: bannerUrl // SEKARANG DIKIRIM KE SW!
-                });
+            // KIRIM JADWAL KE SERVICE WORKER (Background Task)
+            const reg = await navigator.serviceWorker.ready;
+            
+            const reminders = [
+                { offset: 24 * 60 * 60 * 1000, msg: "Besok acara dimulai!" }, // 1 Hari
+                { offset: 30 * 60 * 1000, msg: "30 Menit lagi dimulai!" },      // 30 Menit
+                { offset: 0, msg: "ACARA DIMULAI SEKARANG!" }                 // Pas Acara
+            ];
 
-                // Timer Internal
-                setTimeout(() => {
-                    sikatNotif("📢 SEKARANG!", title, bannerUrl, 'sekarang');
-                    alert("Udah Waktunya " + title);
-                }, delayH);
+            reminders.forEach(rem => {
+                const targetTime = eventTime - rem.offset;
+                const delay = targetTime - now;
 
-            } else {
-                alert("Jam sudah lewat!");
-            }
+                if (delay > 0) {
+                    reg.active.postMessage({
+                        title: "📢 AGENDA KRS",
+                        body: `${rem.msg}: ${title}`,
+                        delay: delay,
+                        banner: bannerUrl
+                    });
+
+                    // Khusus tab yang sedang dibuka (Internal Timer)
+                    setTimeout(() => {
+                        sikatNotif("📢 PENGINGAT!", `${rem.msg} ${title}`, bannerUrl);
+                    }, delay);
+                }
+            });
+
+            // Bunyi tes awal
+            const audio = new Audio('notifkrs.mp3');
+            audio.play().catch(() => {});
+
+            alert(`Sip! Pengingat terjadwal untuk ${title}`);
+        } else {
+            alert("Acara sudah lewat, Gais!");
         }
     });
 }
 
-// 4. UPDATE STATUS
+// ==========================================
+// 4. UPDATE STATUS & CEK MEMORI TOMBOL
+// ==========================================
 function updateAgendaStatus() {
-    const now = new Date();
+    const now = new Date().getTime();
     document.querySelectorAll('.agenda-card-modern').forEach(card => {
+        const titleEl = card.querySelector('.agenda-title');
+        const agendaId = card.getAttribute('data-event-id') || titleEl.innerText.replace(/\s+/g, '-').toLowerCase();
         const startAttr = card.getAttribute('data-event-start');
         const endAttr = card.getAttribute('data-event-end');
-        if (!startAttr || !endAttr) return;
-
-        const start = new Date(startAttr);
-        const end = new Date(endAttr);
+        
+        const startTime = new Date(startAttr.replace(' ', 'T')).getTime();
+        const endTime = new Date(endAttr.replace(' ', 'T')).getTime();
+        
         const label = card.querySelector('.status-label');
         const btnR = card.querySelector('.btn-reminder-direct');
         const btnD = card.querySelector('.btn-documentation');
 
-        if (now < start) {
+        // Balikkan status tombol dari LocalStorage
+        if (localStorage.getItem('pengingat-' + agendaId) === 'aktif' && btnR) {
+            btnR.innerHTML = "AKTIF! <i class='fa-solid fa-check'></i>";
+            btnR.style.background = "#27ae60";
+            btnR.disabled = true;
+        }
+
+        // Logika Status Label
+        if (now < startTime) {
             if (label) { label.innerText = "MENDATANG"; label.className = "status-label mendatang"; }
-        } else if (now >= start && now <= end) {
+        } else if (now >= startTime && now <= endTime) {
             if (label) { label.innerText = "SEDANG BERLANGSUNG"; label.className = "status-label berlangsung pulse"; }
             if (btnR) btnR.style.display = "none";
         } else {
             if (label) { label.innerText = "SELESAI"; label.className = "status-label selesai"; }
             if (btnR) btnR.style.display = "none";
             if (btnD) btnD.style.display = "block";
+            // Hapus memori jika sudah selesai
+            localStorage.removeItem('pengingat-' + agendaId);
         }
     });
 }
 
+// ==========================================
 // 5. RUNNING
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     updateAgendaStatus();
     initReminderSystem();
-    setInterval(updateAgendaStatus, 10000);
+    setInterval(updateAgendaStatus, 10000); // Cek status tiap 10 detik
+
+    function parseStandardTime(dateStr) {
+    if (!dateStr) return null;
+    // Mengubah "2026-05-18 20:00" atau "2026-05-18T20:00" menjadi format yang dimengerti semua OS
+    let normalized = dateStr.replace(' ', 'T'); 
+    let dateObj = new Date(normalized);
+    
+    // Jika masih gagal (Invalid Date), coba ganti tanda dash (-) menjadi slash (/) khusus Safari lama
+    if (isNaN(dateObj.getTime())) {
+        normalized = normalized.replace(/-/g, '/').replace('T', ' ');
+        dateObj = new Date(normalized);
+    }
+    return dateObj.getTime();
+}
 });
+
+
     </script>
   </body>
 </html>
