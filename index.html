@@ -1438,12 +1438,171 @@
         margin-top: 10px;
     }
 }
+
+/* ================= CSS AGENDA TERBARU (ANTI BERANTAKAN) ================= */
+.agenda-container { max-width: 1000px; margin: 0 auto; }
+.agenda-card-modern { display: flex; background: #fff; border: 3px solid #8b0000; border-radius: 25px; margin-bottom: 30px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: 0.3s; }
+.agenda-card-modern:hover { transform: translateY(-4px); box-shadow: 10px 10px 0px rgba(139, 0, 0, 0.1); }
+
+/* Bagian Foto Banner Rasio Aman 16:9 */
+.agenda-card-modern .news-image-box { width: 280px; min-width: 280px; aspect-ratio: 16 / 9; overflow: hidden; border-right: 3px solid #8b0000; }
+.agenda-card-modern .news-image-box img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Badge Tanggal - Bulan - Tahun Baru */
+.agenda-date-badge { background: #8b0000; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; min-width: 150px; text-align: center; border-right: 1px dashed rgba(255,255,255,0.3); }
+.agenda-date-badge .day { font-size: 2.2rem; font-weight: 900; line-height: 1; }
+.agenda-date-badge .separator { width: 30px; height: 3px; background: rgba(255, 255, 255, 0.6); margin: 6px 0; border-radius: 2px; }
+.agenda-date-badge .month { font-size: 13px; font-weight: 800; text-transform: uppercase; }
+.agenda-date-badge .year { font-size: 12px; font-weight: 600; opacity: 0.85; margin-top: 2px; }
+
+/* Detail Info Konten */
+.agenda-info { padding: 25px 30px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+.status-label { display: inline-block; padding: 5px 14px; font-size: 11px; font-weight: 900; border-radius: 6px; text-transform: uppercase; color: #fff; width: fit-content; margin-bottom: 12px; }
+.status-label.mendatang { background-color: #64748b; }
+.status-label.berlangsung { background-color: #8b0000; }
+.status-label.selesai { background-color: #1e293b; }
+.pulse { animation: statusPulse 2s infinite ease-in-out; }
+@keyframes statusPulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.03); opacity: 0.8; } }
+
+.agenda-title { font-size: 1.35rem; font-weight: 800; color: #1a1a1a; margin-bottom: 8px; line-height: 1.4; }
+.agenda-meta-info { display: flex; gap: 20px; margin-bottom: 12px; font-size: 0.85rem; font-weight: 600; color: #555; }
+.agenda-meta-info i { color: #8b0000; margin-right: 5px; }
+.agenda-short-desc { font-size: 0.95rem; color: #555; line-height: 1.6; border-left: 3px solid #eee; padding-left: 15px; margin: 0; }
+
+/* Tampilan Sistem Tombol Aksi Baju Satu (Seragam) */
+.agenda-actions-wrapper { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 40px; width: 100%; padding: 0 20px; }
+.btn-agenda-aksi { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.3s ease; box-sizing: border-box; }
+
+/* Desain Tombol 1: Maroon Utama */
+.btn-lihat-semua { background: #8b0000; color: #ffffff !important; border: 2px solid #8b0000; }
+.btn-lihat-semua:hover { background: #600000; border-color: #600000; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(139, 0, 0, 0.25); }
+
+/* Desain Tombol 2: Putih Outline Maroon (Tetap Senada) */
+.btn-kirim-agenda { background: #ffffff; color: #8b0000 !important; border: 2px solid #8b0000; }
+.btn-kirim-agenda:hover { background: #8b0000; color: #ffffff !important; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(139, 0, 0, 0.15); }
+
+/* RESPONSIVE KHUSUS MOBILE (PAS & ANTI GEPENG) */
+@media (max-width: 768px) {
+  .agenda-card-modern { flex-direction: column !important; border-radius: 20px; }
+  .agenda-card-modern .news-image-box { width: 100% !important; min-width: auto !important; max-width: 100% !important; aspect-ratio: 16 / 9 !important; border-right: none !important; border-bottom: 3px solid #8b0000; }
+  .agenda-card-modern .news-image-box img { width: 100% !important; height: 100% !important; object-fit: cover !important; }
+  
+  /* Penyesuaian Tanggal Horisontal Bersih di Mobile */
+  .agenda-date-badge { flex-direction: row !important; gap: 6px !important; min-width: auto !important; width: 100% !important; padding: 12px 20px !important; justify-content: flex-start !important; border-right: none !important; border-bottom: 1px dashed rgba(139,0,0,0.15); }
+  .agenda-date-badge .day { font-size: 1.4rem !important; }
+  .agenda-date-badge .separator { width: 2px !important; height: 15px !important; background: rgba(255, 255, 255, 0.6) !important; margin: 0 4px !important; }
+  .agenda-date-badge .month { font-size: 13px !important; }
+  .agenda-date-badge .year { font-size: 13px !important; margin-top: 0 !important; }
+
+  .agenda-info { padding: 20px !important; text-align: left !important; align-items: flex-start !important; }
+  .agenda-meta-info { flex-direction: column !important; gap: 6px !important; }
+  .agenda-short-desc { border-left: 3px solid #eee !important; padding-left: 12px !important; }
+  
+  /* Tombol Aksi otomatis menumpuk vertikal tapi selebar layar HP */
+  .agenda-actions-wrapper { flex-direction: column !important; gap: 15px !important; padding: 0 15px !important; }
+  .btn-agenda-aksi { width: 100% !important; }
+}
+
+/* --- BUTTON GROUPING (Penyelaras Tombol) --- */
+.btn-group {
+    display: flex !important;
+    flex-direction: row !important; /* Paksa sejajar ke samping */
+    gap: 10px !important;           /* Jarak antar tombol */
+    flex-wrap: wrap !important;     /* Kalau gak muat banget baru turun, tapi usahakan muat */
+    margin-top: 15px;
+    width: 100%;
+}
+/* =======================================================
+   KUNCIAN MATANG: PAKSA TOMBOL AGENDA SEJAJAR DI HP 
+   ======================================================= */
+@media (max-width: 768px) {
+    /* 1. Paksa pembungkus tombol agar berbaris menyamping */
+    .btn-group {
+        display: flex !important;
+        flex-direction: row !important; /* Paksa horizontal kesamping */
+        justify-content: flex-start !important;
+        gap: 8px !important;            /* Jarak tipis antar tombol */
+        width: 100% !important;
+        flex-wrap: nowrap !important;   /* Haramkan tombol turun kebawah */
+        margin-top: 15px !important;
+    }
+
+    /* 2. Jinakkan tombol Ingatkan Saya & Lihat Dokumentasi */
+    .btn-reminder-direct, 
+    .btn-doc-link,
+    .btn-reminder,
+    .btn-link-doc { 
+        flex: 1 !important;              /* Bagi ruang 50:50 secara adil kiri-kanan */
+        width: auto !important;          /* Hancurkan width 100% bawaan lama */
+        min-width: 0 !important;         /* Cegah tombol melebar paksa */
+        padding: 10px 8px !important;    /* Rampingkan padding biar pas di layar kecil */
+        font-size: 0.72rem !important;   /* Perkecil teks sedikit agar tidak makan space */
+        justify-content: center !important; /* Teks & icon dipaksa center tengah */
+        white-space: nowrap !important;  /* Kunci teks agar TIDAK patah jadi 2 baris */
+        letter-spacing: 0px !important;  /* Rapatkan huruf sedikit */
+    }
+
+    /* 3. Selaras ikon di dalam tombol */
+    .btn-reminder-direct i, 
+    .btn-doc-link i {
+        font-size: 0.85rem !important;   /* Perkecil icon dikit biar gak padat */
+        margin: 0 !important;
+    }
+}
+
+/* --- STYLE LAYOUT BERITA DI BERANDA (MATCHING THEME) --- */
+.news-section-beranda { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+.news-section-beranda h2 span { color: #8b0000; -webkit-text-stroke: 1px #8b0000; -webkit-text-fill-color: transparent; }
+
+.beranda-news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.beranda-news-card {
+    background: #ffffff; border: 3px solid #8b0000; border-radius: 20px;
+    overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.01); transition: all 0.3s ease;
+}
+.beranda-news-card:hover { transform: translateY(-4px); box-shadow: 8px 8px 0px rgba(139, 0, 0, 0.08); }
+
+.beranda-news-thumb { width: 100%; aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 3px solid #8b0000; }
+.beranda-news-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+.beranda-news-info { padding: 22px; flex-grow: 1; display: flex; flex-direction: column; }
+.beranda-news-meta { font-size: 0.8rem; font-weight: 700; color: #64748b; margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
+.beranda-news-meta i { color: #8b0000; }
+.beranda-news-title { font-size: 1.2rem; font-weight: 800; color: #1a1a1a; line-height: 1.4; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.beranda-news-desc { font-size: 0.9rem; color: #475569; line-height: 1.5; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Tombol Baca Selengkapnya di Beranda Langsung Mengarah dan MembukaID terkait di berita.html */
+.btn-read-beranda-news {
+    margin-top: auto; display: inline-flex; align-items: center; gap: 6px;
+    color: #8b0000; text-decoration: none; font-weight: 800; font-size: 0.85rem; text-transform: uppercase;
+}
+.btn-read-beranda-news:hover { color: #ee1d23; }
+
+/* Tombol Besar Lihat Semua Berita */
+.btn-view-all-news {
+    display: inline-flex; align-items: center; gap: 10px; padding: 14px 35px;
+    background: linear-gradient(135deg, #4a0404 0%, #8b0000 50%, #ee1d23 100%);
+    color: #ffffff !important; border-radius: 50px; text-decoration: none;
+    font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;
+    box-shadow: 0 5px 20px rgba(139,0,0,0.25); transition: all 0.3s ease;
+}
+.btn-view-all-news:hover { transform: scale(1.03); box-shadow: 0 8px 25px rgba(139,0,0,0.4); }
+
+@media (max-width: 768px) {
+    .beranda-news-grid { grid-template-columns: 1fr; gap: 20px; }
+    .btn-view-all-news { width: 100%; justify-content: center; }
+}
     </style>
   </head>
   <body>
     <nav class="navbar" id="mainNav">
       <div class="nav-container">
-        <a href="#home" class="nav-logo"> <img src="krs.png" alt="Logo" /> </a>
+        <a href="#" class="nav-logo"> <img src="krs.png" alt="Logo" /> </a>
         <ul class="nav-links" id="menu">
           <li><a href="#home">Beranda</a></li>
           <li><a href="#Berita">Berita</a></li>
@@ -1488,151 +1647,36 @@
       </div>
     </section>
 
-    <section id="Berita" class="news-section">
-      <div class="section-header" data-aos="fade-up"><h2>Berita</h2></div>
-      <div class="news-card-premium">
-        <div class="news-image-box">
-          <img src="krsberita.png" alt="desawisata" />
-          <div class="news-badge">TERBARU</div>
-        </div>
-
-        <div class="news-main-content">
-          <div class="news-header-info">
-            <span class="location">Matangaji, CIREBON</span>
-            <span class="divider">|</span>
-            <span class="date">08 Oktober 2025</span>
-          </div>
-
-          <h2 class="news-title">
-            PENYERAHAN SK  DESA WISATA KARANGSARI
-          </h2>
-
-          <p class="news-excerpt">
-            Pada 08 Oktober 2025 di Matangaji, Desa Karangsari resmi menyandang status sebagai 
-            Desa Wisata setelah Kuwu Casmari menerima SK dari Pemerintah Kabupaten Cirebon dalam 
-            ajang Anugerah Desa Wisata yang diikuti 30 desa lainnya.
-          </p>
-
-          <div class="news-full-text">
-            <p>
-              Momen bersejarah ini dimeriahkan 
-            dengan kirab budaya dan pameran produk unggulan yang mempertegas identitas ekonomi lokal,
-             mulai dari kain tenun yang elegan, kerupuk khas Karangsari yang legendaris, hingga kerajinan tusuk sate. 
-             Melalui semangat #karangsarineweru, pencapaian ini menjadi titik awal transformasi desa dalam mengembangkan 
-             potensi pariwisata berbasis budaya dan kreativitas warga yang siap bersaing di kancah yang lebih luas.
-            </p>
-          </div>
-          
-          <button class="btn-expand" onclick="toggleNews(this)">
-            BACA SELENGKAPNYA
-          </button>
-        </div>
-
-      </div>
-    
-<div class="news-card-premium" data-aos="fade-up">
-    <div class="news-image-box">
-      <img src="juara1.png" alt="deskripsi" />
-      <div class="news-badge">BARU</div>
+    <section id="Berita" class="news-section-beranda">
+    <div class="section-title-wrapper" style="text-align: center; margin-bottom: 40px;">
+        <h2 style="font-family: 'Syne', sans-serif; font-size: 2.3rem; font-weight: 900;">Berita Terkini</h2>
+        <p style="color: #64748b; font-weight: 600; font-size: 0.95rem; margin-top: 5px;">Lihat ada apa aja sih di Karangsari ?</p>
     </div>
 
-    <div class="news-main-content">
-      <div class="news-header-info">
-        <span class="location">Kota Sumber, CIREBON</span>
-        <span class="divider">|</span>
-        <span class="date">08 Agustus 2024</span>
-      </div>
+    <div class="beranda-news-grid" id="containerBeritaBeranda"></div>
 
-      <h2 class="news-title">RUMAH PRODUKSI FILM ASAL KARANGSARI JUARA 1</h2>
-
-      <p class="news-excerpt">Prestasi Membanggakan @dolanan_film Pertahankan Juara Satu Lomba Video Pendek Kabupaten Cirebon.</p>
-
-      <div class="news-full-text">
-        <p>Tim produksi video pendek kebanggaan Karangsari, @dolanan_film, kembali menorehkan prestasi gemilang
-             sebagai juara bertahan dalam lomba video pendek yang diselenggarakan oleh DPPKBP3A Kabupaten Cirebon.
-              Penghargaan ini diberikan langsung di Taman Hutan Kota Sumber pada 08 Agustus 2024 kepada Ardiansyah 
-              sebagai perwakilan tim. Keberhasilan mempertahankan gelar juara satu selama dua tahun berturut-turut ini 
-              membuahkan apresiasi berupa trofi serta sertifikat resmi yang ditandatangani langsung oleh Pj Bupati Cirebon. 
-              Pencapaian ini membuktikan bahwa kreativitas sineas muda Karangsari terus berkembang dan diakui secara luas di tingkat daerah.</p>
-      </div>
-      
-      <button class="btn-expand" onclick="toggleNews(this)">BACA SELENGKAPNYA</button>
-    </div>
-  </div>
-
-      <div class="archive-container">
-        <a href="berita.html" class="btn-archive">BACA BERITA LAINNYA</a>
-      </div>
-    </section>
-
-   <section id="agenda" class="agenda-section">
-    <div class="agenda-container">
-        
-        <h2 class="agenda-main-title">AGENDA </h2>
-
-<div class="agenda-card-modern" 
-     data-event-start="2026-06-13T07:00:00" 
-     data-event-end="2026-06-13T14:59:00"
-     data-banner="_MG_0349.JPG"> <div class="agenda-date-badge">
-        <span class="day">13</span>
-        <span class="month">JUNI</span>
-        <span class="year">2026</span>
-    </div>
-    
-    <div class="agenda-info">
-        <div class="status-label">MENDATANG</div>
-        
-        <h3 class="agenda-title">HAFLAH AKHIRUSSANAH ARIFIN BILLAH</h3>
-        
-        <div class="agenda-meta-info">
-            <span class="agenda-time">
-                <i class="fa-solid fa-clock"></i> 07:00 WIB
-            </span>
-            <span class="agenda-loc">
-                <i class="fa-solid fa-location-dot"></i> Yayasan Pendidikan Arifin Billah, Tajug Gede
-            </span>
-        </div>
-
-        <p class="agenda-description">
-            Bakal ada karnaval siswa & siswi serta Serimpi Karangsari
-        </p>
-
-        <div class="button-container">
-            <button class="btn-reminder-direct">
-                Ingatkan Saya <i class="fa-solid fa-bell"></i>
-            </button>
-
-            <a href="https://google.com" class="btn-documentation" style="display: none;">
-                Lihat Dokumentasi <i class="fa-solid fa-camera"></i>
-            </a>
-        </div>
-    </div>
-</div>
-
-
-
-            </div>
-            
-        </div>
-        
-    </div>
-
-
-    
-    <div class="propose-agenda-container">
-    <div class="propose-card">
-        <div class="propose-content">
-            <i class="fa-solid fa-calendar-plus propose-icon"></i>
-            <div class="propose-text">
-                <h4>Punya Agenda?</h4>
-                <p>Bagikan acara atau kegiatanmu di sini biar semua tahu!</p>
-            </div>
-        </div>
-        <a href="https://forms.gle/KZfLLNxtZg6rDPca6" target="_blank" class="btn-propose">
-            Kirim Agenda <i class="fa-solid fa-paper-plane"></i>
+    <div class="view-all-news-wrapper" style="text-align: center; margin-top: 45px;">
+        <a href="berita.html" class="btn-view-all-news">
+            Lihat Semua Berita <i class="fa-solid fa-arrow-right-long"></i>
         </a>
     </div>
-</div>
+</section>
+  <section id="agenda" class="agenda-section" style="padding: 60px 20px; background: #f8fafc;">
+    <div class="section-title-wrapper" style="text-align: center; margin-bottom: 40px;">
+        <h2 style="font-family: 'Syne', sans-serif; font-size: 2.3rem; font-weight: 900;">Agenda</h2>
+        <p style="color: #64748b; font-weight: 600; font-size: 0.95rem; margin-top: 5px;"> Cek semua agenda di Karangsari</p>
+    </div>
+
+    <div class="agenda-container" id="agendaBerandaContainer"></div>
+
+    <div class="agenda-actions-wrapper">
+        <a href="agenda.html" class="btn-agenda-aksi btn-lihat-semua">
+            <i class="fa-solid fa-list-ul"></i> Lihat Seluruh Agenda
+        </a>
+        <a href="https://forms.gle/MqVQMqBbxWkGoLXQ6" class="btn-agenda-aksi btn-kirim-agenda" target="_blank">
+            <i class="fa-solid fa-paper-plane"></i> Kirim Agenda Kegiatan
+        </a>
+    </div>
 </section>
 
     <section id="kontak" class="contact-section">
@@ -1837,178 +1881,154 @@
         }
       }
 
-// ==========================================
-// 1. REGISTRASI SERVICE WORKER
-// ==========================================
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').then(reg => {
-        console.log("Service Worker KRS Siap!");
-    }).catch(err => console.error("SW Gagal:", err));
-}
+async function loadIntegratedAgendas() {
+    const container = document.getElementById('agenda-beranda-container');
+    if (!container) return;
 
-// ==========================================
-// 2. FUNGSI UTAMA NOTIFIKASI (SOUND & BANNER)
-// ==========================================
-function sikatNotif(judul, pesan, bannerUrl = null) {
-    if (Notification.permission === "granted") {
-        const audio = new Audio('notifkrs.mp3'); 
-        audio.play().catch(e => console.log("Audio standby"));
+    try {
+        const response = await fetch('agenda.html');
+        const text = await response.text();
+        
+        const dbString = text.match(/const DATABASE_AGENDA = (\[[\s\S]*?\]);/);
+        if (!dbString) return;
 
-        const options = {
-            body: pesan,
-            icon: "logo-krs.png",
-            badge: "logo-krs.png",
-            vibrate: [500, 110, 500, 110, 450],
-            tag: 'agenda-krs',
-            image: bannerUrl, 
-            requireInteraction: true 
-        };
+        const sanitizedData = dbString[1]
+            .replace(/([a-zA-Z0-9_]+)(\s*:\s*)/g, '"$1"$2')
+            .replace(/'/g, '"')
+            .replace(/,\s*\]/g, ']');
+            
+        const database = JSON.parse(sanitizedData);
+        const now = new Date();
+        
+        const processed = database.map(item => {
+            const startTime = new Date(item.start.replace(' ', 'T'));
+            const endTime = new Date(item.end.replace(' ', 'T'));
+            let status = 'mendatang';
+            
+            if (now >= startTime && now <= endTime) status = 'berlangsung';
+            else if (now > endTime) status = 'selesai';
+            
+            return { ...item, startTime, endTime, status };
+        });
 
-        const n = new Notification(judul, options);
-        n.onclick = () => { window.focus(); n.close(); };
-    }
-}
+        let finalDisplayList = [];
 
-// ==========================================
-// 3. SISTEM PENGINGAT MULTI-TIME (1 HARI, 30 MIN, LIVE)
-// ==========================================
-async function initReminderSystem() {
-    document.addEventListener('click', async function(e) {
-        const btn = e.target.closest('.btn-reminder-direct');
-        if (!btn) return;
+        // Logika Aturan: Jika total agenda <= 5, munculkan semua di beranda
+        if (processed.length <= 5) {
+            finalDisplayList = processed;
+        } else {
+            // Jika > 5, saring hanya rentang waktu H-7
+            finalDisplayList = processed.filter(agenda => {
+                const dayDifference = (agenda.startTime - now) / (1000 * 60 * 60 * 24);
+                return (dayDifference >= 0 && dayDifference <= 7) || agenda.status === 'berlangsung';
+            });
+        }
 
-        // Cek Izin Notifikasi
-        const permission = await Notification.requestPermission();
-        if (permission !== "granted") {
-            alert("izinkan notifikasi di browser agar pengingat muncul!");
+        container.innerHTML = '';
+
+        if (finalDisplayList.length === 0) {
+            container.innerHTML = `<p style="text-align:center; font-weight:700; color:#64748b; padding:20px;">Belum ada agenda terdekat.</p>`;
             return;
         }
 
-        const card = btn.closest('.agenda-card-modern');
-        const title = card.querySelector('.agenda-title').innerText;
-        const bannerUrl = card.getAttribute('data-banner');
-        const startTimeStr = card.getAttribute('data-event-start');
-        
-        // ID Unik agar LocalStorage tidak tertukar
-        const agendaId = card.getAttribute('data-event-id') || title.replace(/\s+/g, '-').toLowerCase();
+        const months = ["JAN", "FEB", "MAR", "APR", "MEI", "JUN", "JUL", "AGU", "SEP", "OKT", "NOV", "DES"];
 
-        // FIX: Format waktu agar terbaca di iPhone/Android (Ganti spasi jadi T)
-        const eventTime = new Date(startTimeStr.replace(' ', 'T')).getTime();
-        const now = new Date().getTime();
+        finalDisplayList.forEach(agenda => {
+            const day = agenda.startTime.getDate();
+            const month = months[agenda.startTime.getMonth()];
+            const jam = agenda.start.split(' ')[1] ? agenda.start.split(' ')[1] + ' WIB' : '';
 
-        if (eventTime > now) {
-            // SIMPAN STATUS KE MEMORI (Reload-proof)
-            localStorage.setItem('pengingat-' + agendaId, 'aktif');
+            let statusText = "MENDATANG";
+            let statusClass = "status-label mendatang";
+            let docBtnHtml = "";
 
-            // Update Tampilan Tombol
-            btn.innerHTML = "AKTIF! <i class='fa-solid fa-check'></i>";
-            btn.style.background = "#27ae60";
-            btn.disabled = true;
-
-            // KIRIM JADWAL KE SERVICE WORKER (Background Task)
-            const reg = await navigator.serviceWorker.ready;
-            
-            const reminders = [
-                { offset: 24 * 60 * 60 * 1000, msg: "Besok acara dimulai!" }, // 1 Hari
-                { offset: 30 * 60 * 1000, msg: "30 Menit lagi dimulai!" },      // 30 Menit
-                { offset: 0, msg: "ACARA DIMULAI SEKARANG!" }                 // Pas Acara
-            ];
-
-            reminders.forEach(rem => {
-                const targetTime = eventTime - rem.offset;
-                const delay = targetTime - now;
-
-                if (delay > 0) {
-                    reg.active.postMessage({
-                        title: "📢 AGENDA KRS",
-                        body: `${rem.msg}: ${title}`,
-                        delay: delay,
-                        banner: bannerUrl
-                    });
-
-                    // Khusus tab yang sedang dibuka (Internal Timer)
-                    setTimeout(() => {
-                        sikatNotif("📢 PENGINGAT!", `${rem.msg} ${title}`, bannerUrl);
-                    }, delay);
+            if (agenda.status === 'berlangsung') {
+                statusText = "SEDANG BERLANGSUNG";
+                statusClass = "status-label berlangsung pulse";
+            } else if (agenda.status === 'selesai') {
+                statusText = "SELESAI";
+                statusClass = "status-label selesai";
+                if (agenda.docLink) {
+                    docBtnHtml = `<a href="${agenda.docLink}" target="_blank" class="btn-doc-link"><i class="fa-solid fa-photo-film"></i> Lihat Dokumentasi</a>`;
                 }
-            });
+            }
 
-            // Bunyi tes awal
-            const audio = new Audio('notifkrs.mp3');
-            audio.play().catch(() => {});
+            const htmlStructure = `
+                <div class="agenda-card-modern">
+                    <div class="news-image-box">
+                        <img src="${agenda.banner || 'default-banner.jpg'}" alt="${agenda.title}">
+                    </div>
+                    <div class="agenda-date-badge">
+                        <div class="day">${day}</div>
+                        <div class="month">${month}</div>
+                    </div>
+                    <div class="agenda-info">
+                        <div class="status-container">
+                            <span class="${statusClass}">${statusText}</span>
+                        </div>
+                        <h3 class="agenda-title">${agenda.title}</h3>
+                        <div class="agenda-meta-info">
+                            <span><i class="fa-solid fa-clock"></i> ${jam}</span>
+                            <span><i class="fa-solid fa-location-dot"></i> ${agenda.location}</span>
+                        </div>
+                        <p class="agenda-short-desc">${agenda.desc}</p>
+                        ${docBtnHtml}
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', htmlStructure);
+        });
 
-            alert(`Sip! Pengingat terjadwal untuk ${title}`);
-        } else {
-            alert("Acara sudah lewat, Gais!");
-        }
-    });
-}
-
-// ==========================================
-// 4. UPDATE STATUS & CEK MEMORI TOMBOL
-// ==========================================
-function updateAgendaStatus() {
-    const now = new Date().getTime();
-    document.querySelectorAll('.agenda-card-modern').forEach(card => {
-        const titleEl = card.querySelector('.agenda-title');
-        const agendaId = card.getAttribute('data-event-id') || titleEl.innerText.replace(/\s+/g, '-').toLowerCase();
-        const startAttr = card.getAttribute('data-event-start');
-        const endAttr = card.getAttribute('data-event-end');
-        
-        const startTime = new Date(startAttr.replace(' ', 'T')).getTime();
-        const endTime = new Date(endAttr.replace(' ', 'T')).getTime();
-        
-        const label = card.querySelector('.status-label');
-        const btnR = card.querySelector('.btn-reminder-direct');
-        const btnD = card.querySelector('.btn-documentation');
-
-        // Balikkan status tombol dari LocalStorage
-        if (localStorage.getItem('pengingat-' + agendaId) === 'aktif' && btnR) {
-            btnR.innerHTML = "AKTIF! <i class='fa-solid fa-check'></i>";
-            btnR.style.background = "#27ae60";
-            btnR.disabled = true;
-        }
-
-        // Logika Status Label
-        if (now < startTime) {
-            if (label) { label.innerText = "MENDATANG"; label.className = "status-label mendatang"; }
-        } else if (now >= startTime && now <= endTime) {
-            if (label) { label.innerText = "SEDANG BERLANGSUNG"; label.className = "status-label berlangsung pulse"; }
-            if (btnR) btnR.style.display = "none";
-        } else {
-            if (label) { label.innerText = "SELESAI"; label.className = "status-label selesai"; }
-            if (btnR) btnR.style.display = "none";
-            if (btnD) btnD.style.display = "block";
-            // Hapus memori jika sudah selesai
-            localStorage.removeItem('pengingat-' + agendaId);
-        }
-    });
-}
-
-// ==========================================
-// 5. RUNNING
-// ==========================================
-document.addEventListener('DOMContentLoaded', () => {
-    updateAgendaStatus();
-    initReminderSystem();
-    setInterval(updateAgendaStatus, 10000); // Cek status tiap 10 detik
-
-    function parseStandardTime(dateStr) {
-    if (!dateStr) return null;
-    // Mengubah "2026-05-18 20:00" atau "2026-05-18T20:00" menjadi format yang dimengerti semua OS
-    let normalized = dateStr.replace(' ', 'T'); 
-    let dateObj = new Date(normalized);
-    
-    // Jika masih gagal (Invalid Date), coba ganti tanda dash (-) menjadi slash (/) khusus Safari lama
-    if (isNaN(dateObj.getTime())) {
-        normalized = normalized.replace(/-/g, '/').replace('T', ' ');
-        dateObj = new Date(normalized);
+    } catch (error) {
+        console.error("Gagal melakukan sinkronisasi satu pintu agenda:", error);
     }
-    return dateObj.getTime();
 }
-});
+
+document.addEventListener('DOMContentLoaded', loadIntegratedAgendas);
 
 
     </script>
+
+    <script src="agenda-data.js"></script>
+<script src="beranda-agenda.js"></script>
+
+<script src="berita-data.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const gridContainer = document.getElementById("containerBeritaBeranda");
+        if (!gridContainer) return;
+
+        // 1. Urutkan berdasarkan tanggal rilis paling baru
+        const bTerurut = [...DATABASE_BERITA].sort((a, b) => new Date(b.tanggalRilis) - new Date(a.tanggalRilis));
+
+        // 2. Kunci potong dan ambil 3 berita teratas saja untuk ditaruh di beranda
+        const tigaBeritaTeratas = bTerurut.slice(0, 3);
+
+        gridContainer.innerHTML = "";
+
+        // 3. Looping injeksi data berita
+        tigaBeritaTeratas.forEach(berita => {
+            const templateCard = `
+                <div class="beranda-news-card">
+                    <div class="beranda-news-thumb">
+                        <img src="${berita.gambar || 'default-news.jpg'}" alt="${berita.judul}">
+                    </div>
+                    <div class="beranda-news-info">
+                        <div class="beranda-news-meta">
+                            <i class="fa-solid fa-calendar-alt"></i> ${berita.waktuKejadian.split('|')[0]}
+                        </div>
+                        <h4 class="beranda-news-title">${berita.judul}</h4>
+                        <p class="beranda-news-desc">${berita.ringkasan}</p>
+                        <a href="berita.html#news-block-${berita.id}" class="btn-read-beranda-news">
+                            Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+            gridContainer.insertAdjacentHTML('beforeend', templateCard);
+        });
+    });
+</script>
+
   </body>
 </html>
