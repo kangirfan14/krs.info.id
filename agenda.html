@@ -3,11 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="logoatas.png">
+    <link rel="icon" type="image/png" href="logoatas.png" />
     <title>KRS Agenda | Pusat Informasi Agenda Karangsari</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
     <style>
@@ -15,14 +21,34 @@
         --bg: #f8fafc;
         --text-dark: #0f172a;
         --blood-red: #8b0000;
-        --blood-gradient: linear-gradient(135deg, #4a0404 0%, #8b0000 50%, #ee1d23 100%);
-        --border-light: rgba(139, 0, 0, 0.1);
+        --blood-gradient: linear-gradient(
+          135deg,
+          #4a0404 0%,
+          #8b0000 50%,
+          #ee1d23 100%
+        );
+        --border-light: rgba(139, 0, 0, 0.15);
       }
 
-      * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Plus Jakarta Sans", sans-serif; }
-      body { background-color: var(--bg); color: var(--text-dark); overflow-x: hidden; background-image: radial-gradient(rgba(139, 0, 0, 0.03) 1.5px, transparent 1.5px); background-size: 30px 30px; }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
 
-      /* --- NAVBAR FIXED DENGAN LOGIKA SCROLL DINAMIS --- */
+      body {
+        background-color: var(--bg);
+        color: var(--text-dark);
+        overflow-x: hidden;
+        background-image: radial-gradient(
+          rgba(139, 0, 0, 0.02) 1.5px,
+          transparent 1.5px
+        );
+        background-size: 30px 30px;
+      }
+
+      /* --- NAVBAR HEADER --- */
       .navbar {
         position: fixed;
         top: 20px;
@@ -35,16 +61,15 @@
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
-        border-radius: 50px; /* Kondisi awal melayang bulat */
+        border-radius: 50px;
         border: 3px solid var(--blood-red);
         display: flex;
         align-items: center;
         padding: 0 30px;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
       }
 
-      /* Ketika di-scroll (Fit ke layar & border hilang) */
       .navbar.scrolled {
         top: 0 !important;
         width: 100% !important;
@@ -55,7 +80,6 @@
         border-top: none !important;
         border-radius: 0px !important;
         background: #ffffff !important;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         padding: 0 40px !important;
       }
 
@@ -66,18 +90,44 @@
         width: 100%;
       }
 
-      /* Pengaturan Ukuran Logo Kiri (Sudah dijinakkan biar pas) */
-.nav-logo-link {
-    display: flex;
-    align-items: center;
-}
-.nav-logo-img {
-    height: 35px; /* Diturunkan ke 35px biar pas dan proporsional */
-    width: auto;
-    object-fit: contain;
-}
+      .nav-logo-link {
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        padding: 4px;
+      }
 
-      /* Tombol Beranda Kapsul Unik di Kanan */
+      .nav-logo-img {
+        height: 35px;
+        width: auto;
+        object-fit: contain;
+        display: block;
+      }
+
+      .nav-logo-link::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -150%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.6) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: skewX(-25deg);
+        animation: shineLogo 4s infinite ease-in-out;
+      }
+
+      @keyframes shineLogo {
+        0% { left: -150%; }
+        30%, 100% { left: 150%; }
+      }
+
       .btn-back-beranda {
         display: inline-flex;
         align-items: center;
@@ -94,204 +144,434 @@
         box-shadow: 0 4px 15px rgba(139, 0, 0, 0.2);
         transition: all 0.3s ease;
       }
+
       .btn-back-beranda:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
-        opacity: 0.95;
       }
 
-      /* --- HERO HEAD --- */
-      .agenda-header-section { padding: 140px 20px 30px; text-align: center; max-width: 800px; margin: 0 auto; }
-      .agenda-header-section h1 { font-family: "Syne", sans-serif; font-size: 2.8rem; font-weight: 900; color: #1a1a1a; letter-spacing: -1px; margin-bottom: 10px; }
-      .agenda-header-section h1 span { color: var(--blood-red); -webkit-text-stroke: 1px var(--blood-red); -webkit-text-fill-color: transparent; }
-      .agenda-header-section p { color: #64748b; font-size: 1rem; font-weight: 600; }
+      /* --- AGENDA HERO SECTION --- */
+      .agenda-header-section {
+        padding: 140px 20px 40px;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+      }
 
-      /* --- CONTROLS: SEARCH BAR BARU & TABS --- */
-      .agenda-controls { max-width: 1000px; margin: 0 auto 40px; padding: 0 20px; }
-      
-      /* Pembungkus Bar Pencarian Modern dengan Tombol Icon */
-      .search-box-wrapper { 
+      .agenda-header-section h1 {
+        font-family: "Syne", sans-serif;
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: #1a1a1a;
+        letter-spacing: -1px;
+        margin-bottom: 10px;
+      }
+
+      .agenda-header-section h1 span {
+        color: var(--blood-red);
+        -webkit-text-stroke: 1px var(--blood-red);
+        -webkit-text-fill-color: transparent;
+      }
+
+      .agenda-header-section p {
+        color: #64748b;
+        font-size: 1.05rem;
+        font-weight: 600;
+        max-width: 600px;
+        margin: 0 auto 30px;
+      }
+
+      /* --- SEARCH BAR CONTROLS --- */
+      .search-container {
+        max-width: 600px;
+        margin: 0 auto 30px;
+        padding: 0 20px;
+      }
+
+      .search-box {
+        position: relative;
         display: flex;
         align-items: center;
-        background: #ffffff;
+        width: 100%;
+      }
+
+      .search-box input {
+        width: 100%;
+        padding: 16px 50px 16px 55px;
         border: 3px solid var(--blood-red);
         border-radius: 50px;
-        overflow: hidden;
-        margin-bottom: 25px;
-        box-shadow: 0 10px 25px rgba(139,0,0,0.03); 
-        transition: 0.3s ease; 
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        outline: none;
+        background: #ffffff;
+        box-shadow: 0 8px 25px rgba(139, 0, 0, 0.04);
+        transition: all 0.3s ease;
       }
-      .search-box-wrapper:focus-within {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 30px rgba(139,0,0,0.12);
-      }
-      .search-input { 
-        flex-grow: 1;
-        border: none;
-        padding: 16px 25px; 
-        background: transparent; 
-        font-size: 15px; 
-        font-weight: 700; 
-        color: var(--text-dark); 
-        outline: none; 
-      }
-      .search-input::placeholder { color: #94a3b8; font-weight: 600; }
 
-      /* Tombol Icon Cari */
-      .btn-search-trigger {
-        background: var(--blood-red);
-        border: none;
+      .search-box input:focus {
+        box-shadow: 0 10px 30px rgba(139, 0, 0, 0.1);
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 22px;
+        color: var(--blood-red);
+        font-size: 1.2rem;
+        pointer-events: none;
+      }
+
+      .clear-icon {
+        position: absolute;
+        right: 22px;
+        color: #94a3b8;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: color 0.2s ease, transform 0.2s ease;
+        padding: 5px;
+      }
+
+      .clear-icon:hover {
+        color: var(--blood-red);
+        transform: scale(1.1);
+      }
+
+      /* --- TABS FILTER --- */
+      .tabs-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+        padding: 0 20px;
+      }
+
+      .tab-btn {
+        padding: 10px 24px;
+        border: 2px solid var(--blood-red);
+        background: #ffffff;
+        color: var(--blood-red);
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .tab-btn:hover,
+      .tab-btn.active {
+        background: var(--blood-gradient);
         color: #ffffff;
-        height: 54px;
-        width: 65px;
+        box-shadow: 0 5px 15px rgba(139, 0, 0, 0.2);
+        border-color: transparent;
+      }
+
+      /* --- AGENDA CARDS GRID --- */
+      .agenda-container {
+        max-width: 1000px;
+        margin: 0 auto 100px;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .agenda-card-modern {
+        background: #ffffff;
+        border: 3px solid var(--blood-red);
+        border-radius: 24px;
+        display: flex;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .agenda-card-modern:hover {
+        transform: translateY(-3px);
+        box-shadow: 10px 10px 0px rgba(139, 0, 0, 0.08);
+      }
+
+      .news-image-box {
+        width: 260px;
+        min-width: 260px;
+        position: relative;
+        overflow: hidden;
+        border-right: 3px solid var(--blood-red);
+      }
+
+      .news-image-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .agenda-card-modern:hover .news-image-box img {
+        transform: scale(1.04);
+      }
+
+      .agenda-date-badge {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: var(--blood-gradient);
+        color: #ffffff;
+        padding: 20px;
+        min-width: 110px;
+        text-align: center;
+        border-right: 1px dashed rgba(255, 255, 255, 0.3);
+      }
+
+      .agenda-date-badge .day {
+        font-family: "Syne", sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .agenda-date-badge .separator {
+        width: 30px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.4);
+        margin: 8px 0;
+      }
+
+      .agenda-date-badge .month {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .agenda-date-badge .year {
+        font-size: 11px;
+        font-weight: 600;
+        opacity: 0.8;
+        margin-top: 2px;
+      }
+
+      .agenda-info {
+        padding: 25px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-grow: 1;
+      }
+
+      .status-container {
+        margin-bottom: 10px;
+      }
+
+      .status-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .status-badge.mendatang {
+        background: rgba(139, 0, 0, 0.08);
+        color: var(--blood-red);
+        border: 1px solid rgba(139, 0, 0, 0.2);
+      }
+
+      .status-badge.berlangsung {
+        background: #d97706 !important;
+        color: #ffffff !important;
+        border: none !important;
+        position: relative;
+        font-weight: 800;
+        box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.7);
+        animation: denyutSakti 1.2s infinite cubic-bezier(0.66, 0, 0, 1);
+      }
+
+      @keyframes denyutSakti {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.7);
+        }
+        70% {
+          transform: scale(1.03);
+          box-shadow: 0 0 0 10px rgba(217, 119, 6, 0);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(217, 119, 6, 0);
+        }
+      }
+
+      .status-badge.selesai {
+        background: #f1f5f9;
+        color: #64748b;
+        border: 1px solid #e2e8f0;
+      }
+
+      .agenda-title {
+        font-family: "Syne", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: #1a1a1a;
+        line-height: 1.3;
+        margin-bottom: 12px;
+      }
+
+      .agenda-meta-info {
+        display: flex;
+        gap: 20px;
+        color: #64748b;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 14px;
+      }
+
+      .agenda-meta-info span {
         display: flex;
         align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 16px;
-        transition: background 0.2s ease;
+        gap: 6px;
       }
-      .btn-search-trigger:hover { background: #5a0000; }
 
-      .tabs-wrapper { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; background: rgba(139,0,0,0.05); padding: 8px; border-radius: 50px; border: 1px solid var(--border-light); }
-      .tab-btn { padding: 10px 24px; border: none; background: transparent; border-radius: 50px; font-weight: 800; font-size: 13px; color: #64748b; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
-      .tab-btn.active { background: var(--blood-red); color: #fff; box-shadow: 0 5px 15px rgba(139,0,0,0.2); }
+      .agenda-meta-info i {
+        color: var(--blood-red);
+      }
 
-      /* --- CONTENT CONTAINER & CARDS --- */
-      .agenda-wrapper { max-width: 1000px; margin: 0 auto; padding: 0 20px 100px; }
-      .no-results { text-align: center; padding: 40px; font-weight: 700; color: #64748b; display: none; }
-      
-      .agenda-card-modern { display: flex; background: #fff; border: 3px solid var(--blood-red); border-radius: 25px; margin-bottom: 30px; overflow: hidden; transition: 0.3s ease-in-out; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
-      .agenda-card-modern:hover { transform: translateY(-4px); box-shadow: 10px 10px 0px rgba(139, 0, 0, 0.1); }
-      
-      /* Image Banner Box (16:9) */
-      .news-image-box { width: 260px; min-width: 260px; aspect-ratio: 16 / 9; overflow: hidden; position: relative; border-right: 3px solid var(--blood-red); }
-      .news-image-box img { width: 100%; height: 100%; object-fit: cover; }
+      .agenda-short-desc {
+        color: #475569;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
 
-      /* Badge Struktur Tanggal - Bulan - Tahun Baru */
-      .agenda-date-badge { background: var(--blood-red); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; min-width: 140px; text-align: center; border-right: 1px dashed rgba(255,255,255,0.3); }
-      .agenda-date-badge .day { font-size: 2.2rem; font-weight: 900; line-height: 1; }
-      .agenda-date-badge .separator { width: 25px; height: 3px; background: rgba(255, 255, 255, 0.5); margin: 5px 0; border-radius: 2px; }
-      .agenda-date-badge .month { font-size: 13px; font-weight: 800; text-transform: uppercase; }
-      .agenda-date-badge .year { font-size: 11px; font-weight: 600; opacity: 0.85; margin-top: 2px; }
+      .btn-doc-link {
+        align-self: flex-start;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background: #ffffff;
+        border: 2px solid var(--blood-red);
+        color: var(--blood-red);
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+        margin-top: 5px;
+      }
 
-      .agenda-info { padding: 25px 30px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; position: relative; }
-      .status-container { margin-bottom: 12px; }
-      
-      .status-label { display: inline-block; padding: 5px 14px; font-size: 11px; font-weight: 900; border-radius: 6px; letter-spacing: 1px; text-transform: uppercase; color: #fff; }
-      .status-label.mendatang { background-color: #64748b; }
-      .status-label.berlangsung { background-color: var(--blood-red); }
-      .status-label.selesai { background-color: #1e293b; }
+      .btn-doc-link:hover {
+        background: var(--blood-red);
+        color: #ffffff;
+      }
 
-      .pulse { animation: statusPulse 2s infinite ease-in-out; }
-      @keyframes statusPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.03); } }
+      .no-results {
+        text-align: center;
+        padding: 40px 20px;
+        background: #ffffff;
+        border: 2px dashed rgba(139, 0, 0, 0.2);
+        border-radius: 20px;
+        color: #64748b;
+        font-weight: 600;
+        display: none;
+      }
 
-      .agenda-title { font-size: 1.35rem; font-weight: 800; color: #1a1a1a; margin-bottom: 10px; line-height: 1.3; }
-      .agenda-meta-info { display: flex; gap: 20px; margin-bottom: 15px; font-size: 0.85rem; font-weight: 600; color: #555; }
-      .agenda-meta-info i { color: var(--blood-red); margin-right: 5px; }
-      .agenda-short-desc { font-size: 0.95rem; color: #555; line-height: 1.6; border-left: 3px solid #eee; padding-left: 15px; margin-bottom: 10px; }
+      .no-results i {
+        font-size: 2.5rem;
+        color: #cbd5e1;
+        margin-bottom: 15px;
+        display: block;
+      }
 
-      .btn-doc-link { display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; background-color: var(--blood-red); color: #fff !important; border: 2px solid var(--blood-red); border-radius: 50px; font-weight: 800; font-size: 0.85rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 15px rgba(139, 0, 0, 0.2); width: fit-content; margin-top: 10px; }
-      .btn-doc-link:hover { background-color: transparent; color: var(--blood-red) !important; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139, 0, 0, 0.3); }
-
-      /* --- MEDIA QUERIES MOBILE RECONSTRUCTION --- */
+      /* --- MEDIA QUERIES UNTUK TAMPILAN MOBILE --- */
       @media (max-width: 768px) {
-        .navbar { width: 95% !important; top: 10px !important; padding: 0 20px !important; height: 60px; }
-        .navbar.scrolled { padding: 0 20px !important; }
-        .nav-logo-img { height: 38px; }
-        .btn-back-beranda { padding: 8px 16px; }
-        .btn-back-beranda span { display: none; } /* Hilangkan teks beranda di HP biar sisa ikon saja */
+        .navbar {
+          width: 95% !important;
+          top: 10px !important;
+          padding: 0 15px !important;
+          height: 60px;
+        }
+        .navbar.scrolled {
+          padding: 0 15px !important;
+        }
+        .nav-logo-img {
+          height: 28px;
+        }
+
+        .btn-back-beranda span {
+          display: none !important;
+        }
+        .btn-back-beranda {
+          padding: 10px 14px !important;
+        }
+
+        .search-box input {
+          font-size: 16px !important;
+          padding-right: 50px !important;
+          padding-left: 45px !important;
+          padding-top: 14px !important;
+          padding-bottom: 14px !important;
+        }
+        .search-icon { left: 18px; }
+        .clear-icon { right: 18px; }
 
         .agenda-header-section { padding: 110px 20px 20px; }
-        .agenda-header-section h1 { font-size: 2rem; }
-        
-        .agenda-card-modern { flex-direction: column !important; border-radius: 20px; }
-        .news-image-box { width: 100% !important; min-width: auto !important; border-right: none; border-bottom: 3px solid var(--blood-red); }
-        .nav-logo-img {
-    height: 28px; /* Lebih imut dan pas di layar HP */
-}
-        
-        /* Tanggal Horizontal Rapi di Layar HP */
-        .agenda-date-badge { flex-direction: row !important; gap: 6px !important; min-width: auto !important; width: 100% !important; padding: 12px 20px !important; justify-content: flex-start !important; border-right: none !important; border-bottom: 1px dashed rgba(139,0,0,0.15); }
+        .agenda-header-section h1 { font-size: 2.2rem; }
+        .agenda-header-section p { font-size: 0.95rem; margin-bottom: 20px; }
+
+        .agenda-card-modern {
+          flex-direction: column !important;
+          border-radius: 20px;
+        }
+
+        .news-image-box {
+          width: 100% !important;
+          min-width: auto !important;
+          height: 180px;
+          border-right: none;
+          border-bottom: 3px solid var(--blood-red);
+        }
+
+        .agenda-date-badge {
+          flex-direction: row !important;
+          gap: 6px !important;
+          min-width: auto !important;
+          width: 100% !important;
+          padding: 12px 20px !important;
+          justify-content: flex-start !important;
+          border-right: none !important;
+          border-bottom: 1px dashed rgba(139, 0, 0, 0.15);
+        }
+
         .agenda-date-badge .day { font-size: 1.4rem !important; }
-        .agenda-date-badge .separator { width: 2px !important; height: 15px !important; background: rgba(255, 255, 255, 0.6) !important; margin: 0 4px !important; }
+        .agenda-date-badge .separator {
+          width: 2px !important;
+          height: 15px !important;
+          background: rgba(255, 255, 255, 0.6) !important;
+          margin: 0 4px !important;
+        }
         .agenda-date-badge .month { font-size: 13px !important; }
         .agenda-date-badge .year { font-size: 13px !important; margin-top: 0 !important; }
 
         .agenda-info { padding: 20px; text-align: left; align-items: flex-start; }
+        .agenda-title { font-size: 1.2rem; }
         .agenda-meta-info { flex-direction: column !important; gap: 6px; width: 100%; align-items: flex-start; }
         .agenda-short-desc { border-left: 3px solid #eee; padding-left: 12px; }
         .btn-doc-link { width: 100%; justify-content: center; }
-        .tab-btn { padding: 8px 16px; font-size: 11px; }
-      }
-
-      /* --- ANIMASI KILAU LOGO (SINKRON INDEX.HTML) --- */
-.nav-logo-link {
-    display: flex;
-    align-items: center;
-    position: relative; /* Kunci posisi untuk kilauan */
-    overflow: hidden;   /* Potong cahaya biar gak luber keluar logo */
-    border-radius: 8px; /* Sudut potong halus */
-    padding: 4px;
-}
-
-.nav-logo-img {
-    height: 35px; /* Tetap ideal sesuai request sebelumnya */
-    width: auto;
-    object-fit: contain;
-    display: block;
-}
-
-/* Membuat Garis Cahaya Kilau */
-.nav-logo-link::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -150%; /* Mulai dari luar kotak sebelah kiri */
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(
-        to right, 
-        rgba(255, 255, 255, 0) 0%, 
-        rgba(255, 255, 255, 0.6) 50%, 
-        rgba(255, 255, 255, 0) 100%
-    );
-    transform: skewX(-25deg); /* Bikin posisi cahaya miring biar estetik */
-    animation: shineLogo 4s infinite ease-in-out; /* Berulang setiap 4 detik */
-}
-
-/* Jalur Pergerakan Kilau */
-@keyframes shineLogo {
-    0% {
-        left: -150%;
-    }
-    30%, 100% {
-        left: 150%; /* Melesat ke sebelah kanan luar kotak */
-    }
-}
-
-/* Penyesuaian Ukuran di Layar HP (Mobile) */
-@media (max-width: 768px) {
-    .nav-logo-img {
-        height: 28px; /* Tetap imut di HP */
-    }
-}
-
-footer {
-        padding: 50px 20px;
-        text-align: center;
-        font-size: 12px;
-        color: #94a3b8;
-        font-weight: 700;
+        .tab-btn { padding: 8px 18px; font-size: 0.8rem; }
       }
     </style>
   </head>
   <body>
-
     <header class="navbar">
       <div class="nav-container">
-        <a href="#" class="nav-logo-link">
-          <img src="krs.png" alt="Logo KRS" class="nav-logo-img">
+        <a href="index.html" class="nav-logo-link">
+          <img src="krs.png" alt="Logo" class="nav-logo-img" />
         </a>
         <div class="nav-menu-right">
           <a href="index.html#agenda" class="btn-back-beranda">
@@ -301,125 +581,138 @@ footer {
       </div>
     </header>
 
-    <section class="agenda-header-section" data-aos="fade-down">
-      <h1>Pusat Agenda</h1>
-      <p>Cari, filter, dan telusuri seluruh agenda kegiatan.</p>
-    </section>
+    <section class="agenda-header-section">
+      <h1 data-aos="fade-down">PUSAT AGENDA</h1>
+      <p data-aos="fade-up" data-aos-delay="100">
+        Pantau seluruh jadwal, beserta dokumentasi resmi
+        dari setiap kegiatan.
+      </p>
 
-    <div class="agenda-controls" data-aos="fade-up">
-      <div class="search-box-wrapper">
-        <input type="text" id="agendaSearch" class="search-input" placeholder="Ketik nama kegiatan, lokasi, atau deskripsi di sini..." onkeyup="handleSearchKeyUp(event)">
-        <button type="button" class="btn-search-trigger" onclick="filterAgendas()" title="Cari Agenda">
-          <i class="fa-solid fa-magnifying-glass"></i>
+      <div class="search-container" data-aos="fade-up" data-aos-delay="200">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Cari agenda kegiatan..."
+            oninput="filterAgendas()"
+          />
+          <i
+            class="fa-solid fa-xmark clear-icon"
+            id="clearSearchBtn"
+            onclick="clearSearch()"
+            style="display: none;"
+          ></i>
+        </div>
+      </div>
+
+      <div class="tabs-container" data-aos="fade-up" data-aos-delay="300">
+        <button class="tab-btn active" onclick="switchTab('semua', this)">
+          Semua
+        </button>
+        <button class="tab-btn" onclick="switchTab('berlangsung', this)">
+          Berlangsung
+        </button>
+        <button class="tab-btn" onclick="switchTab('mendatang', this)">
+          Mendatang
+        </button>
+        <button class="tab-btn" onclick="switchTab('selesai', this)">
+          Selesai
         </button>
       </div>
-      <div class="tabs-wrapper">
-        <button class="tab-btn active" onclick="switchTab('all', this)">Semua</button>
-        <button class="tab-btn" onclick="switchTab('mendatang', this)">Mendatang</button>
-        <button class="tab-btn" onclick="switchTab('berlangsung', this)">Berlangsung</button>
-        <button class="tab-btn" onclick="switchTab('selesai', this)">Selesai</button>
+    </section>
+
+    <main class="agenda-container" id="agendaCardContainer">
+    </main>
+
+    <div class="search-container">
+      <div id="noResults" class="no-results">
+        <i class="fa-solid fa-calendar-xmark"></i>
+        Agenda yang kamu cari tidak ditemukan. Coba kata kunci lain!
       </div>
     </div>
 
-    <main class="agenda-wrapper" id="agendaContainer" data-aos="fade-up">
-      <div id="noResults" class="no-results">Waduh, agenda yang dicari tidak ketemu nih...</div>
-    </main>
-<footer>&copy; 2026 KRS.INFO — #karangsarineweru</footer>
-
-    <script src="agenda-data.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="agenda-data.js"></script>
     <script>
       AOS.init({ duration: 800, once: true });
 
-      let currentFilter = 'all';
-
-      // 1. LOGIKA SCROLLING NAVBAR (Membulat -> Fit Layar)
-      function handleNavbarScroll() {
-        const navbar = document.querySelector('.navbar');
-        if (!navbar) return;
+      window.addEventListener("scroll", function () {
+        const nav = document.querySelector(".navbar");
         if (window.scrollY > 20) {
-          navbar.classList.add('scrolled');
+          nav.classList.add("scrolled");
         } else {
-          navbar.classList.remove('scrolled');
+          nav.classList.remove("scrolled");
         }
-      }
-      window.addEventListener('scroll', handleNavbarScroll);
-      document.addEventListener('DOMContentLoaded', handleNavbarScroll);
+      });
 
-      // 2. LOGIKA TRIGGER ENTER DI KOLOM INPUT
-      function handleSearchKeyUp(event) {
-        if (event.key === 'Enter') {
-          filterAgendas();
-        }
-      }
+      let currentFilter = "semua";
 
-      function getMonthName(monthIndex) {
-        const months = ["JAN", "FEB", "MAR", "APR", "MEI", "JUN", "JUL", "AGU", "SEP", "OKT", "NOV", "DES"];
-        return months[monthIndex];
-      }
-
-      function processAgendaData() {
-        const now = new Date();
-        return DATABASE_AGENDA.map(item => {
-          const startTime = new Date(item.start.replace(' ', 'T'));
-          const endTime = new Date(item.end.replace(' ', 'T'));
-          
-          let status = 'mendatang';
-          if (now >= startTime && now <= endTime) {
-            status = 'berlangsung';
-          } else if (now > endTime) {
-            status = 'selesai';
-          }
-
-          return { ...item, startTime, endTime, status };
-        });
-      }
-
-      // 3. RENDER DATA AGENDA LENGKAP TANGGAL-BULAN-TAHUN
       function renderAgendas() {
-        const processed = processAgendaData();
-        const searchInput = document.getElementById('agendaSearch').value.toLowerCase();
-        const container = document.getElementById('agendaContainer');
+        const container = document.getElementById("agendaCardContainer");
+        const keyword = document.getElementById("searchInput").value.toLowerCase().trim();
         
-        const existingCards = container.querySelectorAll('.agenda-card-modern');
-        existingCards.forEach(card => card.remove());
-
+        container.innerHTML = "";
         let visibleCount = 0;
 
-        processed.forEach(agenda => {
-          if (currentFilter !== 'all' && agenda.status !== currentFilter) return;
-          
-          const matchesSearch = agenda.title.toLowerCase().includes(searchInput) || 
-                                agenda.location.toLowerCase().includes(searchInput) || 
-                                agenda.desc.toLowerCase().includes(searchInput);
-          if (!matchesSearch) return;
+        if (typeof DATABASE_AGENDA === "undefined") {
+          console.error("Database agenda-data.js tidak terdeteksi!");
+          return;
+        }
+
+        const sortedAgendas = [...DATABASE_AGENDA].sort(
+          (a, b) => new Date(b.start) - new Date(a.start)
+        );
+
+        sortedAgendas.forEach((agenda) => {
+          const today = new Date();
+          const startDate = new Date(agenda.start);
+          const endDate = agenda.end ? new Date(agenda.end) : new Date(startDate.getTime() + 24 * 60 * 60 * 1000 - 1000);
+
+          let statusKey = "mendatang";
+          let statusText = "Mendatang";
+          let statusClass = "status-badge mendatang";
+
+          if (today >= startDate && today <= endDate) {
+            statusKey = "berlangsung";
+            statusText = "Sedang Berlangsung";
+            statusClass = "status-badge berlangsung";
+          } else if (today > endDate) {
+            statusKey = "selesai";
+            statusText = "Selesai";
+            statusClass = "status-badge selesai";
+          }
+
+          if (currentFilter !== "semua" && currentFilter !== statusKey) return;
+
+          const matchTitle = agenda.title.toLowerCase().includes(keyword);
+          const matchDesc = agenda.desc.toLowerCase().includes(keyword);
+          const matchLoc = agenda.location.toLowerCase().includes(keyword);
+          if (keyword !== "" && !matchTitle && !matchDesc && !matchLoc) return;
 
           visibleCount++;
 
-          // Ekstraksi Tanggal, Bulan, Tahun secara terpisah
-          const day = String(agenda.startTime.getDate()).padStart(2, '0');
-          const month = getMonthName(agenda.startTime.getMonth());
-          const year = agenda.startTime.getFullYear();
+          const day = startDate.getDate();
+          const year = startDate.getFullYear();
+          const months = [
+            "Jan", "Feb", "Mar", "Apr", "Mei", "Jun", 
+            "Jul", "Agu", "Sep", "Okt", "Nov", "Des"
+          ];
+          const month = months[startDate.getMonth()];
+          const jam = agenda.start.split(" ")[1] || "00:00";
 
-          let statusText = "MENDATANG";
-          let statusClass = "status-label mendatang";
+          // SINKRONISASI TOTAL: Menggunakan agenda.docLink bawaan database Bos!
           let docButtonHtml = "";
-
-          if (agenda.status === 'berlangsung') {
-            statusText = "SEDANG BERLANGSUNG";
-            statusClass = "status-label berlangsung pulse";
-          } else if (agenda.status === 'selesai') {
-            statusText = "SELESAI";
-            statusClass = "status-label selesai";
-            if (agenda.docLink) {
-              docButtonHtml = `<a href="${agenda.docLink}" target="_blank" class="btn-doc-link"><i class="fa-solid fa-photo-film"></i> Lihat Dokumentasi</a>`;
-            } else {
-              docButtonHtml = `<a href="#" onclick="alert('Dokumentasi sedang diproses.'); return false;" class="btn-doc-link" style="opacity:0.6;"><i class="fa-solid fa-hourglass-half"></i> Proses Upload</a>`;
-            }
+          if (statusKey === "selesai" && agenda.docLink && agenda.docLink.trim() !== "") {
+            docButtonHtml = `
+              <a href="${agenda.docLink}" class="btn-doc-link" target="_blank">
+                <i class="fa-solid fa-images"></i> Lihat Dokumentasi
+              </a>
+            `;
           }
 
           const cardHtml = `
-            <div class="agenda-card-modern" data-status="${agenda.status}">
+            <div class="agenda-card-modern" data-aos="fade-up">
               <div class="news-image-box">
                 <img src="${agenda.banner || 'default-banner.jpg'}" alt="${agenda.title}">
               </div>
@@ -436,32 +729,56 @@ footer {
                 </div>
                 <h3 class="agenda-title">${agenda.title}</h3>
                 <div class="agenda-meta-info">
-                  <span><i class="fa-solid fa-clock"></i> ${agenda.start.split(' ')[1]} WIB</span>
+                  <span><i class="fa-solid fa-clock"></i> ${jam} WIB</span>
                   <span><i class="fa-solid fa-location-dot"></i> ${agenda.location}</span>
                 </div>
                 <p class="agenda-short-desc">${agenda.desc}</p>
-                ${docButtonHtml}
+                ${docButtonHtml} 
               </div>
             </div>
           `;
-          container.insertAdjacentHTML('beforeend', cardHtml);
+          container.insertAdjacentHTML("beforeend", cardHtml);
         });
 
-        document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
+        document.getElementById("noResults").style.display =
+          visibleCount === 0 ? "block" : "none";
+      }
+
+      function filterAgendas() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.getElementById("clearSearchBtn");
+        const keyword = searchInput.value.trim();
+
+        if (keyword.length > 0) {
+          clearBtn.style.display = "block";
+        } else {
+          clearBtn.style.display = "none";
+        }
+
+        renderAgendas();
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearBtn = document.getElementById("clearSearchBtn");
+
+        searchInput.value = ""; 
+        clearBtn.style.display = "none"; 
+        searchInput.focus(); 
+
+        renderAgendas();
       }
 
       function switchTab(filter, element) {
         currentFilter = filter;
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        element.classList.add('active');
+        document
+          .querySelectorAll(".tab-btn")
+          .forEach((btn) => btn.classList.remove("active"));
+        element.classList.add("active");
         renderAgendas();
       }
 
-      function filterAgendas() {
-        renderAgendas();
-      }
-
-      document.addEventListener('DOMContentLoaded', renderAgendas);
+      document.addEventListener("DOMContentLoaded", renderAgendas);
     </script>
   </body>
 </html>
