@@ -8,7 +8,7 @@ const DATABASE_AGENDA = [
     location: "Yayasan Pendidikan Arifin Billah, Weru, Cirebon",
     desc: "Acara ceremonial siswa dan siswi diawali karnaval.",
     banner: "_MG_0349.JPG", // Ganti dengan nama file foto banner Anda
-    docLink: "https://youtube.com/link-dokumentasi-voli"
+    docLink: "https://drive.google.com/drive/folders/1C9riKrwnlY7BujNB866Dp4MOWQs9IQmX?usp=drive_link"
   },
 
   {
@@ -19,7 +19,7 @@ const DATABASE_AGENDA = [
     location: "Yayasan Pendidikan Arifin Billah, Weru, Cirebon",
     desc: "Pada Acara HAFLAH AKHIRUSSANAH ARIFIN BILLAH 2026.",
     banner: "IMG_8437.JPG", // Ganti dengan nama file foto banner Anda
-    docLink: "https://youtube.com/link-dokumentasi-voli"
+    docLink: "#"
   },
   
   
