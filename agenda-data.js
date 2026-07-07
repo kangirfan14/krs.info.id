@@ -29,7 +29,7 @@ const DATABASE_AGENDA = [
     end: "2026-07-10 00:00",
     location: "Area lapang Gor Karangsari",
     desc: "Acara Pemutaran Film, Pameran Mini, Video Mapping, Performance, Doorprize.",
-    banner: "IMG_8437.JPG", // Ganti dengan nama file foto banner Anda
+    banner: "poster nybr.png", // Ganti dengan nama file foto banner Anda
     docLink: "#"
   },
   
