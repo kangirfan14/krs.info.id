@@ -22,5 +22,15 @@ const DATABASE_AGENDA = [
     docLink: "#"
   },
   
+ {
+    id: "2",
+    title: "NYABAR VOL.3 TAHUN 2026",
+    start: "2026-07-10 18:00",
+    end: "2026-07-10 00:00",
+    location: "Area lapang Gor Karangsari",
+    desc: "Acara Pemutaran Film, Pameran Mini, Video Mapping, Performance, Doorprize.",
+    banner: "IMG_8437.JPG", // Ganti dengan nama file foto banner Anda
+    docLink: "#"
+  },
   
 ];
