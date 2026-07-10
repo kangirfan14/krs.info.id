@@ -26,7 +26,7 @@ const DATABASE_AGENDA = [
     id: "2",
     title: "NYABAR VOL.3 TAHUN 2026",
     start: "2026-07-10 18:00",
-    end: "2026-07-10 00:00",
+    end: "2026-08-10 00:00",
     location: "Area lapang Gor Karangsari",
     desc: "Acara Pemutaran Film, Pameran Mini, Video Mapping, Performance, Doorprize.",
     banner: "poster nybr.png", // Ganti dengan nama file foto banner Anda
