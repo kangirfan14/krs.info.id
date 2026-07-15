@@ -39,7 +39,7 @@ const DATABASE_AGENDA = [
     start: "2026-08-17 07:00",
     end: "2026-08-17 17:05",
     location: "Jelawe Lor, Karangsari, Weru, Kab. Cirebon",
-    desc: "Memperingati HUT - RI ke 81, warga blok jelawe Lor kompak adakan acara.",
+    desc: "Memperingati HUT - RI ke 81, warga blok Jelawe Lor kompak adakan acara.",
     banner: "JELAWE 20262.png", // Ganti dengan nama file foto banner Anda
     docLink: "https://karangsariinfo.cirebonid.workers.dev/agenda"
   },
