@@ -68,13 +68,13 @@ const DATABASE_BERITA = [
     id: 4,
     judul: "Dolanan Film Gelar Nyabar Vol.3",
     kategori: "Hiburan Warga",
-    waktuKejadian: "Karangsari, Weru, Kab.Cirebon",
+    waktuKejadian: "Jum'at, 10 Juli 2026",
     tanggalRilis: "2026-07-10", // Format YYYY-MM-DD untuk acuan sorting otomatis
     gambar: "berita.jpg",
     ringkasan:
       "Sukses Digelar, Dolanan Film Hadirkan Pesona Seni dan Sinema dalam Nyabar Vol.3 di Desa Karangsari",
     kronologi: `
-            <p><strong>Gor Karangsari, Weru</strong> — Antusiasme masyarakat pencinta seni dan sinema alternatif kembali dimanjakan melalui gelaran tahunan yang dinantikan. 
+            <p><strong>Gor Karangsari, Weru</strong> — Antusiasme masyarakat kembali dimanjakan melalui gelaran tahunan yang dinantikan. 
             Komunitas Dolanan Film sukses menyelenggarakan acara bertajuk "Nyabar Vol.3" (Nyawang Layar Bareng 2026). Kegiatan yang mengusung tema utama "Kegelapan Tidak Pernah Sendiri" 
             ini berlangsung meriah dengan dihadiri oleh tokoh masyarakat, perangkat desa, serta warga setempat yang memadati area pemutaran terbuka.</p>
             <p> Acara yang menyajikan perpaduan harmonis antara apresiasi film dan pertunjukan seni tradisional ini dibuka secara resmi oleh Ketua RW 01, yang hadir bertindak sebagai perwakilan 
