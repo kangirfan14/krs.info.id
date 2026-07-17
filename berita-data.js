@@ -64,4 +64,34 @@ const DATABASE_BERITA = [
         `,
   },
 
+{
+    id: 4,
+    judul: "Dolanan Film Gelar Nyabar Vol.3",
+    kategori: "Info Desa",
+    waktuKejadian: "Karangsari, Weru, Kab.Cirebon",
+    tanggalRilis: "2026-07-10", // Format YYYY-MM-DD untuk acuan sorting otomatis
+    gambar: "berita.jpg",
+    ringkasan:
+      "Sukses Digelar, Dolanan Film Hadirkan Pesona Seni dan Sinema dalam Nyabar Vol.3 di Desa Karangsari",
+    kronologi: `
+            <p><strong>Gor Karangsari, Weru</strong> — Antusiasme masyarakat pencinta seni dan sinema alternatif kembali dimanjakan melalui gelaran tahunan yang dinantikan. 
+            Komunitas Dolanan Film sukses menyelenggarakan acara bertajuk "Nyabar Vol.3" (Nyawang Layar Bareng 2026). Kegiatan yang mengusung tema utama "Kegelapan Tidak Pernah Sendiri" 
+            ini berlangsung meriah dengan dihadiri oleh tokoh masyarakat, perangkat desa, serta warga setempat yang memadati area pemutaran terbuka.</p>
+            <p> Acara yang menyajikan perpaduan harmonis antara apresiasi film dan pertunjukan seni tradisional ini dibuka secara resmi oleh Ketua RW 01, yang hadir bertindak sebagai perwakilan 
+            dari jajaran Perangkat Desa Karangsari. Sebagai bentuk apresiasi dan sinergi yang kuat antara pemuda kreatif dan pemerintah setempat, agenda pembukaan dilanjutkan dengan penyerahan cindera mata 
+            secara simbolis oleh pihak panitia Dolanan Film kepada perwakilan perangkat desa.</p>
+            <p>Kemeriahan malam "Nyabar Vol.3" langsung tersulut sejak awal acara berkat penampilan memukau dari kesenian lokal. Penampilan Tari Topeng Tumenggung dipilih dan disajikan sebagai opening atau pertunjukan 
+            pembuka. Gerakan tari yang dinamis dan sarat akan nilai filosofis budaya tersebut berhasil memukau penonton sekaligus memberikan atmosfer magis yang menyatu dengan tema kegiatan malam itu.</p>
+            <p>Memasuki acara inti, para pengunjung disuguhkan dengan rangkaian program yang sangat variatif. Penyelenggara menyajikan mini pameran, penampilan pembacaan puisi yang emosional, video mapping yang memukau visual, 
+            serta agenda utama yaitu pemutaran (skrining) film pendek karya dari beberapa komunitas film. Tidak hanya menjadi ajang tontonan yang edukatif, suasana keakraban penonton juga semakin hidup dengan diadakannya sesi pembagian 
+            doorprize di sela-sela acara.</p>
+            <p>Di penghujung malam yang hangat, seluruh jajaran panitia pelaksana menyampaikan rasa terima kasih dan apresiasi setinggi-tingginya kepada para sponsor, media partner, serta seluruh pihak pendukung yang telah berkomitmen 
+            penuh membantu menyukseskan acara ini. Pihak penyelenggara menaruh harapan besar agar kegiatan kolektif dan positif seperti "Nyabar" ini tidak berhenti di sini, melainkan dapat terus dipertahankan dan menjadi agenda kreatif yang digelar rutin 
+            setiap tahunnya.</p>
+           
+        `,
+  },
+  
 ];
+
+
