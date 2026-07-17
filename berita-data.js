@@ -67,7 +67,7 @@ const DATABASE_BERITA = [
 {
     id: 4,
     judul: "Dolanan Film Gelar Nyabar Vol.3",
-    kategori: "Info Desa",
+    kategori: "Hiburan Warga",
     waktuKejadian: "Karangsari, Weru, Kab.Cirebon",
     tanggalRilis: "2026-07-10", // Format YYYY-MM-DD untuk acuan sorting otomatis
     gambar: "berita.jpg",
