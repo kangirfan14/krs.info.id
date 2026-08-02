@@ -86,4 +86,15 @@ const DATABASE_AGENDA = [
     banner: "IMG_7219.JPG.jpeg", // Ganti dengan nama file foto banner Anda
     docLink: "https://karangsariinfo.cirebonid.workers.dev/agenda"
   },
+
+   {
+    id: "9",
+    title: "REZCOB FAMILY WAYAHE PARTY",
+    start: "2026-08-23 07:00",
+    end: "2026-08-23 12:00",
+    location: "Blok Rengas Kobar 07 Desa Karangsari - Weru - Cirebon",
+    desc: "Arak - arakan ogoh ogoh Paksi Naga Liman Dan Musik Dangdut Garexa Nada",
+    banner: "rezparty.png", // Ganti dengan nama file foto banner Anda
+    docLink: "https://karangsariinfo.cirebonid.workers.dev/agenda"
+  },
 ];
