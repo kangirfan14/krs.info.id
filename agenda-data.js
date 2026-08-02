@@ -43,5 +43,47 @@ const DATABASE_AGENDA = [
     banner: "JELAWE 20262.png", // Ganti dengan nama file foto banner Anda
     docLink: "https://karangsariinfo.cirebonid.workers.dev/agenda"
   },
-  
+
+    {
+    id: "5",
+    title: "NYIMAS GANDASARI CUP 2026 - TURNAMENT SEPAK BOLA WANITA",
+    start: "2026-07-31 16:00",
+    end: "2026-08-16 18:05",
+    location: "Lapangan Sepak Bola Perseka",
+    desc: "Memperingati HUT - RI ke 81, acara dimulai dari 31 Juli - 16 Agustus 2026.",
+    banner: "WhatsApp Image 2026-07-28 at 17.37.28.jpeg", // Ganti dengan nama file foto banner Anda
+    docLink: "https://karangsariinfo.cirebonid.workers.dev/agenda"
+  },
+ {
+    id: "6",
+    title: "KHITANAN MASSAL DAN ARAK - ARAKAN",
+    start: "2026-08-23 08:00",
+    end: "2026-08-23 12:00",
+    location: "Desa Karangsari - Weru - Cirebon",
+    desc: "Memperingati HUT - RI ke 81 dan HUT Irmuska Ke - 29.",
+    banner: "IMG_7218.JPG.jpeg", // Ganti dengan nama file foto banner Anda
+    docLink: "https://karangsariinfo.cirebonid.workers.dev/agenda"
+  },
+
+   {
+    id: "7",
+    title: "PERINGATAN MAULID NABI MUHAMMAD SAW 1448 H",
+    start: "2026-08-28 06:00",
+    end: "2026-08-28 23:59",
+    location: "Yayasan Pendidikan Arifin Billah",
+    desc: "Memperingati kelahiran Nabi Muhammad SAW",
+    banner: "Hijau dan Emas Poster Ucapan Maulid Nabi Muhammad Instagram Post.png", // Ganti dengan nama file foto banner Anda
+    docLink: "https://karangsariinfo.cirebonid.workers.dev/agenda"
+  },
+
+   {
+    id: "8",
+    title: "KARANGSARI BERSATU JILID VII",
+    start: "2026-08-30 15:00",
+    end: "2026-08-30 23:59",
+    location: "Halaman Gor Karangsari",
+    desc: "Acara musik All Genre",
+    banner: "IMG_7219.JPG.jpeg", // Ganti dengan nama file foto banner Anda
+    docLink: "https://karangsariinfo.cirebonid.workers.dev/agenda"
+  },
 ];
