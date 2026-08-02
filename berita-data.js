@@ -91,7 +91,49 @@ const DATABASE_BERITA = [
            
         `,
   },
-  
+
+  {
+    id: 5,
+    judul: "Deretan Acara di Karangsari 2026",
+    kategori: "Info",
+    waktuKejadian: "Karangsari, Agustus 2026",
+    tanggalRilis: "2026-08-28", // Format YYYY-MM-DD untuk acuan sorting otomatis
+    gambar: "agenda krs.png",
+    ringkasan:
+      "Tidak kalah dari tahun sebelumnya, Desa karangsari kembali",
+    kronologi: `
+            <p><strong>Karangsari, Weru</strong> — Desa karangsari kembali gelar acara beruntun di bulan Agustus, sama halnya dengan tahun - tahun sebelumnya. Acara yang digelar untuk memperingati HUT RI ke - 81</p>
+            <p>Kamu dapat liat apa aja sih deretan acara itu ? cek di halaman Agenda</p>
+          
+        `,
+  },
+
+   {
+    id: 6,
+    judul: "Opening & Laga Pembuka Nyimas Gandasari Cup 2026",
+    kategori: "Info",
+    waktuKejadian: "Karangsari, 31 Juli 2026",
+    tanggalRilis: "2026-08-01", // Format YYYY-MM-DD untuk acuan sorting otomatis
+    gambar: "bolaberita.png",
+    ringkasan:
+      "Turnamen Sepak Bola Wanita Nyimas Gandasari Cup 2026 Dimulai, Putri LA Sabiru Menang Telak di Laga Pembuka",
+    kronologi: `
+            <p><strong>Karangsari, 31 Juli 2026</strong> — Kemeriahan menyelimuti lapangan Perseka Desa Karangsari saat turnamen sepak bola wanita bergengsi, Nyimas Gandasari Cup 2026, resmi dibuka.
+            Acara ini digelar dalam rangka memperingati HUT RI ke-81.</p>
+            <p>Pembukaan turnamen ini dihadiri oleh tokoh-tokoh penting, termasuk Ketua PSSI Kabupaten Cirebon dan Kepala Desa Karangsari. Acara diawali dengan menyanyikan lagu kebangsaan Indonesia Raya, 
+            dilanjutkan dengan sambutan hangat dari Ketua PSSI Kabupaten Cirebon yang memberikan motivasi bagi para atlet dan perkembangan olahraga ke depan.</p>
+            <p>Suasana semakin meriah dengan penampilan Tari Topeng Samba yang enerjik, menyambut para peserta dan penonton yang antusias memadati lapangan sejak siang. Sebagai tanda dimulainya turnamen,
+            Ketua PSSI Kabupaten Cirebon dan Kepala Desa Karangsari melakukan tendangan simbolis di tengah lapangan. </p>
+              <p>Laga pembuka turnamen ini mempertemukan tim Putri LA Sabiru melawan Putri Artega. Pertandingan berlangsung seru dan didominasi oleh Putri LA Sabiru. Sejak peluit awal dibunyikan, 
+              Putri LA Sabiru tampil menyerang dan berhasil menguasai jalannya pertandingan. </p>
+                <p>Hasilnya, Putri LA Sabiru meraih kemenangan telak dengan skor meyakinkan 9 - 0 atas Putri Artega. Gol-gol kemenangan Putri LA Sabiru dicetak oleh beberapa pemain andalannya, 
+                menunjukkan kualitas permainan yang solid. Kemenangan ini menjadi modal berharga bagi Putri LA Sabiru untuk melangkah ke babak selanjutnya. </p>
+                  <p>Turnamen Nyimas Gandasari Cup 2026 akan terus berlanjut hingga beberapa hari ke depan, menjanjikan pertandingan-pertandingan seru lainnya dari tim-tim sepak bola wanita terbaik di CIAYUMAJAKUNING. 
+                  Mari kita nantikan siapa yang akan menjadi juara di turnamen tahun ini. </p>
+                  
+            <p>Untuk informasi lebih lanjut mengenai jadwal dan hasil pertandingan, kunjungi Instagram @nyimasgandasaricup </p>
+        `,
+  },
 ];
 
 
