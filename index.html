@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="logoatas.png">
     <title>KRS.info | #karangsarineweru</title>
+    <link rel="stylesheet" href="style.css">
 
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@700;800&display=swap"
@@ -1609,9 +1610,9 @@
           <li><a href="#agenda">Agenda</a></li>
           <li><a href="#kontak">Kontak</a></li>
           <li>
-            <a href="https://forms.gle/dTcjsJgK8dRCVYjZA" class="btn-kirim"
-              ><i class="fa-solid fa-paper-plane"></i> Kirim Berita</a
-            >
+           <a href="javascript:void(0);" onclick="bukaModalProtokol('https://forms.gle/dTcjsJgK8dRCVYjZA')" class="btn-kirim">
+  <i class="fa-solid fa-paper-plane"></i> Kirim Berita
+  </a>
           </li>
         </ul>
         <button class="hamburger" id="hamburger">
@@ -1673,9 +1674,8 @@
         <a href="agenda.html" class="btn-agenda-aksi btn-lihat-semua">
             <i class="fa-solid fa-list-ul"></i> Lihat Seluruh Agenda
         </a>
-        <a href="https://forms.gle/MqVQMqBbxWkGoLXQ6" class="btn-agenda-aksi btn-kirim-agenda" target="_blank">
-            <i class="fa-solid fa-paper-plane"></i> Kirim Agenda Kegiatan
-        </a>
+        <a href="javascript:void(0);" onclick="bukaModalProtokol('https://forms.gle/MqVQMqBbxWkGoLXQ6')" class="btn-agenda-aksi btn-kirim-agenda">
+  <i class="fa-solid fa-paper-plane"></i> Kirim Agenda Kegiatan
     </div>
 </section>
 
@@ -2029,6 +2029,8 @@ document.addEventListener('DOMContentLoaded', loadIntegratedAgendas);
         });
     });
 </script>
+ <script src="persetujuan.js"></script>
+    <script src="program-sementara.js"></script>
 
   </body>
 </html>
