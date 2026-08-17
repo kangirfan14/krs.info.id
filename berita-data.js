@@ -134,6 +134,33 @@ const DATABASE_BERITA = [
             <p>Untuk informasi lebih lanjut mengenai jadwal dan hasil pertandingan, kunjungi Instagram @nyimasgandasaricup </p>
         `,
   },
+
+   {
+    id: 7,
+    judul: "Jelawe Bersatu Gelar HUT Ke 81 RI",
+    kategori: "Info",
+    waktuKejadian: "Jelawe, 17 Agustus 2026",
+    tanggalRilis: "2026-08-07", // Format YYYY-MM-DD untuk acuan sorting otomatis
+    gambar: "bolaberita.png",
+    ringkasan:
+      "Antusias warga jelawe rayakan kemerdekaan...",
+    kronologi: `
+            <p><strong>Jelawe</strong> — Semangat kemerdekaan terasa begitu kental di Desa Jelawe. Rangkaian perayaan Hari Ulang Tahun HUT ke-81 Republik Indonesia yang diselenggarakan oleh Jelawe Bersatu
+            sukses menarik perhatian seluruh warga dari berbagai kalangan usia.</p>
+            <p>Acara diawali dengan kegiatan Jalan Sehat Warga yang memenuhi jalur rute yang telah di tentukan dengan penuh semangat pagi. Setelah itu, kemeriahan berlanjut dengan ajang Lomba Miniatur, di mana warga dari 
+            berbagai wilayah menampilkan karya seni dan kreativitas terbaik mereka.</p>
+            <p>Suasana semakin meriah ketika panitia membuka berbagai perlombaan khas tujuhbelasan yang diikuti dengan antusias oleh anak-anak hingga orang dewasa. Di sela-sela perlombaan, panitia juga membagikan doorprize 
+            menarik yang membuat warga semakin bersemangat.</p>
+              <p>Dari hasil penilaian dewan juri pada Lomba Miniatur, tercatat sebanyak enam pemenang yang berhasil membawa pulang piala. Penyerahan hadiah tersebut diserahkan langsung oleh tokoh-tokoh masyarakat setempat
+              kepada para pemenang. </p>
+                <p>Hasilnya, Putri LA Sabiru meraih kemenangan telak dengan skor meyakinkan 9 - 0 atas Putri Artega. Gol-gol kemenangan Putri LA Sabiru dicetak oleh beberapa pemain andalannya, 
+                menunjukkan kualitas permainan yang solid. Kemenangan ini menjadi modal berharga bagi Putri LA Sabiru untuk melangkah ke babak selanjutnya. </p>
+                  <p>Acara yang paling ditunggu-tunggu oleh warga adalah pengundian kupon doorprize. Para pemilik kupon tampak sabar menunggu sambil mendengarkan pengumuman dari MC untuk memperebutkan berbagai hadiah 
+                  menarik yang terpajang di atas panggung, termasuk hadiah utama berupa satu unit sepeda gunung. </p>
+                  
+            <p>Kesuksesan dan kekompakan seluruh warga dalam perayaan HUT RI ke-81 ini menjadi bukti nyata eratnya kebersamaan di Desa Jelawe. </p>
+        `,
+  },
 ];
 
 
