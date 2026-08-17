@@ -37,7 +37,7 @@ const DATABASE_AGENDA = [
     id: "4",
     title: "JELAWE BERSATU - LOMBA MINIATUR ARAK - ARAKAN 2026",
     start: "2026-08-17 07:00",
-    end: "2026-08-17 17:05",
+    end: "2026-08-17 14:05",
     location: "Jelawe Lor, Karangsari, Weru, Kab. Cirebon",
     desc: "Memperingati HUT - RI ke 81, warga blok Jelawe Lor kompak adakan acara.",
     banner: "JELAWE 20262.png", // Ganti dengan nama file foto banner Anda
