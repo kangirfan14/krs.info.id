@@ -141,7 +141,7 @@ const DATABASE_BERITA = [
     kategori: "Info",
     waktuKejadian: "Jelawe, 17 Agustus 2026",
     tanggalRilis: "2026-08-07", // Format YYYY-MM-DD untuk acuan sorting otomatis
-    gambar: "bolaberita.png",
+    gambar: "WhatsApp Image 2026-08-17 at 11.32.54 (1).jpeg",
     ringkasan:
       "Antusias warga jelawe rayakan kemerdekaan...",
     kronologi: `
