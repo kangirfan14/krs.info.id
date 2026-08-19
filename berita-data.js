@@ -1,15 +1,5 @@
 const DATABASE_BERITA = [
   {
-    id: 8,
-    judul: "TES BERITA",
-    kategori: "TES",
-    waktuKejadian: "tes",
-    tanggalRilis: "2026-08-19",
-    gambar: "images/WhatsApp Image 2026-08-18 at 10.36.01.jpeg",
-    ringkasan: "TES",
-    kronologi: `<p>karangsari-</p><p>tes</p><p>tes</p><p>tes</p>`,
-  },
-  {
     id: 1,
     judul: "PENYERAHAN SK DESA WISATA KARANGSARI",
     kategori: "Info Desa",
