@@ -11,7 +11,7 @@ const DATABASE_AGENDA = [
   },
   {
     id: "2",
-    title: "KARNAVAL SERIMPI KARANGSARI",
+    title: "KARNAVAL SERIMPI",
     start: "2026-06-13 07:00",
     end: "2026-06-13 09:00",
     location: "Yayasan Pendidikan Arifin Billah, Weru, Cirebon",
