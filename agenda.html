@@ -293,9 +293,11 @@
         box-shadow: 10px 10px 0px rgba(139, 0, 0, 0.08);
       }
 
+      /* DIKUNCI: Rasio Poster 4:5 (Pas untuk ukuran 1080x1350)[cite: 1] */
       .news-image-box {
         width: 260px;
         min-width: 260px;
+        aspect-ratio: 4 / 5;
         position: relative;
         overflow: hidden;
         border-right: 3px solid var(--blood-red);
@@ -312,6 +314,7 @@
         transform: scale(1.04);
       }
 
+      /* DIKUNCI: Desain Badge Tanggal & Tahun[cite: 1] */
       .agenda-date-badge {
         display: flex;
         flex-direction: column;
@@ -347,10 +350,13 @@
       }
 
       .agenda-date-badge .year {
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 600;
-        opacity: 0.8;
-        margin-top: 2px;
+        border-top: 1px solid rgba(255, 255, 255, 0.4);
+        padding-top: 4px;
+        margin-top: 4px;
+        display: block;
+        opacity: 0.9;
       }
 
       .agenda-info {
@@ -463,6 +469,7 @@
         font-size: 0.85rem;
         transition: all 0.3s ease;
         margin-top: 5px;
+        cursor: pointer;
       }
 
       .btn-doc-link:hover {
@@ -532,7 +539,7 @@
         .news-image-box {
           width: 100% !important;
           min-width: auto !important;
-          height: 180px;
+          aspect-ratio: 4 / 5 !important;
           border-right: none;
           border-bottom: 3px solid var(--blood-red);
         }
@@ -556,7 +563,14 @@
           margin: 0 4px !important;
         }
         .agenda-date-badge .month { font-size: 13px !important; }
-        .agenda-date-badge .year { font-size: 13px !important; margin-top: 0 !important; }
+        .agenda-date-badge .year { 
+          font-size: 13px !important; 
+          border-top: none !important;
+          border-left: 1px solid rgba(255, 255, 255, 0.4) !important;
+          padding-top: 0 !important;
+          padding-left: 6px !important;
+          margin-top: 0 !important;
+        }
 
         .agenda-info { padding: 20px; text-align: left; align-items: flex-start; }
         .agenda-title { font-size: 1.2rem; }
@@ -634,6 +648,8 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="agenda-data.js"></script>
+    <script src="documentation-handler.js"></script>
+    
     <script>
       AOS.init({ duration: 800, once: true });
 
@@ -701,13 +717,14 @@
           const month = months[startDate.getMonth()];
           const jam = agenda.start.split(" ")[1] || "00:00";
 
-          // SINKRONISASI TOTAL: Menggunakan agenda.docLink bawaan database Bos!
           let docButtonHtml = "";
-          if (statusKey === "selesai" && agenda.docLink && agenda.docLink.trim() !== "") {
+          if (statusKey === "selesai") {
+            const linkDokumentasi = agenda.docLink || agenda.link || agenda.url || agenda.documentation || "";
+            
             docButtonHtml = `
-              <a href="${agenda.docLink}" class="btn-doc-link" target="_blank">
+              <button class="btn-doc-link" data-link="${linkDokumentasi}" onclick="triggerDokumentasi(this)">
                 <i class="fa-solid fa-images"></i> Lihat Dokumentasi
-              </a>
+              </button>
             `;
           }
 
@@ -720,7 +737,6 @@
                 <div class="day">${day}</div>
                 <div class="separator"></div>
                 <div class="month">${month}</div>
-                <div class="separator"></div>
                 <div class="year">${year}</div>
               </div>
               <div class="agenda-info">
@@ -742,6 +758,16 @@
 
         document.getElementById("noResults").style.display =
           visibleCount === 0 ? "block" : "none";
+      }
+
+      function triggerDokumentasi(buttonElement) {
+        const link = buttonElement.getAttribute("data-link");
+        
+        if (typeof bukaDokumentasi === "function") {
+          bukaDokumentasi(link);
+        } else {
+          console.error("Fungsi bukaDokumentasi belum didefinisikan di documentation-handler.js!");
+        }
       }
 
       function filterAgendas() {
