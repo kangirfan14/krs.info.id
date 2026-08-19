@@ -1,5 +1,15 @@
 const DATABASE_BERITA = [
   {
+    id: 0,
+    judul: "",
+    kategori: "",
+    waktuKejadian: "",
+    tanggalRilis: "",
+    gambar: "",
+    ringkasan: "",
+    kronologi: ``,
+  },
+  {
     id: 1,
     judul: "PENYERAHAN SK DESA WISATA KARANGSARI",
     kategori: "Info Desa",
