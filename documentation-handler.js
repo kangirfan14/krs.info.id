@@ -66,15 +66,25 @@ function bukaDokumentasi(link) {
           `;
 
           setTimeout(() => {
-            // Menggunakan teknik pembuatan elemen link tak terlihat yang diklik otomatis oleh script
-            // agar browser tidak menganggapnya sebagai popup ilegal/terblokir setelah setTimeout panjang.
-            const tempAnchor = document.createElement("a");
-            tempAnchor.href = cleanLink;
-            tempAnchor.target = "_blank";
-            tempAnchor.rel = "noopener noreferrer";
-            document.body.appendChild(tempAnchor);
-            tempAnchor.click();
-            document.body.removeChild(tempAnchor);
+            // Deteksi perangkat mobile/iPhone untuk penanganan yang aman
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+            if (isMobile) {
+              // Khusus Mobile/iPhone: gunakan window.open dengan fallback location.href
+              const mobileWindow = window.open(cleanLink, "_blank");
+              if (!mobileWindow || mobileWindow.closed || typeof mobileWindow.closed == 'undefined') {
+                window.location.href = cleanLink;
+              }
+            } else {
+              // Desktop: menggunakan elemen link tak terlihat yang diklik otomatis
+              const tempAnchor = document.createElement("a");
+              tempAnchor.href = cleanLink;
+              tempAnchor.target = "_blank";
+              tempAnchor.rel = "noopener noreferrer";
+              document.body.appendChild(tempAnchor);
+              tempAnchor.click();
+              document.body.removeChild(tempAnchor);
+            }
 
             tutupPanelKrs();
           }, 1500);
