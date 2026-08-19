@@ -1,15 +1,23 @@
-// DATABASE BERITA SATU PINTU - KRS.INFO
 const DATABASE_BERITA = [
- 
+  {
+    id: 8,
+    judul: "TES BERITA",
+    kategori: "TES",
+    waktuKejadian: "tes",
+    tanggalRilis: "2026-08-19",
+    gambar: "images/WhatsApp Image 2026-08-18 at 10.36.01.jpeg",
+    ringkasan: "TES",
+    kronologi: `<p>KARANGSARI
+HAI</p><p>TES</p><p>KRS.INFO</p>`,
+  },
   {
     id: 1,
     judul: "PENYERAHAN SK DESA WISATA KARANGSARI",
     kategori: "Info Desa",
     waktuKejadian: "Sabtu, 08 Oktober 2025",
-    tanggalRilis: "2026-05-20", // Format YYYY-MM-DD untuk acuan sorting otomatis
+    tanggalRilis: "2026-05-20",
     gambar: "krsberita.png",
-    ringkasan:
-      "Pada 08 Oktober 2025 di Matangaji, Desa Karangsari resmi menyandang status sebagai Desa Wisata setelah Kuwu Casmari menerima SK dari Pemerintah Kabupaten Cirebon...",
+    ringkasan: "Pada 08 Oktober 2025 di Matangaji, Desa Karangsari resmi menyandang status sebagai Desa Wisata setelah Kuwu Casmari menerima SK dari Pemerintah Kabupaten Cirebon...",
     kronologi: `
             <p><strong>Matangaji, Kab.Cirebon</strong> — Dalam ajang Anugerah Desa Wisata yang diikuti 30 desa,
             momen bersejarah ini dimeriahkan dengan kirab budaya dan pameran produk unggulan yang mempertegas identitas ekonomi lokal.</p>
@@ -18,16 +26,14 @@ const DATABASE_BERITA = [
            
         `,
   },
-
-{
+  {
     id: 2,
     judul: "RUMAH PRODUKSI FILM ASAL KARANGSARI JUARA 1",
     kategori: "Kejuaraan",
     waktuKejadian: "Kamis, 08 Agustus 2024",
-    tanggalRilis: "2026-05-19", // Format YYYY-MM-DD untuk acuan sorting otomatis
+    tanggalRilis: "2026-05-19",
     gambar: "juara1.png",
-    ringkasan:
-      "Prestasi Membanggakan @dolanan_film Pertahankan Juara Satu Lomba Video Pendek Kabupaten Cirebon...",
+    ringkasan: "Prestasi Membanggakan @dolanan_film Pertahankan Juara Satu Lomba Video Pendek Kabupaten Cirebon...",
     kronologi: `
             <p><strong>Kota Sumber, Kab.Cirebon</strong> — Tim produksi video pendek kebanggaan Karangsari, 
             @dolanan_film, kembali menorehkan prestasi gemilang sebagai juara bertahan dalam lomba video pendek yang 
@@ -39,16 +45,14 @@ const DATABASE_BERITA = [
            
         `,
   },
-  
-{
+  {
     id: 3,
     judul: "Wacana pembangunan Buper dan Alun - Alun",
     kategori: "Info Desa",
     waktuKejadian: "Karangsari, Weru, Kab.Cirebon",
-    tanggalRilis: "2026-05-20", // Format YYYY-MM-DD untuk acuan sorting otomatis
+    tanggalRilis: "2026-05-20",
     gambar: "wacana.png",
-    ringkasan:
-      "Harapan warga Desa Karangsari untuk memiliki fasilitas publik yang representatif kini menyisakan tanda tanya besar...",
+    ringkasan: "Harapan warga Desa Karangsari untuk memiliki fasilitas publik yang representatif kini menyisakan tanda tanya besar...",
     kronologi: `
             <p><strong>Karangsari, Weru</strong> — Dalam video profil resmi Desa Wisata Karangsari, pemerintah desa sempat memaparkan 
             rencana ambisius pembangunan Bumi Perkemahan (Buper) di area belakang GOR Karangsari, serta pembangunan Alun-Alun Gentong
@@ -64,16 +68,14 @@ const DATABASE_BERITA = [
            
         `,
   },
-
-{
+  {
     id: 4,
     judul: "Dolanan Film Gelar Nyabar Vol.3",
     kategori: "Hiburan Warga",
     waktuKejadian: "Jum'at, 10 Juli 2026",
-    tanggalRilis: "2026-07-10", // Format YYYY-MM-DD untuk acuan sorting otomatis
+    tanggalRilis: "2026-07-10",
     gambar: "berita.jpg",
-    ringkasan:
-      "Sukses Digelar, Dolanan Film Hadirkan Pesona Seni dan Sinema dalam Nyabar Vol.3 di Desa Karangsari...",
+    ringkasan: "Sukses Digelar, Dolanan Film Hadirkan Pesona Seni dan Sinema dalam Nyabar Vol.3 di Desa Karangsari...",
     kronologi: `
             <p><strong>Gor Karangsari, Weru</strong> — Antusiasme masyarakat kembali dimanjakan melalui gelaran tahunan yang dinantikan. 
             Komunitas Dolanan Film sukses menyelenggarakan acara bertajuk "Nyabar Vol.3" (Nyawang Layar Bareng 2026). Kegiatan yang mengusung tema utama "Kegelapan Tidak Pernah Sendiri" 
@@ -92,32 +94,28 @@ const DATABASE_BERITA = [
            
         `,
   },
-
   {
     id: 5,
     judul: "Deretan Acara di Karangsari 2026",
     kategori: "Info",
     waktuKejadian: "Karangsari, Agustus 2026",
-    tanggalRilis: "2026-08-28", // Format YYYY-MM-DD untuk acuan sorting otomatis
+    tanggalRilis: "2026-08-28",
     gambar: "agenda krs.png",
-    ringkasan:
-      "Tidak kalah dari tahun sebelumnya, Desa karangsari kembali...",
+    ringkasan: "Tidak kalah dari tahun sebelumnya, Desa karangsari kembali...",
     kronologi: `
             <p><strong>Karangsari, Weru</strong> — Desa karangsari kembali gelar acara beruntun di bulan Agustus, sama halnya dengan tahun - tahun sebelumnya. Acara yang digelar untuk memperingati HUT RI ke - 81</p>
             <p>Kamu dapat liat apa aja sih deretan acara itu ? cek di halaman Agenda</p>
           
         `,
   },
-
-   {
+  {
     id: 6,
     judul: "Opening & Laga Pembuka Nyimas Gandasari Cup 2026",
     kategori: "Info",
     waktuKejadian: "Karangsari, 31 Juli 2026",
-    tanggalRilis: "2026-08-01", // Format YYYY-MM-DD untuk acuan sorting otomatis
+    tanggalRilis: "2026-08-01",
     gambar: "bolaberita.png",
-    ringkasan:
-      "Turnamen Sepak Bola Wanita Nyimas Gandasari Cup 2026 Dimulai, Putri LA Sabiru Menang Telak di Laga Pembuka...",
+    ringkasan: "Turnamen Sepak Bola Wanita Nyimas Gandasari Cup 2026 Dimulai, Putri LA Sabiru Menang Telak di Laga Pembuka...",
     kronologi: `
             <p><strong>Karangsari, 31 Juli 2026</strong> — Kemeriahan menyelimuti lapangan Perseka Desa Karangsari saat turnamen sepak bola wanita bergengsi, Nyimas Gandasari Cup 2026, resmi dibuka.
             Acara ini digelar dalam rangka memperingati HUT RI ke-81.</p>
@@ -135,16 +133,14 @@ const DATABASE_BERITA = [
             <p>Untuk informasi lebih lanjut mengenai jadwal dan hasil pertandingan, kunjungi Instagram @nyimasgandasaricup </p>
         `,
   },
-
-   {
+  {
     id: 7,
     judul: "Jelawe Bersatu Gelar HUT Ke 81 RI",
     kategori: "Info",
     waktuKejadian: "Jelawe, 17 Agustus 2026",
-    tanggalRilis: "2026-08-07", // Format YYYY-MM-DD untuk acuan sorting otomatis
+    tanggalRilis: "2026-08-07",
     gambar: "WhatsApp Image 2026-08-17 at 11.32.54 (1).jpeg",
-    ringkasan:
-      "Antusias warga jelawe rayakan kemerdekaan...",
+    ringkasan: "Antusias warga jelawe rayakan kemerdekaan...",
     kronologi: `
             <p><strong>Jelawe</strong> — Semangat kemerdekaan terasa begitu kental di blok Jelawe. Rangkaian perayaan Hari Ulang Tahun HUT ke-81 Republik Indonesia yang diselenggarakan oleh Jelawe Bersatu
             sukses menarik perhatian seluruh warga dari berbagai kalangan usia.</p>
@@ -162,5 +158,3 @@ const DATABASE_BERITA = [
         `,
   },
 ];
-
-
