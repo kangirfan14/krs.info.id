@@ -9,6 +9,13 @@ function bukaDokumentasi(link) {
     document.body.appendChild(modal);
   }
 
+  // Bersihkan timer sebelumnya jika ada
+  const activeTimer = modal.getAttribute("data-timer");
+  if (activeTimer) {
+    clearInterval(activeTimer);
+    modal.removeAttribute("data-timer");
+  }
+
   modal.style.display = "flex";
 
   // --- TAHAP 1: Menghubungkan ke server ---
@@ -59,7 +66,16 @@ function bukaDokumentasi(link) {
           `;
 
           setTimeout(() => {
-            window.open(cleanLink, "_blank");
+            // Menggunakan teknik pembuatan elemen link tak terlihat yang diklik otomatis oleh script
+            // agar browser tidak menganggapnya sebagai popup ilegal/terblokir setelah setTimeout panjang.
+            const tempAnchor = document.createElement("a");
+            tempAnchor.href = cleanLink;
+            tempAnchor.target = "_blank";
+            tempAnchor.rel = "noopener noreferrer";
+            document.body.appendChild(tempAnchor);
+            tempAnchor.click();
+            document.body.removeChild(tempAnchor);
+
             tutupPanelKrs();
           }, 1500);
 
