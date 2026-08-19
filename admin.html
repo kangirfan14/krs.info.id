@@ -30,7 +30,256 @@
         background-color: var(--bg-light);
         color: var(--text-main);
         padding: 20px;
+        display: none;
       }
+
+      /* 1. Loading Screen Dinamis */
+      #loadingScreen {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        color: white;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        text-align: center;
+        padding: 20px;
+      }
+      #loadingScreen h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+        color: white;
+      }
+      #loadingScreen p {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+
+      /* 2. Login Screen (Split Screen Style krs.info) */
+      #loginScreen {
+        position: fixed;
+        inset: 0;
+        background: #ffffff;
+        display: none;
+        z-index: 9998;
+      }
+      .login-split-container {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+      }
+      .login-left-pane {
+        flex: 1;
+        background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 60px;
+      }
+      .login-left-pane .brand-icon-box {
+        max-width: 180px;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+      }
+      .login-left-pane .brand-icon-box img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+      .login-left-pane h1 {
+        font-size: 2.4rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+        color: white;
+        line-height: 1.2;
+      }
+      .login-left-pane > p {
+        font-size: 1rem;
+        opacity: 0.9;
+        margin-bottom: 35px;
+        max-width: 420px;
+        line-height: 1.5;
+      }
+      .login-features {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+        max-width: 380px;
+        width: 100%;
+      }
+      .login-feature-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.95rem;
+        opacity: 0.95;
+        text-align: left;
+      }
+      .login-feature-item i {
+        width: 24px;
+        text-align: center;
+      }
+
+      .login-right-pane {
+        flex: 1;
+        background: #f8fafc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        position: relative;
+      }
+      .login-card {
+        background: #ffffff;
+        width: 100%;
+        max-width: 420px;
+        padding: 40px 35px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        border: 1px solid #e2e8f0;
+      }
+      .login-card h2 {
+        font-size: 1.5rem;
+        color: var(--text-main);
+        font-weight: 800;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+      .login-card > p {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin-bottom: 25px;
+        text-align: center;
+      }
+      .login-input-group {
+        position: relative;
+        margin-bottom: 16px;
+      }
+      .login-input-group label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.85rem;
+        margin-bottom: 6px;
+        color: var(--text-main);
+      }
+      .login-input-field-wrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      .login-input-field-wrap i.field-icon {
+        position: absolute;
+        left: 14px;
+        color: #94a3b8;
+        font-size: 0.95rem;
+      }
+      .login-input-field-wrap input {
+        width: 100%;
+        padding: 12px 14px 12px 42px;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        font-size: 0.95rem;
+        outline: none;
+        background: #f8fafc;
+        transition: 0.2s;
+      }
+      .login-input-field-wrap input:focus {
+        border-color: var(--primary-red);
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+      }
+      .login-remember-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.85rem;
+        color: #475569;
+        margin-bottom: 20px;
+        margin-top: 10px;
+      }
+      .login-remember-row input {
+        width: 16px;
+        height: 16px;
+        accent-color: var(--primary-red);
+        cursor: pointer;
+      }
+      .login-footer-text {
+        position: absolute;
+        bottom: 25px;
+        font-size: 0.8rem;
+        color: #94a3b8;
+      }
+
+      @media (max-width: 900px) {
+        .login-split-container {
+          flex-direction: column;
+        }
+        .login-left-pane {
+          display: none;
+        }
+        .login-right-pane {
+          background: #ffffff;
+        }
+      }
+
+      /* Modal Settings & Akun */
+      #settingsModal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .modal-content {
+        background: #fff;
+        width: 100%;
+        max-width: 450px;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        position: relative;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 10px;
+      }
+      .modal-close {
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: #64748b;
+      }
+      .modal-section-title {
+        font-size: 0.95rem;
+        color: var(--primary-red);
+        font-weight: 700;
+        margin-top: 15px;
+        margin-bottom: 10px;
+        border-bottom: 1px dashed #e2e8f0;
+        padding-bottom: 5px;
+      }
+
+      /* Main Container & Layout */
       .container {
         max-width: 850px;
         margin: 40px auto;
@@ -40,14 +289,162 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         border: 1px solid #e2e8f0;
       }
-      h1 {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-        color: var(--primary-red);
+
+      /* STYLING HEADER (DESKTOP & MOBILE NAVBAR) */
+      .app-header {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 25px;
+        border-bottom: 2px solid #f1f5f9;
+        padding-bottom: 15px;
+      }
+
+      .brand-title {
         display: flex;
         align-items: center;
-        gap: 10px;
       }
+
+      /* STYLE LOGO DENGAN ANIMASI KILAP (SHIMMER) */
+      .brand-logo-shine {
+        position: relative;
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        max-width: 110px;
+        height: auto;
+        border-radius: 8px;
+      }
+      .brand-logo-shine img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+      }
+      /* Efek Garis Kilap Berjalan */
+      .brand-logo-shine::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -150%;
+        width: 50%;
+        height: 200%;
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.5) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: rotate(30deg);
+        animation: shineEffect 3s infinite;
+      }
+      @keyframes shineEffect {
+        0% {
+          left: -150%;
+        }
+        20% {
+          left: 150%;
+        }
+        100% {
+          left: 150%;
+        }
+      }
+
+      /* Kotak Jam & Tanggal */
+      .realtime-clock-box {
+        background: #f8fafc;
+        border: 1px solid var(--border-color);
+        padding: 6px 12px;
+        border-radius: 10px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+      }
+      .realtime-time {
+        font-size: 0.95rem;
+        font-weight: 800;
+        color: var(--primary-red);
+        letter-spacing: 0.5px;
+        line-height: 1.2;
+      }
+      .realtime-date {
+        font-size: 0.7rem;
+        color: #64748b;
+        font-weight: 600;
+      }
+
+      /* Dropdown Menu Pengaturan & Logout */
+      .header-actions {
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+      }
+      .dropdown-toggle-btn {
+        background: #f1f5f9;
+        color: var(--text-main);
+        border: 1px solid var(--border-color);
+        padding: 8px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        transition: 0.2s;
+        white-space: nowrap;
+      }
+      .dropdown-toggle-btn:hover {
+        background: #e2e8f0;
+      }
+      .dropdown-menu-box {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: calc(100% + 8px);
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        width: 170px;
+        z-index: 100;
+        overflow: hidden;
+      }
+      .dropdown-menu-box.show {
+        display: block;
+      }
+      .dropdown-item {
+        width: 100%;
+        padding: 10px 14px;
+        text-align: left;
+        background: none;
+        border: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-main);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: background 0.15s;
+        text-decoration: none;
+      }
+      .dropdown-item:hover {
+        background: #f8fafc;
+      }
+      .dropdown-item.logout-text {
+        color: #dc2626;
+        border-top: 1px solid #f1f5f9;
+      }
+      .dropdown-item.logout-text:hover {
+        background: #fee2e2;
+      }
+
       .form-group {
         margin-bottom: 16px;
       }
@@ -80,7 +477,7 @@
         color: white;
         border: none;
         padding: 12px 20px;
-        border-radius: 8px;
+        border-radius: 10px;
         font-weight: 700;
         cursor: pointer;
         width: 100%;
@@ -89,6 +486,7 @@
         align-items: center;
         gap: 8px;
         margin-top: 10px;
+        transition: opacity 0.2s;
       }
       .btn:hover {
         opacity: 0.9;
@@ -99,10 +497,11 @@
       }
       .btn-danger {
         background: #dc2626;
-        padding: 6px 12px;
-        font-size: 0.8rem;
+        padding: 9px 14px;
+        font-size: 0.85rem;
         width: auto;
         display: inline-flex;
+        border-radius: 8px;
       }
       .btn-warning {
         background: #d97706;
@@ -110,12 +509,6 @@
         font-size: 0.8rem;
         width: auto;
         display: inline-flex;
-      }
-      .config-box {
-        background: #f1f5f9;
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 20px;
       }
       .status-msg {
         margin-top: 15px;
@@ -165,55 +558,312 @@
       th {
         background: #f1f5f9;
       }
+
+      /* MEDIA QUERIES: MOBILE NAVBAR HORIZONTAL */
+      @media (max-width: 768px) {
+        .app-header {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          gap: 8px;
+          padding-bottom: 12px;
+        }
+        .brand-logo-shine {
+          max-width: 85px; /* Sesuaikan ukuran logo di mobile agar pas */
+        }
+        .realtime-clock-box {
+          padding: 4px 8px;
+          margin: 0;
+          flex: 1;
+          max-width: 140px;
+        }
+        .realtime-time {
+          font-size: 0.8rem;
+        }
+        .realtime-date {
+          font-size: 0.6rem;
+        }
+        .dropdown-toggle-btn {
+          padding: 7px 10px;
+          font-size: 0.75rem;
+        }
+        .dropdown-menu-box {
+          right: 0;
+          left: auto;
+          transform: none;
+        }
+        .container {
+          margin: 10px auto;
+          padding: 18px;
+          border-radius: 12px;
+        }
+      }
+
+      @keyframes customBounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+      .loading-bounce-logo {
+        animation: customBounce 1.2s infinite ease-in-out;
+      }
+      .loading-bounce-text {
+        animation: customBounce 1.2s infinite ease-in-out 0.3s;
+      }
     </style>
   </head>
   <body>
-    <div class="container">
-      <h1><i class="fa-solid fa-gauge-high"></i> Panel Admin krs.info</h1>
+    <!-- 1. LOADING SCREEN -->
+    <div id="loadingScreen">
+      <div
+        class="brand-logo-load loading-bounce-logo"
+        style="
+          background: transparent;
+          padding: 0;
+          margin-bottom: 25px;
+          max-width: 120px;
+        "
+      >
+        <img
+          src="logoatas.png"
+          alt="Logo krs.info"
+          style="width: 100%; height: auto; object-fit: contain"
+        />
+      </div>
+      <div
+        class="loading-bounce-text"
+        style="display: flex; flex-direction: column; align-items: center"
+      >
+        <h1 id="greetingText" style="margin-bottom: 8px">SELAMAT...</h1>
+        <p>Memuat sistem panel admin krs.info...</p>
+      </div>
+    </div>
 
-      <!-- Konfigurasi GitHub & Token (Otomatis Tersimpan) -->
-      <div class="config-box">
-        <h3 style="font-size: 0.95rem; margin-bottom: 10px">
-          <i class="fa-solid fa-key"></i> Pengaturan Akses GitHub (Tersimpan
-          Otomatis)
-        </h3>
-        <div class="form-group" style="margin-bottom: 10px">
-          <label>GitHub Personal Access Token (PAT):</label>
+    <!-- 2. LOGIN SCREEN -->
+    <div id="loginScreen">
+      <div class="login-split-container">
+        <div class="login-left-pane">
+          <div class="brand-icon-box">
+            <img src="logoatas.png" alt="Logo krs.info" />
+          </div>
+          <h1>Portal Admin</h1>
+          <p>Platform informasi dan manajemen direktori digital.</p>
+          <div class="login-features">
+            <div class="login-feature-item">
+              <i class="fa-solid fa-book-open"></i> Akses direktori materi dan
+              berita kapan saja
+            </div>
+            <div class="login-feature-item">
+              <i class="fa-solid fa-users"></i> Sinkronisasi data konten secara
+              real-time
+            </div>
+            <div class="login-feature-item">
+              <i class="fa-solid fa-chart-line"></i> Pantau publikasi agenda &
+              berita harian Anda
+            </div>
+          </div>
+        </div>
+
+        <div class="login-right-pane">
+          <div class="login-card">
+            <h2>Selamat Datang</h2>
+            <p>Masukkan password keamanan untuk melanjutkan</p>
+
+            <div class="login-input-group">
+              <label>Password Admin</label>
+              <div class="login-input-field-wrap">
+                <i class="fa-solid fa-lock field-icon"></i>
+                <input
+                  type="password"
+                  id="adminPass"
+                  placeholder="Masukkan password..."
+                  onkeydown="if (event.key === 'Enter') checkLogin();"
+                />
+              </div>
+            </div>
+
+            <div class="login-remember-row">
+              <input type="checkbox" id="rememberMe" />
+              <label for="rememberMe" style="margin-bottom: 0; cursor: pointer"
+                >Ingat saya</label
+              >
+            </div>
+
+            <button class="btn" onclick="checkLogin()">
+              <i class="fa-solid fa-right-to-bracket"></i> Masuk ke Sistem
+            </button>
+
+            <div
+              id="loginError"
+              style="
+                color: #dc2626;
+                font-size: 0.85rem;
+                margin-top: 12px;
+                display: none;
+                font-weight: 600;
+                text-align: center;
+              "
+            >
+              Password salah! Silakan coba lagi.
+            </div>
+          </div>
+          <div class="login-footer-text">&copy; 2026 krs.info</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. MODAL SETTINGS & GANTI PASSWORD AKUN -->
+    <div id="settingsModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 style="font-size: 1rem; color: var(--primary-red)">
+            <i class="fa-solid fa-gear"></i> Pengaturan
+          </h3>
+          <i
+            class="fa-solid fa-xmark modal-close"
+            onclick="toggleModal(false)"
+          ></i>
+        </div>
+
+        <div class="modal-section-title">
+          <i class="fa-solid fa-key"></i> Konfigurasi GitHub
+        </div>
+        <div class="form-group">
+          <label>NOMOR PAT</label>
           <input
             type="password"
             id="ghToken"
             placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
-            oninput="saveConfig()"
           />
         </div>
-        <div style="display: flex; gap: 10px">
-          <div class="form-group" style="flex: 1; margin-bottom: 0">
-            <label>Username GitHub:</label>
-            <input
-              type="text"
-              id="ghOwner"
-              placeholder="kangirfan14"
-              oninput="saveConfig()"
-            />
+        <div class="form-group">
+          <label>Username GitHub</label>
+          <input type="text" id="ghOwner" placeholder="kangirfan14" />
+        </div>
+        <div class="form-group">
+          <label>Nama Repository</label>
+          <input type="text" id="ghRepo" placeholder="krs.info.id" />
+        </div>
+        <button
+          type="button"
+          class="btn"
+          onclick="saveConfigManual()"
+          style="margin-bottom: 15px"
+        >
+          <i class="fa-solid fa-floppy-disk"></i> Simpan Konfigurasi GitHub
+        </button>
+        <div
+          id="configSaveMsg"
+          style="
+            font-size: 0.85rem;
+            margin-top: -5px;
+            margin-bottom: 15px;
+            display: none;
+            font-weight: 600;
+          "
+        ></div>
+
+        <div class="modal-section-title">
+          <i class="fa-solid fa-user-shield"></i> Keamanan Akun (Ganti Password)
+        </div>
+        <div class="form-group">
+          <label>Password Lama</label>
+          <input
+            type="password"
+            id="oldPasswordInput"
+            placeholder="Masukkan password..."
+          />
+        </div>
+        <div class="form-group">
+          <label>Password Baru</label>
+          <input
+            type="password"
+            id="newPasswordInput"
+            placeholder="Masukkan password..."
+          />
+        </div>
+        <button
+          type="button"
+          class="btn"
+          onclick="updateAdminPassword()"
+          style="margin-bottom: 10px"
+        >
+          <i class="fa-solid fa-lock"></i> Perbarui Password
+        </button>
+        <div
+          id="passChangeMsg"
+          style="
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+            font-weight: 600;
+          "
+        ></div>
+      </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+      <div class="app-header">
+        <!-- 1. Kiri: Logo krs.info dengan Animasi Kilap (Shimmer) -->
+        <div class="brand-title">
+          <div class="brand-logo-shine">
+            <img src="krslogo.png" alt="Logo krs.info" />
           </div>
-          <div class="form-group" style="flex: 1; margin-bottom: 0">
-            <label>Nama Repository:</label>
-            <input
-              type="text"
-              id="ghRepo"
-              placeholder="krs.info.id"
-              oninput="saveConfig()"
-            />
+        </div>
+
+        <!-- 2. Tengah: Widget Kotak Jam & Realtime Date -->
+        <div class="realtime-clock-box">
+          <div id="liveTime" class="realtime-time">00:00:00</div>
+          <div id="liveDate" class="realtime-date">Memuat tanggal...</div>
+        </div>
+
+        <!-- 3. Kanan: Dropdown Pengaturan & Logout -->
+        <div class="header-actions">
+          <button
+            type="button"
+            class="dropdown-toggle-btn"
+            onclick="toggleDropdown(event)"
+          >
+            <i class="fa-solid fa-bars"></i> Menu
+            <i
+              class="fa-solid fa-chevron-down"
+              style="font-size: 0.65rem; margin-left: 2px"
+            ></i>
+          </button>
+          <div id="headerDropdown" class="dropdown-menu-box">
+            <button
+              type="button"
+              class="dropdown-item"
+              onclick="
+                toggleModal(true);
+                closeDropdown();
+              "
+            >
+              <i class="fa-solid fa-gear" style="color: #64748b"></i> Pengaturan
+            </button>
+            <button
+              type="button"
+              class="dropdown-item logout-text"
+              onclick="logoutAdmin()"
+            >
+              <i class="fa-solid fa-right-from-bracket"></i> Keluar
+            </button>
           </div>
         </div>
       </div>
 
       <!-- Pilihan Jenis Konten -->
       <div class="form-group">
-        <label>Pilih Menu:</label>
+        <label>Pilih Menu Konten</label>
         <select id="contentType" onchange="switchFormType()">
-          <option value="berita">Kelola Berita (berita-data.js)</option>
-          <option value="agenda">Kelola Agenda (agenda-data.js)</option>
+          <option value="berita">Kelola Data Berita</option>
+          <option value="agenda">Kelola Data Agenda</option>
         </select>
       </div>
 
@@ -234,29 +884,33 @@
             Form Data Berita
           </h3>
           <div class="form-group">
-            <label>ID Berita (Angka, misal: 7):</label>
-            <input type="number" id="bId" placeholder="Contoh: 7" />
+            <label>ID Berita ( lihat angka terakhir di table dibawah )</label>
+            <input type="number" id="bId" placeholder="Masukan ID..." />
           </div>
           <div class="form-group">
-            <label>Judul Berita:</label>
+            <label>Judul Berita</label>
             <input type="text" id="bJudul" placeholder="Judul berita..." />
           </div>
           <div class="form-group">
-            <label>Kategori:</label>
+            <label>Kategori</label>
             <input type="text" id="bKategori" placeholder="Info / Kegiatan" />
           </div>
-          <div style="display: flex; gap: 10px">
-            <div class="form-group" style="flex: 1">
-              <label>Waktu Kejadian:</label>
-              <input type="text" id="bWaktuKejadian" placeholder="Cirebon..." />
+          <div style="display: flex; gap: 10px; flex-wrap: wrap">
+            <div class="form-group" style="flex: 1; min-width: 200px">
+              <label>Waktu Kejadian</label>
+              <input
+                type="text"
+                id="bWaktuKejadian"
+                placeholder="Masukkan Lokasi..."
+              />
             </div>
-            <div class="form-group" style="flex: 1">
-              <label>Tanggal Rilis:</label>
+            <div class="form-group" style="flex: 1; min-width: 200px">
+              <label>Tanggal Terbit</label>
               <input type="date" id="bTanggalRilis" />
             </div>
           </div>
           <div class="form-group">
-            <label>Upload Gambar Berita:</label>
+            <label>Upload Gambar</label>
             <input type="file" id="bFileGambar" accept="image/*" />
             <div class="file-info">
               Biarkan kosong jika tidak ingin mengubah gambar saat mengedit.
@@ -264,13 +918,16 @@
             <input type="hidden" id="bExistingGambar" />
           </div>
           <div class="form-group">
-            <label>Ringkasan Singkat:</label>
-            <textarea id="bRingkasan" placeholder="Ringkasan..."></textarea>
+            <label>Ringkasan Singkat</label>
+            <textarea
+              id="bRingkasan"
+              placeholder="Ketikan Cuplikan Paragraf..."
+            ></textarea>
           </div>
           <div class="form-group">
             <label
-              >Kronologi / Isi Berita (Teks sebelum tanda <b>-</b> otomatis
-              tebal, Enter 2x jadi paragraf baru):</label
+              >Penjelasan Lengkap / Kronologi ( Teks sebelum tanda
+              <b>-</b> otomatis tebal, Enter 2x jadi paragraf baru )</label
             >
             <textarea
               id="bKronologi"
@@ -294,33 +951,33 @@
             Form Data Agenda
           </h3>
           <div class="form-group">
-            <label>ID Agenda:</label>
-            <input type="text" id="aId" placeholder="Contoh: 1" />
+            <label>ID Agenda ( lihat angka terakhir di table dibawah )</label>
+            <input type="text" id="aId" placeholder="Masukkan ID" />
           </div>
           <div class="form-group">
-            <label>Judul Agenda (Title):</label>
-            <input type="text" id="aTitle" placeholder="Judul acara..." />
+            <label>Judul Agenda / Acara</label>
+            <input type="text" id="aTitle" placeholder="Ketikan..." />
           </div>
-          <div style="display: flex; gap: 10px">
-            <div class="form-group" style="flex: 1">
-              <label>Waktu Mulai:</label>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap">
+            <div class="form-group" style="flex: 1; min-width: 200px">
+              <label>Waktu Mulai</label>
               <input type="datetime-local" id="aStart" />
             </div>
-            <div class="form-group" style="flex: 1">
-              <label>Waktu Selesai:</label>
+            <div class="form-group" style="flex: 1; min-width: 200px">
+              <label>Waktu Selesai</label>
               <input type="datetime-local" id="aEnd" />
             </div>
           </div>
           <div class="form-group">
-            <label>Lokasi Acara:</label>
+            <label>Lokasi Acara</label>
             <input type="text" id="aLocation" placeholder="Lokasi..." />
           </div>
           <div class="form-group">
-            <label>Deskripsi Singkat:</label>
+            <label>Deskripsi Singkat</label>
             <textarea id="aDesc" placeholder="Deskripsi..."></textarea>
           </div>
           <div class="form-group">
-            <label>Upload Banner / Pamflet:</label>
+            <label>Upload Pamflet / Poster</label>
             <input type="file" id="aFileBanner" accept="image/*" />
             <div class="file-info">
               Biarkan kosong jika tidak ingin mengubah banner saat mengedit.
@@ -328,13 +985,13 @@
             <input type="hidden" id="aExistingBanner" />
           </div>
           <div class="form-group">
-            <label>Link Dokumen / Google Drive:</label>
+            <label>Link Dokumentasi / Google Drive</label>
             <input type="url" id="aDocLink" placeholder="https://..." />
           </div>
         </div>
 
         <button type="submit" class="btn" id="submitBtn">
-          <i class="fa-solid fa-cloud-arrow-up"></i> Simpan Data ke GitHub
+          <i class="fa-solid fa-cloud-arrow-up"></i>  Simpan Data ke GitHub
         </button>
         <button
           type="button"
@@ -352,7 +1009,7 @@
       <!-- BAGIAN MANAJEMEN KONTEN -->
       <div class="manage-section">
         <h3 style="font-size: 1.1rem; margin-bottom: 10px">
-          <i class="fa-solid fa-list-check"></i> Daftar Konten di GitHub
+          <i class="fa-solid fa-list-check"></i> Daftar Konten
         </h3>
         <button
           type="button"
@@ -366,7 +1023,7 @@
           <table id="contentTable">
             <thead>
               <tr>
-                <th>No</th>
+                <th>ID</th>
                 <th>Judul / Nama</th>
                 <th>Aksi</th>
               </tr>
@@ -374,7 +1031,7 @@
             <tbody>
               <tr>
                 <td colspan="3" style="text-align: center; color: #64748b">
-                  Klik tombol "Muat Daftar Konten" di atas.
+                  Klik tombol "Muat / Refresh Daftar Konten" di atas.
                 </td>
               </tr>
             </tbody>
@@ -384,7 +1041,72 @@
     </div>
 
     <script>
+      const DEFAULT_ADMIN_PASSWORD = "admin123";
+
+      function getAdminPassword() {
+        return (
+          localStorage.getItem("admin_custom_password") ||
+          DEFAULT_ADMIN_PASSWORD
+        );
+      }
+
+      // Fungsi Realtime Clock (Hari, Tanggal, Bulan, Tahun, Jam)
+      function updateRealtimeClock() {
+        const now = new Date();
+
+        const optionsDate = {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        };
+        const dateString = now.toLocaleDateString("id-ID", optionsDate);
+
+        const hours = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+        const seconds = String(now.getSeconds()).padStart(2, "0");
+        const timeString = `${hours}:${minutes}:${seconds} WIB`;
+
+        const dateEl = document.getElementById("liveDate");
+        const timeEl = document.getElementById("liveTime");
+
+        if (dateEl && timeEl) {
+          dateEl.innerText = dateString;
+          timeEl.innerText = timeString;
+        }
+      }
+
+      // Fungsi Kontrol Dropdown Header
+      function toggleDropdown(event) {
+        event.stopPropagation();
+        const dropdown = document.getElementById("headerDropdown");
+        dropdown.classList.toggle("show");
+      }
+
+      function closeDropdown() {
+        const dropdown = document.getElementById("headerDropdown");
+        if (dropdown) dropdown.classList.remove("show");
+      }
+
+      // Tutup dropdown jika klik di luar area
+      window.addEventListener("click", () => {
+        closeDropdown();
+      });
+
       document.addEventListener("DOMContentLoaded", () => {
+        updateRealtimeClock();
+        setInterval(updateRealtimeClock, 1000);
+
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+          document.body.style.display = "block";
+          document.getElementById("loginScreen").style.display = "block";
+          document.getElementById("loadingScreen").style.display = "none";
+          return;
+        }
+
+        document.getElementById("loadingScreen").style.display = "none";
+        document.body.style.display = "block";
+
         if (localStorage.getItem("gh_token"))
           document.getElementById("ghToken").value =
             localStorage.getItem("gh_token");
@@ -394,22 +1116,108 @@
         if (localStorage.getItem("gh_repo"))
           document.getElementById("ghRepo").value =
             localStorage.getItem("gh_repo");
+
         loadContentList();
       });
 
-      function saveConfig() {
-        localStorage.setItem(
-          "gh_token",
-          document.getElementById("ghToken").value.trim(),
-        );
-        localStorage.setItem(
-          "gh_owner",
-          document.getElementById("ghOwner").value.trim(),
-        );
-        localStorage.setItem(
-          "gh_repo",
-          document.getElementById("ghRepo").value.trim(),
-        );
+      function checkLogin() {
+        const inputPass = document.getElementById("adminPass").value;
+        if (inputPass === getAdminPassword()) {
+          document.getElementById("loginScreen").style.display = "none";
+
+          const loadingScreen = document.getElementById("loadingScreen");
+          loadingScreen.style.display = "flex";
+
+          const hour = new Date().getHours();
+          let timeGreeting = "PAGI";
+          if (hour >= 12 && hour < 15) timeGreeting = "SIANG";
+          else if (hour >= 15 && hour < 18) timeGreeting = "SORE";
+          else if (hour >= 18 || hour < 4) timeGreeting = "MALAM";
+
+          document.getElementById("greetingText").innerText =
+            `SELAMAT ${timeGreeting}`;
+
+          setTimeout(() => {
+            loadingScreen.style.opacity = "0";
+            loadingScreen.style.transition = "opacity 0.5s ease";
+            setTimeout(() => {
+              loadingScreen.style.display = "none";
+              localStorage.setItem("isLoggedIn", "true");
+              location.reload();
+            }, 500);
+          }, 2000);
+        } else {
+          document.getElementById("loginError").style.display = "block";
+        }
+      }
+
+      function updateAdminPassword() {
+        const oldPass = document.getElementById("oldPasswordInput").value;
+        const newPass = document.getElementById("newPasswordInput").value;
+        const msgBox = document.getElementById("passChangeMsg");
+
+        msgBox.style.display = "block";
+
+        if (oldPass !== getAdminPassword()) {
+          msgBox.className = "error";
+          msgBox.style.color = "#dc2626";
+          msgBox.innerText = "Password lama salah!";
+          return;
+        }
+
+        if (!newPass || newPass.length < 4) {
+          msgBox.className = "error";
+          msgBox.style.color = "#dc2626";
+          msgBox.innerText = "Password baru minimal 4 karakter!";
+          return;
+        }
+
+        localStorage.setItem("admin_custom_password", newPass);
+        msgBox.className = "success";
+        msgBox.style.color = "#166534";
+        msgBox.innerText = "Berhasil! Password admin telah diperbarui.";
+
+        document.getElementById("oldPasswordInput").value = "";
+        document.getElementById("newPasswordInput").value = "";
+      }
+
+      function logoutAdmin() {
+        if (confirm("Apakah Anda yakin ingin keluar?")) {
+          localStorage.removeItem("isLoggedIn");
+          location.reload();
+        }
+      }
+
+      function toggleModal(show) {
+        document.getElementById("settingsModal").style.display = show
+          ? "flex"
+          : "none";
+      }
+
+      function saveConfigManual() {
+        const token = document.getElementById("ghToken").value.trim();
+        const owner = document.getElementById("ghOwner").value.trim();
+        const repo = document.getElementById("ghRepo").value.trim();
+        const msgBox = document.getElementById("configSaveMsg");
+
+        msgBox.style.display = "block";
+
+        if (!token || !owner || !repo) {
+          msgBox.className = "error";
+          msgBox.style.color = "#dc2626";
+          msgBox.innerText = "Semua konfigurasi GitHub harus diisi!";
+          return;
+        }
+
+        localStorage.setItem("gh_token", token);
+        localStorage.setItem("gh_owner", owner);
+        localStorage.setItem("gh_repo", repo);
+
+        msgBox.className = "success";
+        msgBox.style.color = "#166534";
+        msgBox.innerText = "Berhasil! Konfigurasi GitHub telah disimpan.";
+
+        loadContentList();
       }
 
       function switchFormType() {
@@ -433,7 +1241,6 @@
         document.getElementById("cancelEditBtn").style.display = "none";
       }
 
-      // Fungsi otomatis ubah teks biasa berita: teks sebelum "-" jadi <strong>, enter 2x jadi <p>
       function formatBeritaToHtml(rawText) {
         if (!rawText) return "";
         const paragraphs = rawText.split(/\n\s*\n/);
@@ -453,7 +1260,6 @@
           .join("");
       }
 
-      // Konversi format datetime-local ke format web (YYYY-MM-DD HH:MM)
       function formatDateTimeForWeb(val) {
         if (!val) return "";
         return val.replace("T", " ");
@@ -651,7 +1457,8 @@
             }),
           });
 
-          if (!updateRes.ok) throw new Error("Gagal menyimpan perubahan hapus.");
+          if (!updateRes.ok)
+            throw new Error("Gagal menyimpan perubahan hapus.");
 
           showStatus("Berhasil menghapus item!", "success");
           loadContentList();
@@ -692,7 +1499,10 @@
           );
 
           if (!token || !owner || !repo) {
-            showStatus("Mohon lengkapi konfigurasi GitHub di atas!", "error");
+            showStatus(
+              "Mohon lengkapi konfigurasi GitHub di tombol pengaturan!",
+              "error",
+            );
             return;
           }
 
@@ -799,10 +1609,10 @@
               }),
             });
 
-            if (!updateRes.ok) throw new Error("Gagal menyimpan ke GitHub.");
+            if (!updateRes.ok) throw new Error("Gagal menyimpan.");
 
             showStatus(
-              "Berhasil! Data telah diperbarui dan dipublikasikan ke GitHub.",
+              "Berhasil! Data telah diperbarui.",
               "success",
             );
             resetForm();
