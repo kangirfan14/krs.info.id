@@ -1,4 +1,4 @@
-const AGENDA_DATA = [
+const DATABASE_AGENDA = [
   {
     id: "1",
     title: "HAFLAH AKHIRUSSANAH ARIFIN BILLAH",
