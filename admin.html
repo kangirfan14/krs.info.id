@@ -26,9 +26,15 @@
         padding: 0;
         font-family: "Plus Jakarta Sans", sans-serif;
       }
+      html,
       body {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
         background-color: var(--bg-light);
         color: var(--text-main);
+      }
+      body {
         padding: 20px;
         display: none;
       }
@@ -37,6 +43,8 @@
       #loadingScreen {
         position: fixed;
         inset: 0;
+        width: 100vw;
+        height: 100dvh;
         background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
         color: white;
         display: none;
@@ -46,6 +54,7 @@
         z-index: 9999;
         text-align: center;
         padding: 20px;
+        overflow: hidden;
       }
       #loadingScreen h1 {
         font-size: 2.5rem;
@@ -63,15 +72,20 @@
       #loginScreen {
         position: fixed;
         inset: 0;
+        width: 100vw;
+        height: 100dvh;
         background: #ffffff;
         display: none;
         z-index: 9998;
+        overflow: hidden;
       }
       .login-split-container {
         display: flex;
         width: 100%;
-        height: 100vh;
+        height: 100%;
       }
+
+      /* Pane Kiri (Desktop) */
       .login-left-pane {
         flex: 1;
         background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
@@ -82,9 +96,11 @@
         align-items: center;
         text-align: center;
         padding: 60px;
+        height: 100%;
+        overflow: hidden;
       }
       .login-left-pane .brand-icon-box {
-        max-width: 180px;
+        max-width: 260px; /* Diperbesar dari 180px */
         height: auto;
         display: flex;
         align-items: center;
@@ -131,6 +147,7 @@
         text-align: center;
       }
 
+      /* Pane Kanan (Form & Mobile Header) */
       .login-right-pane {
         flex: 1;
         background: #f8fafc;
@@ -140,27 +157,56 @@
         justify-content: center;
         padding: 40px;
         position: relative;
+        height: 100%;
+        overflow-y: auto;
       }
+
+      /* Header Khusus Mobile di atas kotak login */
+      .login-mobile-header {
+        display: none;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .login-mobile-header img {
+        max-width: 150px; /* Diperbesar dari 100px */
+        height: auto;
+        margin-bottom: 12px;
+        object-fit: contain;
+      }
+      .login-mobile-header h1 {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--text-main);
+        margin-bottom: 4px;
+      }
+      .login-mobile-header p {
+        font-size: 0.82rem;
+        color: #64748b;
+        max-width: 280px;
+        margin: 0 auto;
+        line-height: 1.4;
+      }
+
       .login-card {
         background: #ffffff;
         width: 100%;
-        max-width: 420px;
+        max-width: 400px;
         padding: 40px 35px;
         border-radius: 20px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
         border: 1px solid #e2e8f0;
       }
       .login-card h2 {
-        font-size: 1.5rem;
+        font-size: 1.35rem;
         color: var(--text-main);
         font-weight: 800;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
         text-align: center;
       }
       .login-card > p {
-        font-size: 0.85rem;
+        font-size: 0.82rem;
         color: #64748b;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
         text-align: center;
       }
       .login-input-group {
@@ -216,12 +262,13 @@
         cursor: pointer;
       }
       .login-footer-text {
-        position: absolute;
-        bottom: 25px;
+        margin-top: 25px;
         font-size: 0.8rem;
         color: #94a3b8;
+        text-align: center;
       }
 
+      /* Pengaturan Responsif Media Queries */
       @media (max-width: 900px) {
         .login-split-container {
           flex-direction: column;
@@ -230,7 +277,20 @@
           display: none;
         }
         .login-right-pane {
+          background: #f8fafc;
+          padding: 20px;
+          justify-content: center;
+          padding-top: 20px;
+        }
+        .login-mobile-header {
+          display: block;
+        }
+        .login-card {
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+          border: 1px solid #e2e8f0;
           background: #ffffff;
+          padding: 30px 25px;
+          max-width: 400px;
         }
       }
 
@@ -239,11 +299,14 @@
         display: none;
         position: fixed;
         inset: 0;
+        width: 100vw;
+        height: 100dvh;
         background: rgba(0, 0, 0, 0.5);
         z-index: 1000;
         align-items: center;
         justify-content: center;
         padding: 20px;
+        overflow: hidden;
       }
       .modal-content {
         background: #fff;
@@ -300,7 +363,6 @@
         border-bottom: 2px solid #f1f5f9;
         padding-bottom: 15px;
       }
-
       .brand-title {
         display: flex;
         align-items: center;
@@ -322,7 +384,6 @@
         object-fit: contain;
         display: block;
       }
-      /* Efek Garis Kilap Berjalan */
       .brand-logo-shine::after {
         content: "";
         position: absolute;
@@ -570,7 +631,7 @@
           padding-bottom: 12px;
         }
         .brand-logo-shine {
-          max-width: 85px; /* Sesuaikan ukuran logo di mobile agar pas */
+          max-width: 85px;
         }
         .realtime-clock-box {
           padding: 4px 8px;
@@ -640,13 +701,14 @@
         style="display: flex; flex-direction: column; align-items: center"
       >
         <h1 id="greetingText" style="margin-bottom: 8px">SELAMAT...</h1>
-        <p>Memuat sistem panel admin krs.info...</p>
+        <p>Memuat sistem admin krs.info...</p>
       </div>
     </div>
 
     <!-- 2. LOGIN SCREEN -->
     <div id="loginScreen">
       <div class="login-split-container">
+        <!-- Pane Kiri (Tampilan Desktop) -->
         <div class="login-left-pane">
           <div class="brand-icon-box">
             <img src="logoatas.png" alt="Logo krs.info" />
@@ -669,10 +731,17 @@
           </div>
         </div>
 
+        <!-- Pane Kanan (Tampilan Form & Header Mobile) -->
         <div class="login-right-pane">
+          <div class="login-mobile-header">
+            <img src="krslogo.png" alt="Logo krs.info" />
+            <h1>Portal Admin</h1>
+            <p>Platform informasi dan manajemen direktori digital.</p>
+          </div>
+
           <div class="login-card">
             <h2>Selamat Datang</h2>
-            <p>Masukkan password keamanan untuk melanjutkan</p>
+            <p>Masukkan password untuk melanjutkan</p>
 
             <div class="login-input-group">
               <label>Password Admin</label>
@@ -810,20 +879,17 @@
     <!-- MAIN CONTAINER -->
     <div class="container">
       <div class="app-header">
-        <!-- 1. Kiri: Logo krs.info dengan Animasi Kilap (Shimmer) -->
         <div class="brand-title">
           <div class="brand-logo-shine">
             <img src="krslogo.png" alt="Logo krs.info" />
           </div>
         </div>
 
-        <!-- 2. Tengah: Widget Kotak Jam & Realtime Date -->
         <div class="realtime-clock-box">
           <div id="liveTime" class="realtime-time">00:00:00</div>
           <div id="liveDate" class="realtime-date">Memuat tanggal...</div>
         </div>
 
-        <!-- 3. Kanan: Dropdown Pengaturan & Logout -->
         <div class="header-actions">
           <button
             type="button"
@@ -858,7 +924,6 @@
         </div>
       </div>
 
-      <!-- Pilihan Jenis Konten -->
       <div class="form-group">
         <label>Pilih Menu Konten</label>
         <select id="contentType" onchange="switchFormType()">
@@ -991,7 +1056,7 @@
         </div>
 
         <button type="submit" class="btn" id="submitBtn">
-          <i class="fa-solid fa-cloud-arrow-up"></i>  Simpan Data ke GitHub
+          <i class="fa-solid fa-cloud-arrow-up"></i> Simpan Data ke GitHub
         </button>
         <button
           type="button"
@@ -1050,7 +1115,6 @@
         );
       }
 
-      // Fungsi Realtime Clock (Hari, Tanggal, Bulan, Tahun, Jam)
       function updateRealtimeClock() {
         const now = new Date();
 
@@ -1076,7 +1140,6 @@
         }
       }
 
-      // Fungsi Kontrol Dropdown Header
       function toggleDropdown(event) {
         event.stopPropagation();
         const dropdown = document.getElementById("headerDropdown");
@@ -1088,7 +1151,6 @@
         if (dropdown) dropdown.classList.remove("show");
       }
 
-      // Tutup dropdown jika klik di luar area
       window.addEventListener("click", () => {
         closeDropdown();
       });
@@ -1260,6 +1322,16 @@
           .join("");
       }
 
+      function htmlToPlainText(html) {
+        if (!html) return "";
+        let text = html
+          .replace(/<\/p><p>/g, "\n\n")
+          .replace(/<p>/g, "")
+          .replace(/<\/p>/g, "")
+          .replace(/<strong>(.*?)<\/strong> - /g, "$1 - ");
+        return text;
+      }
+
       function formatDateTimeForWeb(val) {
         if (!val) return "";
         return val.replace("T", " ");
@@ -1399,7 +1471,9 @@
             document.getElementById("bExistingGambar").value =
               item.gambar || "";
             document.getElementById("bRingkasan").value = item.ringkasan || "";
-            document.getElementById("bKronologi").value = item.kronologi || "";
+            document.getElementById("bKronologi").value = htmlToPlainText(
+              item.kronologi || "",
+            );
           } else {
             document.getElementById("aId").value = item.id || "";
             document.getElementById("aTitle").value = item.title || "";
@@ -1611,10 +1685,7 @@
 
             if (!updateRes.ok) throw new Error("Gagal menyimpan.");
 
-            showStatus(
-              "Berhasil! Data telah diperbarui.",
-              "success",
-            );
+            showStatus("Berhasil! Data telah diperbarui.", "success");
             resetForm();
             loadContentList();
           } catch (err) {
