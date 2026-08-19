@@ -1,5 +1,4 @@
-// DATABASE AGENDA PUSAT (SATU PINTU UTAMA - EDIT DI SINI)
-const DATABASE_AGENDA = [
+const AGENDA_DATA = [
   {
     id: "1",
     title: "HAFLAH AKHIRUSSANAH ARIFIN BILLAH",
@@ -7,22 +6,19 @@ const DATABASE_AGENDA = [
     end: "2026-06-13 15:00",
     location: "Yayasan Pendidikan Arifin Billah, Weru, Cirebon",
     desc: "Acara ceremonial siswa dan siswi diawali karnaval.",
-    banner: "_MG_0349.JPG", // Ganti dengan nama file foto banner Anda
-    docLink:
-      "https://drive.google.com/drive/folders/1C9riKrwnlY7BujNB866Dp4MOWQs9IQmX?usp=drive_link",
+    banner: "_MG_0349.JPG",
+    docLink: "https://drive.google.com/drive/folders/1C9riKrwnlY7BujNB866Dp4MOWQs9IQmX?usp=drive_link",
   },
-
   {
     id: "2",
-    title: "KARNAVAL SERIMPI",
+    title: "KARNAVAL SERIMPI KARANGSARI",
     start: "2026-06-13 07:00",
     end: "2026-06-13 09:00",
     location: "Yayasan Pendidikan Arifin Billah, Weru, Cirebon",
     desc: "Pada Acara HAFLAH AKHIRUSSANAH ARIFIN BILLAH 2026.",
-    banner: "IMG_8437.JPG", // Ganti dengan nama file foto banner Anda
+    banner: "IMG_8437.JPG",
     docLink: "",
   },
-
   {
     id: "3",
     title: "NYABAR VOL.3 TAHUN 2026",
@@ -30,10 +26,9 @@ const DATABASE_AGENDA = [
     end: "2026-07-11 00:00",
     location: "Area lapang Gor Karangsari",
     desc: "Acara Pemutaran Film, Pameran Mini, Video Mapping, Performance, Doorprize.",
-    banner: "poster nybr.png", // Ganti dengan nama file foto banner Anda
+    banner: "poster nybr.png",
     docLink: "",
   },
-
   {
     id: "4",
     title: "JELAWE BERSATU - LOMBA MINIATUR ARAK - ARAKAN 2026",
@@ -41,10 +36,9 @@ const DATABASE_AGENDA = [
     end: "2026-08-17 14:05",
     location: "Jelawe Lor, Karangsari, Weru, Kab. Cirebon",
     desc: "Memperingati HUT - RI ke 81, warga blok Jelawe Lor kompak adakan acara.",
-    banner: "JELAWE 20262.png", // Ganti dengan nama file foto banner Anda
+    banner: "JELAWE 20262.png",
     docLink: "",
   },
-
   {
     id: "5",
     title: "NYIMAS GANDASARI CUP 2026 - TURNAMENT SEPAK BOLA WANITA",
@@ -52,7 +46,7 @@ const DATABASE_AGENDA = [
     end: "2026-08-16 18:05",
     location: "Lapangan Sepak Bola Perseka",
     desc: "Memperingati HUT - RI ke 81, acara dimulai dari 31 Juli - 16 Agustus 2026.",
-    banner: "WhatsApp Image 2026-07-28 at 17.37.28.jpeg", // Ganti dengan nama file foto banner Anda
+    banner: "WhatsApp Image 2026-07-28 at 17.37.28.jpeg",
     docLink: "",
   },
   {
@@ -62,10 +56,9 @@ const DATABASE_AGENDA = [
     end: "2026-08-23 12:00",
     location: "Desa Karangsari - Weru - Cirebon",
     desc: "Memperingati HUT - RI ke 81 dan HUT Irmuska Ke - 29.",
-    banner: "IMG_7218.JPG.jpeg", // Ganti dengan nama file foto banner Anda
+    banner: "IMG_7218.JPG.jpeg",
     docLink: "",
   },
-
   {
     id: "7",
     title: "PERINGATAN MAULID NABI MUHAMMAD SAW 1448 H",
@@ -73,11 +66,9 @@ const DATABASE_AGENDA = [
     end: "2026-08-28 23:59",
     location: "Yayasan Pendidikan Arifin Billah",
     desc: "Memperingati kelahiran Nabi Muhammad SAW",
-    banner:
-      "Hijau dan Emas Poster Ucapan Maulid Nabi Muhammad Instagram Post.png", // Ganti dengan nama file foto banner Anda
+    banner: "Hijau dan Emas Poster Ucapan Maulid Nabi Muhammad Instagram Post.png",
     docLink: "",
   },
-
   {
     id: "8",
     title: "KARANGSARI BERSATU JILID VII",
@@ -85,10 +76,9 @@ const DATABASE_AGENDA = [
     end: "2026-08-30 23:59",
     location: "Halaman Gor Karangsari",
     desc: "Acara musik All Genre",
-    banner: "IMG_7219.JPG.jpeg", // Ganti dengan nama file foto banner Anda
+    banner: "IMG_7219.JPG.jpeg",
     docLink: "",
   },
-
   {
     id: "9",
     title: "REZCOB FAMILY WAYAHE PARTY",
@@ -96,7 +86,7 @@ const DATABASE_AGENDA = [
     end: "2026-08-23 12:00",
     location: "Blok Rengas Kobar 07 Desa Karangsari - Weru - Cirebon",
     desc: "Arak - arakan ogoh ogoh Paksi Naga Liman Dan Musik Dangdut Garexa Nada",
-    banner: "rezparty.png", // Ganti dengan nama file foto banner Anda
+    banner: "rezparty.png",
     docLink: "",
   },
 ];
