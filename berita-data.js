@@ -7,8 +7,7 @@ const DATABASE_BERITA = [
     tanggalRilis: "2026-08-19",
     gambar: "images/WhatsApp Image 2026-08-18 at 10.36.01.jpeg",
     ringkasan: "TES",
-    kronologi: `<p>KARANGSARI
-HAI</p><p>TES</p><p>KRS.INFO</p>`,
+    kronologi: `<p>karangsari-</p><p>tes</p><p>tes</p><p>tes</p>`,
   },
   {
     id: 1,
