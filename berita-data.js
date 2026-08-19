@@ -8,7 +8,7 @@ const DATABASE_BERITA = [
     tanggalRilis: "2026-05-20", // Format YYYY-MM-DD untuk acuan sorting otomatis
     gambar: "krsberita.png",
     ringkasan:
-      "Pada 08 Oktober 2025 di Matangaji, Desa Karangsari resmi menyandang status sebagai Desa Wisata setelah Kuwu Casmari menerima SK dari Pemerintah Kabupaten Cirebon.",
+      "Pada 08 Oktober 2025 di Matangaji, Desa Karangsari resmi menyandang status sebagai Desa Wisata setelah Kuwu Casmari menerima SK dari Pemerintah Kabupaten Cirebon...",
     kronologi: `
             <p><strong>Matangaji, Kab.Cirebon</strong> — Dalam ajang Anugerah Desa Wisata yang diikuti 30 desa,
             momen bersejarah ini dimeriahkan dengan kirab budaya dan pameran produk unggulan yang mempertegas identitas ekonomi lokal.</p>
@@ -26,7 +26,7 @@ const DATABASE_BERITA = [
     tanggalRilis: "2026-05-19", // Format YYYY-MM-DD untuk acuan sorting otomatis
     gambar: "juara1.png",
     ringkasan:
-      "Prestasi Membanggakan @dolanan_film Pertahankan Juara Satu Lomba Video Pendek Kabupaten Cirebon.",
+      "Prestasi Membanggakan @dolanan_film Pertahankan Juara Satu Lomba Video Pendek Kabupaten Cirebon...",
     kronologi: `
             <p><strong>Kota Sumber, Kab.Cirebon</strong> — Tim produksi video pendek kebanggaan Karangsari, 
             @dolanan_film, kembali menorehkan prestasi gemilang sebagai juara bertahan dalam lomba video pendek yang 
@@ -47,7 +47,7 @@ const DATABASE_BERITA = [
     tanggalRilis: "2026-05-20", // Format YYYY-MM-DD untuk acuan sorting otomatis
     gambar: "wacana.png",
     ringkasan:
-      "Harapan warga Desa Karangsari untuk memiliki fasilitas publik yang representatif kini menyisakan tanda tanya besar.",
+      "Harapan warga Desa Karangsari untuk memiliki fasilitas publik yang representatif kini menyisakan tanda tanya besar...",
     kronologi: `
             <p><strong>Karangsari, Weru</strong> — Dalam video profil resmi Desa Wisata Karangsari, pemerintah desa sempat memaparkan 
             rencana ambisius pembangunan Bumi Perkemahan (Buper) di area belakang GOR Karangsari, serta pembangunan Alun-Alun Gentong
@@ -72,7 +72,7 @@ const DATABASE_BERITA = [
     tanggalRilis: "2026-07-10", // Format YYYY-MM-DD untuk acuan sorting otomatis
     gambar: "berita.jpg",
     ringkasan:
-      "Sukses Digelar, Dolanan Film Hadirkan Pesona Seni dan Sinema dalam Nyabar Vol.3 di Desa Karangsari",
+      "Sukses Digelar, Dolanan Film Hadirkan Pesona Seni dan Sinema dalam Nyabar Vol.3 di Desa Karangsari...",
     kronologi: `
             <p><strong>Gor Karangsari, Weru</strong> — Antusiasme masyarakat kembali dimanjakan melalui gelaran tahunan yang dinantikan. 
             Komunitas Dolanan Film sukses menyelenggarakan acara bertajuk "Nyabar Vol.3" (Nyawang Layar Bareng 2026). Kegiatan yang mengusung tema utama "Kegelapan Tidak Pernah Sendiri" 
@@ -100,7 +100,7 @@ const DATABASE_BERITA = [
     tanggalRilis: "2026-08-28", // Format YYYY-MM-DD untuk acuan sorting otomatis
     gambar: "agenda krs.png",
     ringkasan:
-      "Tidak kalah dari tahun sebelumnya, Desa karangsari kembali",
+      "Tidak kalah dari tahun sebelumnya, Desa karangsari kembali...",
     kronologi: `
             <p><strong>Karangsari, Weru</strong> — Desa karangsari kembali gelar acara beruntun di bulan Agustus, sama halnya dengan tahun - tahun sebelumnya. Acara yang digelar untuk memperingati HUT RI ke - 81</p>
             <p>Kamu dapat liat apa aja sih deretan acara itu ? cek di halaman Agenda</p>
@@ -116,7 +116,7 @@ const DATABASE_BERITA = [
     tanggalRilis: "2026-08-01", // Format YYYY-MM-DD untuk acuan sorting otomatis
     gambar: "bolaberita.png",
     ringkasan:
-      "Turnamen Sepak Bola Wanita Nyimas Gandasari Cup 2026 Dimulai, Putri LA Sabiru Menang Telak di Laga Pembuka",
+      "Turnamen Sepak Bola Wanita Nyimas Gandasari Cup 2026 Dimulai, Putri LA Sabiru Menang Telak di Laga Pembuka...",
     kronologi: `
             <p><strong>Karangsari, 31 Juli 2026</strong> — Kemeriahan menyelimuti lapangan Perseka Desa Karangsari saat turnamen sepak bola wanita bergengsi, Nyimas Gandasari Cup 2026, resmi dibuka.
             Acara ini digelar dalam rangka memperingati HUT RI ke-81.</p>
