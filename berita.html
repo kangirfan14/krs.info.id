@@ -1,312 +1,660 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="logoatas.png">
-    <title>Arsip Berita Resmi - KRS.info</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg: #f8fafc;
-            --text-dark: #0f172a;
-            --blood-red: #8b0000;
-            --blood-gradient: linear-gradient(135deg, #4a0404 0%, #8b0000 50%, #ee1d23 100%);
-            --border-light: rgba(139, 0, 0, 0.1);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Open Graph Meta Tags untuk Preview saat Dibagikan -->
+  <title id="metaTitle">Detail Berita - krs.info</title>
+  <meta property="og:title" id="ogTitle" content="Detail Berita - krs.info">
+  <meta property="og:description" id="ogDesc" content="Baca berita dan informasi terkini dari krs.info">
+  <meta property="og:image" id="ogImage" content="">
+  <meta property="og:url" id="ogUrl" content="">
+  <meta property="og:type" content="article">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background-color: var(--bg); color: var(--text-dark); overflow-x: hidden; background-image: radial-gradient(rgba(139, 0, 0, 0.02) 1.5px, transparent 1.5px); background-size: 30px 30px; }
+  <!-- Font & Icon -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        /* --- NAVIGATION HEADER DENGAN LOGIKA SCROLL & KILAU --- */
-        .navbar {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 92%;
-            max-width: 1200px;
-            height: 70px;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 50px;
-            border: 3px solid var(--blood-red);
-            display: flex;
-            align-items: center;
-            padding: 0 30px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-        .navbar.scrolled {
-            top: 0 !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            height: 65px;
-            border-left: none !important;
-            border-right: none !important;
-            border-top: none !important;
-            border-radius: 0px !important;
-            background: #ffffff !important;
-            padding: 0 40px !important;
-        }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        
-        /* Animasi Kilau Logo */
-        .nav-logo-link { display: flex; align-items: center; position: relative; overflow: hidden; border-radius: 8px; padding: 4px; }
-        .nav-logo-img { height: 35px; width: auto; object-fit: contain; display: block; }
-        .nav-logo-link::after {
-            content: ''; position: absolute; top: 0; left: -150%; width: 50%; height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
-            transform: skewX(-25deg); animation: shineLogo 4s infinite ease-in-out;
-        }
-        @keyframes shineLogo { 0% { left: -150%; } 30%, 100% { left: 150%; } }
+  <style>
+    :root {
+      --primary-red: #dc2626;
+      --primary-dark: #b91c1c;
+      --bg-light: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border-color: #8b0000;
+    }
 
-        .btn-back-beranda {
-            display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px;
-            background: var(--blood-gradient); color: #ffffff !important; border-radius: 30px;
-            text-decoration: none; font-weight: 800; font-size: 13px; text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.2); transition: all 0.3s ease;
-        }
-        .btn-back-beranda:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4); }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        /* --- HERO & COUNTER BERITA --- */
-        .news-hero-section { padding: 140px 20px 20px; text-align: center; max-width: 800px; margin: 0 auto; }
-        .news-hero-section h1 { font-family: "Syne", sans-serif; font-size: 2.8rem; font-weight: 900; color: #1a1a1a; letter-spacing: -1px; margin-bottom: 10px; }
-        .news-hero-section h1 span { color: var(--blood-red); -webkit-text-stroke: 1px var(--blood-red); -webkit-text-fill-color: transparent; }
-        
-        .counter-box {
-            display: inline-flex; align-items: center; gap: 8px; background: rgba(139, 0, 0, 0.06);
-            padding: 8px 20px; border-radius: 30px; border: 1px solid var(--border-light);
-            font-size: 0.9rem; font-weight: 700; color: var(--blood-red); margin-top: 5px;
-        }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.7;
+      padding-top: 100px;
+    }
 
-        /* --- NEWS PORTAL GRID & CARDS --- */
-        .news-container { max-width: 900px; margin: 40px auto 100px; padding: 0 20px; }
-        .news-card-professional {
-            background: #ffffff; border: 3px solid var(--blood-red); border-radius: 24px;
-            margin-bottom: 35px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-            transition: all 0.3s ease;
-        }
-        .news-card-professional:hover { transform: translateY(-3px); box-shadow: 10px 10px 0px rgba(139, 0, 0, 0.08); }
-        
-        .news-img-wrapper { width: 100%; aspect-ratio: 16 / 7; overflow: hidden; border-bottom: 3px solid var(--blood-red); }
-        .news-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .news-card-professional:hover .news-img-wrapper img { transform: scale(1.03); }
+    /* NAVBAR WRAPPER & LOGIKA SCROLL */
+    .nav-wrapper {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
 
-        .news-body { padding: 30px; position: relative; }
-        .news-badge-category {
-            display: inline-block; padding: 4px 12px; background: var(--blood-red);
-            color: #fff; font-size: 11px; font-weight: 800; border-radius: 6px;
-            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;
-        }
-        .news-waktu-kejadian { display: flex; align-items: center; gap: 6px; color: #64748b; font-size: 0.85rem; font-weight: 600; margin-bottom: 12px; }
-        .news-waktu-kejadian i { color: var(--blood-red); }
-        
-        .news-title { font-family: "Syne", sans-serif; font-size: 1.6rem; font-weight: 800; color: #1a1a1a; line-height: 1.3; margin-bottom: 15px; }
-        .news-ringkasan { color: #475569; font-size: 1rem; line-height: 1.6; font-weight: 500; }
+    .nav-wrapper.scrolled {
+      top: 0;
+      left: 0;
+      right: 0;
+    }
 
-        /* --- SMOOTH ACCORDION KRONOLOGI --- */
-        .news-kronologi-wrapper {
-            max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
-            border-top: 1px dashed transparent; margin-top: 0; padding-top: 0;
-        }
-        .news-card-professional.expanded .news-kronologi-wrapper {
-            max-height: 2000px; /* Nilai tampung tinggi tak terbatas */
-            transition: max-height 0.8s cubic-bezier(1, 0, 1, 0);
-            border-top: 1px dashed rgba(139, 0, 0, 0.2);
-            margin-top: 20px; padding-top: 20px;
-        }
-        .news-kronologi-content { color: #334155; font-size: 0.98rem; line-height: 1.7; }
-        .news-kronologi-content p { margin-bottom: 15px; text-align: justify; }
+    .navbar {
+      background: #ffffff;
+      border: 1.5px solid var(--border-color);
+      border-radius: 50px;
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      transition: all 0.3s ease;
+      position: relative;
+    }
 
-        /* --- BUTTON TOGGLE READ MORE --- */
-        .btn-toggle-berita {
-            display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px;
-            background: #ffffff; color: var(--blood-red); border: 2px solid var(--blood-red);
-            border-radius: 50px; font-weight: 800; font-size: 0.85rem; cursor: pointer;
-            text-transform: uppercase; margin-top: 20px; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(139,0,0,0.05);
-        }
-        .btn-toggle-berita:hover { background: var(--blood-red); color: #ffffff; transform: translateY(-1px); }
+    .nav-wrapper.scrolled .navbar {
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      max-width: 100%;
+      padding: 12px 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
 
-        /* --- RESPONSIVE MOBILE VIEW --- */
-        @media (max-width: 768px) {
-            .navbar { width: 95% !important; top: 10px !important; padding: 0 15px !important; height: 60px; }
-            .navbar.scrolled { padding: 0 15px !important; }
-            .nav-logo-img { height: 28px; }
-            .btn-back-beranda { padding: 8px 16px; }
-            .btn-back-beranda span { display: none; }
-            
-            .news-hero-section { padding: 110px 20px 10px; }
-            .news-hero-section h1 { font-size: 2rem; }
-            
-            .news-body { padding: 20px; }
-            .news-title { font-size: 1.25rem; }
-            .news-img-wrapper { aspect-ratio: 16 / 9; }
-            .btn-toggle-berita { width: 100%; justify-content: center; }
-        }
+    .nav-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        /* =======================================================
-   KUNCIAN MATANG: EFEK KILAU LOGO BERITA (SINKRON SAKTI)
-   ======================================================= */
-.nav-logo-link {
-    display: flex;
-    align-items: center;
-    position: relative; /* Pengunci jangkar cahaya */
-    overflow: hidden;   /* Potong cahaya biar gak luber keluar dari area logo */
-    border-radius: 8px; /* Tepi halus */
-    padding: 4px;
-}
+    /* Logo Beranda + Animasi Kilap (Shimmer Effect) */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+    }
 
-.nav-logo-img {
-    height: 35px; /* Ukuran pas ideal di Desktop */
-    width: auto;
-    object-fit: contain;
-    display: block;
-}
+    .nav-logo img {
+      height: 32px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
 
-/* Generator Garis Pantulan Cahaya Kilau */
-.nav-logo-link::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -150%; /* Start dari luar kiri logo */
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(
-        to right, 
-        rgba(255, 255, 255, 0) 0%, 
-        rgba(255, 255, 255, 0.65) 50%, 
+    .nav-logo::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -75%;
+      width: 50%;
+      height: 200%;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.6) 50%,
         rgba(255, 255, 255, 0) 100%
-    );
-    transform: skewX(-25deg); /* Bikin kemiringan kilau biar dinamis */
-    animation: kilauBeritaLogo 4s infinite ease-in-out; /* Melesat tiap 4 detik sekali */
-}
+      );
+      transform: rotate(25deg);
+      animation: shine 3s infinite ease-in-out;
+    }
 
-/* Timeline pergerakan kilau */
-@keyframes kilauBeritaLogo {
-    0% {
-        left: -150%;
+    @keyframes shine {
+      0% { left: -75%; }
+      20% { left: 125%; }
+      100% { left: 125%; }
     }
-    30%, 100% {
-        left: 150%; /* Melesat keluar ke sisi kanan */
-    }
-}
 
-/* Responsif Layar HP (Mobile) */
-@media (max-width: 768px) {
-    .nav-logo-img {
-        height: 28px; /* Ukuran mini proporsional saat dibuka di HP */
+    /* Menu Navigasi Desktop */
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      list-style: none;
     }
-}
-footer {
-        padding: 50px 20px;
-        text-align: center;
-        font-size: 12px;
-        color: #94a3b8;
-        font-weight: 700;
-      }
-    </style>
+
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+
+    .nav-links li a:hover {
+      color: var(--primary-red);
+    }
+
+    /* Tombol Kirim Berita */
+    .btn-kirim {
+      background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+      color: #ffffff !important;
+      padding: 8px 20px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+      cursor: pointer;
+    }
+
+    /* Tombol Hamburger di Navbar */
+    .hamburger-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--primary-red) !important;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 1002;
+    }
+
+    /* OVERLAY GELAP DI LUAR PANEL */
+    .mobile-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(15, 23, 42, 0.5);
+      z-index: 1098;
+      backdrop-filter: blur(2px);
+    }
+
+    /* SIDEBAR HAMBURGER */
+    .mobile-menu-drawer {
+      display: none;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 300px;
+      max-width: 85vw;
+      height: calc(100vh - 40px);
+      background: #ffffff;
+      border: 1.5px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px 20px;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 1099;
+      box-shadow: -10px 10px 30px rgba(0,0,0,0.15);
+      overflow-y: auto;
+      animation: slideInDropdown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .nav-wrapper.scrolled ~ .mobile-backdrop + .mobile-menu-drawer,
+    body.menu-open .nav-wrapper.scrolled ~ .mobile-menu-drawer {
+      top: 0;
+      right: 0;
+      height: 100vh;
+      border-radius: 0;
+      border-top: none;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    @keyframes slideInDropdown {
+      from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f1f5f9;
+      margin-bottom: 5px;
+    }
+
+    .drawer-close-btn {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--primary-red);
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .mobile-menu-drawer a.menu-item {
+      text-decoration: none;
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mobile-menu-drawer a.menu-item:hover {
+      color: var(--primary-red);
+    }
+
+    .mobile-menu-drawer .btn-kirim-mobile {
+      background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+      color: #ffffff !important;
+      padding: 12px 20px;
+      border-radius: 20px;
+      text-align: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+      border-bottom: none;
+      margin-top: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    /* KONTEN UTAMA ARTIKEL */
+    .article-container {
+      max-width: 850px;
+      margin: 20px auto 80px auto;
+      padding: 0 20px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      transition: color 0.2s;
+    }
+
+    .back-btn:hover {
+      color: var(--primary-red);
+    }
+
+    .article-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--text-main);
+      line-height: 1.3;
+      margin-bottom: 15px;
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .article-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .article-image-wrapper {
+      width: 100%;
+      max-height: 450px;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 35px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      background-color: #fee2e2;
+    }
+
+    .article-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .article-body-content {
+      font-size: 1.05rem;
+      color: #334155;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .article-body-content p {
+      margin-bottom: 20px;
+    }
+
+    /* BAGIAN TOMBOL SHARE */
+    .share-section {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 14px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    }
+
+    .share-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .share-buttons-grid {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #ffffff;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .share-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .btn-whatsapp { background-color: #25d366; }
+    .btn-facebook { background-color: #1877f2; }
+    .btn-instagram { background-color: #e1306c; }
+
+    /* MODAL PERSETUJUAN PAS DI TENGAH LAYAR */
+    div[id*="modal"], 
+    #modalProtokol, 
+    .modal-protokol-overlay, 
+    .modal-overlay {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      background-color: rgba(15, 23, 42, 0.75) !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      z-index: 99999 !important;
+      margin: 0 !important;
+      padding: 20px !important;
+      box-sizing: border-box !important;
+      transform: none !important;
+    }
+
+    div[id*="modal"] > div, 
+    #modalProtokol > div, 
+    .modal-protokol-box, 
+    .modal-content {
+      position: relative !important;
+      margin: auto !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      max-height: 85vh !important;
+      max-width: 500px !important;
+      width: 100% !important;
+      overflow-y: auto !important;
+      transform: none !important;
+      background: #ffffff !important;
+      border-radius: 16px !important;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.35) !important;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger-btn { display: block; }
+      .article-title { font-size: 1.7rem; }
+      .article-image-wrapper { max-height: 260px; }
+      .share-buttons-grid { flex-direction: column; }
+      .share-btn { width: 100%; justify-content: center; }
+    }
+  </style>
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo-link">
-                <img src="krs.png" alt="Logo" class="nav-logo-img">
+  <!-- NAVBAR UTAMA -->
+  <div class="nav-wrapper" id="navbarWrapper">
+    <nav class="navbar" id="mainNav">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo"> 
+          <img src="krs.png" alt="Logo" /> 
+        </a>
+        
+        <ul class="nav-links" id="menu">
+          <li><a href="index.html#home">BERANDA</a></li>
+          <li><a href="index.html#Berita">BERITA</a></li>
+          <li><a href="index.html#agenda">AGENDA</a></li>
+          <li><a href="index.html#kontak">KONTAK</a></li>
+          <li>
+            <a href="javascript:void(0);" onclick="bukaModalProtokol('https://forms.gle/dTcjsJgK8dRCVYjZA')" class="btn-kirim">
+              <i class="fa-solid fa-paper-plane"></i> KIRIM BERITA
             </a>
-            <div class="nav-menu-right">
-                <a href="index.html#Berita" class="btn-back-beranda">
-                    <i class="fa-solid fa-house-chimney"></i> <span>Beranda</span>
-                </a>
-            </div>
-        </div>
-    </header>
+          </li>
+        </ul>
 
-    <section class="news-hero-section">
-        <h1>Berita</h1>
-        <div class="counter-box">
-            <i class="fa-solid fa-newspaper"></i> Total: <span id="totalBeritaCount">0</span> Berita Terpublikasi
-        </div>
-    </section>
+        <!-- Tombol Hamburger Mobile -->
+        <button class="hamburger-btn" id="hamburgerToggle" aria-label="Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+  </div>
 
-    <main class="news-container" id="indukContainerBerita"></main>
+  <!-- Backdrop Gelap -->
+  <div class="mobile-backdrop" id="mobileBackdrop"></div>
 
-    <footer>&copy; 2026 KRS.INFO — #karangsarineweru</footer>
+  <!-- Sidebar Menu Hamburger -->
+  <div class="mobile-menu-drawer" id="mobileMenu">
+    <div class="drawer-header">
+      <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Tutup Menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
 
-    <script src="berita-data.js"></script>
-    <script>
-        // Logika Mengatur Navbar Saat Di-scroll
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('.navbar');
-            if(window.scrollY > 20) { nav.classList.add('scrolled'); }
-            else { nav.classList.remove('scrolled'); }
-        });
+    <a href="index.html#home" class="menu-item">BERANDA <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #94a3b8;"></i></a>
+    <a href="index.html#Berita" class="menu-item">BERITA <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #94a3b8;"></i></a>
+    <a href="index.html#agenda" class="menu-item">AGENDA <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #94a3b8;"></i></a>
+    <a href="index.html#kontak" class="menu-item">KONTAK <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: #94a3b8;"></i></a>
+    
+    <!-- Tombol Kirim Berita versi Mobile (Menutup menu & Buka Modal) -->
+    <a href="javascript:void(0);" onclick="closeMenu(); bukaModalProtokol('https://forms.gle/dTcjsJgK8dRCVYjZA');" class="btn-kirim-mobile">
+      <i class="fa-solid fa-paper-plane"></i> KIRIM BERITA
+    </a>
+  </div>
 
-        // Pemroses Utama Tampilan List Berita Berdasarkan Urutan Tanggal Rilis
-        document.addEventListener("DOMContentLoaded", function() {
-            const container = document.getElementById("indukContainerBerita");
-            const counterText = document.getElementById("totalBeritaCount");
+  <!-- KONTEN DINAMIS -->
+  <main class="article-container" id="articleContentWrapper">
+    <a href="index.html#Berita" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i> Kembali ke Berita
+    </a>
 
-            // Tampilkan total hitungan real data berita
-            counterText.textContent = DATABASE_BERITA.length;
+    <div style="text-align:center; padding: 60px 0; color: #64748b;">
+      Memuat detail berita...
+    </div>
+  </main>
 
-            // Logika Mengurutkan Berita: Tanggal Rilis Terbaru ditaruh paling atas (Custom Date Order)
-            const beritaTerurut = [...DATABASE_BERITA].sort((a, b) => new Date(b.tanggalRilis) - new Date(a.tanggalRilis));
+  <!-- Panggil Database Berita & Script Persetujuan Modal -->
+  <script src="berita-data.js"></script>
+  <script src="persetujuan.js"></script>
 
-            // Bersihkan isi container asal
-            container.innerHTML = "";
+  <!-- SCRIPT LOGIKA -->
+  <script>
+    // 1. Logika Scroll Navbar (Sticky & Morphing)
+    window.addEventListener('scroll', function() {
+      const navWrapper = document.getElementById('navbarWrapper');
+      if (window.scrollY > 30) {
+        navWrapper.classList.add('scrolled');
+      } else {
+        navWrapper.classList.remove('scrolled');
+      }
+    });
 
-            // Render masing-masing card secara dinamis
-            beritaTerurut.forEach(berita => {
-                const htmlCard = `
-                    <article class="news-card-professional" id="news-block-${berita.id}">
-                        <div class="news-img-wrapper">
-                            <img src="${berita.gambar || 'default-news.jpg'}" alt="${berita.judul}">
-                        </div>
-                        <div class="news-body">
-                            <span class="news-badge-category">${berita.kategori}</span>
-                            <div class="news-waktu-kejadian">
-                                <i class="fa-solid fa-calendar-day"></i> ${berita.waktuKejadian}
-                            </div>
-                            <h3 class="news-title">${berita.judul}</h3>
-                            <p class="news-ringkasan">${berita.ringkasan}</p>
-                            
-                            <div class="news-kronologi-wrapper">
-                                <div class="news-kronologi-content">
-                                    ${berita.kronologi}
-                                </div>
-                            </div>
+    // 2. Logika Sidebar Menu Mobile
+    const hamburgerToggle = document.getElementById('hamburgerToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileBackdrop = document.getElementById('mobileBackdrop');
+    const drawerCloseBtn = document.getElementById('drawerCloseBtn');
 
-                            <button class="btn-toggle-berita" onclick="aksiToggleMajuMundur(this)">
-                                <i class="fa-solid fa-book-open"></i> Baca Selengkapnya
-                            </button>
-                        </div>
-                    </article>
-                `;
-                container.insertAdjacentHTML('beforeend', htmlCard);
-            });
-        });
+    function openMenu() {
+      mobileMenu.style.display = 'flex';
+      mobileBackdrop.style.display = 'block';
+      document.body.classList.add('menu-open');
+    }
 
-        // Fungsi Animasi Buka Tutup Kronologi (Drop-Down & Drop-Up)
-        function aksiToggleMajuMundur(btn) {
-            const card = btn.closest('.news-card-professional');
-            card.classList.toggle('expanded');
+    function closeMenu() {
+      mobileMenu.style.display = 'none';
+      mobileBackdrop.style.display = 'none';
+      document.body.classList.remove('menu-open');
+    }
+
+    hamburgerToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (mobileMenu.style.display === 'flex') {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    drawerCloseBtn.addEventListener('click', closeMenu);
+    mobileBackdrop.addEventListener('click', closeMenu);
+
+    // Otomatis tutup menu jika link menu biasa diklik
+    const menuLinks = mobileMenu.querySelectorAll('a.menu-item');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // 3. Logika Pemanggilan Data Berita dan Format Share Profesional
+    document.addEventListener("DOMContentLoaded", function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const beritaId = urlParams.get('id');
+
+      const container = document.getElementById('articleContentWrapper');
+
+      if (typeof DATABASE_BERITA !== 'undefined' && beritaId) {
+        const berita = DATABASE_BERITA.find(item => item.id == beritaId);
+
+        if (berita) {
+          document.getElementById('metaTitle').innerText = `${berita.judul} - krs.info`;
+          document.getElementById('ogTitle').setAttribute('content', berita.judul);
+          document.getElementById('ogDesc').setAttribute('content', berita.ringkasan);
+          document.getElementById('ogImage').setAttribute('content', window.location.origin + '/' + berita.gambar);
+          document.getElementById('ogUrl').setAttribute('content', window.location.href);
+
+          const isiKronologi = berita.isi || berita.kronologi || berita.deskripsi || "<p>Belum ada isi kronologi untuk berita ini.</p>";
+          const tanggalRilis = berita.tanggalRilis || berita.tanggal || "Terbaru";
+
+          // Format Teks Share Profesional (Judul, Ringkasan, Tentang Platform, Link Web, Sosmed, & Link Berita)
+          const shareMessage = `📢 *${berita.judul}*\n\n` +
+            `"${berita.ringkasan}"\n\n` +
+            `-----------------------------------\n` +
+            `💡 *Tentang krs.info*\n` +
+            `krs.info merupakan bagian dari platform media lokal terpercaya yang menyajikan informasi, berita, dan agenda terkini.\n\n` +
+            `🔗 *Akses Website Resmi Kami:*\n` +
+            `https://karangsariweru.my.id\n\n` +
+            `📱 *Ikuti & Dukung Kami di Sosial Media:*\n` +
+            `• Instagram: @krs.info\n` +
+            `• TikTok: @krs.info\n` +
+            `-----------------------------------\n\n` +
+            `👉 *Baca berita lengkapnya di sini:*\n` + 
+            window.location.href;
+
+          container.innerHTML = `
+            <a href="index.html#Berita" class="back-btn">
+              <i class="fa-solid fa-arrow-left"></i> Kembali ke Berita
+            </a>
+
+            <h1 class="article-title">${berita.judul}</h1>
             
-            if (card.classList.contains('expanded')) {
-                btn.innerHTML = `<i class="fa-solid fa-book-bookmark"></i> Tutup Berita`;
-                // Efek autoscroll halus ke posisi awal kartu jika dibuka di hp agar tidak kelewat membaca
-                setTimeout(() => {
-                    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 300);
-            } else {
-                btn.innerHTML = `<i class="fa-solid fa-book-open"></i> Baca Selengkapnya`;
-            }
+            <div class="article-meta">
+              <span><i class="fa-regular fa-calendar"></i> ${tanggalRilis}</span>
+              <span><i class="fa-solid fa-tag"></i> ${berita.kategori}</span>
+            </div>
+
+            <div class="article-image-wrapper">
+              <img src="${berita.gambar}" alt="${berita.judul}">
+            </div>
+
+            <div class="article-body-content">
+              ${isiKronologi}
+            </div>
+
+            <div class="share-section">
+              <div class="share-title">
+                <i class="fa-solid fa-share-nodes"></i> Bagikan Berita Ini
+              </div>
+              <div class="share-buttons-grid">
+                <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}" target="_blank" class="share-btn btn-whatsapp">
+                  <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" target="_blank" class="share-btn btn-facebook">
+                  <i class="fa-brands fa-facebook-f"></i> Facebook
+                </a>
+                <a href="https://api.whatsapp.com/send?text=${encodeURIComponent("Halo! Yuk simak informasi menarik ini:\n\n" + shareMessage)}" target="_blank" class="share-btn btn-instagram">
+                  <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
+              </div>
+            </div>
+          `;
+        } else {
+          container.innerHTML = `
+            <a href="index.html#SemuaBerita" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Kembali ke Berita</a>
+            <div style="text-align:center; padding: 60px 0; color: #dc2626;">Berita yang kamu cari tidak ditemukan.</div>
+          `;
         }
-    </script>
+      } else {
+        container.innerHTML = `
+          <a href="index.html#Berita" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Kembali ke Berita</a>
+          <div style="text-align:center; padding: 60px 0; color: #dc2626;">ID Berita tidak valid.</div>
+        `;
+      }
+    });
+  </script>
+
 </body>
 </html>
