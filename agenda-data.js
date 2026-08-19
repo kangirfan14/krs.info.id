@@ -8,7 +8,8 @@ const DATABASE_AGENDA = [
     location: "Yayasan Pendidikan Arifin Billah, Weru, Cirebon",
     desc: "Acara ceremonial siswa dan siswi diawali karnaval.",
     banner: "_MG_0349.JPG", // Ganti dengan nama file foto banner Anda
-    docLink: "https://drive.google.com/drive/folders/1C9riKrwnlY7BujNB866Dp4MOWQs9IQmX?usp=drive_link"
+    docLink:
+      "https://drive.google.com/drive/folders/1C9riKrwnlY7BujNB866Dp4MOWQs9IQmX?usp=drive_link",
   },
 
   {
@@ -19,10 +20,10 @@ const DATABASE_AGENDA = [
     location: "Yayasan Pendidikan Arifin Billah, Weru, Cirebon",
     desc: "Pada Acara HAFLAH AKHIRUSSANAH ARIFIN BILLAH 2026.",
     banner: "IMG_8437.JPG", // Ganti dengan nama file foto banner Anda
-    docLink: "https://karangsariinfo.cirebonid.workers.dev/agenda"
+    docLink: "",
   },
-  
- {
+
+  {
     id: "3",
     title: "NYABAR VOL.3 TAHUN 2026",
     start: "2026-07-10 18:00",
@@ -30,10 +31,10 @@ const DATABASE_AGENDA = [
     location: "Area lapang Gor Karangsari",
     desc: "Acara Pemutaran Film, Pameran Mini, Video Mapping, Performance, Doorprize.",
     banner: "poster nybr.png", // Ganti dengan nama file foto banner Anda
-    docLink: "https://karangsariinfo.cirebonid.workers.dev/agenda"
+    docLink: "",
   },
 
-   {
+  {
     id: "4",
     title: "JELAWE BERSATU - LOMBA MINIATUR ARAK - ARAKAN 2026",
     start: "2026-08-17 07:00",
@@ -41,10 +42,10 @@ const DATABASE_AGENDA = [
     location: "Jelawe Lor, Karangsari, Weru, Kab. Cirebon",
     desc: "Memperingati HUT - RI ke 81, warga blok Jelawe Lor kompak adakan acara.",
     banner: "JELAWE 20262.png", // Ganti dengan nama file foto banner Anda
-    docLink: "https://karangsariinfo.cirebonid.workers.dev/agenda"
+    docLink: "",
   },
 
-    {
+  {
     id: "5",
     title: "NYIMAS GANDASARI CUP 2026 - TURNAMENT SEPAK BOLA WANITA",
     start: "2026-07-31 16:00",
@@ -52,9 +53,9 @@ const DATABASE_AGENDA = [
     location: "Lapangan Sepak Bola Perseka",
     desc: "Memperingati HUT - RI ke 81, acara dimulai dari 31 Juli - 16 Agustus 2026.",
     banner: "WhatsApp Image 2026-07-28 at 17.37.28.jpeg", // Ganti dengan nama file foto banner Anda
-    docLink: "https://karangsariinfo.cirebonid.workers.dev/agenda"
+    docLink: "",
   },
- {
+  {
     id: "6",
     title: "KHITANAN MASSAL DAN ARAK - ARAKAN",
     start: "2026-08-23 08:00",
@@ -62,21 +63,22 @@ const DATABASE_AGENDA = [
     location: "Desa Karangsari - Weru - Cirebon",
     desc: "Memperingati HUT - RI ke 81 dan HUT Irmuska Ke - 29.",
     banner: "IMG_7218.JPG.jpeg", // Ganti dengan nama file foto banner Anda
-    docLink: "https://karangsariinfo.cirebonid.workers.dev/agenda"
+    docLink: "",
   },
 
-   {
+  {
     id: "7",
     title: "PERINGATAN MAULID NABI MUHAMMAD SAW 1448 H",
     start: "2026-08-28 06:00",
     end: "2026-08-28 23:59",
     location: "Yayasan Pendidikan Arifin Billah",
     desc: "Memperingati kelahiran Nabi Muhammad SAW",
-    banner: "Hijau dan Emas Poster Ucapan Maulid Nabi Muhammad Instagram Post.png", // Ganti dengan nama file foto banner Anda
-    docLink: "https://karangsariinfo.cirebonid.workers.dev/agenda"
+    banner:
+      "Hijau dan Emas Poster Ucapan Maulid Nabi Muhammad Instagram Post.png", // Ganti dengan nama file foto banner Anda
+    docLink: "",
   },
 
-   {
+  {
     id: "8",
     title: "KARANGSARI BERSATU JILID VII",
     start: "2026-08-30 15:00",
@@ -84,10 +86,10 @@ const DATABASE_AGENDA = [
     location: "Halaman Gor Karangsari",
     desc: "Acara musik All Genre",
     banner: "IMG_7219.JPG.jpeg", // Ganti dengan nama file foto banner Anda
-    docLink: "https://karangsariinfo.cirebonid.workers.dev/agenda"
+    docLink: "",
   },
 
-   {
+  {
     id: "9",
     title: "REZCOB FAMILY WAYAHE PARTY",
     start: "2026-08-23 07:00",
@@ -95,6 +97,6 @@ const DATABASE_AGENDA = [
     location: "Blok Rengas Kobar 07 Desa Karangsari - Weru - Cirebon",
     desc: "Arak - arakan ogoh ogoh Paksi Naga Liman Dan Musik Dangdut Garexa Nada",
     banner: "rezparty.png", // Ganti dengan nama file foto banner Anda
-    docLink: "https://karangsariinfo.cirebonid.workers.dev/agenda"
+    docLink: "",
   },
 ];
