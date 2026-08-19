@@ -1,0 +1,827 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - krs.info</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-red: #dc2626;
+        --primary-dark: #b91c1c;
+        --bg-light: #f8fafc;
+        --text-main: #0f172a;
+        --border-color: #cbd5e1;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      body {
+        background-color: var(--bg-light);
+        color: var(--text-main);
+        padding: 20px;
+      }
+      .container {
+        max-width: 850px;
+        margin: 40px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e2e8f0;
+      }
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: var(--primary-red);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .form-group {
+        margin-bottom: 16px;
+      }
+      label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+      }
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 10px 14px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 0.95rem;
+        outline: none;
+      }
+      input:focus,
+      textarea:focus {
+        border-color: var(--primary-red);
+      }
+      textarea {
+        resize: vertical;
+        height: 100px;
+      }
+      .btn {
+        background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .btn:hover {
+        opacity: 0.9;
+      }
+      .btn-secondary {
+        background: #64748b;
+        margin-top: 5px;
+      }
+      .btn-danger {
+        background: #dc2626;
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        width: auto;
+        display: inline-flex;
+      }
+      .btn-warning {
+        background: #d97706;
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        width: auto;
+        display: inline-flex;
+      }
+      .config-box {
+        background: #f1f5f9;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      .status-msg {
+        margin-top: 15px;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        display: none;
+      }
+      .success {
+        background: #dcfce7;
+        color: #166534;
+        border: 1px solid #bbf7d0;
+      }
+      .error {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fecaca;
+      }
+      .form-section {
+        display: none;
+      }
+      .form-section.active {
+        display: block;
+      }
+      .file-info {
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-top: 4px;
+      }
+      .manage-section {
+        margin-top: 40px;
+        border-top: 2px dashed #e2e8f0;
+        padding-top: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        font-size: 0.9rem;
+      }
+      th,
+      td {
+        border: 1px solid #cbd5e1;
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        background: #f1f5f9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1><i class="fa-solid fa-gauge-high"></i> Panel Admin krs.info</h1>
+
+      <!-- Konfigurasi GitHub & Token (Otomatis Tersimpan) -->
+      <div class="config-box">
+        <h3 style="font-size: 0.95rem; margin-bottom: 10px">
+          <i class="fa-solid fa-key"></i> Pengaturan Akses GitHub (Tersimpan
+          Otomatis)
+        </h3>
+        <div class="form-group" style="margin-bottom: 10px">
+          <label>GitHub Personal Access Token (PAT):</label>
+          <input
+            type="password"
+            id="ghToken"
+            placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+            oninput="saveConfig()"
+          />
+        </div>
+        <div style="display: flex; gap: 10px">
+          <div class="form-group" style="flex: 1; margin-bottom: 0">
+            <label>Username GitHub:</label>
+            <input
+              type="text"
+              id="ghOwner"
+              placeholder="kangirfan14"
+              oninput="saveConfig()"
+            />
+          </div>
+          <div class="form-group" style="flex: 1; margin-bottom: 0">
+            <label>Nama Repository:</label>
+            <input
+              type="text"
+              id="ghRepo"
+              placeholder="krs.info.id"
+              oninput="saveConfig()"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Pilihan Jenis Konten -->
+      <div class="form-group">
+        <label>Pilih Menu:</label>
+        <select id="contentType" onchange="switchFormType()">
+          <option value="berita">Kelola Berita (berita-data.js)</option>
+          <option value="agenda">Kelola Agenda (agenda-data.js)</option>
+        </select>
+      </div>
+
+      <form id="adminForm">
+        <input type="hidden" id="editIndex" value="-1" />
+
+        <!-- FORM BERITA -->
+        <div id="formBerita" class="form-section active">
+          <h3
+            style="
+              font-size: 1rem;
+              color: var(--primary-red);
+              margin-bottom: 15px;
+              border-bottom: 1px solid #e2e8f0;
+              padding-bottom: 5px;
+            "
+          >
+            Form Data Berita
+          </h3>
+          <div class="form-group">
+            <label>ID Berita (Angka, misal: 7):</label>
+            <input type="number" id="bId" placeholder="Contoh: 7" />
+          </div>
+          <div class="form-group">
+            <label>Judul Berita:</label>
+            <input type="text" id="bJudul" placeholder="Judul berita..." />
+          </div>
+          <div class="form-group">
+            <label>Kategori:</label>
+            <input type="text" id="bKategori" placeholder="Info / Kegiatan" />
+          </div>
+          <div style="display: flex; gap: 10px">
+            <div class="form-group" style="flex: 1">
+              <label>Waktu Kejadian:</label>
+              <input type="text" id="bWaktuKejadian" placeholder="Cirebon..." />
+            </div>
+            <div class="form-group" style="flex: 1">
+              <label>Tanggal Rilis:</label>
+              <input type="date" id="bTanggalRilis" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Upload Gambar Berita:</label>
+            <input type="file" id="bFileGambar" accept="image/*" />
+            <div class="file-info">
+              Biarkan kosong jika tidak ingin mengubah gambar saat mengedit.
+            </div>
+            <input type="hidden" id="bExistingGambar" />
+          </div>
+          <div class="form-group">
+            <label>Ringkasan Singkat:</label>
+            <textarea id="bRingkasan" placeholder="Ringkasan..."></textarea>
+          </div>
+          <div class="form-group">
+            <label
+              >Kronologi / Isi Berita (Teks sebelum tanda <b>-</b> otomatis
+              tebal, Enter 2x jadi paragraf baru):</label
+            >
+            <textarea
+              id="bKronologi"
+              style="height: 150px"
+              placeholder="Karangsari - Teks ini otomatis tebal...&#10;&#10;Paragraf baru di bawahnya..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- FORM AGENDA -->
+        <div id="formAgenda" class="form-section">
+          <h3
+            style="
+              font-size: 1rem;
+              color: var(--primary-red);
+              margin-bottom: 15px;
+              border-bottom: 1px solid #e2e8f0;
+              padding-bottom: 5px;
+            "
+          >
+            Form Data Agenda
+          </h3>
+          <div class="form-group">
+            <label>ID Agenda:</label>
+            <input type="text" id="aId" placeholder="Contoh: 1" />
+          </div>
+          <div class="form-group">
+            <label>Judul Agenda (Title):</label>
+            <input type="text" id="aTitle" placeholder="Judul acara..." />
+          </div>
+          <div style="display: flex; gap: 10px">
+            <div class="form-group" style="flex: 1">
+              <label>Waktu Mulai:</label>
+              <input type="datetime-local" id="aStart" />
+            </div>
+            <div class="form-group" style="flex: 1">
+              <label>Waktu Selesai:</label>
+              <input type="datetime-local" id="aEnd" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Lokasi Acara:</label>
+            <input type="text" id="aLocation" placeholder="Lokasi..." />
+          </div>
+          <div class="form-group">
+            <label>Deskripsi Singkat:</label>
+            <textarea id="aDesc" placeholder="Deskripsi..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Upload Banner / Pamflet:</label>
+            <input type="file" id="aFileBanner" accept="image/*" />
+            <div class="file-info">
+              Biarkan kosong jika tidak ingin mengubah banner saat mengedit.
+            </div>
+            <input type="hidden" id="aExistingBanner" />
+          </div>
+          <div class="form-group">
+            <label>Link Dokumen / Google Drive:</label>
+            <input type="url" id="aDocLink" placeholder="https://..." />
+          </div>
+        </div>
+
+        <button type="submit" class="btn" id="submitBtn">
+          <i class="fa-solid fa-cloud-arrow-up"></i> Simpan Data ke GitHub
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          id="cancelEditBtn"
+          style="display: none"
+          onclick="resetForm()"
+        >
+          Batal Edit
+        </button>
+      </form>
+
+      <div id="statusMsg" class="status-msg"></div>
+
+      <!-- BAGIAN MANAJEMEN KONTEN -->
+      <div class="manage-section">
+        <h3 style="font-size: 1.1rem; margin-bottom: 10px">
+          <i class="fa-solid fa-list-check"></i> Daftar Konten di GitHub
+        </h3>
+        <button
+          type="button"
+          class="btn"
+          style="width: auto; padding: 8px 15px; font-size: 0.85rem"
+          onclick="loadContentList()"
+        >
+          <i class="fa-solid fa-rotate"></i> Muat / Refresh Daftar Konten
+        </button>
+        <div style="overflow-x: auto">
+          <table id="contentTable">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Judul / Nama</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="3" style="text-align: center; color: #64748b">
+                  Klik tombol "Muat Daftar Konten" di atas.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (localStorage.getItem("gh_token"))
+          document.getElementById("ghToken").value =
+            localStorage.getItem("gh_token");
+        if (localStorage.getItem("gh_owner"))
+          document.getElementById("ghOwner").value =
+            localStorage.getItem("gh_owner");
+        if (localStorage.getItem("gh_repo"))
+          document.getElementById("ghRepo").value =
+            localStorage.getItem("gh_repo");
+        loadContentList();
+      });
+
+      function saveConfig() {
+        localStorage.setItem(
+          "gh_token",
+          document.getElementById("ghToken").value.trim(),
+        );
+        localStorage.setItem(
+          "gh_owner",
+          document.getElementById("ghOwner").value.trim(),
+        );
+        localStorage.setItem(
+          "gh_repo",
+          document.getElementById("ghRepo").value.trim(),
+        );
+      }
+
+      function switchFormType() {
+        const type = document.getElementById("contentType").value;
+        if (type === "berita") {
+          document.getElementById("formBerita").classList.add("active");
+          document.getElementById("formAgenda").classList.remove("active");
+        } else {
+          document.getElementById("formAgenda").classList.add("active");
+          document.getElementById("formBerita").classList.remove("active");
+        }
+        resetForm();
+        loadContentList();
+      }
+
+      function resetForm() {
+        document.getElementById("adminForm").reset();
+        document.getElementById("editIndex").value = "-1";
+        document.getElementById("submitBtn").innerHTML =
+          '<i class="fa-solid fa-cloud-arrow-up"></i> Simpan Data ke GitHub';
+        document.getElementById("cancelEditBtn").style.display = "none";
+      }
+
+      // Fungsi otomatis ubah teks biasa berita: teks sebelum "-" jadi <strong>, enter 2x jadi <p>
+      function formatBeritaToHtml(rawText) {
+        if (!rawText) return "";
+        const paragraphs = rawText.split(/\n\s*\n/);
+        return paragraphs
+          .map((p) => {
+            let trimmed = p.trim();
+            if (!trimmed) return "";
+            if (trimmed.includes(" - ")) {
+              const parts = trimmed.split(" - ");
+              const boldPart = parts[0].trim();
+              const restPart = parts.slice(1).join(" - ").trim();
+              return `<p><strong>${boldPart}</strong> - ${restPart}</p>`;
+            } else {
+              return `<p>${trimmed}</p>`;
+            }
+          })
+          .join("");
+      }
+
+      // Konversi format datetime-local ke format web (YYYY-MM-DD HH:MM)
+      function formatDateTimeForWeb(val) {
+        if (!val) return "";
+        return val.replace("T", " ");
+      }
+
+      async function uploadFileToGitHub(file, token, owner, repo) {
+        const fileName = file.name;
+        const path = `images/${fileName}`;
+        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+        const base64Content = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result.split(",")[1]);
+          reader.onerror = (error) => reject(error);
+        });
+
+        let sha = null;
+        try {
+          const checkRes = await fetch(apiUrl, {
+            headers: { Authorization: `token ${token}` },
+          });
+          if (checkRes.ok) {
+            const existingFile = await checkRes.json();
+            sha = existingFile.sha;
+          }
+        } catch (e) {}
+
+        const uploadRes = await fetch(apiUrl, {
+          method: "PUT",
+          headers: {
+            Authorization: `token ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: `Admin: Upload image ${fileName}`,
+            content: base64Content,
+            ...(sha && { sha }),
+          }),
+        });
+
+        if (!uploadRes.ok) throw new Error(`Gagal meng-upload file gambar.`);
+        return path;
+      }
+
+      let cachedRawData = "";
+      let cachedFileSha = "";
+
+      async function fetchGitHubData() {
+        const token = document.getElementById("ghToken").value.trim();
+        const owner = document.getElementById("ghOwner").value.trim();
+        const repo = document.getElementById("ghRepo").value.trim();
+        const type = document.getElementById("contentType").value;
+        const fileName =
+          type === "berita" ? "berita-data.js" : "agenda-data.js";
+        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${fileName}`;
+
+        const res = await fetch(apiUrl, {
+          headers: { Authorization: `token ${token}` },
+        });
+        if (!res.ok) throw new Error("Gagal mengambil file dari GitHub.");
+        const fileData = await res.json();
+        cachedFileSha = fileData.sha;
+        cachedRawData = decodeURIComponent(escape(atob(fileData.content)));
+        return cachedRawData;
+      }
+
+      function parseDataArray(rawText) {
+        try {
+          const start = rawText.indexOf("[");
+          const end = rawText.lastIndexOf("]");
+          if (start === -1 || end === -1) return [];
+          const arrayString = rawText.substring(start, end + 1);
+          return Function(`return ${arrayString}`)();
+        } catch (e) {
+          console.error("Gagal parse data:", e);
+          return [];
+        }
+      }
+
+      async function loadContentList() {
+        const token = document.getElementById("ghToken").value.trim();
+        const owner = document.getElementById("ghOwner").value.trim();
+        const repo = document.getElementById("ghRepo").value.trim();
+        if (!token || !owner || !repo) return;
+
+        const tbody = document.querySelector("#contentTable tbody");
+        tbody.innerHTML = `<tr><td colspan="3" style="text-align: center;">Memuat data...</td></tr>`;
+
+        try {
+          const raw = await fetchGitHubData();
+          const items = parseDataArray(raw);
+
+          if (items.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="3" style="text-align: center; color: #64748b;">Belum ada data.</td></tr>`;
+            return;
+          }
+
+          tbody.innerHTML = "";
+          items.forEach((item, index) => {
+            const title = item.judul || item.title || `Item #${index}`;
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+            <td>${index + 1}</td>
+            <td><b>${title}</b></td>
+            <td>
+              <button type="button" class="btn btn-warning" onclick="prepareEdit(${index})"><i class="fa-solid fa-pen"></i> Edit</button>
+              <button type="button" class="btn btn-danger" onclick="deleteItem(${index})"><i class="fa-solid fa-trash"></i> Hapus</button>
+            </td>
+          `;
+            tbody.appendChild(tr);
+          });
+        } catch (err) {
+          tbody.innerHTML = `<tr><td colspan="3" style="text-align: center; color: red;">Error: ${err.message}</td></tr>`;
+        }
+      }
+
+      async function prepareEdit(index) {
+        try {
+          const raw = await fetchGitHubData();
+          const items = parseDataArray(raw);
+          const item = items[index];
+          const type = document.getElementById("contentType").value;
+
+          document.getElementById("editIndex").value = index;
+          document.getElementById("submitBtn").innerHTML =
+            '<i class="fa-solid fa-floppy-disk"></i> Update Perubahan ke GitHub';
+          document.getElementById("cancelEditBtn").style.display = "block";
+
+          if (type === "berita") {
+            document.getElementById("bId").value = item.id || "";
+            document.getElementById("bJudul").value = item.judul || "";
+            document.getElementById("bKategori").value = item.kategori || "";
+            document.getElementById("bWaktuKejadian").value =
+              item.waktuKejadian || "";
+            document.getElementById("bTanggalRilis").value =
+              item.tanggalRilis || "";
+            document.getElementById("bExistingGambar").value =
+              item.gambar || "";
+            document.getElementById("bRingkasan").value = item.ringkasan || "";
+            document.getElementById("bKronologi").value = item.kronologi || "";
+          } else {
+            document.getElementById("aId").value = item.id || "";
+            document.getElementById("aTitle").value = item.title || "";
+            document.getElementById("aStart").value = item.start
+              ? item.start.replace(" ", "T")
+              : "";
+            document.getElementById("aEnd").value = item.end
+              ? item.end.replace(" ", "T")
+              : "";
+            document.getElementById("aLocation").value = item.location || "";
+            document.getElementById("aDesc").value = item.desc || "";
+            document.getElementById("aExistingBanner").value =
+              item.banner || "";
+            document.getElementById("aDocLink").value = item.docLink || "";
+          }
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } catch (err) {
+          alert("Gagal memuat data untuk diedit: " + err.message);
+        }
+      }
+
+      async function deleteItem(index) {
+        if (!confirm("Yakin ingin menghapus item ini dari GitHub?")) return;
+
+        const token = document.getElementById("ghToken").value.trim();
+        const owner = document.getElementById("ghOwner").value.trim();
+        const repo = document.getElementById("ghRepo").value.trim();
+        const type = document.getElementById("contentType").value;
+        const fileName =
+          type === "berita" ? "berita-data.js" : "agenda-data.js";
+        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${fileName}`;
+
+        try {
+          const raw = await fetchGitHubData();
+          let items = parseDataArray(raw);
+          const deletedTitle = items[index].judul || items[index].title;
+
+          items.splice(index, 1);
+
+          const newFileContent = rebuildJsFileContent(type, items);
+          const encodedContent = btoa(
+            unescape(encodeURIComponent(newFileContent)),
+          );
+
+          const updateRes = await fetch(apiUrl, {
+            method: "PUT",
+            headers: {
+              Authorization: `token ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              message: `Admin: Hapus ${type} (${deletedTitle})`,
+              content: encodedContent,
+              sha: cachedFileSha,
+            }),
+          });
+
+          if (!updateRes.ok) throw new Error("Gagal menyimpan perubahan hapus.");
+
+          showStatus("Berhasil menghapus item!", "success");
+          loadContentList();
+        } catch (err) {
+          showStatus(err.message, "error");
+        }
+      }
+
+      function rebuildJsFileContent(type, items) {
+        const varName =
+          type === "berita"
+            ? "const DATABASE_BERITA = [\n"
+            : "const DATABASE_AGENDA = [\n";
+        let body = "";
+
+        items.forEach((item) => {
+          if (type === "berita") {
+            body += `  {\n    id: ${item.id},\n    judul: "${item.judul}",\n    kategori: "${item.kategori}",\n    waktuKejadian: "${item.waktuKejadian}",\n    tanggalRilis: "${item.tanggalRilis}",\n    gambar: "${item.gambar}",\n    ringkasan: "${item.ringkasan}",\n    kronologi: \`${item.kronologi}\`,\n  },\n`;
+          } else {
+            body += `  {\n    id: "${item.id}",\n    title: "${item.title}",\n    start: "${item.start}",\n    end: "${item.end}",\n    location: "${item.location}",\n    desc: "${item.desc}",\n    banner: "${item.banner}",\n    docLink: "${item.docLink}",\n  },\n`;
+          }
+        });
+
+        return `${varName}${body}];\n`;
+      }
+
+      document
+        .getElementById("adminForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const token = document.getElementById("ghToken").value.trim();
+          const owner = document.getElementById("ghOwner").value.trim();
+          const repo = document.getElementById("ghRepo").value.trim();
+          const type = document.getElementById("contentType").value;
+          const editIndex = parseInt(
+            document.getElementById("editIndex").value,
+          );
+
+          if (!token || !owner || !repo) {
+            showStatus("Mohon lengkapi konfigurasi GitHub di atas!", "error");
+            return;
+          }
+
+          const submitBtn = document.getElementById("submitBtn");
+          submitBtn.disabled = true;
+
+          try {
+            let imagePath = "";
+
+            if (type === "berita") {
+              const fileInput = document.getElementById("bFileGambar");
+              if (fileInput.files.length > 0) {
+                submitBtn.innerHTML =
+                  '<i class="fa-solid fa-spinner fa-spin"></i> Upload gambar...';
+                imagePath = await uploadFileToGitHub(
+                  fileInput.files[0],
+                  token,
+                  owner,
+                  repo,
+                );
+              } else {
+                imagePath = document.getElementById("bExistingGambar").value;
+              }
+            } else {
+              const fileInput = document.getElementById("aFileBanner");
+              if (fileInput.files.length > 0) {
+                submitBtn.innerHTML =
+                  '<i class="fa-solid fa-spinner fa-spin"></i> Upload banner...';
+                imagePath = await uploadFileToGitHub(
+                  fileInput.files[0],
+                  token,
+                  owner,
+                  repo,
+                );
+              } else {
+                imagePath = document.getElementById("aExistingBanner").value;
+              }
+            }
+
+            submitBtn.innerHTML =
+              '<i class="fa-solid fa-spinner fa-spin"></i> Menyimpan ke GitHub...';
+            const fileName =
+              type === "berita" ? "berita-data.js" : "agenda-data.js";
+            const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${fileName}`;
+
+            const raw = await fetchGitHubData();
+            let items = parseDataArray(raw);
+
+            let newItem = {};
+            if (type === "berita") {
+              const rawKronologiInput =
+                document.getElementById("bKronologi").value;
+              newItem = {
+                id: Number(document.getElementById("bId").value),
+                judul: document.getElementById("bJudul").value,
+                kategori: document.getElementById("bKategori").value,
+                waktuKejadian: document.getElementById("bWaktuKejadian").value,
+                tanggalRilis: document.getElementById("bTanggalRilis").value,
+                gambar: imagePath,
+                ringkasan: document.getElementById("bRingkasan").value,
+                kronologi: formatBeritaToHtml(rawKronologiInput),
+              };
+            } else {
+              newItem = {
+                id: document.getElementById("aId").value,
+                title: document.getElementById("aTitle").value,
+                start: formatDateTimeForWeb(
+                  document.getElementById("aStart").value,
+                ),
+                end: formatDateTimeForWeb(
+                  document.getElementById("aEnd").value,
+                ),
+                location: document.getElementById("aLocation").value,
+                desc: document.getElementById("aDesc").value,
+                banner: imagePath,
+                docLink: document.getElementById("aDocLink").value,
+              };
+            }
+
+            let commitMsg = "";
+            if (editIndex === -1) {
+              items.unshift(newItem);
+              commitMsg = `Admin: Tambah ${type} baru`;
+            } else {
+              items[editIndex] = newItem;
+              commitMsg = `Admin: Update ${type} indeks ${editIndex}`;
+            }
+
+            const newFileContent = rebuildJsFileContent(type, items);
+            const encodedContent = btoa(
+              unescape(encodeURIComponent(newFileContent)),
+            );
+
+            const updateRes = await fetch(apiUrl, {
+              method: "PUT",
+              headers: {
+                Authorization: `token ${token}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                message: commitMsg,
+                content: encodedContent,
+                sha: cachedFileSha,
+              }),
+            });
+
+            if (!updateRes.ok) throw new Error("Gagal menyimpan ke GitHub.");
+
+            showStatus(
+              "Berhasil! Data telah diperbarui dan dipublikasikan ke GitHub.",
+              "success",
+            );
+            resetForm();
+            loadContentList();
+          } catch (err) {
+            showStatus(err.message, "error");
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML =
+              '<i class="fa-solid fa-cloud-arrow-up"></i> Simpan Data ke GitHub';
+          }
+        });
+
+      function showStatus(text, type) {
+        const msg = document.getElementById("statusMsg");
+        msg.style.display = "block";
+        msg.className = `status-msg ${type}`;
+        msg.innerText = text;
+      }
+    </script>
+  </body>
+</html>
