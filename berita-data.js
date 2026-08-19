@@ -1,15 +1,6 @@
 // DATABASE BERITA SATU PINTU - KRS.INFO
 const DATABASE_BERITA = [
-  {
-    id: 8,
-    judul: "TEs",
-    kategori: "tes",
-    waktuKejadian: "tes",
-    tanggalRilis: "2026-08-19",
-    gambar: "images/BLINGKER.png",
-    ringkasan: "tessss",
-    kronologi: `tessssss`,
-  },
+ 
   {
     id: 1,
     judul: "PENYERAHAN SK DESA WISATA KARANGSARI",
