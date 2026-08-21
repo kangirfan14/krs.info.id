@@ -1,0 +1,228 @@
+<footer class="site-footer">
+    <!-- Gelombang Merah dengan Bagian Tumpul di Atas -->
+    <div class="footer-wave">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,40 C320,90 1120,90 1440,40 L1440,80 L0,80 Z" fill="#991b1b"></path>
+        </svg>
+    </div>
+
+    <div class="footer-container">
+        <!-- Kolom 1: Logo, Hashtag & Deskripsi (Rata Kiri Sempurna) -->
+        <div class="footer-col footer-brand">
+            <div class="footer-logo-area">
+                <img src="logoatas.png" alt="Logo krs.info" class="footer-logo-img">
+            </div>
+            <div class="footer-hashtag">#karangsarineweru</div>
+            <p class="footer-desc">Terintegrasi dengan @karangsari culture.</p>
+        </div>
+
+        <!-- Kolom 2: Tentang krs.info -->
+        <div class="footer-col">
+            <h3>TENTANG</h3>
+            <ul>
+                <li><a href="kenalan.html">Tentang krs.info</a></li>
+            </ul>
+        </div>
+
+        <!-- Kolom 3: Profil Desa -->
+        <div class="footer-col">
+            <h3>DESA</h3>
+            <ul>
+                <li><a href="#home">Profil Desa</a></li>
+            </ul>
+        </div>
+
+        <!-- Kolom 4: Berita & Acara -->
+        <div class="footer-col">
+            <h3>INFORMASI</h3>
+            <ul>
+                <li><a href="#Berita">Berita</a></li>
+                <li><a href="#agenda">Acara</a></li>
+            </ul>
+        </div>
+
+        <!-- Kolom 5: Maps Interaktif Karangsari - Weru -->
+        <div class="footer-col footer-map-col">
+            <h3>LOKASI</h3>
+            <div class="footer-map-wrap">
+                <iframe 
+                    src="https://maps.google.com/maps?q=-6.7263667,108.484301&z=15&output=embed" 
+                    width="100%" 
+                    height="140" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Peta Karangsari Weru">
+                </iframe>
+            </div>
+            <span class="map-caption">Karangsari, Weru, Cirebon</span>
+        </div>
+    </div>
+
+    <!-- Copyright Bawah -->
+    <div class="footer-bottom">
+        <p>&copy; 2026 krs.info &bull; #karangsarineweru. All rights reserved.</p>
+    </div>
+</footer>
+
+<style>
+    /* --- STYLE FOOTER UTAMA --- */
+    .site-footer {
+        position: relative;
+        background-color: #991b1b;
+        color: #fca5a5;
+        font-family: inherit;
+        padding-top: 40px;
+        padding-bottom: 25px;
+        margin-top: 50px;
+    }
+
+    .footer-wave {
+        position: absolute;
+        top: -45px;
+        left: 0;
+        width: 100%;
+        height: 45px;
+        overflow: hidden;
+        line-height: 0;
+    }
+
+    .footer-wave svg {
+        width: 100%;
+        height: 45px;
+    }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: 1.6fr 1fr 1fr 1fr 1.6fr;
+        gap: 25px;
+        align-items: start;
+    }
+
+    /* --- PERBAIKAN KOLOM BRAND (Rata Kiri & Sejajar) --- */
+    .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Memastikan semua elemen anak di dalam kolom ini rata kiri */
+        text-align: left;
+    }
+
+    .footer-col h3 {
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 5px;
+        display: inline-block;
+    }
+
+    .footer-col ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-col ul li {
+        margin-bottom: 8px;
+    }
+
+    .footer-col ul li a {
+        color: #fee2e2;
+        text-decoration: none;
+        font-size: 13px;
+        transition: all 0.2s ease;
+    }
+
+    .footer-col ul li a:hover {
+        color: #ffffff;
+        padding-left: 3px;
+        text-decoration: underline;
+    }
+
+    .footer-logo-area {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .footer-logo-img {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+    }
+
+    .footer-hashtag {
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 700;
+        background: rgba(0, 0, 0, 0.25);
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+    }
+
+    .footer-desc {
+        font-size: 12px;
+        color: #fecaca;
+        line-height: 1.4;
+        margin: 0;
+    }
+
+    /* Maps Widget */
+    .footer-map-wrap {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        border: 2px solid rgba(255,255,255,0.25);
+        background: #fff;
+    }
+
+    .map-caption {
+        display: block;
+        font-size: 11px;
+        color: #fee2e2;
+        margin-top: 5px;
+        font-style: italic;
+    }
+
+    /* Copyright */
+    .footer-bottom {
+        max-width: 1200px;
+        margin: 30px auto 0 auto;
+        padding: 15px 20px 0 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        text-align: center;
+        font-size: 12px;
+        color: #fecaca;
+    }
+
+    /* Responsif HP & Tablet */
+    @media (max-width: 900px) {
+        .footer-container {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .footer-brand, .footer-map-col {
+            grid-column: span 2;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .footer-container {
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+        .footer-brand, .footer-map-col {
+            grid-column: span 1;
+        }
+    }
+</style>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="krsduwur.png" />
+  <title>KRS.info | #karangsarineweru</title>
+  <!-- FontAwesome untuk Ikon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Panggil file persetujuan.js -->
+  <script src="persetujuan.js" defer></script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #f8fafc; color: #0b192c; line-height: 1.7; padding-top: 130px; }
+
+    /* ==================== NAVBAR ==================== */
+    .navbar {
+      position: fixed;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      background: #ffffff;
+      border: 2px solid #800000;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      z-index: 1000;
+      padding: 10px 25px;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      position: relative;
+    }
+
+    .nav-logo img {
+      height: 35px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #0b192c;
+      font-weight: 600;
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #800000;
+    }
+
+    /* Tombol Kirim Berita */
+    .btn-kirim {
+      background: linear-gradient(135deg, #800000 0%, #000000 100%);
+      color: #ffffff !important;
+      padding: 10px 20px;
+      border-radius: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 10px rgba(128, 0, 0, 0.3);
+      transition: transform 0.2s, opacity 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-kirim:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+
+    /* Tombol Hamburger Berwarna Merah Marun */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      color: #800000 !important;
+      z-index: 1001;
+    }
+
+    /* ==================== KONTEN UTAMA ==================== */
+    .profile-container {
+      max-width: 900px;
+      margin: 20px auto 40px auto;
+      padding: 0 20px;
+    }
+
+    .back-bar {
+      max-width: 900px;
+      margin: 0 auto 20px auto;
+      padding: 0 20px;
+    }
+
+    .btn-kembali {
+      text-decoration: none;
+      color: #800000;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      background: rgba(128, 0, 0, 0.05);
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(128, 0, 0, 0.15);
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-kembali:hover {
+      background: rgba(128, 0, 0, 0.1);
+      transform: translateX(-3px);
+    }
+
+    /* Slider Media */
+    .media-slider-wrapper {
+      position: relative;
+      background: #000;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      margin-bottom: 15px;
+      aspect-ratio: 16 / 9;
+    }
+
+    .slide-item {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide-item.active {
+      opacity: 1;
+      z-index: 2;
+    }
+    .slide-item img, .slide-item iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: none;
+    }
+
+    .video-hint-gesture {
+      text-align: center;
+      padding: 12px 20px;
+      background: rgba(128, 0, 0, 0.05);
+      border: 1px dashed #800000;
+      border-radius: 12px;
+      color: #800000;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 40px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .video-hint-gesture:hover {
+      background: rgba(128, 0, 0, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .profile-body h3 {
+      font-size: 22px;
+      color: #0b192c;
+      margin-top: 30px;
+      margin-bottom: 12px;
+    }
+    .profile-body p {
+      font-size: 16px;
+      color: #334155;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+    .potensi-list {
+      list-style: none;
+      margin-top: 15px;
+    }
+    .potensi-list li {
+      padding: 10px 15px;
+      background: #ffffff;
+      border-left: 4px solid #800000;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+      font-weight: 600;
+    }
+
+    /* ==================== RESPONSIF MOBILE ==================== */
+    @media screen and (max-width: 768px) {
+      .navbar {
+        width: 92%;
+        border-radius: 25px;
+        padding: 10px 20px;
+      }
+      .hamburger {
+        display: block;
+      }
+
+      /* Desain Menu Dropdown Mobile di Sebelah Kanan */
+      .nav-links {
+        position: fixed;
+        top: 80px;
+        right: 4%;
+        left: auto;
+        transform: none;
+        width: 240px;
+        background: #ffffff;
+        border: 2px solid #800000;
+        border-radius: 20px;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        z-index: 999;
+        gap: 10px;
+        
+        /* Animasi Transisi Muncul */
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .nav-links.active {
+        opacity: 1;
+        visibility: visible;
+        top: 90px;
+      }
+
+      .nav-links li {
+        width: 100%;
+      }
+
+      .nav-links li a {
+        display: block;
+        width: 100%;
+        padding: 10px 15px;
+        border-radius: 10px;
+        transition: background 0.2s, color 0.2s;
+      }
+
+      .nav-links li a:hover {
+        background: rgba(128, 0, 0, 0.05);
+        color: #800000;
+      }
+
+      .btn-kirim {
+        width: 100%;
+        justify-content: center;
+        margin-top: 5px;
+      }
+
+      /* Perbaikan Kotak Pop-up Persetujuan.js di HP */
+      div[class*="modal"] > div, div[id*="modal"] > div, .modal-content, .modal-box {
+        width: 92% !important;
+        max-width: 100% !important;
+        margin: 15px !important;
+        max-height: 85vh !important;
+        overflow-y: auto !important;
+      }
+    }
+
+    /* ==================== EFEK BLUR & POSISI TENGAH POP-UP PERSETUJUAN.JS ==================== */
+    div[class*="modal"], div[id*="modal"] {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background: rgba(11, 25, 44, 0.45) !important;
+      backdrop-filter: blur(6px) !important;
+      -webkit-backdrop-filter: blur(6px) !important;
+      z-index: 999999 !important;
+      padding: 15px !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Penampung Navbar Otomatis -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- Skrip Pengambil Navbar & Inisialisasi Hamburger -->
+  <script>
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        
+        // Inisialisasi ulang event listener untuk hamburger SETELAH navbar masuk ke DOM
+        const hamburgerBtn = document.getElementById('hamburger');
+        const navMenu = document.getElementById('menu');
+
+        if (hamburgerBtn && navMenu) {
+          hamburgerBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+          });
+        }
+      })
+      .catch(error => console.error('Gagal memuat navbar:', error));
+
+    // Tutup menu jika klik di luar
+    document.addEventListener("click", function(event) {
+      const menu = document.getElementById("menu");
+      const hamburger = document.getElementById("hamburger");
+
+      if (menu && hamburger) {
+        if (menu.classList.contains("active") && !menu.contains(event.target) && !hamburger.contains(event.target)) {
+          menu.classList.remove("active");
+        }
+      }
+    });
+  </script>
+  <!-- Tombol Kembali ke Beranda -->
+  <div class="back-bar">
+    <a href="index.html" class="btn-kembali"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a>
+  </div>
+
+  <!-- Konten Utama -->
+  <div class="profile-container">
+    <div class="media-slider-wrapper" id="mediaSlider">
+      <div class="slide-item active"><img src="images/foto1.jpg" alt="Potensi Desa 1"></div>
+      <div class="slide-item"><img src="images/foto2.jpg" alt="Kerajinan Lokal"></div>
+      <div class="slide-item"><img src="images/foto3.jpg" alt="Panorama Alam"></div>
+      <div class="slide-item">
+        <iframe id="youtubeVideo" src="https://www.youtube.com/embed/UOyG1afD61Y?enablejsapi=1" title="Video Profil Desa Karangsari" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="video-hint-gesture" onclick="jumpToVideo()">
+      Geser untuk lihat video profil <i class="fa-solid fa-arrow-right"></i>
+    </div>
+
+    <div class="profile-body">
+      <h3>Sejarah Singkat Karangsari</h3>
+      <p>segera hadir...</p>
+
+      <h3>Potensi Utama Desa</h3>
+      <ul class="potensi-list">
+        <li> </li>
+        <li> </li>
+        <li> </li>
+        <li> </li>
+      </ul>
+
+      <h3>Visi & Misi Pembangunan</h3>
+      <p> .</p>
+    </div>
+  </div>
+
+  <!-- Skrip Pendukung Halaman & Hamburger Interaktif -->
+  <script>
+    // Fungsi Buka/Tutup Menu Hamburger (Dibuat Global agar terpanggil secara dinamis)
+    window.toggleMenu = function(event) {
+      if (event) event.stopPropagation();
+      const menu = document.getElementById("menu");
+      if (menu) {
+        menu.classList.toggle("active");
+      }
+    };
+
+    // Fungsi khusus tutup menu mobile
+    window.tutupMenuMobile = function() {
+      const menu = document.getElementById("menu");
+      if (menu) {
+        menu.classList.remove("active");
+      }
+    };
+
+    // Fungsi Gabungan: Tutup menu mobile lalu jalankan fungsi persetujuan.js
+    window.handleKirimBerita = function(url) {
+      tutupMenuMobile();
+      if (typeof bukaModalProtokol === "function") {
+        bukaModalProtokol(url);
+      } else {
+        window.open(url, '_blank');
+      }
+    };
+
+    // Tutup menu hamburger jika klik di luar area menu
+    document.addEventListener("click", function(event) {
+      const menu = document.getElementById("menu");
+      const hamburger = document.getElementById("hamburger");
+
+      if (menu && hamburger) {
+        if (menu.classList.contains("active") && !menu.contains(event.target) && !hamburger.contains(event.target)) {
+          menu.classList.remove("active");
+        }
+      }
+    });
+
+    // Logika Slider & YouTube
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".slide-item");
+    let isVideoPlaying = false;
+    let slideTimer;
+
+    let tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    let firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    let player;
+    window.onYouTubeIframeAPIReady = function() {
+      player = new YT.Player('youtubeVideo', {
+        events: { 'onStateChange': onPlayerStateChange }
+      });
+    };
+
+    function onPlayerStateChange(event) {
+      if (event.data == YT.PlayerState.PLAYING) {
+        isVideoPlaying = true; 
+      } else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+        isVideoPlaying = false; 
+      }
+    }
+
+    function startSlideTimer() {
+      clearInterval(slideTimer);
+      let delay = (currentSlide === 3) ? 15000 : 5000;
+
+      slideTimer = setInterval(() => {
+        if (currentSlide === 3 && isVideoPlaying) return; 
+
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add("active");
+
+        startSlideTimer();
+      }, delay);
+    }
+
+    startSlideTimer();
+
+    window.jumpToVideo = function() {
+      slides[currentSlide].classList.remove("active");
+      currentSlide = 3; 
+      slides[currentSlide].classList.add("active");
+      startSlideTimer();
+
+      const slider = document.getElementById("mediaSlider");
+      const targetPosition = slider.getBoundingClientRect().top + window.pageYOffset - 90;
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+    };
+  </script>
+
+  <!-- Penampung Footer Otomatis -->
+  <div id="footer-placeholder"></div>
+  <script>
+      fetch('footer.html')
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById('footer-placeholder').innerHTML = data;
+          });
+  </script>
+</body>
+</html>

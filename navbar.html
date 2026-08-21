@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar KRS.info</title>
+    <!-- FontAwesome untuk ikon hamburger dan pesawat -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Navbar Utama (Fixed dan Terkunci Mati di Atas) */
+        .navbar {
+            position: fixed !important;
+            top: 15px !important;
+            left: 50% !important;
+            transform: translateX(-50%) translateZ(0) !important;
+            -webkit-transform: translateX(-50%) translateZ(0) !important;
+            z-index: 99999 !important;
+            background-color: #ffffff !important;
+            width: 95% !important;
+            max-width: 1200px !important;
+            border: 2px solid #800000 !important;
+            border-radius: 50px !important;
+            padding: 10px 24px !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05) !important;
+        }
+
+        .nav-container {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            position: relative !important;
+            width: 100% !important;
+        }
+
+        /* Logo Gambar dengan Efek Kilau (Shimmer) */
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-shine-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            border-radius: 6px;
+        }
+
+        .logo-shine-wrapper img {
+            height: 35px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .logo-shine-wrapper::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -150%;
+            width: 50%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.6) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            animation: logoShimmer 3s infinite ease-in-out;
+        }
+
+        @keyframes logoShimmer {
+            0% { left: -150%; }
+            20% { left: 150%; }
+            100% { left: 150%; }
+        }
+
+        /* Tampilan Menu (Default Desktop) */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .nav-links li a:not(.btn-kirim) {
+            text-decoration: none;
+            color: #0b192c;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 18px;
+            border-radius: 50px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease-in-out;
+            display: inline-block;
+        }
+
+        .nav-links li a.active:not(.btn-kirim) {
+            border-color: #800000 !important;
+            color: #800000 !important;
+        }
+
+        .btn-kirim {
+            background: linear-gradient(135deg, #800000, #1a0000) !important;
+            color: #ffffff !important;
+            padding: 8px 20px !important;
+            border-radius: 50px !important;
+            text-decoration: none !important;
+            font-weight: 600 !important;
+            font-size: 14px !important;
+            box-shadow: 0 4px 10px rgba(128, 0, 0, 0.2) !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+        }
+
+        /* Tombol Hamburger Default Disembunyikan di Desktop */
+        .hamburger {
+            display: none !important;
+            background: none;
+            border: none;
+            color: #800000;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* Styling Modal Protokol */
+        .modal-17an-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999999;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .protocol-box {
+            background: #ffffff; border-radius: 16px;
+            max-width: 550px; width: 100%; max-height: 90vh;
+            display: flex; flex-direction: column; overflow: hidden; position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            animation: popInLegal 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .protocol-header {
+            background: #1e293b; color: #ffffff; padding: 16px 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 3px solid #d32f2f;
+        }
+        .protocol-header h4 { margin: 0; font-size: 1.05rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        
+        .protocol-body {
+            padding: 20px; overflow-y: auto; flex: 1; text-align: left;
+            font-size: 0.85rem; color: #334155; line-height: 1.6;
+        }
+        
+        .protocol-content-text {
+            background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px;
+            padding: 16px; max-height: 260px; overflow-y: auto;
+        }
+
+        .protocol-footer {
+            padding: 16px 20px; background: #ffffff; border-top: 1px solid #e2e8f0;
+            display: flex; gap: 10px; justify-content: flex-end;
+        }
+        .btn-cancel-proto {
+            background: #e2e8f0; color: #475569; border: none; padding: 10px 18px;
+            border-radius: 10px; font-weight: 600; font-size: 0.85rem; cursor: pointer;
+        }
+        .btn-proceed-proto {
+            background: linear-gradient(135deg, #d32f2f 0%, #9a0007 100%);
+            color: #ffffff; border: none; padding: 10px 20px; border-radius: 10px;
+            font-weight: 700; font-size: 0.85rem; cursor: pointer; display: flex;
+            align-items: center; gap: 8px; text-decoration: none;
+        }
+        @keyframes popInLegal { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+        /* ==================== RESPONSIF / MOBILE VIEW (< 768px) ==================== */
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: block !important;
+                position: relative !important;
+                z-index: 100000 !important;
+            }
+
+            .nav-links {
+                position: absolute !important;
+                top: 55px !important;
+                right: 0 !important;
+                width: 260px !important;
+                background-color: #ffffff !important;
+                flex-direction: column !important;
+                align-items: stretch !important;
+                padding: 20px 16px !important;
+                border: 2px solid #800000 !important;
+                border-radius: 20px !important;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                gap: 12px !important;
+            }
+
+            .nav-links.active {
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: translateY(0) !important;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: left;
+                margin: 0;
+            }
+
+            .nav-links li a:not(.btn-kirim) {
+                width: 100%;
+                display: block;
+                padding: 10px 14px;
+                font-size: 14px !important;
+                color: #0b192c;
+                border-radius: 10px;
+            }
+
+            .btn-kirim {
+                width: 100% !important;
+                justify-content: center !important;
+                margin-top: 4px !important;
+                padding: 10px 20px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" id="mainNav">
+        <div class="nav-container">
+            <!-- Logo dengan Efek Kilau (Shimmer) -->
+            <a href="index.html" class="nav-logo">
+                <div class="logo-shine-wrapper">
+                    <img src="krs.png" alt="Logo KRS.info" />
+                </div>
+            </a>
+
+            <ul class="nav-links" id="menu">
+                <li><a href="index.html#home">Beranda</a></li>
+                <li><a href="index.html#Berita">Berita</a></li>
+                <li><a href="index.html#agenda">Agenda</a></li>
+                <li><a href="index.html#kontak">Kontak</a></li>
+                <li>
+                    <a href="javascript:void(0);" onclick="handleKirimBerita('https://forms.gle/dTcjsJgK8dRCVYjZA')" class="btn-kirim">
+                        <i class="fa-solid fa-paper-plane"></i> Kirim Berita
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Tombol Hamburger -->
+            <button class="hamburger" id="hamburger" aria-label="Toggle Menu" type="button">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const menu = document.getElementById('menu');
+
+            if (hamburger && menu) {
+                hamburger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    menu.classList.toggle('active');
+                });
+            }
+
+            document.addEventListener('click', function(event) {
+                const navbar = document.getElementById('mainNav');
+                if (navbar && menu && !navbar.contains(event.target)) {
+                    menu.classList.remove('active');
+                }
+            });
+        });
+
+        function handleKirimBerita(targetUrl) {
+            const menu = document.getElementById('menu');
+            if (menu) {
+                menu.classList.remove('active');
+            }
+            bukaModalProtokol(targetUrl);
+        }
+
+        function bukaModalProtokol(url) {
+            const existingModal = document.getElementById('protocolModal');
+            if (existingModal) existingModal.remove();
+
+            const modalOverlay = document.createElement('div');
+            modalOverlay.id = 'protocolModal';
+            modalOverlay.className = 'modal-17an-overlay';
+
+            modalOverlay.innerHTML = `
+                <div class="protocol-box">
+                    <div class="protocol-header">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Protokol Pengiriman Berita</h4>
+                    </div>
+                    <div class="protocol-body">
+                        <div class="protocol-content-text">
+                            <h5>Ketentuan Layanan & Publikasi</h5>
+                            <p>Dengan melanjutkan ke lembar formulir pengiriman berita KRS.info, Anda menyetujui seluruh ketentuan dan kode etik jurnalistik warga yang berlaku di wilayah Karangsari.</p>
+                            <h5>Kebijakan Data</h5>
+                            <p>Pastikan informasi, foto, atau video yang dikirimkan dapat dipertanggungjawabkan kebenarannya dan tidak mengandung unsur SARA.</p>
+                        </div>
+                    </div>
+                    <div class="protocol-footer">
+                        <button type="button" class="btn-cancel-proto" onclick="document.getElementById('protocolModal').remove()">Batal</button>
+                        <a href="${url}" target="_blank" class="btn-proceed-proto" onclick="document.getElementById('protocolModal').remove()">
+                            Setuju & Lanjutkan <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modalOverlay);
+        }
+    </script>
+</body>
+</html>

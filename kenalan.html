@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="krsduwur.png" />
+    <title>Kenalan Dulu | #karangsarineweru</title>
+    <!-- Google Font Fredoka & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+        }
+
+        /* --- SCREEN LOADING OVERLAY: PUTIH BERSIH --- */
+        #introOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #ffffff;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        #introOverlay.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .seq-stage {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease-in-out, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: scale(0.8);
+        }
+
+        .seq-stage.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        /* --- TAHAP 1: BUKU BOUNCE & BUKA PERLEMBAR + SAPAAN --- */
+        .stage-1-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            animation: bounceInContainer 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes bounceInContainer {
+            0% { transform: scale(0.3); opacity: 0; }
+            60% { transform: scale(1.08); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .book-loader {
+            position: relative;
+            width: 80px;
+            height: 55px;
+            perspective: 600px;
+        }
+
+        .book-page {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 40px;
+            height: 55px;
+            background: #8b0000;
+            border-radius: 4px;
+            transform-origin: left center;
+            animation: pageFlipBounce 1.2s ease-in-out infinite;
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+        }
+
+        .book-page:nth-child(2) { animation-delay: 0.2s; background: #a30000; }
+        .book-page:nth-child(3) { animation-delay: 0.4s; background: #bd0000; }
+
+        @keyframes pageFlipBounce {
+            0% { transform: rotateY(0deg) scale(1); }
+            50% { transform: rotateY(-180deg) scale(1.1); }
+            100% { transform: rotateY(-180deg) scale(1); }
+        }
+
+        .greeting-text {
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #111;
+            text-align: center;
+            max-width: 600px;
+            padding: 0 20px;
+            line-height: 1.3;
+            animation: bounceText 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s both;
+        }
+
+        @keyframes bounceText {
+            0% { transform: translateY(30px); opacity: 0; }
+            60% { transform: translateY(-8px); opacity: 1; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .greeting-text span {
+            color: #8b0000;
+        }
+
+        /* --- TAHAP 2: PASIR WAKTU BOUNCE --- */
+        .stage-2-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            animation: bounceInContainer 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .hourglass {
+            width: 60px;
+            height: 85px;
+            border: 3px solid #8b0000;
+            border-radius: 12px;
+            position: relative;
+            animation: hourglassPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes hourglassPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        .hourglass::before {
+            content: '';
+            position: absolute;
+            left: 5px; right: 5px; top: 5px;
+            height: 70%;
+            background: linear-gradient(135deg, #8b0000, #ff4d4d);
+            border-radius: 0 0 16px 16px;
+            animation: sandFlow 2s ease-in-out infinite;
+        }
+
+        @keyframes sandFlow {
+            0% { height: 10%; }
+            50% { height: 85%; }
+            100% { height: 10%; }
+        }
+
+        .loading-label {
+            font-family: 'Fredoka', cursive, sans-serif;
+            color: #555;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* --- TAHAP 3: DUAL GLASS ORB & MERGE --- */
+        .stage-3-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: bounceInContainer 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .orb-stage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            transition: gap 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .glass-orb {
+            width: 105px;
+            height: 105px;
+            border-radius: 50%;
+            background: rgba(139, 0, 0, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(139, 0, 0, 0.15);
+            box-shadow: 0 20px 40px rgba(139, 0, 0, 0.12), inset 0 0 15px rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.5s ease;
+        }
+
+        .glass-orb img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+        }
+
+        .orb-stage.merging .orb-left {
+            transform: translateX(72px) scale(1.15);
+        }
+        .orb-stage.merging .orb-right {
+            transform: translateX(-72px) scale(1.15);
+            opacity: 0.9;
+        }
+
+        /* --- FLASH TRANSISI PUTIH AKHIR --- */
+        #whiteFlash {
+            position: fixed;
+            inset: 0;
+            background: #ffffff;
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        #whiteFlash.active {
+            opacity: 1;
+        }
+
+
+        /* ======================================================== */
+        /* --- LAMAN UTAMA (LAYOUT: KOLASE FOTO KIRI, TEKS KANAN) -- */
+        /* ======================================================== */
+        .main-container {
+            width: 100%;
+            min-height: 100vh;
+            background: #ffffff;
+            color: #1a1a1a;
+            padding: 40px 40px 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
+        }
+
+        /* TOMBOL KEMBALI / LANJUT MENJELAJAH */
+        .back-nav-wrapper {
+            max-width: 1350px;
+            margin: 0 auto 30px auto;
+            width: 100%;
+        }
+
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #f8f9fa;
+            border: 1px solid #e5e7eb;
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.92rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .back-home-btn:hover {
+            background: #8b0000;
+            border-color: #8b0000;
+            color: #fff;
+            transform: translateX(-4px);
+            box-shadow: 0 6px 16px rgba(139, 0, 0, 0.2);
+        }
+
+        .back-home-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1350px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* KIRI: KOLASE FOTO PERSIS SEPERTI GAMBAR REFERENSI */
+        .gallery-collage-ref {
+            display: grid;
+            grid-template-columns: 1.4fr 1.1fr 1.3fr;
+            grid-template-rows: repeat(3, auto);
+            gap: 16px;
+            position: relative;
+            align-items: center;
+        }
+
+        .ref-card {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 14px 35px rgba(0,0,0,0.12);
+            background: #eaeaea;
+            transition: transform 0.4s ease;
+        }
+
+        .ref-card:hover {
+            transform: scale(1.02);
+        }
+
+        .ref-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Posisi dan ukuran persis sesuai referensi visual */
+        .card-main-big {
+            grid-column: 1;
+            grid-row: 1 / span 3;
+            height: 380px;
+        }
+
+        .card-top-mid {
+            grid-column: 2;
+            grid-row: 1;
+            height: 155px;
+        }
+
+        .card-bot-mid {
+            grid-column: 2;
+            grid-row: 2 / span 2;
+            height: 185px;
+        }
+
+        .card-center-dance {
+            grid-column: 3;
+            grid-row: 1 / span 2;
+            height: 250px;
+        }
+
+        .card-top-right {
+            grid-column: 3 / span 2;
+            grid-row: 2 / span 2;
+            height: 190px;
+        }
+
+        .card-sub-grid {
+            grid-column: 2 / span 2;
+            grid-row: 3;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .sub-mini {
+            border-radius: 18px;
+            overflow: hidden;
+            height: 110px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .sub-mini img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* KANAN: TEKS PENJELASAN KONKRIT & MENDALAM */
+        .text-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .text-content h1 {
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+            font-weight: 700;
+            color: #111;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+        }
+
+        .text-content h1 span {
+            background: linear-gradient(135deg, #8b0000, #ff4d4d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .paragraph-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .text-content p {
+            font-size: 1.02rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* BAGIAN MEDIA SOSIAL (TANPA KONTINER, LATAR BELAKANG PUTIH) */
+        .social-container {
+            max-width: 1350px;
+            margin: 60px auto 20px auto;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 0;
+            padding: 20px 0;
+            text-align: center;
+            color: #1a1a1a;
+            box-shadow: none;
+        }
+
+        .social-container h3 {
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            color: #111;
+        }
+
+        .social-container h3 span {
+            color: #8b0000;
+        }
+
+        .social-container p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #f8f9fa;
+            border: 1px solid #e5e7eb;
+            padding: 12px 26px;
+            border-radius: 50px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .social-card:hover {
+            background: #8b0000;
+            border-color: #8b0000;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.25);
+        }
+
+        .social-card svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* Responsif untuk HP / Tablet */
+        @media (max-width: 1024px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            .main-container {
+                padding: 30px 20px 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+
+    <!-- OVERLAY INTRO ANIMASI 3 TAHAP -->
+    <div id="introOverlay">
+        
+        <!-- STAGE 1: Buku Bounce & BUKA PERLEMBAR + SAPAAN -->
+        <div class="seq-stage active" id="stage1">
+            <div class="stage-1-wrapper">
+                <div class="book-loader">
+                    <div class="book-page"></div>
+                    <div class="book-page"></div>
+                    <div class="book-page"></div>
+                </div>
+                <div class="greeting-text" id="greetingText">
+                    Halo sobat endul, <span>selamat pagi!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- STAGE 2: Pasir Waktu / Hourglass -->
+        <div class="seq-stage" id="stage2">
+            <div class="stage-2-wrapper">
+                <div class="hourglass"></div>
+                <div class="loading-label">SELAMAT DATANG...</div>
+            </div>
+        </div>
+
+        <!-- STAGE 3: Dual Glass Orb & Merge -->
+        <div class="seq-stage" id="stage3">
+            <div class="stage-3-wrapper">
+                <div class="orb-stage" id="orbStage">
+                    <div class="glass-orb orb-left">
+                        <img src="logo.png" alt="krs.info logo" onerror="this.src='https://api.iconify.design/fluent-emoji-flat:sparkles.svg'">
+                    </div>
+                    <div class="glass-orb orb-right">
+                        <img src=" " alt="Secondary Logo" onerror="this.src='https://api.iconify.design/fluent-emoji-flat:globe-showing-asia-australia.svg'">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FLASH TRANSISI PUTIH AKHIR -->
+    <div id="whiteFlash"></div>
+
+    <!-- LAMAN UTAMA: INFORMASI LENGKAP -->
+    <main class="main-container">
+        
+        <!-- TOMBOL KEMBALI / BERANDA (PANAH KIRI) -->
+        <div class="back-nav-wrapper">
+            <a href="index.html" class="back-home-btn">
+                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                Kembali ke Beranda
+            </a>
+        </div>
+
+        <div class="content-wrapper">
+            
+            <!-- KIRI: KOLASE FOTO PERSIS SEPERTI GAMBAR REFERENSI -->
+            <div class="gallery-collage-ref">
+                <!-- Foto Utama Besar Kiri (Wayang) -->
+                <div class="ref-card card-main-big">
+                    <img src=" " alt="segera hadir">
+                </div>
+                
+                <!-- Foto Atas Tengah (Melukis) -->
+                <div class="ref-card card-top-mid">
+                    <img src=" " alt="segera hadir">
+                </div>
+
+                <!-- Foto Tengah (Tari Tradisional) -->
+                <div class="ref-card card-center-dance">
+                    <img src=" " alt="segera hadir">
+                </div>
+
+                <!-- Foto Kanan Atas (Produksi / Syuting) -->
+                <div class="ref-card card-top-right">
+                    <img src=" " alt="segera hadir">
+                </div>
+
+                <!-- Sub Grid Bawah (Dua Foto Mini Samping) -->
+                <div class="card-sub-grid">
+                    <div class="sub-mini">
+                        <img src=" " alt="segera hadir">
+                    </div>
+                    <div class="sub-mini">
+                        <img src=" " alt="segera hadir">
+                    </div>
+                </div>
+            </div>
+
+            <!-- KANAN: TEKS PENJELASAN KONKRIT & MENDALAM -->
+            <div class="text-content">
+                <h1>Mengenal Lebih Dekat <span>krs.info</span></h1>
+                
+                <div class="paragraph-group">
+                    <p><strong>krs.info</strong> .</p>
+                    <p>.</p>
+                    <p>.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BAGIAN MEDIA SOSIAL (TANPA KONTINER, LATAR BELAKANG PUTIH) -->
+        <section class="social-container">
+            <h3>Terhubung dengan <span>krs.info</span></h3>
+            <p>Ikuti terus perkembangan informasi terbaru, liputan eksklusif, dan keseruan komunitas kami melalui kanal resmi di bawah ini:</p>
+            
+            <div class="social-grid">
+                <!-- WhatsApp Channel -->
+                <a href="#" target="_blank" class="social-card">
+                    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    Saluran WhatsApp
+                </a>
+
+                <!-- TikTok -->
+                <a href="#" target="_blank" class="social-card">
+                    <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.22-2.35.72-4.73 2.44-6.32 1.73-1.61 4.13-2.33 6.49-1.9v4.05c-1.01-.28-2.12-.04-2.95.58-.84.63-1.31 1.65-1.23 2.72.07 1.08.69 2.04 1.62 2.52.93.48 2.03.46 2.94-.05.91-.52 1.48-1.48 1.5-2.54.04-3.23.02-6.47.02-9.7 0-2.08-.01-4.16.02-6.24z"/></svg>
+                    TikTok
+                </a>
+
+                <!-- Instagram -->
+                <a href="#" target="_blank" class="social-card">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    Instagram
+                </a>
+            </div>
+        </section>
+
+      
+    </main>
+
+    <script>
+        // 1. Logika Realtime Sapaan Berdasarkan Jam Perangkat
+        function updateGreeting() {
+            const now = new Date();
+            const hour = now.getHours();
+            let timeString = "pagi";
+
+            if (hour >= 4 && hour < 11) {
+                timeString = "pagi";
+            } else if (hour >= 11 && hour < 15) {
+                timeString = "siang";
+            } else if (hour >= 15 && hour < 18) {
+                timeString = "sore";
+            } else {
+                timeString = "malam";
+            }
+
+            document.getElementById('greetingText').innerHTML = `Halo sobat endul, <span>selamat ${timeString}!</span>`;
+        }
+        updateGreeting();
+
+        // 2. Timeline Skuensial Transisi Animasi Intro
+        const stage1 = document.getElementById('stage1');
+        const stage2 = document.getElementById('stage2');
+        const stage3 = document.getElementById('stage3');
+        const orbStage = document.getElementById('orbStage');
+        const whiteFlash = document.getElementById('whiteFlash');
+        const introOverlay = document.getElementById('introOverlay');
+
+        setTimeout(() => {
+            stage1.classList.remove('active');
+            stage2.classList.add('active');
+        }, 3000);
+
+        setTimeout(() => {
+            stage2.classList.remove('active');
+            stage3.classList.add('active');
+        }, 5500);
+
+        setTimeout(() => {
+            orbStage.classList.add('merging');
+        }, 7000);
+
+        setTimeout(() => {
+            whiteFlash.classList.add('active');
+        }, 8000);
+
+        setTimeout(() => {
+            introOverlay.classList.add('hide');
+        }, 8500);
+
+        setTimeout(() => {
+            whiteFlash.style.transition = "opacity 0.6s ease";
+            whiteFlash.style.opacity = "0";
+            whiteFlash.style.pointerEvents = "none";
+        }, 8700);
+
+        
+    </script>
+
+    <!-- Penampung Footer Otomatis -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Script untuk Memuat Footer Sekali Panggil -->
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
+</body>
+</html>
