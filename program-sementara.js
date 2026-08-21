@@ -5,8 +5,8 @@
 const CONFIG_PROGRAM = {
   aktif: true, // Master Switch
 
-  fiturBolaAktif: true, // set true/false (Bola floating)
-  tombolDaftarAktif: true, // set true/false (Tombol aksi di banner)
+  fiturBolaAktif: false, // set true/false (Bola floating)
+  tombolDaftarAktif: false, // set true/false (Tombol aksi di banner)
 
   // --- OPSI PERSATUAN / HANDLER MODAL ---
   // Isikan nama fungsi global yang ada di file lain (misal: "bukaModalProtokol" atau "bukaModalSyaratV2")
