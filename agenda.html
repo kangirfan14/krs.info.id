@@ -1,810 +1,1279 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="logoatas.png" />
-    <title>KRS Agenda | Pusat Informasi Agenda Karangsari</title>
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="krsduwur.png" />
+   <title>Acara  | #karangsarineweru</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-      :root {
-        --bg: #f8fafc;
-        --text-dark: #0f172a;
-        --blood-red: #8b0000;
-        --blood-gradient: linear-gradient(
-          135deg,
-          #4a0404 0%,
-          #8b0000 50%,
-          #ee1d23 100%
-        );
-        --border-light: rgba(139, 0, 0, 0.15);
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Plus Jakarta Sans", sans-serif;
-      }
-
-      body {
-        background-color: var(--bg);
-        color: var(--text-dark);
-        overflow-x: hidden;
-        background-image: radial-gradient(
-          rgba(139, 0, 0, 0.02) 1.5px,
-          transparent 1.5px
-        );
-        background-size: 30px 30px;
-      }
-
-      /* --- NAVBAR HEADER --- */
-      .navbar {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 92%;
-        max-width: 1200px;
-        height: 70px;
-        z-index: 1000;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border-radius: 50px;
-        border: 3px solid var(--blood-red);
-        display: flex;
-        align-items: center;
-        padding: 0 30px;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      }
-
-      .navbar.scrolled {
-        top: 0 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        height: 65px;
-        border-left: none !important;
-        border-right: none !important;
-        border-top: none !important;
-        border-radius: 0px !important;
-        background: #ffffff !important;
-        padding: 0 40px !important;
-      }
-
-      .nav-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-      }
-
-      .nav-logo-link {
-        display: flex;
-        align-items: center;
-        position: relative;
-        overflow: hidden;
-        border-radius: 8px;
-        padding: 4px;
-      }
-
-      .nav-logo-img {
-        height: 35px;
-        width: auto;
-        object-fit: contain;
-        display: block;
-      }
-
-      .nav-logo-link::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -150%;
-        width: 50%;
-        height: 100%;
-        background: linear-gradient(
-          to right,
-          rgba(255, 255, 255, 0) 0%,
-          rgba(255, 255, 255, 0.6) 50%,
-          rgba(255, 255, 255, 0) 100%
-        );
-        transform: skewX(-25deg);
-        animation: shineLogo 4s infinite ease-in-out;
-      }
-
-      @keyframes shineLogo {
-        0% { left: -150%; }
-        30%, 100% { left: 150%; }
-      }
-
-      .btn-back-beranda {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 22px;
-        background: var(--blood-gradient);
-        color: #ffffff !important;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: 800;
-        font-size: 13px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        box-shadow: 0 4px 15px rgba(139, 0, 0, 0.2);
-        transition: all 0.3s ease;
-      }
-
-      .btn-back-beranda:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
-      }
-
-      /* --- AGENDA HERO SECTION --- */
-      .agenda-header-section {
-        padding: 140px 20px 40px;
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto;
-      }
-
-      .agenda-header-section h1 {
-        font-family: "Syne", sans-serif;
-        font-size: 3.5rem;
-        font-weight: 800;
-        color: #1a1a1a;
-        letter-spacing: -1px;
-        margin-bottom: 10px;
-      }
-
-      .agenda-header-section h1 span {
-        color: var(--blood-red);
-        -webkit-text-stroke: 1px var(--blood-red);
-        -webkit-text-fill-color: transparent;
-      }
-
-      .agenda-header-section p {
-        color: #64748b;
-        font-size: 1.05rem;
-        font-weight: 600;
-        max-width: 600px;
-        margin: 0 auto 30px;
-      }
-
-      /* --- SEARCH BAR CONTROLS --- */
-      .search-container {
-        max-width: 600px;
-        margin: 0 auto 30px;
-        padding: 0 20px;
-      }
-
-      .search-box {
-        position: relative;
-        display: flex;
-        align-items: center;
-        width: 100%;
-      }
-
-      .search-box input {
-        width: 100%;
-        padding: 16px 50px 16px 55px;
-        border: 3px solid var(--blood-red);
-        border-radius: 50px;
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--text-dark);
-        outline: none;
-        background: #ffffff;
-        box-shadow: 0 8px 25px rgba(139, 0, 0, 0.04);
-        transition: all 0.3s ease;
-      }
-
-      .search-box input:focus {
-        box-shadow: 0 10px 30px rgba(139, 0, 0, 0.1);
-      }
-
-      .search-icon {
-        position: absolute;
-        left: 22px;
-        color: var(--blood-red);
-        font-size: 1.2rem;
-        pointer-events: none;
-      }
-
-      .clear-icon {
-        position: absolute;
-        right: 22px;
-        color: #94a3b8;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: color 0.2s ease, transform 0.2s ease;
-        padding: 5px;
-      }
-
-      .clear-icon:hover {
-        color: var(--blood-red);
-        transform: scale(1.1);
-      }
-
-      /* --- TABS FILTER --- */
-      .tabs-container {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 40px;
-        flex-wrap: wrap;
-        padding: 0 20px;
-      }
-
-      .tab-btn {
-        padding: 10px 24px;
-        border: 2px solid var(--blood-red);
-        background: #ffffff;
-        color: var(--blood-red);
-        border-radius: 50px;
-        font-size: 0.9rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      .tab-btn:hover,
-      .tab-btn.active {
-        background: var(--blood-gradient);
-        color: #ffffff;
-        box-shadow: 0 5px 15px rgba(139, 0, 0, 0.2);
-        border-color: transparent;
-      }
-
-      /* --- AGENDA CARDS GRID --- */
-      .agenda-container {
-        max-width: 1000px;
-        margin: 0 auto 100px;
-        padding: 0 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-      }
-
-      .agenda-card-modern {
-        background: #ffffff;
-        border: 3px solid var(--blood-red);
-        border-radius: 24px;
-        display: flex;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .agenda-card-modern:hover {
-        transform: translateY(-3px);
-        box-shadow: 10px 10px 0px rgba(139, 0, 0, 0.08);
-      }
-
-      /* DIKUNCI: Rasio Poster 4:5 (Pas untuk ukuran 1080x1350)[cite: 1] */
-      .news-image-box {
-        width: 260px;
-        min-width: 260px;
-        aspect-ratio: 4 / 5;
-        position: relative;
-        overflow: hidden;
-        border-right: 3px solid var(--blood-red);
-      }
-
-      .news-image-box img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-
-      .agenda-card-modern:hover .news-image-box img {
-        transform: scale(1.04);
-      }
-
-      /* DIKUNCI: Desain Badge Tanggal & Tahun[cite: 1] */
-      .agenda-date-badge {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background: var(--blood-gradient);
-        color: #ffffff;
-        padding: 20px;
-        min-width: 110px;
-        text-align: center;
-        border-right: 1px dashed rgba(255, 255, 255, 0.3);
-      }
-
-      .agenda-date-badge .day {
-        font-family: "Syne", sans-serif;
-        font-size: 2.2rem;
-        font-weight: 800;
-        line-height: 1;
-      }
-
-      .agenda-date-badge .separator {
-        width: 30px;
-        height: 2px;
-        background: rgba(255, 255, 255, 0.4);
-        margin: 8px 0;
-      }
-
-      .agenda-date-badge .month {
-        font-size: 12px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-
-      .agenda-date-badge .year {
-        font-size: 12px;
-        font-weight: 600;
-        border-top: 1px solid rgba(255, 255, 255, 0.4);
-        padding-top: 4px;
-        margin-top: 4px;
-        display: block;
-        opacity: 0.9;
-      }
-
-      .agenda-info {
-        padding: 25px 30px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex-grow: 1;
-      }
-
-      .status-container {
-        margin-bottom: 10px;
-      }
-
-      .status-badge {
-        display: inline-block;
-        padding: 4px 12px;
-        border-radius: 6px;
-        font-size: 11px;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      .status-badge.mendatang {
-        background: rgba(139, 0, 0, 0.08);
-        color: var(--blood-red);
-        border: 1px solid rgba(139, 0, 0, 0.2);
-      }
-
-      .status-badge.berlangsung {
-        background: #d97706 !important;
-        color: #ffffff !important;
-        border: none !important;
-        position: relative;
-        font-weight: 800;
-        box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.7);
-        animation: denyutSakti 1.2s infinite cubic-bezier(0.66, 0, 0, 1);
-      }
-
-      @keyframes denyutSakti {
-        0% {
-          transform: scale(1);
-          box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.7);
+        :root {
+            --bg-primary: #ffffff;
+            --bg-surface: #f8fafc;
+            --border-glass: #800000;
+            --border-light: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent-red: #dc2626;
+            --accent-gradient: linear-gradient(135deg, #7f1d1d 0%, #000000 100%);
+            --accent-glow: rgba(127, 29, 29, 0.25);
         }
-        70% {
-          transform: scale(1.03);
-          box-shadow: 0 0 0 10px rgba(217, 119, 6, 0);
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            padding-top: 100px;
         }
-        100% {
-          transform: scale(1);
-          box-shadow: 0 0 0 0 rgba(217, 119, 6, 0);
+
+        /* --- NAVBAR UTAMA --- */
+        .nav-wrapper {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 92%;
+            max-width: 1150px;
         }
-      }
 
-      .status-badge.selesai {
-        background: #f1f5f9;
-        color: #64748b;
-        border: 1px solid #e2e8f0;
-      }
-
-      .agenda-title {
-        font-family: "Syne", sans-serif;
-        font-size: 1.4rem;
-        font-weight: 800;
-        color: #1a1a1a;
-        line-height: 1.3;
-        margin-bottom: 12px;
-      }
-
-      .agenda-meta-info {
-        display: flex;
-        gap: 20px;
-        color: #64748b;
-        font-size: 0.85rem;
-        font-weight: 600;
-        margin-bottom: 14px;
-      }
-
-      .agenda-meta-info span {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-
-      .agenda-meta-info i {
-        color: var(--blood-red);
-      }
-
-      .agenda-short-desc {
-        color: #475569;
-        font-size: 0.95rem;
-        line-height: 1.5;
-        margin-bottom: 20px;
-        font-weight: 500;
-      }
-
-      .btn-doc-link {
-        align-self: flex-start;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 20px;
-        background: #ffffff;
-        border: 2px solid var(--blood-red);
-        color: var(--blood-red);
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 0.85rem;
-        transition: all 0.3s ease;
-        margin-top: 5px;
-        cursor: pointer;
-      }
-
-      .btn-doc-link:hover {
-        background: var(--blood-red);
-        color: #ffffff;
-      }
-
-      .no-results {
-        text-align: center;
-        padding: 40px 20px;
-        background: #ffffff;
-        border: 2px dashed rgba(139, 0, 0, 0.2);
-        border-radius: 20px;
-        color: #64748b;
-        font-weight: 600;
-        display: none;
-      }
-
-      .no-results i {
-        font-size: 2.5rem;
-        color: #cbd5e1;
-        margin-bottom: 15px;
-        display: block;
-      }
-
-      /* --- MEDIA QUERIES UNTUK TAMPILAN MOBILE --- */
-      @media (max-width: 768px) {
         .navbar {
-          width: 95% !important;
-          top: 10px !important;
-          padding: 0 15px !important;
-          height: 60px;
-        }
-        .navbar.scrolled {
-          padding: 0 15px !important;
-        }
-        .nav-logo-img {
-          height: 28px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1.5px solid var(--border-glass);
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(128, 0, 0, 0.08);
+            padding: 0 24px;
         }
 
-        .btn-back-beranda span {
-          display: none !important;
-        }
-        .btn-back-beranda {
-          padding: 10px 14px !important;
-        }
-
-        .search-box input {
-          font-size: 16px !important;
-          padding-right: 50px !important;
-          padding-left: 45px !important;
-          padding-top: 14px !important;
-          padding-bottom: 14px !important;
-        }
-        .search-icon { left: 18px; }
-        .clear-icon { right: 18px; }
-
-        .agenda-header-section { padding: 110px 20px 20px; }
-        .agenda-header-section h1 { font-size: 2.2rem; }
-        .agenda-header-section p { font-size: 0.95rem; margin-bottom: 20px; }
-
-        .agenda-card-modern {
-          flex-direction: column !important;
-          border-radius: 20px;
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 65px;
+            position: relative;
         }
 
-        .news-image-box {
-          width: 100% !important;
-          min-width: auto !important;
-          aspect-ratio: 4 / 5 !important;
-          border-right: none;
-          border-bottom: 3px solid var(--blood-red);
+        .nav-logo {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            text-decoration: none;
         }
 
-        .agenda-date-badge {
-          flex-direction: row !important;
-          gap: 6px !important;
-          min-width: auto !important;
-          width: 100% !important;
-          padding: 12px 20px !important;
-          justify-content: flex-start !important;
-          border-right: none !important;
-          border-bottom: 1px dashed rgba(139, 0, 0, 0.15);
+        .nav-logo img {
+            height: 32px;
+            width: auto;
+            display: block;
         }
 
-        .agenda-date-badge .day { font-size: 1.4rem !important; }
-        .agenda-date-badge .separator {
-          width: 2px !important;
-          height: 15px !important;
-          background: rgba(255, 255, 255, 0.6) !important;
-          margin: 0 4px !important;
-        }
-        .agenda-date-badge .month { font-size: 13px !important; }
-        .agenda-date-badge .year { 
-          font-size: 13px !important; 
-          border-top: none !important;
-          border-left: 1px solid rgba(255, 255, 255, 0.4) !important;
-          padding-top: 0 !important;
-          padding-left: 6px !important;
-          margin-top: 0 !important;
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(200%) rotate(30deg); }
         }
 
-        .agenda-info { padding: 20px; text-align: left; align-items: flex-start; }
-        .agenda-title { font-size: 1.2rem; }
-        .agenda-meta-info { flex-direction: column !important; gap: 6px; width: 100%; align-items: flex-start; }
-        .agenda-short-desc { border-left: 3px solid #eee; padding-left: 12px; }
-        .btn-doc-link { width: 100%; justify-content: center; }
-        .tab-btn { padding: 8px 18px; font-size: 0.8rem; }
-      }
+        .nav-logo::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.6) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: translateX(-100%) rotate(30deg);
+            animation: shine 3s infinite;
+            pointer-events: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: color 0.2s;
+        }
+
+        .nav-links a.active, .nav-links a:hover {
+            color: var(--accent-red);
+        }
+
+        .btn-kirim {
+            background: var(--accent-gradient) !important;
+            color: #ffffff !important;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px var(--accent-glow);
+            transition: all 0.2s ease !important;
+        }
+
+        .btn-kirim:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(127, 29, 29, 0.35);
+        }
+
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--accent-red);
+            font-size: 22px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* --- CONTAINER UTAMA AGENDA --- */
+        .agenda-container {
+            max-width: 1100px;
+            margin: 20px auto 50px auto;
+            padding: 0 20px;
+        }
+
+        .agenda-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .agenda-header h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .agenda-header p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .agenda-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* Filter Section */
+        .agenda-filters {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            margin-bottom: 20px;
+        }
+
+        .filter-group {
+            margin-bottom: 14px;
+        }
+
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .filter-btn {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-muted);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent-gradient);
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+
+        .year-select-wrapper {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .year-select {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            background: #ffffff;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .btn-reload-acara {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            color: var(--text-muted);
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-reload-acara:hover {
+            background: #f1f5f9;
+            color: var(--accent-red);
+            border-color: var(--accent-red);
+        }
+
+        .btn-reload-acara i {
+            transition: transform 0.4s ease;
+        }
+
+        .btn-reload-acara:active i {
+            transform: rotate(360deg);
+        }
+
+        /* Kalender Interaktif */
+        .calendar-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        .calendar-header button {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--text-main);
+            padding: 5px 10px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .calendar-header button:hover {
+            background: var(--accent-red);
+            color: #ffffff;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 3px;
+            text-align: center;
+        }
+
+        .calendar-day-name {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            padding-bottom: 4px;
+        }
+
+        .calendar-date {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            color: var(--text-main);
+            transition: background 0.2s;
+        }
+
+        .calendar-date:hover {
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .calendar-date.active-event {
+            background: var(--accent-gradient);
+            color: #ffffff;
+            box-shadow: 0 3px 8px var(--accent-glow);
+        }
+
+        .calendar-date.active-event::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            width: 3px;
+            height: 3px;
+            background: #ffffff;
+            border-radius: 50%;
+        }
+
+        /* --- KARTU AGENDA & POSTER --- */
+        .agenda-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .agenda-item-card {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 22px;
+            align-items: start;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            position: relative;
+        }
+
+        .agenda-item-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(220, 38, 38, 0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+
+        .agenda-poster-wrapper {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #f1f5f9;
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .agenda-poster-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .agenda-item-card:hover .agenda-poster-wrapper img {
+            transform: scale(1.04);
+        }
+
+        .agenda-content-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .agenda-info h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+            color: var(--text-main);
+            padding-right: 95px;
+        }
+
+        .agenda-date-loc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .agenda-date-loc span i {
+            margin-right: 5px;
+            color: var(--accent-red);
+        }
+
+        .agenda-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 0 0 16px 0;
+            line-height: 1.5;
+        }
+
+        .agenda-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            background: var(--accent-gradient);
+            padding: 9px 18px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--accent-glow);
+            transition: all 0.2s ease;
+            width: fit-content;
+            border: none;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .agenda-action-btn:hover {
+            opacity: 0.9;
+            box-shadow: 0 6px 16px rgba(127, 29, 29, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* --- BADGE STATUS --- */
+        .agenda-status-badge {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .status-akan-datang { 
+            background: rgba(16, 185, 129, 0.12); 
+            color: #059669; 
+            border: 1px solid rgba(16, 185, 129, 0.3); 
+        }
+
+        .status-selesai { 
+            background: rgba(100, 116, 139, 0.12); 
+            color: #475569; 
+            border: 1px solid rgba(100, 116, 139, 0.3); 
+        }
+
+        .status-berlangsung { 
+            background: rgba(249, 115, 22, 0.12); 
+            color: #ea580c; 
+            border: 1px solid rgba(249, 115, 22, 0.3); 
+            animation: pulseGlow 1.8s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
+            70% { transform: scale(1.03); box-shadow: 0 0 0 6px rgba(249, 115, 22, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+        }
+
+        .no-agenda {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 14px;
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+        }
+
+        /* --- STYLING MOBILE --- */
+        @media screen and (max-width: 768px) {
+            body {
+                padding-top: 90px;
+            }
+            .nav-wrapper {
+                width: 92%;
+                top: 12px;
+            }
+            .navbar {
+                padding: 0 18px;
+            }
+            .hamburger-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 75px;
+                right: 0;
+                width: 280px;
+                background: #ffffff;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 22px 18px;
+                gap: 12px;
+                border: 2px solid var(--border-glass);
+                border-radius: 24px;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+                box-sizing: border-box;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li a {
+                font-size: 15px;
+                font-weight: 600;
+                color: var(--text-main);
+                padding: 10px 16px;
+                display: block;
+                border-radius: 12px;
+                background: transparent !important;
+            }
+
+            .nav-links li a:hover, .nav-links li a.active {
+                background: #f8fafc;
+                color: var(--accent-red);
+            }
+
+            .nav-links .btn-kirim {
+                text-align: center;
+                margin-top: 6px;
+                border-radius: 30px !important;
+                padding: 12px 20px !important;
+                background: var(--accent-gradient) !important;
+                color: #ffffff !important;
+            }
+
+            .agenda-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .agenda-item-card {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                text-align: left;
+                gap: 14px;
+                padding: 18px;
+            }
+
+            .agenda-status-badge {
+                position: relative;
+                top: auto;
+                right: auto;
+                align-self: flex-start;
+                margin-bottom: -4px;
+            }
+
+            .agenda-info {
+                order: 2;
+                width: 100%;
+            }
+            
+            .agenda-info h3 {
+                padding-right: 0;
+                font-size: 1.1rem;
+                margin-bottom: 0;
+            }
+
+            .agenda-poster-wrapper {
+                order: 3;
+                width: 100%;
+                aspect-ratio: 1080 / 1350;
+                margin: 0;
+            }
+
+            .agenda-date-loc {
+                order: 4;
+                justify-content: flex-start;
+                flex-direction: column;
+                gap: 6px;
+                margin-bottom: 0;
+                font-size: 12px;
+                width: 100%;
+            }
+
+            .agenda-desc {
+                order: 5;
+                margin-bottom: 0;
+                width: 100%;
+            }
+
+            .agenda-content-box {
+                order: 6;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+                height: auto;
+                margin-top: 4px;
+            }
+
+            .agenda-action-btn {
+                order: 7;
+                width: 100%;
+                justify-content: center;
+                padding: 11px 20px;
+                border-radius: 12px;
+                box-sizing: border-box;
+                margin-top: 10px;
+            }
+        }
+
+        /* --- TOMBOL KEMBALI KE BERANDA --- */
+        .back-to-home-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 15px 20px;
+        }
+
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent-red);
+            text-decoration: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .back-to-home:hover {
+            opacity: 0.85;
+            transform: translateX(-3px);
+        }
+
+        @media screen and (max-width: 768px) {
+            .back-to-home-wrapper {
+                padding: 0 20px 10px 20px;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <header class="navbar">
-      <div class="nav-container">
-        <a href="index.html" class="nav-logo-link">
-          <img src="krs.png" alt="Logo" class="nav-logo-img" />
-        </a>
-        <div class="nav-menu-right">
-          <a href="index.html#agenda" class="btn-back-beranda">
-            <i class="fa-solid fa-house-chimney"></i> <span>Beranda</span>
+</head>
+<body>
+
+    <!-- NAVBAR UTAMA MENGAMBANG -->
+    <div class="nav-wrapper" id="navbarWrapper">
+      <nav class="navbar" id="mainNav">
+        <div class="nav-container">
+          <a href="index.html" class="nav-logo">
+            <img src="krs.png" alt="Logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/100x32?text=KRS.INFO';" />
           </a>
+
+          <ul class="nav-links" id="menu">
+            <li><a href="index.html#home" class="active">Beranda</a></li>
+            <li><a href="index.html#Berita">Berita</a></li>
+            <li><a href="index.html#agenda">Agenda</a></li>
+            <li><a href="index.html#kontak">Kontak</a></li>
+            <li>
+              <a href="javascript:void(0);" onclick="triggerKirimBerita()" class="btn-kirim">
+                <i class="fa-solid fa-paper-plane"></i> Kirim Berita
+              </a>
+            </li>
+          </ul>
+
+          <button class="hamburger-btn" id="hamburgerToggle" aria-label="Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
         </div>
-      </div>
-    </header>
-
-    <section class="agenda-header-section">
-      <h1 data-aos="fade-down">PUSAT AGENDA</h1>
-      <p data-aos="fade-up" data-aos-delay="100">
-        Pantau seluruh jadwal, beserta dokumentasi resmi
-        dari setiap kegiatan.
-      </p>
-
-      <div class="search-container" data-aos="fade-up" data-aos-delay="200">
-        <div class="search-box">
-          <i class="fa-solid fa-magnifying-glass search-icon"></i>
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Cari agenda kegiatan..."
-            oninput="filterAgendas()"
-          />
-          <i
-            class="fa-solid fa-xmark clear-icon"
-            id="clearSearchBtn"
-            onclick="clearSearch()"
-            style="display: none;"
-          ></i>
-        </div>
-      </div>
-
-      <div class="tabs-container" data-aos="fade-up" data-aos-delay="300">
-        <button class="tab-btn active" onclick="switchTab('semua', this)">
-          Semua
-        </button>
-        <button class="tab-btn" onclick="switchTab('berlangsung', this)">
-          Berlangsung
-        </button>
-        <button class="tab-btn" onclick="switchTab('mendatang', this)">
-          Mendatang
-        </button>
-        <button class="tab-btn" onclick="switchTab('selesai', this)">
-          Selesai
-        </button>
-      </div>
-    </section>
-
-    <main class="agenda-container" id="agendaCardContainer">
-    </main>
-
-    <div class="search-container">
-      <div id="noResults" class="no-results">
-        <i class="fa-solid fa-calendar-xmark"></i>
-        Agenda yang kamu cari tidak ditemukan. Coba kata kunci lain!
-      </div>
+      </nav>
     </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="agenda-data.js"></script>
-    <script src="documentation-handler.js"></script>
+
     
-    <script>
-      AOS.init({ duration: 800, once: true });
+    <div class="agenda-container">
+      <!-- Tombol Kembali ke Beranda -->
+        <div class="back-to-home-wrapper">
+            <a href="index.html#agenda" class="back-to-home">
+                <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda
+            </a>
+        </div>
 
-      window.addEventListener("scroll", function () {
-        const nav = document.querySelector(".navbar");
-        if (window.scrollY > 20) {
-          nav.classList.add("scrolled");
-        } else {
-          nav.classList.remove("scrolled");
-        }
-      });
+        <div class="agenda-header">
+            <h1>Agenda Desa Karangsari</h1>
+            <p>Jadwal kegiatan, acara publik, dan agenda penting warga Desa Karangsari.</p>
+        </div>
 
-      let currentFilter = "semua";
+        <div class="agenda-layout">
+            <div class="sidebar-container">
+                <div class="agenda-filters">
+                    <div class="filter-group" style="margin-bottom: 10px;">
+                        <label>Status Agenda</label>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-status="all">Semua</button>
+                            <button class="filter-btn" data-status="akan datang">Akan Datang</button>
+                            <button class="filter-btn" data-status="berlangsung">Berlangsung</button>
+                            <button class="filter-btn" data-status="selesai">Selesai</button>
+                        </div>
+                    </div>
 
-      function renderAgendas() {
-        const container = document.getElementById("agendaCardContainer");
-        const keyword = document.getElementById("searchInput").value.toLowerCase().trim();
-        
-        container.innerHTML = "";
-        let visibleCount = 0;
-
-        if (typeof DATABASE_AGENDA === "undefined") {
-          console.error("Database agenda-data.js tidak terdeteksi!");
-          return;
-        }
-
-        const sortedAgendas = [...DATABASE_AGENDA].sort(
-          (a, b) => new Date(b.start) - new Date(a.start)
-        );
-
-        sortedAgendas.forEach((agenda) => {
-          const today = new Date();
-          const startDate = new Date(agenda.start);
-          const endDate = agenda.end ? new Date(agenda.end) : new Date(startDate.getTime() + 24 * 60 * 60 * 1000 - 1000);
-
-          let statusKey = "mendatang";
-          let statusText = "Mendatang";
-          let statusClass = "status-badge mendatang";
-
-          if (today >= startDate && today <= endDate) {
-            statusKey = "berlangsung";
-            statusText = "Sedang Berlangsung";
-            statusClass = "status-badge berlangsung";
-          } else if (today > endDate) {
-            statusKey = "selesai";
-            statusText = "Selesai";
-            statusClass = "status-badge selesai";
-          }
-
-          if (currentFilter !== "semua" && currentFilter !== statusKey) return;
-
-          const matchTitle = agenda.title.toLowerCase().includes(keyword);
-          const matchDesc = agenda.desc.toLowerCase().includes(keyword);
-          const matchLoc = agenda.location.toLowerCase().includes(keyword);
-          if (keyword !== "" && !matchTitle && !matchDesc && !matchLoc) return;
-
-          visibleCount++;
-
-          const day = startDate.getDate();
-          const year = startDate.getFullYear();
-          const months = [
-            "Jan", "Feb", "Mar", "Apr", "Mei", "Jun", 
-            "Jul", "Agu", "Sep", "Okt", "Nov", "Des"
-          ];
-          const month = months[startDate.getMonth()];
-          const jam = agenda.start.split(" ")[1] || "00:00";
-
-          let docButtonHtml = "";
-          if (statusKey === "selesai") {
-            const linkDokumentasi = agenda.docLink || agenda.link || agenda.url || agenda.documentation || "";
-            
-            docButtonHtml = `
-              <button class="btn-doc-link" data-link="${linkDokumentasi}" onclick="triggerDokumentasi(this)">
-                <i class="fa-solid fa-images"></i> Lihat Dokumentasi
-              </button>
-            `;
-          }
-
-          const cardHtml = `
-            <div class="agenda-card-modern" data-aos="fade-up">
-              <div class="news-image-box">
-                <img src="${agenda.banner || 'default-banner.jpg'}" alt="${agenda.title}">
-              </div>
-              <div class="agenda-date-badge">
-                <div class="day">${day}</div>
-                <div class="separator"></div>
-                <div class="month">${month}</div>
-                <div class="year">${year}</div>
-              </div>
-              <div class="agenda-info">
-                <div class="status-container">
-                  <span class="${statusClass}">${statusText}</span>
+                    <div class="filter-group">
+                        <label>Filter Tahun & Muat Ulang</label>
+                        <div class="year-select-wrapper">
+                            <select id="yearFilter" class="year-select">
+                                <option value="all">Semua Tahun</option>
+                            </select>
+                            <button id="btnReloadAcara" class="btn-reload-acara" title="Muat Ulang Acara">
+                                <i class="fa-solid fa-rotate-right"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="agenda-title">${agenda.title}</h3>
-                <div class="agenda-meta-info">
-                  <span><i class="fa-solid fa-clock"></i> ${jam} WIB</span>
-                  <span><i class="fa-solid fa-location-dot"></i> ${agenda.location}</span>
+
+                <div class="calendar-card">
+                    <div class="calendar-header">
+                        <button id="prevMonth"><i class="fa-solid fa-chevron-left"></i></button>
+                        <span id="calendarMonthYear">Bulan Tahun</span>
+                        <button id="nextMonth"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid"></div>
                 </div>
-                <p class="agenda-short-desc">${agenda.desc}</p>
-                ${docButtonHtml} 
-              </div>
             </div>
-          `;
-          container.insertAdjacentHTML("beforeend", cardHtml);
+
+            <div class="agenda-list-container">
+                <div id="agendaList" class="agenda-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Pendukung -->
+    <script src="agenda-data.js"></script>
+    <script src="persetujuan.js"></script>
+    <script>
+        // Fungsi terisolasi khusus untuk memposisikan modal persetujuan berita/protokol secara terpusat
+        function forceCenterModal() {
+            const allDivs = document.querySelectorAll('body > div');
+            allDivs.forEach(div => {
+                if (div && (div.innerHTML.includes('Lembar Wajib Dibaca') || div.innerHTML.includes('Protokoler') || div.id === 'modalProtokol' || (div.style.position === 'fixed' && !div.id.includes('krsDocModal')))) {
+                    div.style.cssText = `
+                        position: fixed !important;
+                        top: 0 !important;
+                        left: 0 !important;
+                        width: 100vw !important;
+                        height: 100vh !important;
+                        background: rgba(0, 0, 0, 0.65) !important;
+                        z-index: 99999 !important;
+                        display: flex !important;
+                        justify-content: center !important;
+                        align-items: center !important;
+                        padding: 15px !important;
+                        box-sizing: border-box !important;
+                        backdrop-filter: blur(8px) !important;
+                        margin: 0 !important;
+                        transform: none !important;
+                    `;
+                }
+            });
+        }
+
+        function formatFriendlyDate(startStr, endStr) {
+            const daysIndo = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            const monthsIndo = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            
+            try {
+                const cleanStart = startStr.trim();
+                const cleanEnd = endStr.trim();
+                
+                const dtStart = new Date(cleanStart.replace(' ', 'T'));
+                const dtEnd = new Date(cleanEnd.replace(' ', 'T'));
+
+                if (isNaN(dtStart.getTime())) {
+                    return `${startStr} s/d ${endStr}`;
+                }
+
+                const dayName = daysIndo[dtStart.getDay()];
+                const dayNum = dtStart.getDate();
+                const monthName = monthsIndo[dtStart.getMonth()];
+                const yearNum = dtStart.getFullYear();
+
+                const startTime = cleanStart.includes(' ') ? cleanStart.split(' ')[1] : '';
+                const endTime = cleanEnd.includes(' ') ? cleanEnd.split(' ')[1] : '';
+
+                let timeStr = '';
+                if (startTime && endTime) {
+                    timeStr = ` • Pukul ${startTime} s/d ${endTime} WIB`;
+                } else if (startTime) {
+                    timeStr = ` • Pukul ${startTime} WIB`;
+                }
+
+                return `${dayName}, ${dayNum} ${monthName} ${yearNum}${timeStr}`;
+            } catch (e) {
+                return `${startStr} s/d ${endStr}`;
+            }
+        }
+
+        // Fungsionalitas Dokumentasi (Terintegrasi secara eksklusif dengan tombol Lihat Dokumentasi)
+        function bukaDokumentasi(link) {
+            let modal = document.getElementById("krsDocModal");
+            if (!modal) {
+                modal = document.createElement("div");
+                modal.id = "krsDocModal";
+                document.body.appendChild(modal);
+            }
+
+            const activeTimer = modal.getAttribute("data-timer");
+            if (activeTimer) {
+                clearInterval(activeTimer);
+                modal.removeAttribute("data-timer");
+            }
+
+            modal.style.cssText = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:99999; display:flex; justify-content:center; align-items:center; font-family:'Plus Jakarta Sans', sans-serif;";
+            modal.style.display = "flex";
+
+            modal.innerHTML = `
+                <div style="background:#ffffff; padding:35px 30px; border-radius:16px; text-align:center; max-width:420px; width:100%; box-shadow:0 10px 30px rgba(0,0,0,0.15); border: 1px solid #e2e8f0; box-sizing:border-box;">
+                  <div style="font-size:2rem; color:#8b0000; margin-bottom:15px;"><i class="fa-solid fa-server fa-beat"></i></div>
+                  <div style="font-weight:700; font-size:1.1rem; color:#0f172a; margin-bottom:6px;">Menghubungkan ke server...</div>
+                  <div style="font-size:0.85rem; color:#64748b; font-weight:500;">Memulai mencari sumber link dokumentasi.</div>
+                </div>
+            `;
+
+            setTimeout(() => {
+                modal.innerHTML = `
+                    <div style="background:#ffffff; padding:35px 30px; border-radius:16px; text-align:center; max-width:420px; width:100%; box-shadow:0 10px 30px rgba(0,0,0,0.15); border: 1px solid #e2e8f0; box-sizing:border-box;">
+                      <div style="font-size:2rem; color:#8b0000; margin-bottom:15px;"><i class="fa-solid fa-magnifying-glass-chart fa-spin"></i></div>
+                      <div style="font-weight:700; font-size:1.1rem; color:#0f172a; margin-bottom:6px;">Mencari sumber link...</div>
+                      <div style="font-size:0.85rem; color:#64748b; font-weight:500;">Memindai link dokumentasi.</div>
+                    </div>
+                `;
+
+                setTimeout(() => {
+                    const cleanLink = link ? link.trim() : "";
+                    const isLinkValid = cleanLink !== "" && cleanLink !== "#" && cleanLink !== "undefined" && cleanLink !== "null";
+
+                    if (isLinkValid) {
+                        modal.innerHTML = `
+                            <div style="background:#ffffff; padding:35px 30px; border-radius:16px; text-align:center; max-width:420px; width:100%; box-shadow:0 10px 30px rgba(0,0,0,0.15); border: 1px solid #e2e8f0; box-sizing:border-box;">
+                              <div style="font-size:2rem; color:#16a34a; margin-bottom:15px;"><i class="fa-solid fa-circle-check"></i></div>
+                              <div style="font-weight:700; font-size:1.1rem; color:#0f172a; margin-bottom:6px;">Sumber dokumentasi ditemukan</div>
+                              <div style="font-size:0.85rem; color:#64748b; font-weight:500;">Tautan valid teridentifikasi.</div>
+                            </div>
+                        `;
+
+                        setTimeout(() => {
+                            modal.innerHTML = `
+                                <div style="background:#ffffff; padding:35px 30px; border-radius:16px; text-align:center; max-width:420px; width:100%; box-shadow:0 10px 30px rgba(0,0,0,0.15); border: 1px solid #e2e8f0; box-sizing:border-box;">
+                                  <div style="font-size:2rem; color:#2563eb; margin-bottom:15px;"><i class="fa-solid fa-external-link-alt fa-bounce"></i></div>
+                                  <div style="font-weight:700; font-size:1.1rem; color:#0f172a; margin-bottom:6px;">Terhubung ke server</div>
+                                  <div style="font-size:0.85rem; color:#16a34a; font-weight:600;">Membuka tautan dokumentasi...</div>
+                                </div>
+                            `;
+
+                            setTimeout(() => {
+                                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                                if (isMobile) {
+                                    const mobileWindow = window.open(cleanLink, "_blank");
+                                    if (!mobileWindow || mobileWindow.closed || typeof mobileWindow.closed == 'undefined') {
+                                        window.location.href = cleanLink;
+                                    }
+                                } else {
+                                    const tempAnchor = document.createElement("a");
+                                    tempAnchor.href = cleanLink;
+                                    tempAnchor.target = "_blank";
+                                    tempAnchor.rel = "noopener noreferrer";
+                                    document.body.appendChild(tempAnchor);
+                                    tempAnchor.click();
+                                    document.body.removeChild(tempAnchor);
+                                }
+                                tutupPanelKrs();
+                            }, 1500);
+                        }, 1800);
+                    } else {
+                        modal.innerHTML = `
+                            <div style="background:#ffffff; padding:35px 30px; border-radius:16px; text-align:center; max-width:440px; width:100%; box-shadow:0 10px 30px rgba(0,0,0,0.15); border: 1px solid #e2e8f0; box-sizing:border-box;">
+                              <div style="font-size:2rem; color:#dc2626; margin-bottom:15px;"><i class="fa-solid fa-circle-exclamation"></i></div>
+                              <div style="font-weight:700; font-size:1.1rem; color:#0f172a; margin-bottom:6px;">Sumber dokumentasi tidak ditemukan</div>
+                              <div style="font-size:0.85rem; color:#64748b; font-weight:500;">Tautan untuk kegiatan ini belum tersedia.</div>
+                            </div>
+                        `;
+
+                        setTimeout(() => {
+                            let countdown = 5;
+                            modal.innerHTML = `
+                                <div style="background:#ffffff; padding:30px; border-radius:16px; text-align:left; max-width:480px; width:100%; box-shadow:0 10px 30px rgba(0,0,0,0.15); border: 1px solid #e2e8f0; box-sizing:border-box;">
+                                  <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px; color:#8b0000; font-size:1.2rem;">
+                                    <i class="fa-solid fa-triangle-exclamation"></i>
+                                    <span style="font-weight:700; font-size:1rem; color:#0f172a;">Dokumentasi Tidak Ditemukan</span>
+                                  </div>
+                                  <div style="font-size:0.9rem; color:#334155; line-height:1.6; margin-bottom:20px; font-weight:400;">
+                                    Mohon maaf, Silakan hubungi panitia yang bersangkutan untuk informasi lebih lanjut.
+                                  </div>
+                                  <button onclick="tutupPanelKrs()" style="width:100%; padding:11px 20px; background:#0f172a; color:#fff; border:none; border-radius:8px; font-weight:600; font-size:0.9rem; cursor:pointer; transition:background 0.2s;">
+                                    Kembali ke Beranda (<span id="countdownTimer">${countdown}</span>s)
+                                  </button>
+                                </div>
+                            `;
+
+                            const countdownInterval = setInterval(() => {
+                                countdown--;
+                                const timerSpan = document.getElementById("countdownTimer");
+                                if (timerSpan) timerSpan.innerText = countdown;
+
+                                if (countdown <= 0) {
+                                    clearInterval(countdownInterval);
+                                    tutupPanelKrs();
+                                }
+                            }, 1000);
+
+                            modal.setAttribute("data-timer", countdownInterval);
+                        }, 1800);
+                    }
+                }, 1800);
+            }, 1800);
+        }
+
+        function tutupPanelKrs() {
+            const modal = document.getElementById("krsDocModal");
+            if (modal) {
+                const activeTimer = modal.getAttribute("data-timer");
+                if (activeTimer) clearInterval(activeTimer);
+                modal.style.display = "none";
+            }
+        }
+
+        const hamburgerToggle = document.getElementById('hamburgerToggle');
+        const menu = document.getElementById('menu');
+
+        function triggerKirimBerita() {
+            if (menu) menu.classList.remove('active');
+            if (typeof bukaModalProtokol === 'function') {
+                bukaModalProtokol();
+            } else if (typeof bukaPersetujuan === 'function') {
+                bukaPersetujuan();
+            }
+            setTimeout(forceCenterModal, 10);
+            setTimeout(forceCenterModal, 50);
+        }
+
+        if (hamburgerToggle && menu) {
+            hamburgerToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                menu.classList.toggle('active');
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!document.getElementById('mainNav').contains(event.target)) {
+                    menu.classList.remove('active');
+                }
+            });
+        }
+
+        // Pemantau mutasi yang dibatasi khusus untuk modal persetujuan dari persetujuan.js saja
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.addedNodes.length > 0) {
+                    forceCenterModal();
+                }
+            });
         });
 
-        document.getElementById("noResults").style.display =
-          visibleCount === 0 ? "block" : "none";
-      }
+        observer.observe(document.body, { childList: true, subtree: true });
 
-      function triggerDokumentasi(buttonElement) {
-        const link = buttonElement.getAttribute("data-link");
-        
-        if (typeof bukaDokumentasi === "function") {
-          bukaDokumentasi(link);
-        } else {
-          console.error("Fungsi bukaDokumentasi belum didefinisikan di documentation-handler.js!");
-        }
-      }
+        document.addEventListener("DOMContentLoaded", function() {
+            let currentStatus = 'all';
+            let currentYear = 'all';
+            let selectedFilterDate = null;
+            
+            let todayDate = new Date();
+            let activeMonth = todayDate.getMonth();
+            let activeYear = todayDate.getFullYear();
 
-      function filterAgendas() {
-        const searchInput = document.getElementById("searchInput");
-        const clearBtn = document.getElementById("clearSearchBtn");
-        const keyword = searchInput.value.trim();
+            const agendaListEl = document.getElementById('agendaList');
+            const yearSelectEl = document.getElementById('yearFilter');
+            const calendarGridEl = document.getElementById('calendarGrid');
+            const calendarMonthYearEl = document.getElementById('calendarMonthYear');
+            const btnReloadAcara = document.getElementById('btnReloadAcara');
 
-        if (keyword.length > 0) {
-          clearBtn.style.display = "block";
-        } else {
-          clearBtn.style.display = "none";
-        }
+            function getCalculatedStatus(startStr, endStr) {
+                const now = new Date();
+                const start = new Date(startStr);
+                const end = new Date(endStr);
 
-        renderAgendas();
-      }
+                if (now < start) {
+                    return { text: "Akan Datang", className: "status-akan-datang" };
+                } else if (now >= start && now <= end) {
+                    return { text: "Berlangsung", className: "status-berlangsung" };
+                } else {
+                    return { text: "Selesai", className: "status-selesai" };
+                }
+            }
 
-      function clearSearch() {
-        const searchInput = document.getElementById("searchInput");
-        const clearBtn = document.getElementById("clearSearchBtn");
+           function initYearDropdown() {
+                yearSelectEl.innerHTML = '<option value="all">Semua Tahun</option>';
+                
+                let years = [];
+                if (typeof DATABASE_AGENDA !== 'undefined') {
+                    years = DATABASE_AGENDA.map(item => new Date(item.start).getFullYear());
+                }
+                
+                const realTimeYear = new Date().getFullYear();
+                years.push(realTimeYear);
+                
+                const uniqueYears = [...new Set(years)].sort((a, b) => b - a);
+                
+                uniqueYears.forEach(year => {
+                    const opt = document.createElement('option');
+                    opt.value = year;
+                    opt.textContent = year;
+                    yearSelectEl.appendChild(opt);
+                });
+            }
 
-        searchInput.value = ""; 
-        clearBtn.style.display = "none"; 
-        searchInput.focus(); 
+           yearSelectEl.addEventListener('change', function() {
+                currentYear = this.value;
+                selectedFilterDate = null;
+                
+                // Integrasi: Jika tahun spesifik dipilih, ubah tahun kalender 
+                // dan arahkan bulannya persis ke bulan real-time saat ini
+                if (currentYear !== 'all') {
+                    const targetYearNum = parseInt(currentYear);
+                    const now = new Date(); // Waktu real-time saat ini
+                    
+                    activeYear = targetYearNum;
+                    activeMonth = now.getMonth(); // Selalu set ke bulan real-time saat ini
+                    
+                    renderCalendar(activeMonth, activeYear);
+                }
+                
+                renderAgendas();
+            });
 
-        renderAgendas();
-      }
+            function renderAgendas() {
+                if (typeof DATABASE_AGENDA === 'undefined') {
+                    agendaListEl.innerHTML = '<div class="no-agenda">DATABASE_AGENDA tidak ditemukan di agenda-data.js.</div>';
+                    return;
+                }
 
-      function switchTab(filter, element) {
-        currentFilter = filter;
-        document
-          .querySelectorAll(".tab-btn")
-          .forEach((btn) => btn.classList.remove("active"));
-        element.classList.add("active");
-        renderAgendas();
-      }
+                let sortedData = [...DATABASE_AGENDA].sort((a, b) => {
+                    return new Date(b.start) - new Date(a.start) || parseInt(b.id || 0) - parseInt(b.id || 0);
+                });
 
-      document.addEventListener("DOMContentLoaded", renderAgendas);
+                let filtered = sortedData.filter(item => {
+                    const itemYear = new Date(item.start).getFullYear().toString();
+                    const statusObj = getCalculatedStatus(item.start, item.end);
+                    
+                    const matchStatus = (currentStatus === 'all' || statusObj.text.toLowerCase() === currentStatus);
+                    const matchYear = (currentYear === 'all' || itemYear === currentYear);
+                    
+                    let matchDate = true;
+                    if (selectedFilterDate) {
+                        matchDate = item.start.startsWith(selectedFilterDate);
+                    }
+
+                    return matchStatus && matchYear && matchDate;
+                });
+
+                if (filtered.length === 0) {
+                    const message = selectedFilterDate ? 'Belum ada acara terdeteksi' : 'Tidak ada agenda yang sesuai dengan filter.';
+                    agendaListEl.innerHTML = `<div class="no-agenda">${message}</div>`;
+                    return;
+                }
+
+                agendaListEl.innerHTML = '';
+                filtered.forEach(agenda => {
+                    const statusObj = getCalculatedStatus(agenda.start, agenda.end);
+                    const formattedDateStr = formatFriendlyDate(agenda.start, agenda.end);
+
+                    let actionBtnHtml = '';
+                    if (statusObj.text === "Selesai" || (agenda.docLink && agenda.docLink.trim() !== '')) {
+                        const linkAttr = agenda.docLink ? `data-link="${agenda.docLink}"` : `data-link=""`;
+                        actionBtnHtml = `<button class="agenda-action-btn btn-dokumen" ${linkAttr}><i class="fa-solid fa-folder-open"></i> Lihat Dokumentasi</button>`;
+                    }
+
+                    let bannerHtml = `
+                        <div class="agenda-poster-wrapper">
+                            <img src="${agenda.banner || 'placeholder.jpg'}" alt="${agenda.title}" onerror="this.src='https://via.placeholder.com/1080x1350/f1f5f9/dc2626?text=KRS.INFO'">
+                        </div>
+                    `;
+
+                    const card = document.createElement('div');
+                    card.className = 'agenda-item-card';
+                    card.innerHTML = `
+                        <span class="agenda-status-badge ${statusObj.className}">${statusObj.text}</span>
+                        ${bannerHtml}
+                        <div class="agenda-content-box">
+                            <div class="agenda-info">
+                                <h3>${agenda.title}</h3>
+                                <div class="agenda-date-loc">
+                                    <span><i class="fa-regular fa-calendar"></i> ${formattedDateStr}</span>
+                                    <span><i class="fa-solid fa-location-dot"></i> ${agenda.location}</span>
+                                </div>
+                                <p class="agenda-desc">${agenda.desc}</p>
+                                ${actionBtnHtml}
+                            </div>
+                        </div>
+                    `;
+                    agendaListEl.appendChild(card);
+                });
+
+                document.querySelectorAll('.btn-dokumen').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const link = this.getAttribute('data-link');
+                        bukaDokumentasi(link);
+                    });
+                });
+            }
+
+            function renderCalendar(month, year) {
+                calendarGridEl.innerHTML = '';
+                
+                const monthsNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+                calendarMonthYearEl.textContent = `${monthsNames[month]} ${year}`;
+
+                const daysName = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
+                daysName.forEach(name => {
+                    const dayEl = document.createElement('div');
+                    dayEl.className = 'calendar-day-name';
+                    dayEl.textContent = name;
+                    calendarGridEl.appendChild(dayEl);
+                });
+
+                const firstDayIndex = new Date(year, month, 1).getDay();
+                const totalDays = new Date(year, month + 1, 0).getDate();
+
+                for (let i = 0; i < firstDayIndex; i++) {
+                    calendarGridEl.appendChild(document.createElement('div'));
+                }
+
+                let eventDates = [];
+                if (typeof DATABASE_AGENDA !== 'undefined') {
+                    DATABASE_AGENDA.forEach(item => {
+                        const d = new Date(item.start);
+                        if(d.getMonth() === month && d.getFullYear() === year) {
+                            eventDates.push(d.getDate());
+                        }
+                    });
+                }
+
+                for (let day = 1; day <= totalDays; day++) {
+                    const dateEl = document.createElement('div');
+                    dateEl.className = 'calendar-date';
+                    dateEl.textContent = day;
+
+                    if (eventDates.includes(day)) {
+                        dateEl.classList.add('active-event');
+                        dateEl.title = "Ada agenda pada tanggal ini!";
+                    }
+
+                    dateEl.addEventListener('click', function() {
+                        const formattedMonth = String(month + 1).padStart(2, '0');
+                        const formattedDay = String(day).padStart(2, '0');
+                        selectedFilterDate = `${year}-${formattedMonth}-${formattedDay}`;
+                        
+                        currentStatus = 'all';
+                        currentYear = 'all';
+                        yearSelectEl.value = 'all';
+                        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                        document.querySelector('.filter-btn[data-status="all"]').classList.add('active');
+                        
+                        renderAgendas();
+                    });
+
+                    calendarGridEl.appendChild(dateEl);
+                }
+            }
+
+            document.getElementById('prevMonth').addEventListener('click', () => {
+                activeMonth--;
+                if(activeMonth < 0) { activeMonth = 11; activeYear--; }
+                renderCalendar(activeMonth, activeYear);
+            });
+
+            document.getElementById('nextMonth').addEventListener('click', () => {
+                activeMonth++;
+                if(activeMonth > 11) { activeMonth = 0; activeYear++; }
+                renderCalendar(activeMonth, activeYear);
+            });
+
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentStatus = this.getAttribute('data-status');
+                    selectedFilterDate = null;
+                    renderAgendas();
+                });
+            });
+
+            yearSelectEl.addEventListener('change', function() {
+                currentYear = this.value;
+                selectedFilterDate = null;
+                renderAgendas();
+            });
+
+            if (btnReloadAcara) {
+                btnReloadAcara.addEventListener('click', function() {
+                    currentStatus = 'all';
+                    currentYear = 'all';
+                    selectedFilterDate = null;
+                    yearSelectEl.value = 'all';
+                    
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelector('.filter-btn[data-status="all"]').classList.add('active');
+                    
+                    todayDate = new Date();
+                    activeMonth = todayDate.getMonth();
+                    activeYear = todayDate.getFullYear();
+                    
+                    renderCalendar(activeMonth, activeYear);
+                    renderAgendas();
+                });
+            }
+
+            initYearDropdown();
+            renderAgendas();
+            renderCalendar(activeMonth, activeYear);
+        });
     </script>
-  </body>
+    <!-- Penampung Footer Otomatis -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Script untuk Memuat Footer Sekali Panggil -->
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
+</body>
 </html>
