@@ -3,7 +3,7 @@
 // ==========================================
 
 const CONFIG_PROGRAM = {
-  aktif: true, // Master Switch
+  aktif: false, // Master Switch
 
   fiturBolaAktif: false, // set true/false (Bola floating)
   tombolDaftarAktif: false, // set true/false (Tombol aksi di banner)
