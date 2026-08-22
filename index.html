@@ -18,9 +18,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
     <style>
-
-
-/* PENGATUR POSISI UTAMA (OVERLAY) */
+      /* PENGATUR POSISI UTAMA (OVERLAY) */
       .modal-17an-overlay {
         position: fixed;
         inset: 0;
@@ -35,8 +33,6 @@
         box-sizing: border-box;
       }
 
-
-      
       :root {
         --bg: #f8fafc;
         --text-dark: #0f172a;
@@ -2670,191 +2666,218 @@
     </style>
   </head>
   <body>
-<!-- POP-UP PEMBERITAHUAN PENGEMBANGAN -->
+    <!-- POP-UP PEMBERITAHUAN PENGEMBANGAN -->
     <div id="devPopupModal" class="popup-overlay">
-        <div class="popup-card">
-            <button id="closeDevPopup" class="popup-close-btn" aria-label="Tutup Pop-up">
-                <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-            </button>
-            
-            <div class="popup-icon-container">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-                </svg>
-            </div>
-            
-            <h3>Informasi Pengembangan</h3>
-            <p>Website ini sedang dalam tahap pengembangan. Beberapa fitur mungkin belum sepenuhnya sempurna, harap cek secara berkala ya!</p>
-            
-            <button id="okDevPopup" class="popup-action-btn">Mengerti</button>
+      <div class="popup-card">
+        <button
+          id="closeDevPopup"
+          class="popup-close-btn"
+          aria-label="Tutup Pop-up"
+        >
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+          </svg>
+        </button>
+
+        <div class="popup-icon-container">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+            />
+          </svg>
         </div>
+
+        <h3>Informasi Pengembangan</h3>
+        <p>
+          Website ini sedang dalam tahap pengembangan. Beberapa fitur mungkin
+          belum sepenuhnya sempurna, harap cek secara berkala ya!
+        </p>
+
+        <button id="okDevPopup" class="popup-action-btn">Mengerti</button>
+      </div>
     </div>
 
     <style>
-        /* Backdrop Latar Belakang Gelap Transparan */
-        .popup-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
+      /* Backdrop Latar Belakang Gelap Transparan */
+      .popup-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.3s ease,
+          visibility 0.3s ease;
+      }
 
-        .popup-overlay.show-popup {
-            opacity: 1;
-            visibility: visible;
-        }
+      .popup-overlay.show-popup {
+        opacity: 1;
+        visibility: visible;
+      }
 
-        /* Kartu Kotak Pop-up */
-        .popup-card {
-            background: #ffffff;
-            width: 100%;
-            max-width: 400px;
-            border-radius: 20px;
-            padding: 30px 24px 24px 24px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            transform: scale(0.85);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+      /* Kartu Kotak Pop-up */
+      .popup-card {
+        background: #ffffff;
+        width: 100%;
+        max-width: 400px;
+        border-radius: 20px;
+        padding: 30px 24px 24px 24px;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        transform: scale(0.85);
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
 
-        .popup-overlay.show-popup .popup-card {
-            transform: scale(1);
-        }
+      .popup-overlay.show-popup .popup-card {
+        transform: scale(1);
+      }
 
-        /* Tombol Silang Pojok Kanan Atas */
-        .popup-close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #f1f3f5;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: #555555;
-            transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-        }
+      /* Tombol Silang Pojok Kanan Atas */
+      .popup-close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: #f1f3f5;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #555555;
+        transition:
+          background 0.2s ease,
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
 
-        .popup-close-btn:hover {
-            background: #8b0000;
-            color: #ffffff;
-            transform: scale(1.1);
-        }
+      .popup-close-btn:hover {
+        background: #8b0000;
+        color: #ffffff;
+        transform: scale(1.1);
+      }
 
-        .popup-close-btn svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
+      .popup-close-btn svg {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+      }
 
-        /* Ikon Peringatan Tengah */
-        .popup-icon-container {
-            width: 54px;
-            height: 54px;
-            background: rgba(139, 0, 0, 0.08);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px auto;
-            color: #8b0000;
-        }
+      /* Ikon Peringatan Tengah */
+      .popup-icon-container {
+        width: 54px;
+        height: 54px;
+        background: rgba(139, 0, 0, 0.08);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px auto;
+        color: #8b0000;
+      }
 
-        .popup-icon-container svg {
-            width: 28px;
-            height: 28px;
-            fill: currentColor;
-        }
+      .popup-icon-container svg {
+        width: 28px;
+        height: 28px;
+        fill: currentColor;
+      }
 
-        /* Teks Judul & Deskripsi */
-        .popup-card h3 {
-            font-family: 'Fredoka', cursive, sans-serif;
-            font-size: 1.35rem;
-            color: #111111;
-            margin-bottom: 10px;
-        }
+      /* Teks Judul & Deskripsi */
+      .popup-card h3 {
+        font-family: "Fredoka", cursive, sans-serif;
+        font-size: 1.35rem;
+        color: #111111;
+        margin-bottom: 10px;
+      }
 
-        .popup-card p {
-            font-size: 0.93rem;
-            color: #555555;
-            line-height: 1.6;
-            margin-bottom: 24px;
-        }
+      .popup-card p {
+        font-size: 0.93rem;
+        color: #555555;
+        line-height: 1.6;
+        margin-bottom: 24px;
+      }
 
-        /* Tombol Aksi Utama */
-        .popup-action-btn {
-            background: #8b0000;
-            color: #ffffff;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: background 0.2s ease, transform 0.2s ease;
-            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.25);
-        }
+      /* Tombol Aksi Utama */
+      .popup-action-btn {
+        background: #8b0000;
+        color: #ffffff;
+        border: none;
+        width: 100%;
+        padding: 12px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition:
+          background 0.2s ease,
+          transform 0.2s ease;
+        box-shadow: 0 4px 12px rgba(139, 0, 0, 0.25);
+      }
 
-        .popup-action-btn:hover {
-            background: #a30000;
-            transform: translateY(-2px);
-        }
+      .popup-action-btn:hover {
+        background: #a30000;
+        transform: translateY(-2px);
+      }
     </style>
 
     <script>
-        // Fungsi untuk menutup pop-up
-        function closePopup() {
-            const modal = document.getElementById('devPopupModal');
-            modal.classList.remove('show-popup');
-            // Menyimpan status agar pop-up tidak muncul terus-menerus di setiap klik halaman pada sesi yang sama
-            sessionStorage.setItem('devPopupClosed', 'true');
+      // Fungsi untuk menutup pop-up
+      function closePopup() {
+        const modal = document.getElementById("devPopupModal");
+        modal.classList.remove("show-popup");
+        // Menyimpan status agar pop-up tidak muncul terus-menerus di setiap klik halaman pada sesi yang sama
+        sessionStorage.setItem("devPopupClosed", "true");
+      }
+
+      // Event listener tombol silang dan tombol mengerti
+      document
+        .getElementById("closeDevPopup")
+        .addEventListener("click", closePopup);
+      document
+        .getElementById("okDevPopup")
+        .addEventListener("click", closePopup);
+
+      // Menutup pop-up jika pengguna mengklik area luar kotak putih (backdrop)
+      document
+        .getElementById("devPopupModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closePopup();
+          }
+        });
+
+      // Menampilkan pop-up saat halaman dimuat jika belum pernah ditutup pada sesi ini
+      window.addEventListener("DOMContentLoaded", function () {
+        if (sessionStorage.getItem("devPopupClosed") !== "true") {
+          // Beri sedikit jeda agar animasi muncul mulus setelah halaman siap
+          setTimeout(() => {
+            document
+              .getElementById("devPopupModal")
+              .classList.add("show-popup");
+          }, 400);
         }
-
-        // Event listener tombol silang dan tombol mengerti
-        document.getElementById('closeDevPopup').addEventListener('click', closePopup);
-        document.getElementById('okDevPopup').addEventListener('click', closePopup);
-
-        // Menutup pop-up jika pengguna mengklik area luar kotak putih (backdrop)
-        document.getElementById('devPopupModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closePopup();
-            }
-        });
-
-        // Menampilkan pop-up saat halaman dimuat jika belum pernah ditutup pada sesi ini
-        window.addEventListener('DOMContentLoaded', function() {
-            if (sessionStorage.getItem('devPopupClosed') !== 'true') {
-                // Beri sedikit jeda agar animasi muncul mulus setelah halaman siap
-                setTimeout(() => {
-                    document.getElementById('devPopupModal').classList.add('show-popup');
-                }, 400);
-            }
-        });
+      });
     </script>
 
-    
     <nav class="navbar" id="mainNav">
       <div class="nav-container">
         <a href="#" class="nav-logo"> <img src="krs.png" alt="Logo" /> </a>
         <ul class="nav-links" id="menu">
           <li><a href="#home">Beranda</a></li>
           <li><a href="#Berita">Berita</a></li>
-          <li><a href="#agenda">Agenda</a></li>
+          <li><a href="#agenda">Acara</a></li>
           <li><a href="#kontak">Kontak</a></li>
           <li>
             <a
@@ -2871,7 +2894,6 @@
         </button>
       </div>
     </nav>
-    
 
     <!-- Bagian Bawah Navbar: Hero Section -->
     <header id="home" class="hero">
@@ -2887,11 +2909,6 @@
           <img src="krs.png" class="hero-logo-img" alt="KRS Logo" />
         </div>
 
-        <!-- 2. KARANGSARI INFO -->
-        <div class="hero-seq-item" data-step="2">
-          <h1 class="hero-main-title">KARANGSARI INFO</h1>
-        </div>
-
         <!-- 3. #karangsarineweru -->
         <div class="hero-seq-item" data-step="3">
           <span class="hero-sub-hashtag">#karangsarineweru</span>
@@ -2903,66 +2920,66 @@
         <div class="slider-track-horizontal">
           <!-- 12 Slot Foto Potensi Desa & Kerajinan -->
           <div class="slider-item">
-            <img src="images/foto1.jpg" alt="Foto 1" />
-            <div class="slider-caption">Potensi Desa (1/12)</div>
+            <img src="krsinfoimage (1).png" alt="Foto 1" />
+            <div class="slider-caption">Desa Karangsari</div>
           </div>
           <div class="slider-item">
-            <img src="images/foto2.jpg" alt="Foto 2" />
-            <div class="slider-caption">Kerajinan Lokal (2/12)</div>
+            <img src="krsinfoimage (1).jpeg" alt="Foto 2" />
+            <div class="slider-caption">Pembuatan Tusuk Sate</div>
           </div>
           <div class="slider-item">
-            <img src="images/foto3.jpg" alt="Foto 3" />
-            <div class="slider-caption">Keindahan Alam (3/12)</div>
+            <img src="krsinfoimage (2).png" alt="Foto 3" />
+            <div class="slider-caption">Kerajinan Rattan</div>
           </div>
           <div class="slider-item">
-            <img src="images/foto4.jpg" alt="Foto 4" />
-            <div class="slider-caption">Aktivitas Warga (4/12)</div>
+            <img src="krsinfoimage (3).jpeg" alt="Foto 4" />
+            <div class="slider-caption">Kerajinan Kain Tenun</div>
           </div>
           <div class="slider-item">
-            <img src="images/foto5.jpg" alt="Foto 5" />
-            <div class="slider-caption">Karya Seni (5/12)</div>
+            <img src="krsinfoimage (4).png" alt="Foto 5" />
+            <div class="slider-caption">Seni Tari Srimpi</div>
           </div>
           <div class="slider-item">
-            <img src="images/foto6.jpg" alt="Foto 6" />
-            <div class="slider-caption">Sudut Kampung (6/12)</div>
+            <img src="krsinfoimage (6).png" alt="Foto 6" />
+            <div class="slider-caption">Pendopo Tajug gede</div>
           </div>
           <div class="slider-item">
-            <img src="images/foto7.jpg" alt="Foto 7" />
-            <div class="slider-caption">Produk Unggulan (7/12)</div>
+            <img src="krsinfoimage (7).png" alt="Foto 7" />
+            <div class="slider-caption">Jalan Lebak - Reskob</div>
           </div>
           <div class="slider-item">
-            <img src="images/foto8.jpg" alt="Foto 8" />
-            <div class="slider-caption">Tradisi Lokal (8/12)</div>
+            <img src="krsinfoimage (14).png" alt="Foto 8" />
+            <div class="slider-caption">Lapangan Perseka</div>
           </div>
           <div class="slider-item">
-            <img src="images/foto9.jpg" alt="Foto 9" />
-            <div class="slider-caption">Kearifan Lokal (9/12)</div>
+            <img src="krsinfoimage (12).png" alt="Foto 9" />
+            <div class="slider-caption">Area Gor Karangsari</div>
           </div>
           <div class="slider-item">
-            <img src="images/foto10.jpg" alt="Foto 10" />
-            <div class="slider-caption">Komunitas (10/12)</div>
+            <img src="krsinfoimage (10).png" alt="Foto 10" />
+            <div class="slider-caption">Landscape Karangsari</div>
           </div>
           <div class="slider-item">
-            <img src="images/foto11.jpg" alt="Foto 11" />
-            <div class="slider-caption">Panorama Neweru (11/12)</div>
+            <img src="krsinfoimage (5).png" alt="Foto 11" />
+            <div class="slider-caption"></div>
           </div>
           <div class="slider-item">
-            <img src="images/foto12.jpg" alt="Foto 12" />
-            <div class="slider-caption">Galeri krs.info (12/12)</div>
+            <img src="krsinfoimage (3).png" alt="Foto 12" />
+            <div class="slider-caption">Sumur Pitu</div>
           </div>
 
           <!-- Duplikasi untuk Infinite Loop yang Mulus -->
           <div class="slider-item">
-            <img src="images/foto1.jpg" alt="Foto 1" />
-            <div class="slider-caption">Potensi Desa (1/12)</div>
+            <img src="krsinfoimage (1).png" alt="Foto 1" />
+            <div class="slider-caption">Desa Karangsari</div>
           </div>
           <div class="slider-item">
-            <img src="images/foto2.jpg" alt="Foto 2" />
-            <div class="slider-caption">Kerajinan Lokal (2/12)</div>
+            <img src="krsinfoimage (1).jpeg" alt="Foto 2" />
+            <div class="slider-caption">Pembuatan Tusuk Sate</div>
           </div>
           <div class="slider-item">
-            <img src="images/foto3.jpg" alt="Foto 3" />
-            <div class="slider-caption">Keindahan Alam (3/12)</div>
+            <img src="krsinfoimage (2).png" alt="Foto 3" />
+            <div class="slider-caption">Kerajinan Rattan</div>
           </div>
         </div>
       </div>
@@ -2985,10 +3002,7 @@
       <div class="tentang-container">
         <!-- Kolom Kiri: Gambar Preview & Badge -->
         <div class="tentang-img-box">
-          <img src="images/foto1.jpg" alt="Desa Karangsari" />
-          <div class="img-badge">
-            <span>📍 Karangsari, Weru</span>
-          </div>
+          <img src="krsinfoimage (16).png" alt="Desa Karangsari" />
         </div>
 
         <!-- Kolom Kanan: Teks & Tombol ke karangsari.html -->
@@ -2998,12 +3012,9 @@
             Mengenal Lebih Dekat <span>Desa Karangsari.</span>
           </h2>
           <p class="tentang-desc">
-           load...
-           
+            Lihat sejarah dan detail dari Desa Karangsari
           </p>
-          <p class="tentang-desc">
-           .
-          </p>
+          <p class="tentang-desc"></p>
 
           <!-- Tombol Menuju karangsari.html -->
           <a href="karangsari.html" class="btn-selengkapnya">
@@ -3366,8 +3377,8 @@
     </script>
 
     <style>
-    /* Section Preview Krs.info - Spacing Proporsional */
-    .preview-section {
+      /* Section Preview Krs.info - Spacing Proporsional */
+      .preview-section {
         min-height: auto;
         padding: 40px 20px;
         display: flex;
@@ -3375,42 +3386,55 @@
         justify-content: center;
         background-color: #f4f4f4;
         box-sizing: border-box;
-    }
+      }
 
-    .preview-container {
+      .preview-container {
         position: relative;
         width: 100%;
         max-width: 950px;
         margin: 20px auto;
         border-radius: 28px;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-        
+
         /* Animasi Fade saat pertama di-scroll */
         opacity: 0;
         transform: translateY(30px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
+        transition:
+          opacity 0.8s ease-out,
+          transform 0.8s ease-out;
+      }
 
-    .preview-container.fade-in {
+      .preview-container.fade-in {
         opacity: 1;
         transform: translateY(0);
-    }
+      }
 
-    /* Animasi Kotak Bergetar/Goyang Berkala */
-    .preview-container.box-shake {
+      /* Animasi Kotak Bergetar/Goyang Berkala */
+      .preview-container.box-shake {
         animation: containerShake 0.8s ease-in-out;
-    }
+      }
 
-    @keyframes containerShake {
-        0%, 100% { transform: translateY(0) rotate(0deg); }
-        20% { transform: translateY(0) rotate(-1.2deg); }
-        40% { transform: translateY(0) rotate(1.2deg); }
-        60% { transform: translateY(0) rotate(-0.8deg); }
-        80% { transform: translateY(0) rotate(0.8deg); }
-    }
+      @keyframes containerShake {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        20% {
+          transform: translateY(0) rotate(-1.2deg);
+        }
+        40% {
+          transform: translateY(0) rotate(1.2deg);
+        }
+        60% {
+          transform: translateY(0) rotate(-0.8deg);
+        }
+        80% {
+          transform: translateY(0) rotate(0.8deg);
+        }
+      }
 
-    /* KOTAK UTAMA: PUTIH BERSIH DENGAN OUTLINE EMAS MENGKILAU */
-    .preview-content-box {
+      /* KOTAK UTAMA: PUTIH BERSIH DENGAN OUTLINE EMAS MENGKILAU */
+      .preview-content-box {
         position: relative;
         z-index: 2;
         padding: 35px 40px;
@@ -3428,55 +3452,68 @@
         border: 2px solid transparent;
         background-clip: padding-box, border-box;
         background-origin: padding-box, border-box;
-        background-image: linear-gradient(135deg, #fff, #fff),
-                          linear-gradient(135deg, #bf953f, #fc6, #b38728, #fbf5b7, #aa771c);
+        background-image:
+          linear-gradient(135deg, #fff, #fff),
+          linear-gradient(135deg, #bf953f, #fc6, #b38728, #fbf5b7, #aa771c);
         animation: goldShimmer 4s ease infinite;
-    }
+      }
 
-    @keyframes goldShimmer {
-        0% { filter: brightness(1); }
-        50% { filter: brightness(1.2); }
-        100% { filter: brightness(1); }
-    }
+      @keyframes goldShimmer {
+        0% {
+          filter: brightness(1);
+        }
+        50% {
+          filter: brightness(1.2);
+        }
+        100% {
+          filter: brightness(1);
+        }
+      }
 
-    /* WADAH GAMBAR PREVIEW */
-    .preview-img-wrapper {
+      /* WADAH GAMBAR PREVIEW */
+      .preview-img-wrapper {
         position: relative;
         width: 100%;
         height: 160px;
         border-radius: 18px;
         overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
 
-    .preview-img-wrapper::before {
-        content: '';
+      .preview-img-wrapper::before {
+        content: "";
         position: absolute;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80');
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80");
         background-size: cover;
         background-position: center;
         filter: blur(8px);
         transform: scale(1.1);
-    }
+      }
 
-    .preview-custom-img {
+      .preview-custom-img {
         position: absolute;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80');
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80");
         background-size: cover;
         background-position: center;
         border-radius: 18px;
         transition: transform 0.5s ease;
-    }
+      }
 
-    .preview-img-wrapper:hover .preview-custom-img {
+      .preview-img-wrapper:hover .preview-custom-img {
         transform: scale(1.05);
-    }
+      }
 
-    /* KEDUA TEKS MENGGUNAKAN FONT FREDOKA YANG SAMA */
-    .preview-text h2 {
-        font-family: 'Fredoka', cursive, sans-serif;
+      /* KEDUA TEKS MENGGUNAKAN FONT FREDOKA YANG SAMA */
+      .preview-text h2 {
+        font-family: "Fredoka", cursive, sans-serif;
         font-size: 2.2rem;
         font-weight: 700;
         margin: 0 0 10px 0;
@@ -3484,35 +3521,44 @@
         letter-spacing: -0.5px;
         transform-origin: left center;
         line-height: 1.2;
-    }
+      }
 
-    /* Teks "krs.info" menggunakan font Fredoka yang sama, hanya dibedakan warnanya menjadi merah tua */
-    .preview-text h2 .brand-text {
-        font-family: 'Fredoka', cursive, sans-serif;
+      /* Teks "krs.info" menggunakan font Fredoka yang sama, hanya dibedakan warnanya menjadi merah tua */
+      .preview-text h2 .brand-text {
+        font-family: "Fredoka", cursive, sans-serif;
         color: #8b0000; /* Merah tua (DarkRed) */
         font-weight: 700;
-    }
+      }
 
-    .preview-text h2.joyful-bounce {
+      .preview-text h2.joyful-bounce {
         animation: textBounceJoy 0.8s ease;
-    }
+      }
 
-    @keyframes textBounceJoy {
-        0%, 100% { transform: scale(1) rotate(0deg); }
-        25% { transform: scale(1.08) rotate(-3deg); }
-        50% { transform: scale(1.12) rotate(3deg); }
-        75% { transform: scale(1.04) rotate(-1.5deg); }
-    }
+      @keyframes textBounceJoy {
+        0%,
+        100% {
+          transform: scale(1) rotate(0deg);
+        }
+        25% {
+          transform: scale(1.08) rotate(-3deg);
+        }
+        50% {
+          transform: scale(1.12) rotate(3deg);
+        }
+        75% {
+          transform: scale(1.04) rotate(-1.5deg);
+        }
+      }
 
-    .preview-text p {
+      .preview-text p {
         font-size: 0.98rem;
         line-height: 1.5;
         color: #555;
         margin: 0;
-    }
+      }
 
-    /* Tombol Panah Interaktif */
-    .preview-btn {
+      /* Tombol Panah Interaktif */
+      .preview-btn {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -3526,139 +3572,161 @@
         flex-shrink: 0;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         animation: pulseArrow 2s infinite;
-    }
+      }
 
-    @keyframes pulseArrow {
-        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(191, 149, 63, 0.6); }
-        50% { transform: scale(1.08); box-shadow: 0 0 0 12px rgba(191, 149, 63, 0); }
-        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(191, 149, 63, 0); }
-    }
+      @keyframes pulseArrow {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(191, 149, 63, 0.6);
+        }
+        50% {
+          transform: scale(1.08);
+          box-shadow: 0 0 0 12px rgba(191, 149, 63, 0);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(191, 149, 63, 0);
+        }
+      }
 
-    .preview-btn svg {
+      .preview-btn svg {
         width: 22px;
         height: 22px;
         transition: transform 0.3s ease;
         animation: arrowMove 1.5s ease-in-out infinite;
-    }
+      }
 
-    @keyframes arrowMove {
-        0%, 100% { transform: translateX(0); }
-        50% { transform: translateX(4px); }
-    }
+      @keyframes arrowMove {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(4px);
+        }
+      }
 
-    .preview-btn:hover {
+      .preview-btn:hover {
         background: #bf953f;
         transform: scale(1.12) translateX(4px);
         box-shadow: 0 0 20px rgba(191, 149, 63, 0.6);
         animation: none;
-    }
+      }
 
-    .preview-btn:hover svg {
+      .preview-btn:hover svg {
         transform: translateX(6px);
-    }
+      }
 
-    /* Responsif Mobile */
-    @media (max-width: 768px) {
+      /* Responsif Mobile */
+      @media (max-width: 768px) {
         .preview-section {
-            padding: 25px 15px;
+          padding: 25px 15px;
         }
 
         .preview-content-box {
-            grid-template-columns: 1fr;
-            padding: 25px;
-            gap: 18px;
+          grid-template-columns: 1fr;
+          padding: 25px;
+          gap: 18px;
         }
 
         .preview-img-wrapper {
-            height: 180px;
+          height: 180px;
         }
 
         .preview-text h2 {
-            font-size: 1.6rem;
+          font-size: 1.6rem;
         }
 
         .preview-text p {
-            font-size: 0.9rem;
+          font-size: 0.9rem;
         }
 
         .preview-btn {
-            justify-self: flex-end;
-            width: 48px;
-            height: 48px;
+          justify-self: flex-end;
+          width: 48px;
+          height: 48px;
         }
-    }
-</style>
+      }
+    </style>
 
-<!-- Import Google Font Fredoka -->
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Import Google Font Fredoka -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-<!-- HTML Preview Section -->
-<section class="preview-section">
-    <div class="preview-container" id="previewContainer">
-        
+    <!-- HTML Preview Section -->
+    <section class="preview-section">
+      <div class="preview-container" id="previewContainer">
         <!-- Kotak Utama Putih Bersih -->
         <div class="preview-content-box">
-            
-            <!-- Slot Gambar Preview -->
-            <div class="preview-img-wrapper">
-                <div class=" ."></div>
-            </div>
-            
-            <!-- Teks Preview -->
-            <div class="preview-text">
-                <h2 id="joyfulTitle">
-                    Kenalan sama <span class="brand-text">krs.info</span>
-                </h2>
-                <p> .</p>
-            </div>
-            
-            <!-- Tombol Panah Menuju kenalan.html -->
-            <a href="kenalan.html" class="preview-btn" aria-label="Selanjutnya">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-            </a>
+          <!-- Slot Gambar Preview -->
+          <div class="preview-img-wrapper">
+            <div class="."></div>
+          </div>
+
+          <!-- Teks Preview -->
+          <div class="preview-text">
+            <h2 id="joyfulTitle">
+              Kenalan sama <span class="brand-text">krs.info</span>
+            </h2>
+            <p>.</p>
+          </div>
+
+          <!-- Tombol Panah Menuju kenalan.html -->
+          <a href="kenalan.html" class="preview-btn" aria-label="Selanjutnya">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
         </div>
+      </div>
+    </section>
 
-    </div>
-</section>
+    <script>
+      const container = document.getElementById("previewContainer");
+      const title = document.getElementById("joyfulTitle");
 
-<script>
-    const container = document.getElementById('previewContainer');
-    const title = document.getElementById('joyfulTitle');
-
-    // 1. Animasi Fade saat pertama di-scroll
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+      // 1. Animasi Fade saat pertama di-scroll
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
+              entry.target.classList.add("fade-in");
             }
-        });
-    }, { threshold: 0.2 });
+          });
+        },
+        { threshold: 0.2 },
+      );
 
-    observer.observe(container);
+      observer.observe(container);
 
-    // 2. Logika Efek Goyang Kotak & Teks secara berkala
-    function triggerJoyfulActions() {
+      // 2. Logika Efek Goyang Kotak & Teks secara berkala
+      function triggerJoyfulActions() {
         // Kotak bergetar/goyang lembut
-        container.classList.add('box-shake');
-        setTimeout(() => container.classList.remove('box-shake'), 800);
+        container.classList.add("box-shake");
+        setTimeout(() => container.classList.remove("box-shake"), 800);
 
         // Teks ikut goyang ceria
-        title.classList.add('joyful-bounce');
-        setTimeout(() => title.classList.remove('joyful-bounce'), 800);
-    }
+        title.classList.add("joyful-bounce");
+        setTimeout(() => title.classList.remove("joyful-bounce"), 800);
+      }
 
-    // Jalankan siklus animasi berkala setelah 2 detik
-    setTimeout(() => {
+      // Jalankan siklus animasi berkala setelah 2 detik
+      setTimeout(() => {
         triggerJoyfulActions();
         // Ulangi goyangan tiap 8 detik
         setInterval(triggerJoyfulActions, 8000);
-    }, 2000);
-</script>
-
-
+      }, 2000);
+    </script>
 
     <!-- START: Section Berita & Informasi Terkini (Tema Merah krs.info) -->
     <section id="Berita" class="latest-news-section">
@@ -4811,75 +4879,91 @@
       </div>
     </section>
 
-<footer class="site-footer">
-        <!-- Gelombang Merah dengan Bagian Tumpul di Atas -->
-        <div class="footer-wave">
-            <svg viewBox="0 0 1440 80" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0,40 C320,90 1120,90 1440,40 L1440,80 L0,80 Z" fill="#991b1b"></path>
-            </svg>
+    <footer class="site-footer">
+      <!-- Gelombang Merah dengan Bagian Tumpul di Atas -->
+      <div class="footer-wave">
+        <svg
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0,40 C320,90 1120,90 1440,40 L1440,80 L0,80 Z"
+            fill="#991b1b"
+          ></path>
+        </svg>
+      </div>
+
+      <div class="footer-container">
+        <!-- Kolom 1: Logo Diperbesar & Hastag #karangsarineweru -->
+        <div class="footer-col footer-brand">
+          <div class="footer-logo-area">
+            <img
+              src="logoatas.png"
+              alt="Logo krs.info"
+              class="footer-logo-img"
+            />
+          </div>
+          <div class="footer-hashtag">#karangsarineweru</div>
+          <p class="footer-desc">Terintegrasi dengan @karangsari culture.</p>
         </div>
 
-        <div class="footer-container">
-            <!-- Kolom 1: Logo Diperbesar & Hastag #karangsarineweru -->
-            <div class="footer-col footer-brand">
-                <div class="footer-logo-area">
-                    <img src="logoatas.png" alt="Logo krs.info" class="footer-logo-img">
-                </div>
-                <div class="footer-hashtag">#karangsarineweru</div>
-                <p class="footer-desc">Terintegrasi dengan @karangsari culture.</p>
-            </div>
-
-            <!-- Kolom 2: Tentang krs.info -->
-            <div class="footer-col">
-                <h3>TENTANG</h3>
-                <ul>
-                    <li><a href="kenalan.html">Tentang krs.info</a></li>
-                </ul>
-            </div>
-
-            <!-- Kolom 3: Profil Desa -->
-            <div class="footer-col">
-                <h3>DESA</h3>
-                <ul>
-                    <li><a href="#home">Profil Desa</a></li>
-                </ul>
-            </div>
-
-            <!-- Kolom 4: Berita & Acara -->
-            <div class="footer-col">
-                <h3>INFORMASI</h3>
-                <ul>
-                    <li><a href="#Berita">Berita</a></li>
-                    <li><a href="#agenda">Acara</a></li>
-                </ul>
-            </div>
-
-            <!-- Kolom 5: Maps Interaktif Karangsari - Weru -->
-            <div class="footer-col footer-map-col">
-                <h3>LOKASI</h3>
-                <div class="footer-map-wrap">
-                    <iframe 
-                        src="https://maps.google.com/maps?q=-6.7263667,108.484301&z=15&output=embed" 
-                        width="100%" 
-                        height="140" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"
-                        title="Peta Karangsari Weru">
-                    </iframe>
-                </div>
-                <span class="map-caption">Karangsari, Weru, Cirebon</span>
-            </div>
+        <!-- Kolom 2: Tentang krs.info -->
+        <div class="footer-col">
+          <h3>TENTANG</h3>
+          <ul>
+            <li><a href="kenalan.html">Tentang krs.info</a></li>
+          </ul>
         </div>
 
-        <!-- Copyright Bawah -->
-        <div class="footer-bottom">
-            <p>&copy; 2026 krs.info &bull; #karangsarineweru. All rights reserved.</p>
+        <!-- Kolom 3: Profil Desa -->
+        <div class="footer-col">
+          <h3>DESA</h3>
+          <ul>
+            <li><a href="#home">Profil Desa</a></li>
+          </ul>
         </div>
+
+        <!-- Kolom 4: Berita & Acara -->
+        <div class="footer-col">
+          <h3>INFORMASI</h3>
+          <ul>
+            <li><a href="#Berita">Berita</a></li>
+            <li><a href="#agenda">Acara</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 5: Maps Interaktif Karangsari - Weru -->
+        <div class="footer-col footer-map-col">
+          <h3>LOKASI</h3>
+          <div class="footer-map-wrap">
+            <iframe
+              src="https://maps.google.com/maps?q=-6.7263667,108.484301&z=15&output=embed"
+              width="100%"
+              height="140"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Peta Karangsari Weru"
+            >
+            </iframe>
+          </div>
+          <span class="map-caption">Karangsari, Weru, Cirebon</span>
+        </div>
+      </div>
+
+      <!-- Copyright Bawah -->
+      <div class="footer-bottom">
+        <p>
+          &copy; 2026 krs.info &bull; #karangsarineweru. All rights reserved.
+        </p>
+      </div>
     </footer>
-    <style> /* --- STYLE FOOTER UTAMA --- */
-    .site-footer {
+    <style>
+      /* --- STYLE FOOTER UTAMA --- */
+      .site-footer {
         position: relative;
         background-color: #991b1b;
         color: #fca5a5;
@@ -4887,9 +4971,9 @@
         padding-top: 40px; /* Jarak pas di atas */
         padding-bottom: 25px;
         margin-top: 50px;
-    }
+      }
 
-    .footer-wave {
+      .footer-wave {
         position: absolute;
         top: -45px; /* Menaikkan gelombang ke atas agar menyatu */
         left: 0;
@@ -4897,14 +4981,14 @@
         height: 45px;
         overflow: hidden;
         line-height: 0;
-    }
+      }
 
-    .footer-wave svg {
+      .footer-wave svg {
         width: 100%;
         height: 45px;
-    }
+      }
 
-    .footer-container {
+      .footer-container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 20px;
@@ -4912,9 +4996,9 @@
         grid-template-columns: 1.6fr 1fr 1fr 1fr 1.6fr;
         gap: 25px;
         align-items: start;
-    }
+      }
 
-    .footer-col h3 {
+      .footer-col h3 {
         color: #ffffff;
         font-size: 14px;
         font-weight: 700;
@@ -4924,54 +5008,54 @@
         border-bottom: 2px solid rgba(255, 255, 255, 0.2);
         padding-bottom: 5px;
         display: inline-block;
-    }
+      }
 
-    .footer-col ul {
+      .footer-col ul {
         list-style: none;
         padding: 0;
         margin: 0;
-    }
+      }
 
-    .footer-col ul li {
+      .footer-col ul li {
         margin-bottom: 8px;
-    }
+      }
 
-    .footer-col ul li a {
+      .footer-col ul li a {
         color: #fee2e2;
         text-decoration: none;
         font-size: 13px;
         transition: all 0.2s ease;
-    }
+      }
 
-    .footer-col ul li a:hover {
+      .footer-col ul li a:hover {
         color: #ffffff;
         padding-left: 3px;
         text-decoration: underline;
-    }
+      }
 
-    /* Brand & Hastag */
-    .footer-brand .footer-logo-area {
+      /* Brand & Hastag */
+      .footer-brand .footer-logo-area {
         display: flex;
         align-items: center;
         gap: 8px;
         margin-bottom: 8px;
-    }
+      }
 
-    /* Perbesar ukuran logo gambar */
-    .footer-logo-img {
-        width: 48px;  /* Ukuran diperbesar */
+      /* Perbesar ukuran logo gambar */
+      .footer-logo-img {
+        width: 48px; /* Ukuran diperbesar */
         height: 48px; /* Ukuran diperbesar */
         object-fit: contain;
         margin-bottom: 4px;
-    }
+      }
 
-    .footer-logo-area {
+      .footer-logo-area {
         display: flex;
         align-items: center;
         margin-bottom: 4px;
-    }
+      }
 
-    .footer-hashtag {
+      .footer-hashtag {
         color: #ffffff;
         font-size: 12px;
         font-weight: 700;
@@ -4980,35 +5064,35 @@
         padding: 3px 8px;
         border-radius: 6px;
         margin-bottom: 8px;
-    }
+      }
 
-    .footer-desc {
+      .footer-desc {
         font-size: 12px;
         color: #fecaca;
         line-height: 1.4;
         margin: 0;
-    }
+      }
 
-    /* Maps Widget */
-    .footer-map-wrap {
+      /* Maps Widget */
+      .footer-map-wrap {
         width: 100%;
         overflow: hidden;
         border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        border: 2px solid rgba(255,255,255,0.25);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.25);
         background: #fff;
-    }
+      }
 
-    .map-caption {
+      .map-caption {
         display: block;
         font-size: 11px;
         color: #fee2e2;
         margin-top: 5px;
         font-style: italic;
-    }
+      }
 
-    /* Copyright */
-    .footer-bottom {
+      /* Copyright */
+      .footer-bottom {
         max-width: 1200px;
         margin: 30px auto 0 auto;
         padding: 15px 20px 0 20px;
@@ -5016,32 +5100,34 @@
         text-align: center;
         font-size: 12px;
         color: #fecaca;
-    }
+      }
 
-    /* Responsif HP & Tablet */
-    @media (max-width: 900px) {
+      /* Responsif HP & Tablet */
+      @media (max-width: 900px) {
         .footer-container {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
         }
         .footer-brand {
-            grid-column: span 2;
+          grid-column: span 2;
         }
         .footer-map-col {
-            grid-column: span 2;
+          grid-column: span 2;
         }
-    }
+      }
 
-    @media (max-width: 500px) {
+      @media (max-width: 500px) {
         .footer-container {
-            grid-template-columns: 1fr;
-            gap: 18px;
+          grid-template-columns: 1fr;
+          gap: 18px;
         }
-        .footer-brand, .footer-map-col {
-            grid-column: span 1;
+        .footer-brand,
+        .footer-map-col {
+          grid-column: span 1;
         }
-    }</style>
-    
+      }
+    </style>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init({ duration: 800, once: true });
@@ -5087,8 +5173,6 @@
         });
       });
     </script>
-
- 
     <script src="beranda-agenda.js"></script>
 
     <script src="berita-data.js"></script>
