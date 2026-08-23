@@ -4549,21 +4549,21 @@
           if (statJumlah) statJumlah.innerText = acaraTampil.length;
 
           if (acaraTampil.length > 0) {
-            function getStatusInfo(startDate, endDateStr) {
-              const start = new Date(startDate);
-              start.setHours(0, 0, 0, 0);
+          function getStatusInfo(startDateStr, endDateStr) {
+    const now = new Date(); // Acuan waktu saat ini
+    
+    // Normalisasi format string tanggal agar konsisten dibaca oleh objek Date JavaScript
+    const start = new Date(startDateStr.replace(' ', 'T'));
+    const end = endDateStr ? new Date(endDateStr.replace(' ', 'T')) : new Date(start);
 
-              let end = endDateStr ? new Date(endDateStr) : new Date(startDate);
-              end.setHours(23, 59, 59, 999);
-
-              if (today < start) {
-                return { text: "Akan Datang", class: "mendatang" };
-              } else if (today >= start && today <= end) {
-                return { text: "Berlangsung", class: "berlangsung" };
-              } else {
-                return { text: "Selesai", class: "selesai" };
-              }
-            }
+    if (now < start) {
+        return { text: "Akan Datang", class: "mendatang" };
+    } else if (now >= start && now <= end) {
+        return { text: "Berlangsung", class: "berlangsung" };
+    } else {
+        return { text: "Selesai", class: "selesai" };
+    }
+}
 
             function renderPreview(agenda) {
               const tanggalFormatted = new Date(
