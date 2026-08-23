@@ -53,11 +53,11 @@ const DATABASE_AGENDA = [
     id: "6",
     title: "KHITANAN MASSAL DAN ARAK - ARAKAN",
     start: "2026-08-23 08:00",
-    end: "2026-08-23 12:00",
+    end: "2026-08-23 11:00",
     location: "Desa Karangsari - Weru - Cirebon",
     desc: "Memperingati HUT - RI ke 81 dan HUT Irmuska Ke - 29.",
     banner: "IMG_7218.JPG.jpeg",
-    docLink: "",
+    docLink: "https://drive.google.com/drive/folders/16Ofg0PZs7L6QQEarIpI820suaOvbE5Kq?usp=sharing",
   },
   {
     id: "7",
