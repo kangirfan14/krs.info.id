@@ -1,5 +1,15 @@
 const DATABASE_BERITA = [
   {
+    id: 8,
+    judul: "Irmuska Gelar Khitanan Massal 2026",
+    kategori: "Info",
+    waktuKejadian: "Minggu, 23  Agustus 2026",
+    tanggalRilis: "2026-08-24",
+    gambar: "images/IMG_7956.png",
+    ringkasan: "Desa Karangsari mendadak meriah dan dipadati warga pada hari Minggu, 23 Agustus 2026. Suasana semarak....",
+    kronologi: `<p><strong>Karangsari, 23 Agustus 2026</strong> - Suasana semarak ini tercipta berkat digelarnya acara Karnaval Khitanan Massal Karangsari 2026. Kegiatan akbar ini diselenggarakan secara khusus untuk memperingati Hari Ulang Tahun (HUT) Irmuska ke-29 sekaligus merayakan HUT ke-81 Republik Indonesia.</p><p>Sejak pagi hari, ruas jalan di Desa Karangsari dan sekitarnya sudah tampak dipenuhi oleh lautan manusia. Tidak hanya para peserta karnaval yang antusias, warga dari berbagai daerah juga tumpah ruah di pinggir jalan untuk menyaksikan jalannya acara. Kehadiran tokoh-tokoh masyarakat, aparat keamanan, serta para tamu undangan turut menambah semarak barisan di jalanan desa.</p><p>Sebelum rombongan mulai berjalan, para peserta karnaval terlebih dahulu berkumpul dan bersiap di area GOR Karangsari. Di sinilah rute perjalanan karnaval dimulai dengan arahan dan formasi yang rapi.</p><p>Sepanjang rute, para peserta karnaval menampilkan berbagai kreasi dan kreativitas yang sangat menarik perhatian. Ada beragam replika unik, kostum kreatif, hingga hiburan musik yang sukses membuat penonton terbelalak kagum sekaligus tertawa riang. Penampilan yang beragam ini berhasil menjadi tontonan yang sangat menghibur bagi seluruh warga yang memadati pinggir jalan.</p><p>Setelah rangkaian karnaval selesai, seluruh peserta khitanan massal akhirnya berkumpul di Masjid Desa Karangsari. Di tempat ibadah inilah rangkaian acara inti dilanjutkan, di mana para peserta bersiap untuk mengikuti prosesi khitan. Acara ini pun ditutup dengan lancar dan membawa kebahagiaan bagi warga serta para peserta yang hadir.</p>`,
+  },
+  {
     id: 1,
     judul: "PENYERAHAN SK DESA WISATA KARANGSARI",
     kategori: "Info Desa",
