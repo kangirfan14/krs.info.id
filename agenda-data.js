@@ -87,6 +87,6 @@ const DATABASE_AGENDA = [
     location: "Blok Rengas Kobar 07 Desa Karangsari - Weru - Cirebon",
     desc: "Arak - arakan ogoh ogoh Paksi Naga Liman Dan Musik Dangdut Garexa Nada",
     banner: "rezparty.png",
-    docLink: "",
+    docLink: "https://drive.google.com/drive/folders/1OVtSNfAO3ha98iicxls6SmMI1-h06rei",
   },
 ];
