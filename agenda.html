@@ -808,13 +808,10 @@
             
             try {
                 const cleanStart = startStr.trim();
-                const cleanEnd = endStr.trim();
-                
                 const dtStart = new Date(cleanStart.replace(' ', 'T'));
-                const dtEnd = new Date(cleanEnd.replace(' ', 'T'));
 
                 if (isNaN(dtStart.getTime())) {
-                    return `${startStr} s/d ${endStr}`;
+                    return startStr;
                 }
 
                 const dayName = daysIndo[dtStart.getDay()];
@@ -823,21 +820,17 @@
                 const yearNum = dtStart.getFullYear();
 
                 const startTime = cleanStart.includes(' ') ? cleanStart.split(' ')[1] : '';
-                const endTime = cleanEnd.includes(' ') ? cleanEnd.split(' ')[1] : '';
 
                 let timeStr = '';
-                if (startTime && endTime) {
-                    timeStr = ` • Pukul ${startTime} s/d ${endTime} WIB`;
-                } else if (startTime) {
+                if (startTime) {
                     timeStr = ` • Pukul ${startTime} WIB`;
                 }
 
                 return `${dayName}, ${dayNum} ${monthName} ${yearNum}${timeStr}`;
             } catch (e) {
-                return `${startStr} s/d ${endStr}`;
+                return startStr;
             }
         }
-
         // Fungsionalitas Dokumentasi (Terintegrasi secara eksklusif dengan tombol Lihat Dokumentasi)
         function bukaDokumentasi(link) {
             let modal = document.getElementById("krsDocModal");
