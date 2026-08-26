@@ -7,7 +7,7 @@ const DATABASE_AGENDA = [
     location: "Yayasan Pendidikan Arifin Billah, Weru, Cirebon",
     desc: "Penceramah Ustadz Muhammad Zaky, S.Ag",
     banner: "images/WhatsApp Image 2026-08-26 at 09.57.19.jpeg",
-    docLink: "",
+    docLink: "https://drive.google.com/drive/folders/1n3lnpEPUMrz7HtZy-5GDEeKuNa38hOsG",
   },
   {
     id: "1",
