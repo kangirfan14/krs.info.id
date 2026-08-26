@@ -1,5 +1,15 @@
 const DATABASE_BERITA = [
   {
+    id: 9,
+    judul: "REZCOB FAMILY WAYAHE PARTY 2026 DIGELAR MERIAH",
+    kategori: "Info",
+    waktuKejadian: "Minggu, 23  Agustus 2026",
+    tanggalRilis: "2026-08-26",
+    gambar: "images/IMG_7951.png",
+    ringkasan: "Suasana meriah dan penuh antusiasme tampak menyelimuti...",
+    kronologi: `<p><strong>Karangsari</strong> - Minggu, 23 Agustus 2026 - Suasana meriah dan penuh antusiasme tampak menyelimuti Desa Karangsari dalam perayaan momen satu tahun sekali yang sangat dinanti-nantikan. Blok Rescob bersama warga dari dalam maupun luar Rescob turut serta  ke jalan untuk memeriahkan jalannya acara yang diselenggarakan dengan sangat luar biasa.</p><p>Perayaan yang mengusung tema "Rezcob Family Wayahe Party 2026" ini digelar secara meriah untuk memperingati dua momen penting sekaligus. Acara tersebut diadakan dalam rangka memperingati HUT Irmuska ke-29 serta menyambut HUT ke-81 Republik Indonesia.</p><p>Dalam perayaan yang penuh kebersamaan ini, tampak sebuah maskot unik berupa paksi naga liman atau makhluk mitologi berukuran besar yang diarak di tengah-tengah warga. Iringan pengeras suara yang besar serta kehadiran para pemuda yang tergabung dalam komunitas Rescob menambah semarak suasana pesta rakyat tersebut.</p><p>Seluruh warga yang hadir tampak menikmati setiap rangkaian kegiatan dengan perasaan senang dan bahagia. Melalui perayaan ini, ikatan kekeluargaan dan semangat gotong royong antarwarga di Desa Karangsari diharapkan dapat terus terjaga dengan baik dalam menyambut hari kemerdekaan.</p>`,
+  },
+  {
     id: 8,
     judul: "Irmuska Gelar Khitanan Massal 2026",
     kategori: "Info",
