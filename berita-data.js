@@ -1,5 +1,15 @@
 const DATABASE_BERITA = [
   {
+    id: 10,
+    judul: "Warga Jelawe Tampil Kompak dalam Arak-arakan Akbar Karangsari 2026",
+    kategori: "Info",
+    waktuKejadian: "Minggu, 23  Agustus 2026",
+    tanggalRilis: "2026-08-31",
+    gambar: "images/IMG20260823073611 - Rahmat Dani.jpg",
+    ringkasan: "Semangat gotong royong dan kekompakan warga Blok Jelawe, Desa Karangsari, kembali...",
+    kronologi: `<p><strong>Karangsari</strong> - Semangat gotong royong dan kekompakan warga Blok Jelawe, Desa Karangsari, kembali menyala dalam arak - arakan Karangsari 2026. Ratusan warga dari berbagai usia, mulai dari anak-anak hingga sesepuh, ikut ke jalan untuk berpartisipasi dalam kegiatan arak-arakan yang meriah. Kehadiran mereka dengan seragam kompak bertuliskan "Jelawe Bersatu" menjadi simbolisasi kuat dari persatuan yang terjalin di lingkungan mereka.</p><p>Partisipasi warga Jelawe dalam acara tahunan ini bukan sekadar meramaikan, melainkan juga sebagai bentuk penghormatan terhadap dua momen penting, Hari Ulang Tahun Irmuska yang ke-29 dan Hari Ulang Tahun ke-81 Republik Indonesia. Semangat nasionalisme berpadu dengan kebanggaan lokal mewarnai setiap langkah mereka, dengan bendera Merah Putih berkibar dan berbagai atribut unik yang mereka bawa sepanjang rute arak-arakan.</p><p>Momen ini menjadi bukti nyata solidnya solidaritas antarwarga. Di balik kesuksesan penampilan kompak ini, terlihat peran aktif para pemuda yang bekerja keras di bawah dukungan penuh para bapak dan ibu. Kekompakan ini tidak hanya terlihat dari seragam yang dikenakan, tetapi juga dari partisipasi antusias seluruh elemen warga yang bahu-membahu mempersiapkan segala kebutuhan, mulai dari kostum hingga kreasinya.</p><p>Meskipun dikemas dalam skala besar dan melibatkan banyak orang, arak-arakan warga Jelawe tetap berjalan dengan tertib dan terorganisir. Panitia mengatur arus peserta dengan baik, memastikan keamanan dan kenyamanan selama di perjalanan. Ketertiban ini menunjukkan kedewasaan warga dalam berpartisipasi dalam acara umum, membuat suasana perayaan tetap meriah namun kondusif bagi semua pihak yang terlibat maupun masyarakat umum yang menyaksikan. (@Rahmat Dani melaporkan)</p>`,
+  },
+  {
     id: 9,
     judul: "REZCOB FAMILY WAYAHE PARTY 2026 DIGELAR MERIAH",
     kategori: "Info",
