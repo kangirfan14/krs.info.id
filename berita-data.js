@@ -1,5 +1,15 @@
 const DATABASE_BERITA = [
   {
+    id: 11,
+    judul: "Warga Mexy Bawa Kreasi Tupai Ikut Serta Arak - arakan Karangsari 2026",
+    kategori: "Budaya / Kesenian",
+    waktuKejadian: "Minggu, 23  Agustus 2026",
+    tanggalRilis: "2026-09-01",
+    gambar: "images/IMG_7981 - Karizqi Ada di Mekah.png",
+    ringkasan: "Kehadiran kreasi tupai dari Blok Mekarsari ini semakin menambah se...",
+    kronologi: `<p><strong>Karangsari, Minggu 31 Agustus 2026</strong> - Suasana meriah tampak menyelimuti Desa Karangsari dalam perayaan arak-arakan tahun 2026. Acara ini diselenggarakan dalam rangka memperingati HUT Irmuska yang ke-29 serta HUT Republik Indonesia yang ke-81. Warga dari berbagai kalangan tumpah ruah ke jalan untuk menyaksikan jalannya perayaan tersebut.</p><p>Warga dari Blok Mekarsari atau yang juga dikenal sebagai Mexy tidak mau ketinggalan untuk turut ambil bagian. Mereka tampil antusias dengan membawa sebuah karya seni dan kreasi unik berupa tupai berukuran besar. Patung tupai yang berdiri di atas replika tunggul kayu ini tampak menarik perhatian banyak pasang mata di sepanjang rute arak-arakan.</p><p>Kehadiran kreasi tupai dari Blok Mekarsari ini semakin menambah semarak suasana. Pawai tersebut juga diiringi dengan alunan musik yang membuat warga semakin bersemangat menikmati jalannya acara. Anak-anak hingga orang dewasa terlihat memadati pinggir jalan untuk melihat langsung keunikan arak-arakan ini.</p><p>Perayaan yang sarat akan kebersamaan ini menjadi wujud kekompakan warga Desa Karangsari. Melalui kegiatan seperti ini, silaturahmi antarwarga, khususnya Blok Mekarsari, semakin erat terjalin dalam merayakan hari jadi desa dan kemerdekaan bangsa.</p>`,
+  },
+  {
     id: 10,
     judul: "Warga Jelawe Tampil Kompak dalam Arak-arakan Akbar Karangsari 2026",
     kategori: "Info",
