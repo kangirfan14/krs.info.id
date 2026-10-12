@@ -1,5 +1,15 @@
 const DATABASE_BERITA = [
   {
+    id: 12,
+    judul: "tes",
+    kategori: "Info",
+    waktuKejadian: "Minggu, 23  oktober 2026",
+    tanggalRilis: "2026-10-13",
+    gambar: "images/juara1 (1).png",
+    ringkasan: "tes...",
+    kronologi: `<p><strong>rewwtwtwtwt</strong> - dhsdhsuhuhfjshf</p><p>adjjahdjad</p>`,
+  },
+  {
     id: 11,
     judul: "Warga Mexy Bawa Kreasi Tupai Ikut Serta Arak - arakan Karangsari 2026",
     kategori: "Budaya / Kesenian",
