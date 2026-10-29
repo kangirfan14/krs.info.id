@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="krsduwur.png">
+  <title>Melu Kuis - Seberapa Karangsari Kamu?</title>
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-red: #800000;
+      --accent-orange: #f97316;
+      --accent-yellow: #f59e0b;
+      --bg-playful: #fffbeb;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-playful);
+      color: #1e293b;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    /* ==================== LOADING ANIMATION OVERLAY ==================== */
+    .kuis-loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: #800000;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      color: #ffffff;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .kuis-loading-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* SVG Batik Megamendung Animasi Pulsasi */
+    .batik-megamendung-icon {
+      width: 110px;
+      height: 110px;
+      animation: batikPulse 2s infinite ease-in-out;
+    }
+
+    @keyframes batikPulse {
+      0% { transform: scale(0.95); filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.4)); }
+      50% { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.8)); }
+      100% { transform: scale(0.95); filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.4)); }
+    }
+
+    .loading-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #fef08a;
+      text-align: center;
+    }
+
+    .loading-spinner-dots {
+      display: flex;
+      gap: 8px;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: #ffffff;
+      border-radius: 50%;
+      animation: dotBounce 1.4s infinite ease-in-out both;
+    }
+    .dot:nth-child(1) { animation-delay: -0.32s; }
+    .dot:nth-child(2) { animation-delay: -0.16s; }
+
+    @keyframes dotBounce {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1); }
+    }
+
+    /* ==================== KONTEN KUIS SEGERA HADIR ==================== */
+    .kuis-main-card {
+      background: #ffffff;
+      border: 4px solid #f97316;
+      border-radius: 32px;
+      padding: 45px 35px;
+      max-width: 550px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(249, 115, 22, 0.15);
+      position: relative;
+      animation: cardPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes cardPop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .coming-soon-badge {
+      display: inline-block;
+      background: #fef3c7;
+      color: #d97706;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      border: 2px solid #fde047;
+    }
+
+    .kuis-icon-header {
+      font-size: 4.5rem;
+      margin-bottom: 15px;
+      display: inline-block;
+      animation: bounceIcon 2s infinite alternate ease-in-out;
+    }
+
+    @keyframes bounceIcon {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-12px); }
+    }
+
+    .kuis-main-card h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--primary-red);
+      margin-bottom: 12px;
+    }
+
+    .kuis-main-card p {
+      font-size: 1rem;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .btn-back-home-playful {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+      transition: all 0.25s ease;
+    }
+
+    .btn-back-home-playful:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(249, 115, 22, 0.4);
+    }
+
+    /* Floating Audio Control Button */
+    .audio-control-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ffffff;
+      border: 2px solid #f97316;
+      color: #ea580c;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      z-index: 9999;
+      transition: transform 0.2s ease;
+    }
+    .audio-control-btn:hover {
+      transform: scale(1.1);
+    }
+
+    @media screen and (max-width: 600px) {
+      .kuis-main-card { padding: 30px 20px; border-radius: 24px; }
+      .kuis-main-card h1 { font-size: 1.7rem; }
+      .kuis-icon-header { font-size: 3.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== ELEMEN AUDIO CUSTOM ADMIN (LOOPING) ==================== -->
+  <!-- 
+    PENGATURAN AUDIO ADMIN:
+    - Ganti src="..." di bawah dengan path/URL file musik lokal atau online milik Anda 
+      (contoh: "assets/audio/game-backsound.mp3")
+  -->
+  <audio id="customGameSound" src="The Game Show Theme Music - Waderman - Human Music for Content Creator.mp3" preload="auto" loop></audio>
+
+  <!-- Tombol Melanjutkan/Membungkam Audio untuk Pengguna -->
+  <button type="button" class="audio-control-btn" id="toggleAudioBtn" onclick="toggleAudio()" title="Putar/Mute Musik">
+    <i class="fa-solid fa-volume-high" id="audioIcon"></i>
+  </button>
+
+  <!-- ANIMASI LOADING MEMUAT FITUR KUIS (1X SAJA PER USER) -->
+  <div class="kuis-loading-overlay" id="loadingOverlay">
+    
+    <!-- SVG Vector Batik Megamendung Khas Cirebon -->
+    <svg class="batik-megamendung-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 10C30 10 15 25 15 40C15 55 30 60 40 60C45 60 50 65 50 70C50 75 45 80 35 80C25 80 20 75 20 70" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+      <path d="M50 20C36 20 25 30 25 40C25 50 35 53 42 53C47 53 50 56 50 60C50 64 46 68 38 68" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+      <path d="M50 30C42 30 35 36 35 42C35 48 42 48 45 48" stroke="#f97316" stroke-width="4" stroke-linecap="round"/>
+      <path d="M50 10C70 10 85 25 85 40C85 55 70 60 60 60C55 60 50 65 50 70C50 75 55 80 65 80C75 80 80 75 80 70" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+      <path d="M50 20C64 20 75 30 75 40C75 50 65 53 58 53C53 53 50 56 50 60C50 64 54 68 62 68" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+      <path d="M50 30C58 30 65 36 65 42C65 48 58 48 55 48" stroke="#f97316" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+
+    <div class="loading-title">MEMUAT FITUR KUIS...</div>
+    <div class="loading-spinner-dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+
+  <!-- KONTEN UTAMA KUIS (SEGERA HADIR) -->
+  <main class="kuis-main-card">
+   
+    <div class="kuis-icon-header">🎮 🧩 🏆</div>
+    <h1>Kuis Segera Hadir!</h1>
+   
+    <a href="index.html#kuis" class="btn-back-home-playful">
+      <i class="fa-solid fa-house"></i> Kembali ke Beranda
+    </a>
+  </main>
+
+  <!-- LOGIKA JAVASCRIPT LOADING PERTAMA KALI & KONTROL AUDIO LOOPING -->
+  <script>
+    // PENGATURAN VOLUME AUDIO UTAMA ADMIN (Nilai dari 0.0 sampai 1.0)
+    // Contoh: 0.5 = Volume 50%
+    const ADMIN_AUDIO_VOLUME = 0.5;
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const overlay = document.getElementById("loadingOverlay");
+      const hasLoadedBefore = localStorage.getItem("krs_kuis_loaded_once");
+
+      // Coba jalankan backsound audio sejak awal
+      initAudio();
+
+      if (hasLoadedBefore === "true") {
+        // Jika sudah pernah membuka sebelumnya, langsung hilangkan loading
+        overlay.style.display = "none";
+      } else {
+        // Jika BARU PERTAMA KALI membuka:
+        localStorage.setItem("krs_kuis_loaded_once", "true");
+
+        // Tampilkan animasi loading selama 2.5 detik lalu sembunyikan secara halus
+        setTimeout(function () {
+          overlay.classList.add("hidden");
+          setTimeout(function() {
+            overlay.style.display = "none";
+          }, 500);
+        }, 2500);
+      }
+    });
+
+    // FUNGSI INISIALISASI AUDIO & VOLUME
+    function initAudio() {
+      const audioEl = document.getElementById("customGameSound");
+      if (!audioEl) return;
+
+      audioEl.volume = Math.max(0, Math.min(1, ADMIN_AUDIO_VOLUME));
+
+      // Putar audio (dengan mengantisipasi Autoplay Restriction browser)
+      const playPromise = audioEl.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Jika diblokir oleh browser, putar otomatis begitu pengguna mengeklik di layar mana saja
+          document.body.addEventListener("click", function () {
+            audioEl.play().catch(() => {});
+          }, { once: true });
+        });
+      }
+    }
+
+    // FUNGSI TOGGLE MUTE / UNMUTE MANUAL PENGGUNA
+    function toggleAudio() {
+      const audioEl = document.getElementById("customGameSound");
+      const icon = document.getElementById("audioIcon");
+
+      if (audioEl.paused) {
+        audioEl.play();
+        icon.className = "fa-solid fa-volume-high";
+      } else {
+        audioEl.pause();
+        icon.className = "fa-solid fa-volume-xmark";
+      }
+    }
+  </script>
+</body>
+</html>

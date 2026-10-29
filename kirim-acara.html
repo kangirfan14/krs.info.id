@@ -1,0 +1,1686 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="krsduwur.png" />
+    <title>Kirim Agenda / Acara - krs.info</title>
+
+    <!-- Font & Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --primary-red: #800000;
+        --primary-dark: #1a0000;
+        --bg-light: #f8fafc;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+        --border-color: #cbd5e1;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: var(--bg-light);
+        color: var(--text-main);
+        line-height: 1.6;
+        padding-top: 40px;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .form-main-container {
+        max-width: 750px;
+        width: 100%;
+        margin: 0 auto 60px auto;
+        padding: 0 20px;
+        flex: 1;
+      }
+
+      .top-action-bar {
+        margin-bottom: 20px;
+      }
+      .btn-back-home {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--primary-red);
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.9rem;
+        transition: transform 0.2s;
+      }
+      .btn-back-home:hover {
+        transform: translateX(-3px);
+      }
+
+      /* ================= STEPPER PROGRESS BAR ================= */
+      .stepper-container {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 24px 20px 20px 20px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .stepper-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        max-width: 480px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .stepper-line-bg {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        right: 45px;
+        height: 3px;
+        background-color: #e2e8f0;
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+
+      .stepper-line-progress {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        height: 3px;
+        background-color: var(--primary-red);
+        transform: translateY(-50%);
+        z-index: 2;
+        transition: width 0.4s ease;
+        width: 0%;
+      }
+
+      .step-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 3;
+        background: #ffffff;
+        padding: 0 10px;
+      }
+
+      .step-node {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background-color: #94a3b8;
+        border: 3px solid #ffffff;
+        box-shadow: 0 0 0 2px #cbd5e1;
+        transition: all 0.3s ease;
+      }
+
+      .step-item.active .step-node {
+        width: 16px;
+        height: 16px;
+        background-color: #000000;
+        border: 4px solid #ffffff;
+        box-shadow: 0 0 0 3px var(--primary-red);
+      }
+
+      .step-item.completed .step-node {
+        width: 18px;
+        height: 18px;
+        background-color: var(--primary-red);
+        border: 2px solid #ffffff;
+        box-shadow: 0 0 0 2px var(--primary-red);
+      }
+
+      .step-label {
+        margin-top: 8px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        white-space: nowrap;
+      }
+
+      .step-item.active .step-label {
+        color: var(--primary-red);
+        font-weight: 800;
+      }
+      .step-item.completed .step-label {
+        color: var(--text-main);
+      }
+
+      /* Kartu Formulir */
+      .gform-card {
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        margin-bottom: 24px;
+        overflow: hidden;
+        width: 100%;
+      }
+
+      .gform-header-banner {
+        background: var(--primary-red);
+        color: #ffffff;
+        padding: 22px 28px;
+      }
+      .gform-header-banner h1 {
+        font-size: 1.4rem;
+        font-weight: 800;
+        margin-bottom: 4px;
+      }
+      .gform-header-banner p {
+        font-size: 0.82rem;
+        font-style: italic;
+        opacity: 0.95;
+      }
+
+      .gform-body {
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+
+      .form-step {
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .form-step.active {
+        display: flex;
+      }
+
+      .question-box {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+      }
+      .question-box:focus-within {
+        border-color: var(--primary-red);
+        box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.08);
+      }
+
+      .question-title {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--text-main);
+        margin-bottom: 6px;
+      }
+      .required {
+        color: #dc2626;
+      }
+      .question-subtitle {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        font-style: italic;
+        margin-bottom: 12px;
+      }
+
+      .g-input {
+        width: 100%;
+        padding: 10px 0;
+        border: none;
+        border-bottom: 1.5px solid var(--border-color);
+        font-family: inherit;
+        font-size: 0.92rem;
+        color: var(--text-main);
+        background: transparent;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .g-input:focus {
+        border-bottom-color: var(--primary-red);
+      }
+      .g-input.error {
+        border-bottom-color: #dc2626;
+      }
+
+      .error-hint {
+        font-size: 0.75rem;
+        color: #dc2626;
+        margin-top: 4px;
+        display: none;
+      }
+
+      textarea.g-input {
+        border: 1.5px solid var(--border-color);
+        border-radius: 8px;
+        padding: 12px;
+        min-height: 120px;
+        resize: vertical;
+      }
+      textarea.g-input:focus {
+        border-color: var(--primary-red);
+      }
+
+      /* Upload File Box */
+      .file-upload-box {
+        border: 2px dashed #cbd5e1;
+        border-radius: 10px;
+        padding: 22px;
+        text-align: center;
+        background: #fafafa;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .file-upload-box:hover {
+        border-color: var(--primary-red);
+        background: #fff5f5;
+      }
+      .file-upload-box i {
+        font-size: 26px;
+        color: var(--primary-red);
+        margin-bottom: 8px;
+        display: block;
+      }
+      .file-upload-box p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        font-weight: 600;
+        margin: 0;
+      }
+      .file-name-preview {
+        font-size: 0.8rem;
+        color: #059669;
+        margin-top: 6px;
+        font-weight: 700;
+      }
+
+      /* ================= FRAME SMARTPHONE MOCKUP (RESPONSIF & PRESISI) ================= */
+      .preview-tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+      .tab-btn {
+        flex: 1;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #cbd5e1;
+        background: #f1f5f9;
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: #475569;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.2s;
+      }
+      .tab-btn.active {
+        background: var(--primary-red);
+        color: #ffffff;
+        border-color: var(--primary-red);
+        box-shadow: 0 4px 12px rgba(128, 0, 0, 0.2);
+      }
+
+      .preview-pane {
+        display: none;
+        justify-content: center;
+        width: 100%;
+      }
+      .preview-pane.active {
+        display: flex;
+      }
+
+      .phone-mockup {
+        width: 100%;
+        max-width: 370px;
+        background: #1c1c1e;
+        border-radius: 50px;
+        padding: 14px;
+        box-shadow:
+          0 30px 60px -15px rgba(0, 0, 0, 0.45),
+          inset 0 0 3px 2px rgba(255, 255, 255, 0.2);
+        border: 4px solid #3a3a3c;
+        position: relative;
+        margin: 0 auto;
+      }
+
+      .phone-screen {
+        background: #ffffff;
+        border-radius: 38px;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 700px;
+        width: 100%;
+      }
+
+      .phone-status-bar {
+        height: 44px;
+        background: transparent;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 24px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        color: #000000;
+      }
+      .dynamic-island {
+        width: 90px;
+        height: 24px;
+        background: #000000;
+        border-radius: 20px;
+        position: absolute;
+        left: 50%;
+        top: 8px;
+        transform: translateX(-50%);
+      }
+
+      .phone-content {
+        margin-top: 44px;
+        height: calc(700px - 44px);
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+      .phone-content::-webkit-scrollbar {
+        width: 4px;
+      }
+      .phone-content::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+
+      .phone-home-indicator {
+        width: 120px;
+        height: 4px;
+        background: #000000;
+        border-radius: 10px;
+        margin: 8px auto 4px auto;
+        opacity: 0.3;
+        flex-shrink: 0;
+      }
+
+      /* Editable Logo Brand */
+      .editable-logo-brand {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+        padding: 2px 4px;
+        border-radius: 4px;
+        transition: background 0.2s;
+      }
+      .editable-logo-brand:hover {
+        background: #f1f5f9;
+      }
+      .editable-logo-brand input {
+        display: none;
+      }
+      .editable-logo-brand img {
+        max-height: 26px;
+        object-fit: contain;
+      }
+      .editable-logo-brand .default-logo-text {
+        font-family: "Syne", sans-serif;
+        font-size: 1.1rem;
+        color: #0f172a;
+        font-weight: 800;
+      }
+      .editable-logo-brand .default-logo-text span {
+        color: #800000;
+      }
+
+      /* Editable Avatar IG */
+      .editable-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #800000;
+        color: #ffffff;
+        font-size: 10px;
+        font-weight: 800;
+        cursor: pointer;
+        position: relative;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .editable-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .editable-avatar input {
+        display: none;
+      }
+
+      /* Mockup Web Card Acara */
+      .web-phone-view {
+        padding: 12px;
+        background: #f8fafc;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+      }
+      .web-nav-header {
+        background: #ffffff;
+        border: 1.5px solid #800000;
+        border-radius: 25px;
+        padding: 8px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .web-card-mockup {
+        background: #200505;
+        border-radius: 16px;
+        padding: 16px;
+        color: #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .web-card-poster {
+        width: 100%;
+        height: 180px;
+        background: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+        margin-bottom: 12px;
+      }
+      .web-card-poster img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .web-card-badges {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+      .badge-date,
+      .badge-status {
+        font-size: 0.68rem;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 6px;
+      }
+      .badge-date {
+        background: #3b1414;
+        color: #f8fafc;
+      }
+      .badge-status {
+        background: #475569;
+        color: #f8fafc;
+      }
+
+      .web-card-title {
+        font-family: "Syne", sans-serif;
+        font-size: 1rem;
+        font-weight: 800;
+        line-height: 1.3;
+        margin-bottom: 6px;
+        color: #ffffff;
+        text-transform: uppercase;
+      }
+      .web-card-desc {
+        font-size: 0.78rem;
+        color: #cbd5e1;
+        margin-bottom: 10px;
+        line-height: 1.4;
+      }
+      .web-card-loc {
+        font-size: 0.75rem;
+        color: #e2e8f0;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .web-berita-blur-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 14px;
+        border: 1px solid #e2e8f0;
+        filter: blur(4px);
+        opacity: 0.4;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      /* ================= MOCKUP INSTAGRAM VIEW ================= */
+      .ig-phone-view {
+        background: #ffffff;
+        color: #0f172a;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+      .ig-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 14px;
+        border-bottom: 1px solid #e2e8f0;
+        background: #ffffff;
+        flex-shrink: 0;
+      }
+      .ig-user {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .ig-username {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #0f172a;
+      }
+      .ig-follow {
+        font-size: 0.7rem;
+        background: #f1f5f9;
+        padding: 2px 8px;
+        border-radius: 6px;
+        border: 1px solid #cbd5e1;
+        color: #0f172a;
+        font-weight: 600;
+      }
+
+      .ig-image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 260px;
+        background: #f1f5f9;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .ig-image-wrapper img.bg-blur {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: blur(15px);
+        opacity: 0.3;
+      }
+      .ig-image-wrapper img.main-img {
+        position: relative;
+        z-index: 2;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+
+      .ig-footer-section {
+        background: #ffffff;
+        flex-shrink: 0;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 8px;
+      }
+      .ig-footer-actions {
+        padding: 8px 14px 4px 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .ig-action-icons {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        font-size: 1.15rem;
+      }
+      .ig-stats-text {
+        padding: 0 14px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #0f172a;
+      }
+      .ig-caption-box {
+        padding: 4px 14px 6px 14px;
+        font-size: 0.78rem;
+        line-height: 1.4;
+        color: #334155;
+      }
+
+      /* Figur Postingan Lain (Blur) di Bawah */
+      .ig-blur-bottom-feed {
+        padding: 12px 14px;
+        background: #f8fafc;
+        filter: blur(4px);
+        opacity: 0.4;
+        pointer-events: none;
+        user-select: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      /* Footer Navigasi Form */
+      .form-navigation-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        padding-top: 18px;
+        border-top: 1px solid #e2e8f0;
+        width: 100%;
+      }
+
+      .btn-gform {
+        padding: 10px 22px;
+        border-radius: 8px;
+        font-size: 0.88rem;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-gform-secondary {
+        background: #e2e8f0;
+        color: #475569;
+      }
+      .btn-gform-secondary:hover {
+        background: #cbd5e1;
+      }
+      .btn-gform-primary {
+        background: var(--primary-red);
+        color: #ffffff;
+        box-shadow: 0 4px 12px rgba(128, 0, 0, 0.2);
+      }
+      .btn-gform-primary:hover {
+        background: #600000;
+      }
+
+      /* ================= SUCCESS MODAL & ANIMATION ================= */
+      .success-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(5px);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 99999;
+        padding: 20px;
+      }
+      .success-box {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 40px 30px;
+        max-width: 450px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        animation: popUpSuccess 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      @keyframes popUpSuccess {
+        0% {
+          transform: scale(0.7);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .success-checkmark {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: #16a34a;
+        color: #fff;
+        font-size: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px auto;
+        box-shadow: 0 0 20px rgba(22, 163, 74, 0.4);
+        animation: bounceCheck 1s infinite alternate;
+      }
+      @keyframes bounceCheck {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-8px);
+        }
+      }
+      .success-box h2 {
+        font-size: 1.4rem;
+        color: #0f172a;
+        margin-bottom: 10px;
+        font-weight: 800;
+      }
+      .success-box p {
+        font-size: 0.9rem;
+        color: #475569;
+        line-height: 1.5;
+        margin-bottom: 25px;
+      }
+
+      @media screen and (max-width: 768px) {
+        body {
+          padding: 15px 10px;
+        }
+        .gform-body {
+          padding: 20px 16px;
+        }
+        .stepper-container {
+          padding: 16px 10px;
+        }
+        .phone-mockup {
+          width: 100%;
+          max-width: 340px;
+        }
+      }
+
+      /* ================= STYLING PRESISI LOGO & AVATAR ADMIN (ACARA) ================= */
+    .admin-logo-brand {
+      display: inline-flex;
+      align-items: center;
+      height: 32px;
+    }
+    .admin-logo-brand img {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .admin-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #800000;
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 800;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .admin-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    </style>
+  </head>
+  <body>
+    <main class="form-main-container">
+      <div class="top-action-bar">
+        <a href="index.html#agenda" class="btn-back-home">
+          <i class="fa-solid fa-arrow-left"></i> Batal & Kembali ke Beranda
+        </a>
+      </div>
+
+      <!-- STEPPER PROGRESS BAR (3 SESI) -->
+      <div class="stepper-container">
+        <div class="stepper-wrapper">
+          <div class="stepper-line-bg"></div>
+          <div class="stepper-line-progress" id="stepperProgress"></div>
+
+          <div class="step-item active" id="stepNode1">
+            <div class="step-node"></div>
+            <div class="step-label">Detail Acara</div>
+          </div>
+
+          <div class="step-item" id="stepNode2">
+            <div class="step-node"></div>
+            <div class="step-label">Poster & WA</div>
+          </div>
+
+          <div class="step-item" id="stepNode3">
+            <div class="step-node"></div>
+            <div class="step-label">Pratinjau</div>
+          </div>
+        </div>
+      </div>
+
+      <form id="formKirimAcara" onsubmit="submitAcaraToDatabase(event)">
+        <!-- ================= STEP 1: DETAIL ACARA ================= -->
+        <div class="form-step active" id="step1">
+          <div class="gform-card">
+            <div class="gform-header-banner">
+              <h1>1. DETAIL ACARA / AGENDA</h1>
+              <p>
+                Silakan isi form ini untuk mempublikasikan acaramu
+            . Pastikan data yang diisi benar ya!
+              </p>
+            </div>
+            <div class="gform-body">
+              <div class="question-box">
+                <div class="question-title">
+                  NAMA ORGANISASI / PENANGGUNG JAWAB
+                  <span class="required">*</span>
+                </div>
+                <input
+                  type="text"
+                  class="g-input"
+                  id="namaPenyelenggara"
+                  placeholder="Jawaban Anda"
+                  required
+                />
+              </div>
+
+              <div class="question-box">
+                <div class="question-title">
+                  JUDUL AGENDA / ACARA <span class="required">*</span>
+                </div>
+                <div class="question-subtitle">
+                  Gunakan nama yang menarik dan singkat
+                </div>
+                <input
+                  type="text"
+                  class="g-input"
+                  id="judulAcara"
+                  placeholder="Jawaban Anda"
+                  required
+                />
+              </div>
+
+              <div class="question-box">
+                <div class="question-title">
+                  WAKTU MULAI ACARA <span class="required">*</span>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    gap: 12px;
+                    flex-wrap: wrap;
+                    margin-top: 8px;
+                  "
+                >
+                  <input
+                    type="date"
+                    class="g-input"
+                    id="tanggalAcara"
+                    style="flex: 1; min-width: 160px"
+                    required
+                  />
+                  <input
+                    type="time"
+                    class="g-input"
+                    id="waktuAcara"
+                    style="flex: 1; min-width: 120px"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="question-box">
+                <div class="question-title">
+                  LOKASI ACARA <span class="required">*</span>
+                </div>
+                <input
+                  type="text"
+                  class="g-input"
+                  id="lokasiAcara"
+                  placeholder="Jawaban Anda"
+                  required
+                />
+              </div>
+
+              <div class="form-navigation-footer">
+                <div></div>
+                <button
+                  type="button"
+                  class="btn-gform btn-gform-primary"
+                  onclick="nextStep(2)"
+                >
+                  Berikutnya <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= STEP 2: DESKRIPSI, POSTER, GAMBAR PENDUKUNG & KONTAK ================= -->
+        <div class="form-step" id="step2">
+          <div class="gform-card">
+            <div class="gform-header-banner" style="background: #600000">
+              <h1>2. POSTER, GAMBAR PENDUKUNG & KONTAK</h1>
+              <p>
+                Lengkapi Deskripsi Seluruh Pertanyaan.
+              </p>
+            </div>
+            <div class="gform-body">
+              <div class="question-box">
+                <div class="question-title">
+                  DESKRIPSI SINGKAT ACARA <span class="required">*</span>
+                </div>
+                <textarea
+                  class="g-input"
+                  id="deskripsiAcara"
+                  placeholder="Jawaban Anda"
+                  required
+                ></textarea>
+              </div>
+
+              <!-- UPLOAD POSTER UTAMA (WAJIB, MAKSIMAL 1 FOTO) -->
+              <div class="question-box">
+                <div class="question-title">
+                  FOTO POSTER UTAMA ACARA <span class="required">*</span>
+                </div>
+                <div class="question-subtitle">
+                  Unggah 1 foto poster utama.
+                </div>
+                <label class="file-upload-box" for="filePoster">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                  <p>Klik untuk Tambahkan Poster Utama (Maks. 1 Foto)</p>
+                  <div class="file-name-preview" id="fileNamePreview">
+                    Belum ada file dipilih
+                  </div>
+                </label>
+                <input
+                  type="file"
+                  id="filePoster"
+                  style="display: none"
+                  accept="image/*"
+                  onchange="previewPosterName(this)"
+                  required
+                />
+              </div>
+
+              <!-- UPLOAD GAMBAR PENDUKUNG (TIDAK WAJIB / OPSIONAL, MAKSIMAL 10 FOTO, LIMIT 100GB) -->
+              <div class="question-box">
+                <div class="question-title">GAMBAR PENDUKUNG (OPSIONAL)</div>
+                <div class="question-subtitle">
+                  Boleh diisi atau tidak. Maksimal 10 foto.
+                </div>
+                <label class="file-upload-box" for="filePendukung">
+                  <i class="fa-solid fa-images"></i>
+                  <p>Klik untuk Tambahkan Gambar Pendukung (Maks. 10 Foto)</p>
+                  <div class="file-name-preview" id="filePendukungPreview">
+                    Belum ada file pendukung dipilih
+                  </div>
+                </label>
+                <input
+                  type="file"
+                  id="filePendukung"
+                  style="display: none"
+                  accept="image/*"
+                  multiple
+                  onchange="previewPendukungName(this)"
+                />
+              </div>
+
+              <div class="question-box">
+                <div class="question-title">
+                  NOMOR WHATSAPP <span class="required">*</span>
+                </div>
+                <div class="question-subtitle">
+                 
+                </div>
+                <input
+                  type="tel"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="g-input"
+                  id="whatsappPenyelenggara"
+                  placeholder="Jawaban Anda"
+                  oninput="validatePhone(this)"
+                  required
+                />
+                <div class="error-hint" id="phoneError">
+                  Nomor WhatsApp tidak valid!
+                </div>
+              </div>
+
+              <div class="form-navigation-footer">
+                <button
+                  type="button"
+                  class="btn-gform btn-gform-secondary"
+                  onclick="nextStep(1)"
+                >
+                  <i class="fa-solid fa-arrow-left"></i> Kembali
+                </button>
+                <button
+                  type="button"
+                  class="btn-gform btn-gform-primary"
+                  onclick="nextStep(3)"
+                >
+                  Lihat Pratinjau <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= STEP 3: PREVIEW SMARTPHONE (WEBSITE & INSTAGRAM) ================= -->
+      <div class="form-step" id="step3">
+        <div class="gform-card">
+          <div class="gform-header-banner" style="background: #4a0000">
+            <h1>3. PRATINJAU PUBLIKASI HP</h1>
+            <p>
+              Tampilan Acara Anda.
+            </p>
+          </div>
+          <div class="gform-body">
+            <div class="preview-tabs">
+              <button
+                type="button"
+                class="tab-btn active"
+                id="tabWebBtn"
+                onclick="switchPreview('web')"
+              >
+                <i class="fa-solid fa-globe"></i> Website
+              </button>
+              <button
+                type="button"
+                class="tab-btn"
+                id="tabIgBtn"
+                onclick="switchPreview('ig')"
+              >
+                <i class="fa-brands fa-instagram"></i> Instagram Feed
+              </button>
+            </div>
+
+            <!-- FRAME SMARTPHONE MOCKUP -->
+            <div class="phone-mockup">
+              <div class="phone-screen">
+                <!-- Status Bar dengan Jam Real-Time Dinamis & Konsisten -->
+                <div class="phone-status-bar" id="phoneStatusBar">
+                  <span id="realtimeClock">07:46</span>
+                  <div class="dynamic-island"></div>
+                  <div style="display: flex; gap: 4px; align-items: center">
+                    <i
+                      class="fa-solid fa-signal"
+                      style="font-size: 0.65rem"
+                    ></i>
+                    <i
+                      class="fa-solid fa-wifi"
+                      style="font-size: 0.65rem"
+                    ></i>
+                    <i
+                      class="fa-solid fa-battery-full"
+                      style="font-size: 0.75rem"
+                    ></i>
+                  </div>
+                </div>
+
+                <div class="phone-content">
+                  <!-- Preview View 1: Website Card KRS.info (Logo Diatur Admin Lewat URL) -->
+                  <div class="preview-pane active" id="previewWebPane">
+                    <div class="web-phone-view">
+                      <div class="web-nav-header">
+                        <div class="admin-logo-brand">
+                          <!-- 
+                            PENGATURAN LOGO ADMIN:
+                            - Ganti src="..." di bawah dengan URL gambar logo admin yang diinginkan.
+                          -->
+                          <img src="krs.png" alt="Logo KRS.info">
+                        </div>
+                        <i
+                          class="fa-solid fa-bars"
+                          style="color: #800000"
+                        ></i>
+                      </div>
+
+                      <div class="web-card-mockup">
+                        <div class="web-card-poster">
+                          <img
+                            id="prevWebImg"
+                            src="placeholder.jpg"
+                            alt="Poster Acara"
+                          />
+                        </div>
+                        <div class="web-card-badges">
+                          <span class="badge-date" id="prevWebDate"
+                            ><i class="fa-regular fa-calendar"></i> -</span
+                          >
+                          <span class="badge-status">AKAN DATANG</span>
+                        </div>
+                        <div class="web-card-title" id="prevWebTitle">
+                          JUDUL ACARA ANDA
+                        </div>
+                        <div class="web-card-desc" id="prevWebDesc">
+                          Deskripsi singkat acara akan tampil di sini...
+                        </div>
+                        <div class="web-card-loc" id="prevWebLoc">
+                          <i
+                            class="fa-solid fa-location-dot"
+                            style="color: #ef4444"
+                          ></i>
+                          Lokasi Acara
+                        </div>
+                      </div>
+
+                      <div class="web-berita-blur-card">
+                        <div
+                          style="
+                            height: 100px;
+                            background: #e2e8f0;
+                            border-radius: 8px;
+                            margin-bottom: 8px;
+                          "
+                        ></div>
+                        <div
+                          style="
+                            height: 14px;
+                            width: 80%;
+                            background: #cbd5e1;
+                            border-radius: 4px;
+                            margin-bottom: 6px;
+                          "
+                        ></div>
+                        <div
+                          style="
+                            height: 10px;
+                            width: 50%;
+                            background: #e2e8f0;
+                            border-radius: 4px;
+                          "
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Preview View 2: Instagram Feed (Avatar Profil Diatur Admin Lewat URL) -->
+                  <div class="preview-pane" id="previewIgPane">
+                    <div class="ig-phone-view">
+                      <div class="ig-header">
+                        <div class="ig-user">
+                          <div class="admin-avatar">
+                            <!-- 
+                              PENGATURAN FOTO PROFIL IG ADMIN:
+                              - Ganti src="..." di bawah dengan URL foto profil admin yang diinginkan.
+                            -->
+                            <img src="krsduwur.png" alt="Admin IG">
+                          </div>
+                          <span class="ig-username">krs.info_id</span>
+                        </div>
+                        <span class="ig-follow">Diikuti</span>
+                      </div>
+
+                      <div class="ig-image-wrapper">
+                        <img
+                          id="prevIgImgBlur"
+                          class="bg-blur"
+                          src="placeholder.jpg"
+                          alt="Background"
+                        />
+                        <img
+                          id="prevIgImg"
+                          class="main-img"
+                          src="placeholder.jpg"
+                          alt="Main Poster"
+                        />
+                      </div>
+
+                      <div class="ig-footer-section">
+                        <div class="ig-footer-actions">
+                          <div class="ig-action-icons">
+                            <i
+                              class="fa-solid fa-heart"
+                              style="color: #ef4444"
+                            ></i>
+                            <i
+                              class="fa-regular fa-comment"
+                              style="color: #0f172a"
+                            ></i>
+                            <i
+                              class="fa-regular fa-paper-plane"
+                              style="color: #0f172a"
+                            ></i>
+                          </div>
+                          <i
+                            class="fa-regular fa-bookmark"
+                            style="font-size: 1.15rem; color: #0f172a"
+                          ></i>
+                        </div>
+                        <div class="ig-stats-text">
+                          Disukai oleh
+                          <strong>Karangsari.culture</strong> dan
+                          <strong>2.000 lainnya</strong>
+                        </div>
+                        <div class="ig-caption-box">
+                          <strong>krs.info_id</strong>
+                          <span id="prevIgCaption"
+                            >Deskripsi acara akan dipublikasikan di
+                            sini...</span
+                          >
+                        </div>
+                      </div>
+
+                      <!-- Figur Postingan Lain (Blur) di Bawah Agar Tidak Kosong -->
+                      <div class="ig-blur-bottom-feed">
+                        <div
+                          style="display: flex; align-items: center; gap: 8px"
+                        >
+                          <div
+                            style="
+                              width: 24px;
+                              height: 24px;
+                              background: #cbd5e1;
+                              border-radius: 50%;
+                            "
+                          ></div>
+                          <div
+                            style="
+                              height: 10px;
+                              width: 100px;
+                              background: #cbd5e1;
+                              border-radius: 4px;
+                            "
+                          ></div>
+                        </div>
+                        <div
+                          style="
+                            height: 80px;
+                            background: #e2e8f0;
+                            border-radius: 6px;
+                          "
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="phone-home-indicator"></div>
+              </div>
+            </div>
+
+            <div class="form-navigation-footer">
+              <button
+                type="button"
+                class="btn-gform btn-gform-secondary"
+                onclick="nextStep(2)"
+              >
+                <i class="fa-solid fa-arrow-left"></i> Edit Data
+              </button>
+              <button
+                type="submit"
+                class="btn-gform btn-gform-primary"
+                id="btnSubmitAcara"
+                style="background: #059669"
+              >
+                <i class="fa-solid fa-paper-plane"></i> Kirim Acara Sekarang
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+    </main>
+
+    <!-- FOOTER HOLDER -->
+    <div id="footer-placeholder"></div>
+    <script>
+      fetch("footer.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("footer-placeholder").innerHTML = data;
+        });
+    </script>
+
+    <!-- MODAL ANIMASI SUKSES -->
+    <div class="success-overlay" id="successModal">
+      <div class="success-box">
+        <div class="success-checkmark">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h2>Agenda Berhasil Dikirim!</h2>
+        <p>
+          Acara Anda berhasil dikirim dan akan segera
+          dipublikasikan. Terima kasih!
+        </p>
+        <div style="font-size: 0.8rem; color: #64748b; margin-bottom: 15px">
+          Otomatis kembali ke beranda dalam
+          <span id="countdownRedirect">5</span> detik...
+        </div>
+        <a
+          href="index.html"
+          class="btn-gform btn-gform-primary"
+          style="width: 100%; justify-content: center"
+          >Kembali ke Beranda Sekarang</a
+        >
+      </div>
+    </div>
+
+    <!-- SCRIPT LOGIKA FORMULIR, PREVIEW & KONEKSI SPREADSHEET -->
+    <script>
+      const SCRIPT_URL_ACARA =
+        "https://script.google.com/macros/s/AKfycbw63ryU6Kr-CA5EUv9fIN4ytJM1jz3MCNJ_GtPp5LiSbPcHrZfxMbGztip7FtIeKNPGYw/exec";
+      let selectedPosterObjectURL = null;
+
+      // Jam Real-Time Dinamis pada Status Bar HP
+      function updateRealtimeClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+        const clockEl = document.getElementById("realtimeClock");
+        if (clockEl) {
+          clockEl.innerText = `${hours}:${minutes}`;
+        }
+      }
+      setInterval(updateRealtimeClock, 1000);
+      updateRealtimeClock();
+
+      // Fungsi Ganti Logo Brand di Kiri Atas Navbar Web
+      function updateCustomLogo(input) {
+        if (input.files && input.files[0]) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const brandText = document.getElementById("brandText");
+            const brandLogoImg = document.getElementById("brandLogoImg");
+            if (brandText) brandText.style.display = "none";
+            if (brandLogoImg) {
+              brandLogoImg.src = e.target.result;
+              brandLogoImg.style.display = "block";
+            }
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      // Fungsi Mengganti Foto Profil Instagram
+      function updateCustomAvatar(input) {
+        if (input.files && input.files[0]) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const spanText = document.getElementById("igAvatarText");
+            const imgTag = document.getElementById("igAvatarImg");
+            if (spanText) spanText.style.display = "none";
+            if (imgTag) {
+              imgTag.src = e.target.result;
+              imgTag.style.display = "block";
+            }
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      function updateStepperProgress(currentStep) {
+        const stepperProgress = document.getElementById("stepperProgress");
+        if (currentStep === 1) stepperProgress.style.width = "0%";
+        else if (currentStep === 2) stepperProgress.style.width = "50%";
+        else if (currentStep === 3) stepperProgress.style.width = "100%";
+
+        for (let i = 1; i <= 3; i++) {
+          const node = document.getElementById("stepNode" + i);
+          node.classList.remove("active", "completed");
+          if (i < currentStep) node.classList.add("completed");
+          else if (i === currentStep) node.classList.add("active");
+        }
+      }
+
+      function validatePhone(input) {
+        input.value = input.value.replace(/[^0-9]/g, "");
+        const errEl = document.getElementById("phoneError");
+        const len = input.value.length;
+
+        if (len > 0 && (len < 10 || len > 13)) {
+          input.classList.add("error");
+          errEl.style.display = "block";
+        } else {
+          input.classList.remove("error");
+          errEl.style.display = "none";
+        }
+      }
+
+      // Preview Poster Utama (Wajib, 1 Foto)
+      function previewPosterName(input) {
+        const preview = document.getElementById("fileNamePreview");
+        if (input.files && input.files[0]) {
+          preview.innerText = "Poster terpilih: " + input.files[0].name;
+          selectedPosterObjectURL = URL.createObjectURL(input.files[0]);
+        } else {
+          preview.innerText = "Belum ada file dipilih";
+          selectedPosterObjectURL = null;
+        }
+      }
+
+      // Preview Gambar Pendukung (Opsional, Maksimal 10 Foto)
+      function previewPendukungName(input) {
+        const preview = document.getElementById("filePendukungPreview");
+        if (input.files && input.files.length > 0) {
+          if (input.files.length > 10) {
+            alert(
+              "Maksimal gambar pendukung yang dapat diunggah adalah 10 foto!",
+            );
+            input.value = "";
+            preview.innerText = "Belum ada file pendukung dipilih";
+            return;
+          }
+          preview.innerText = `${input.files.length} gambar pendukung terpilih (Maks. 10 Foto)`;
+        } else {
+          preview.innerText = "Belum ada file pendukung dipilih";
+        }
+      }
+
+      function switchPreview(type) {
+        const tabWeb = document.getElementById("tabWebBtn");
+        const tabIg = document.getElementById("tabIgBtn");
+
+        tabWeb.classList.remove("active");
+        tabIg.classList.remove("active");
+        document
+          .querySelectorAll(".preview-pane")
+          .forEach((pane) => pane.classList.remove("active"));
+
+        if (type === "web") {
+          tabWeb.classList.add("active");
+          document.getElementById("previewWebPane").classList.add("active");
+        } else {
+          tabIg.classList.add("active");
+          document.getElementById("previewIgPane").classList.add("active");
+        }
+      }
+
+      function renderPreviewData() {
+        const judul = document.getElementById("judulAcara").value;
+        const tgl = document.getElementById("tanggalAcara").value;
+        const lokasi = document.getElementById("lokasiAcara").value;
+        const desc = document.getElementById("deskripsiAcara").value;
+
+        // Render Web Card Preview
+        document.getElementById("prevWebTitle").innerText =
+          judul || "JUDUL ACARA ANDA";
+        document.getElementById("prevWebDesc").innerText =
+          desc || "Deskripsi singkat acara...";
+        document.getElementById("prevWebLoc").innerHTML =
+          `<i class="fa-solid fa-location-dot" style="color: #ef4444;"></i> ${lokasi || "Lokasi Acara"}`;
+        document.getElementById("prevWebDate").innerHTML =
+          `<i class="fa-regular fa-calendar"></i> ${tgl || "Tanggal"}`;
+
+        // Render IG Post Preview Caption
+        document.getElementById("prevIgCaption").innerText =
+          (judul ? judul + " - " : "") + (desc || "Deskripsi singkat acara...");
+
+        if (selectedPosterObjectURL) {
+          document.getElementById("prevWebImg").src = selectedPosterObjectURL;
+          document.getElementById("prevIgImg").src = selectedPosterObjectURL;
+          document.getElementById("prevIgImgBlur").src =
+            selectedPosterObjectURL;
+        }
+      }
+
+      function nextStep(stepNumber) {
+        if (stepNumber === 2) {
+          const org = document.getElementById("namaPenyelenggara").value;
+          const judul = document.getElementById("judulAcara").value;
+          const tgl = document.getElementById("tanggalAcara").value;
+          const waktu = document.getElementById("waktuAcara").value;
+          const lokasi = document.getElementById("lokasiAcara").value;
+
+          if (!org || !judul || !tgl || !waktu || !lokasi) {
+            alert("Harap lengkapi seluruh pertanyaan wajib di halaman ini!");
+            return;
+          }
+        }
+
+        if (stepNumber === 3) {
+          const desc = document.getElementById("deskripsiAcara").value;
+          const filePoster = document.getElementById("filePoster");
+          const wa = document.getElementById("whatsappPenyelenggara").value;
+          const isPhoneValid = wa.length >= 10 && wa.length <= 13;
+
+          if (!desc || !filePoster.files[0] || !wa) {
+            alert(
+              "Harap lengkapi deskripsi, unggah poster utama, dan nomor WhatsApp!",
+            );
+            return;
+          }
+          if (!isPhoneValid) {
+            alert("Nomor WhatsApp tidak valid!");
+            return;
+          }
+
+          renderPreviewData();
+        }
+
+        document
+          .querySelectorAll(".form-step")
+          .forEach((el) => el.classList.remove("active"));
+        document.getElementById("step" + stepNumber).classList.add("active");
+        updateStepperProgress(stepNumber);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function submitAcaraToDatabase(e) {
+        e.preventDefault();
+
+        const btn = document.getElementById("btnSubmitAcara");
+        btn.disabled = true;
+        btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Mengirim Laporan...`;
+
+        const posterInput = document.getElementById("filePoster");
+        const pendukungInput = document.getElementById("filePendukung");
+
+        let allFiles = [];
+
+        // Proses Poster Utama
+        if (posterInput.files && posterInput.files[0]) {
+          const posterFile = posterInput.files[0];
+          const readerPoster = new FileReader();
+          readerPoster.readAsDataURL(posterFile);
+          readerPoster.onload = function () {
+            allFiles.push({
+              name: "POSTER_UTAMA_" + posterFile.name,
+              type: posterFile.type,
+              base64: readerPoster.result,
+            });
+
+            // Proses Gambar Pendukung jika ada
+            processPendukungFiles(pendukungInput.files, allFiles);
+          };
+        } else {
+          processPendukungFiles(pendukungInput.files, allFiles);
+        }
+      }
+
+      function processPendukungFiles(pendukungFiles, allFiles) {
+        if (pendukungFiles && pendukungFiles.length > 0) {
+          let processedCount = 0;
+          Array.from(pendukungFiles).forEach((file) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+              allFiles.push({
+                name: "PENDUKUNG_" + file.name,
+                type: file.type,
+                base64: reader.result,
+              });
+              processedCount++;
+              if (processedCount === pendukungFiles.length) {
+                sendToServer(allFiles);
+              }
+            };
+          });
+        } else {
+          sendToServer(allFiles);
+        }
+      }
+
+      function sendToServer(fileArray) {
+        const waktuLengkap =
+          document.getElementById("tanggalAcara").value +
+          " " +
+          document.getElementById("waktuAcara").value;
+
+        const payload = {
+          action: "submitAcara",
+          namaPenyelenggara: document.getElementById("namaPenyelenggara").value,
+          namaAcara: document.getElementById("judulAcara").value,
+          waktuAcara: waktuLengkap,
+          lokasiAcara: document.getElementById("lokasiAcara").value,
+          deskripsiAcara: document.getElementById("deskripsiAcara").value,
+          whatsapp: document.getElementById("whatsappPenyelenggara").value,
+          files: fileArray,
+        };
+
+        fetch(SCRIPT_URL_ACARA, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        })
+          .then(() => {
+            const successModal = document.getElementById("successModal");
+            successModal.style.display = "flex";
+
+            let countdown = 5;
+            const timerSpan = document.getElementById("countdownRedirect");
+
+            const interval = setInterval(() => {
+              countdown--;
+              if (timerSpan) timerSpan.innerText = countdown;
+              if (countdown <= 0) {
+                clearInterval(interval);
+                window.location.href = "index.html";
+              }
+            }, 1000);
+          })
+          .catch((err) => {
+            console.error(err);
+            alert("Terjadi kesalahan saat mengirim.");
+            const btn = document.getElementById("btnSubmitAcara");
+            btn.disabled = false;
+            btn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Kirim Acara Sekarang`;
+          });
+      }
+    </script>
+  </body>
+</html>
