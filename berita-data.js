@@ -1,5 +1,4 @@
 const DATABASE_BERITA = [
- 
   {
     id: 11,
     judul: "Warga Mexy Bawa Kreasi Tupai Ikut Serta Arak - arakan Karangsari 2026",
