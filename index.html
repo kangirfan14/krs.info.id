@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="krsduwur.png" />
     <title>KRS.info | #karangsarineweru</title>
-    <link rel="icon" type="image/png" href="/path-ke-gambar/favicon.png">
+    <link rel="icon" type="image/png" href="/path-ke-gambar/favicon.png" />
     <link rel="stylesheet" href="style.css" />
 
     <link
@@ -2667,211 +2667,6 @@
     </style>
   </head>
   <body>
-    <!-- POP-UP PEMBERITAHUAN PENGEMBANGAN -->
-    <div id="devPopupModal" class="popup-overlay">
-      <div class="popup-card">
-        <button
-          id="closeDevPopup"
-          class="popup-close-btn"
-          aria-label="Tutup Pop-up"
-        >
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-            />
-          </svg>
-        </button>
-
-        <div class="popup-icon-container">
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
-            />
-          </svg>
-        </div>
-
-        <h3>Informasi Pengembangan</h3>
-        <p>
-          Website ini sedang dalam tahap pengembangan. Beberapa fitur mungkin
-          belum sepenuhnya sempurna, harap cek secara berkala ya!
-        </p>
-
-        <button id="okDevPopup" class="popup-action-btn">Mengerti</button>
-      </div>
-    </div>
-
-    <style>
-      /* Backdrop Latar Belakang Gelap Transparan */
-      .popup-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-        z-index: 99999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        opacity: 0;
-        visibility: hidden;
-        transition:
-          opacity 0.3s ease,
-          visibility 0.3s ease;
-      }
-
-      .popup-overlay.show-popup {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      /* Kartu Kotak Pop-up */
-      .popup-card {
-        background: #ffffff;
-        width: 100%;
-        max-width: 400px;
-        border-radius: 20px;
-        padding: 30px 24px 24px 24px;
-        text-align: center;
-        position: relative;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        transform: scale(0.85);
-        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      }
-
-      .popup-overlay.show-popup .popup-card {
-        transform: scale(1);
-      }
-
-      /* Tombol Silang Pojok Kanan Atas */
-      .popup-close-btn {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: #f1f3f5;
-        border: none;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        color: #555555;
-        transition:
-          background 0.2s ease,
-          color 0.2s ease,
-          transform 0.2s ease;
-      }
-
-      .popup-close-btn:hover {
-        background: #8b0000;
-        color: #ffffff;
-        transform: scale(1.1);
-      }
-
-      .popup-close-btn svg {
-        width: 16px;
-        height: 16px;
-        fill: currentColor;
-      }
-
-      /* Ikon Peringatan Tengah */
-      .popup-icon-container {
-        width: 54px;
-        height: 54px;
-        background: rgba(139, 0, 0, 0.08);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 16px auto;
-        color: #8b0000;
-      }
-
-      .popup-icon-container svg {
-        width: 28px;
-        height: 28px;
-        fill: currentColor;
-      }
-
-      /* Teks Judul & Deskripsi */
-      .popup-card h3 {
-        font-family: "Fredoka", cursive, sans-serif;
-        font-size: 1.35rem;
-        color: #111111;
-        margin-bottom: 10px;
-      }
-
-      .popup-card p {
-        font-size: 0.93rem;
-        color: #555555;
-        line-height: 1.6;
-        margin-bottom: 24px;
-      }
-
-      /* Tombol Aksi Utama */
-      .popup-action-btn {
-        background: #8b0000;
-        color: #ffffff;
-        border: none;
-        width: 100%;
-        padding: 12px;
-        border-radius: 12px;
-        font-weight: 600;
-        font-size: 0.95rem;
-        cursor: pointer;
-        transition:
-          background 0.2s ease,
-          transform 0.2s ease;
-        box-shadow: 0 4px 12px rgba(139, 0, 0, 0.25);
-      }
-
-      .popup-action-btn:hover {
-        background: #a30000;
-        transform: translateY(-2px);
-      }
-    </style>
-
-    <script>
-      // Fungsi untuk menutup pop-up
-      function closePopup() {
-        const modal = document.getElementById("devPopupModal");
-        modal.classList.remove("show-popup");
-        // Menyimpan status agar pop-up tidak muncul terus-menerus di setiap klik halaman pada sesi yang sama
-        sessionStorage.setItem("devPopupClosed", "true");
-      }
-
-      // Event listener tombol silang dan tombol mengerti
-      document
-        .getElementById("closeDevPopup")
-        .addEventListener("click", closePopup);
-      document
-        .getElementById("okDevPopup")
-        .addEventListener("click", closePopup);
-
-      // Menutup pop-up jika pengguna mengklik area luar kotak putih (backdrop)
-      document
-        .getElementById("devPopupModal")
-        .addEventListener("click", function (e) {
-          if (e.target === this) {
-            closePopup();
-          }
-        });
-
-      // Menampilkan pop-up saat halaman dimuat jika belum pernah ditutup pada sesi ini
-      window.addEventListener("DOMContentLoaded", function () {
-        if (sessionStorage.getItem("devPopupClosed") !== "true") {
-          // Beri sedikit jeda agar animasi muncul mulus setelah halaman siap
-          setTimeout(() => {
-            document
-              .getElementById("devPopupModal")
-              .classList.add("show-popup");
-          }, 400);
-        }
-      });
-    </script>
-
     <nav class="navbar" id="mainNav">
       <div class="nav-container">
         <a href="#" class="nav-logo"> <img src="krs.png" alt="Logo" /> </a>
@@ -2879,11 +2674,11 @@
           <li><a href="#home">Beranda</a></li>
           <li><a href="#Berita">Berita</a></li>
           <li><a href="#agenda">Acara</a></li>
-          <li><a href="#kontak">Kontak</a></li>
+          <li><a href="#kuis">Kuis</a></li>
           <li>
             <a
               href="javascript:void(0);"
-              onclick="bukaModalProtokol('https://forms.gle/dTcjsJgK8dRCVYjZA')"
+              onclick="bukaModalProtokol('kirim-berita.html')"
               class="btn-kirim"
             >
               <i class="fa-solid fa-paper-plane"></i> Kirim Berita
@@ -2998,209 +2793,410 @@
       });
     </script>
 
-    <!-- ==================== SECTION: TENTANG KARANGSARI PREVIEW ==================== -->
-    <section id="tentang-preview" class="tentang-section">
-      <div class="tentang-container">
-        <!-- Kolom Kiri: Gambar Preview & Badge -->
-        <div class="tentang-img-box">
-          <img src="krsinfoimage (16).png" alt="Desa Karangsari" />
+    <!-- ==================== SECTION: TENTANG KARANGSARI PREVIEW (3 VIDEO SLIDER & FINGERPRINT) ==================== -->
+    <section id="tentang-preview" class="krs-tech-section">
+      <!-- Kotak Persegi Panjang Berwarna Putih dengan Shadow Bersih -->
+      <div class="krs-video-frame-container" id="krsVideoContainer">
+        <!-- Wadah 3 Video Slider Bergantian -->
+        <div class="krs-video-slider" id="krsVideoSlider">
+          <!-- Video 1 -->
+          <video
+            class="krs-bg-video active-video"
+            autoplay
+            muted
+            loop
+            playsinline
+          >
+            <source src="vkrs1.mp4" type="video/mp4" />
+            <img src="krsinfoimage (16).png" alt="Karangsari Background" />
+          </video>
+          <!-- Video 2 -->
+          <video class="krs-bg-video" autoplay muted loop playsinline>
+            <source src="vkrs2.mp4" type="video/mp4" />
+          </video>
+          <!-- Video 3 -->
+          <video class="krs-bg-video" autoplay muted loop playsinline>
+            <source src="vkrs3.mp4" type="video/mp4" />
+          </video>
         </div>
 
-        <!-- Kolom Kanan: Teks & Tombol ke karangsari.html -->
-        <div class="tentang-text-box">
-          <div class="badge-tag">TENTANG KARANGSARI</div>
-          <h2 class="tentang-title">
-            Mengenal Lebih Dekat <span>Desa Karangsari.</span>
-          </h2>
-          <p class="tentang-desc">
-            Lihat sejarah dan detail dari Desa Karangsari
-          </p>
-          <p class="tentang-desc"></p>
+        <div class="krs-bg-overlay"></div>
 
-          <!-- Tombol Menuju karangsari.html -->
-          <a href="karangsari.html" class="btn-selengkapnya">
-            Lihat Selengkapnya <i class="fa-solid fa-arrow-right"></i>
-          </a>
+        <!-- Teks Dinamis di Atas Video (Sejarah Singkat -> Karangsari Weru) -->
+        <div class="krs-video-hero-header" id="krsHeroHeader">
+          <h1 class="krs-tech-main-title" id="dynamicText">Sejarah Singkat</h1>
+        </div>
+
+        <!-- Tombol Fingerprint Proporsional Berbingkai Glass di Tengah Bawah -->
+        <div class="krs-floating-fingerprint-container">
+          <div class="krs-fingerprint-glass-badge">
+            <div
+              class="krs-fingerprint-btn"
+              id="fingerprintBtn"
+              onmousedown="startHold()"
+              onmouseup="cancelHold()"
+              onmouseleave="cancelHold()"
+              ontouchstart="startHold()"
+              ontouchend="cancelHold()"
+            >
+              <div class="krs-fingerprint-ring"></div>
+              <i class="fa-solid fa-fingerprint"></i>
+            </div>
+            <div class="krs-fingerprint-instruction">
+              <span class="krs-instruction-title" id="instructionText"
+                >Sentuh & Tahan</span
+              >
+              <span class="krs-instruction-sub"
+                >Untuk Lihat Sejarah Singkat</span
+              >
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== CSS STYLING SECTION ==================== -->
+    <!-- ==================== CSS STYLING ==================== -->
     <style>
-      .tentang-section {
-        padding: 80px 20px;
-        background-color: #fcfcfc;
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        box-sizing: border-box;
-      }
-
-      .tentang-container {
-        display: flex;
-        align-items: center;
-        gap: 50px;
-        max-width: 1100px;
-        width: 100%;
-      }
-
-      .tentang-img-box {
-        flex: 1;
+      .krs-tech-section {
         position: relative;
-        border-radius: 24px;
-        overflow: hidden;
-        border: 2px solid #800000;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-      }
-
-      .tentang-img-box img {
         width: 100%;
-        height: 400px;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.5s ease;
+        padding: 40px 20px;
+        background-color: transparent;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
       }
 
-      .tentang-img-box:hover img {
-        transform: scale(1.03);
+      /* Kotak Persegi Panjang Utama Berwarna Putih dengan Shadow Kontras */
+      .krs-video-frame-container {
+        position: relative;
+        max-width: 1150px;
+        width: 100%;
+        height: 520px;
+        background: #ffffff;
+        border-radius: 28px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 45px 35px;
+        box-shadow:
+          0 25px 60px rgba(11, 25, 44, 0.12),
+          0 0 0 1px rgba(0, 0, 0, 0.04);
       }
 
-      .img-badge {
+      /* Slider Video di dalam Kotak */
+      .krs-video-slider {
         position: absolute;
-        bottom: 20px;
-        left: 20px;
-        background: rgba(128, 0, 0, 0.85);
-        color: #ffffff;
-        padding: 8px 16px;
-        border-radius: 50px;
-        font-size: 13px;
-        font-weight: 600;
-        backdrop-filter: blur(5px);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
       }
 
-      .tentang-text-box {
-        flex: 1.2;
+      .krs-bg-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 1.2s ease-in-out;
       }
 
-      .badge-tag {
+      .krs-bg-video.active-video {
+        opacity: 1;
+      }
+
+      /* Overlay Gelap Agar Teks Sangat Kontras di Atas Video */
+      .krs-bg-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          rgba(11, 25, 44, 0.65) 0%,
+          rgba(11, 25, 44, 0.4) 100%
+        );
+        z-index: 2;
+      }
+
+      /* Header Teks Menimpa Video di Atas */
+      .krs-video-hero-header {
+        position: relative;
+        z-index: 3;
+        text-align: center;
+        margin: auto 0;
+      }
+
+      .krs-tech-sub-tag {
         display: inline-block;
-        background-color: rgba(128, 0, 0, 0.1);
-        color: #800000;
-        padding: 6px 14px;
-        border-radius: 50px;
+        font-family: monospace;
         font-size: 12px;
-        font-weight: 700;
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        padding: 4px 14px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        margin-bottom: 12px;
         letter-spacing: 1px;
-        margin-bottom: 15px;
       }
 
-      .tentang-title {
-        font-size: 36px;
-        font-weight: 800;
-        color: #0b192c;
-        line-height: 1.2;
-        margin-bottom: 20px;
+      .krs-tech-main-title {
+        font-size: 52px;
+        font-weight: 900;
+        color: #ffffff;
+        letter-spacing: -1px;
+        text-shadow: 0 4px 25px rgba(0, 0, 0, 0.7);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
       }
 
-      .tentang-title span {
-        color: #800000;
+      /* Tombol Fingerprint Proporsional Ukuran Jempol dengan Bingkai Glass */
+      .krs-floating-fingerprint-container {
+        position: relative;
+        z-index: 4;
+        width: 100%;
+        display: flex;
+        justify-content: center;
       }
 
-      .tentang-desc {
-        font-size: 15px;
-        color: #4b5563;
-        line-height: 1.7;
-        margin-bottom: 15px;
+      .krs-fingerprint-glass-badge {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(255, 255, 255, 1);
+        padding: 5px 14px 5px 5px;
+        border-radius: 50px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
       }
 
-      .btn-selengkapnya {
-        display: inline-flex;
+      .krs-fingerprint-btn {
+        position: relative;
+        width: 42px;
+        height: 42px;
+        background: linear-gradient(135deg, #800000 0%, #1a0000 100%);
+        border-radius: 50%;
+        display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        background: linear-gradient(135deg, #800000, #1a0000);
         color: #ffffff;
-        padding: 12px 28px;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 15px;
-        box-shadow: 0 4px 15px rgba(128, 0, 0, 0.25);
-        transition: transform 0.3s ease;
-        margin-top: 10px;
+        font-size: 17px;
+        cursor: pointer;
+        box-shadow: 0 3px 12px rgba(128, 0, 0, 0.4);
+        transition: transform 0.2s ease;
       }
 
-      .btn-selengkapnya:hover {
-        transform: translateY(-3px);
+      .krs-fingerprint-btn:active {
+        transform: scale(0.92);
       }
 
-      /* ==================== RESPONSIF MOBILE (< 768px) ==================== */
+      .krs-fingerprint-ring {
+        position: absolute;
+        inset: -3px;
+        border-radius: 50%;
+        border: 2px dashed #ffffff;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .krs-fingerprint-btn.scanning .krs-fingerprint-ring {
+        opacity: 1;
+        animation:
+          spinRing 1.5s linear infinite,
+          pulseGlowTech 0.8s ease-in-out infinite alternate;
+      }
+
+      @keyframes spinRing {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes pulseGlowTech {
+        0% {
+          box-shadow:
+            0 0 5px rgba(255, 255, 255, 0.5),
+            inset 0 0 4px rgba(128, 0, 0, 0.5);
+        }
+        100% {
+          box-shadow:
+            0 0 18px rgba(255, 255, 255, 0.9),
+            inset 0 0 10px rgba(128, 0, 0, 0.9);
+        }
+      }
+
+      .krs-fingerprint-instruction {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
+
+      .krs-instruction-title {
+        font-size: 11px;
+        font-weight: 700;
+        color: #0b192c;
+      }
+
+      .krs-instruction-sub {
+        font-size: 9.5px;
+        color: #64748b;
+      }
+
+      /* ==================== RESPONSIF MOBILE ==================== */
       @media screen and (max-width: 768px) {
-        .tentang-section {
-          padding: 40px 15px;
+        .krs-tech-section {
+          padding: 15px 10px;
         }
 
-        .tentang-container {
-          flex-direction: column;
-          gap: 25px;
+        .krs-video-frame-container {
+          height: 440px;
+          padding: 25px 15px;
+          border-radius: 20px;
         }
 
-        .tentang-img-box {
-          width: 100%;
-        }
-
-        .tentang-img-box img {
-          height: 250px;
-        }
-
-        .tentang-title {
-          font-size: 26px;
-          margin-bottom: 12px;
-        }
-
-        .tentang-desc {
-          font-size: 14px;
-          line-height: 1.6;
-        }
-
-        .btn-selengkapnya {
-          width: 100%;
+        .krs-tech-main-title {
+          font-size: 32px;
         }
       }
     </style>
 
+    <!-- ==================== SKRIP INTERAKTIF (3 VIDEO ROTATOR, TEXT ROTATOR & FINGERPRINT) ==================== -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Rotasi Teks Secara Berkala (Sejarah Singkat <-> Karangsari Weru)
+        const titleElem = document.getElementById("dynamicText");
+        const texts = ["Sejarah Singkat", "Karangsari Weru"];
+        let textIndex = 0;
+
+        setInterval(() => {
+          titleElem.style.opacity = 0;
+          titleElem.style.transform = "translateY(-10px)";
+
+          setTimeout(() => {
+            textIndex = (textIndex + 1) % texts.length;
+            titleElem.innerText = texts[textIndex];
+            titleElem.style.opacity = 1;
+            titleElem.style.transform = "translateY(0)";
+          }, 400);
+        }, 3500);
+
+        // Rotasi 3 Video Latar Belakang Secara Berkala Otomatis
+        const videos = document.querySelectorAll(".krs-bg-video");
+        let videoIndex = 0;
+
+        if (videos.length > 0) {
+          setInterval(() => {
+            videos[videoIndex].classList.remove("active-video");
+            videoIndex = (videoIndex + 1) % videos.length;
+            videos[videoIndex].classList.add("active-video");
+          }, 6000); // Berganti video tiap 6 detik
+        }
+      });
+
+      // Logika Fingerprint Scan Hold untuk Masuk ke karangsari.html
+      let holdTimer;
+      const holdDuration = 1400; // 1.4 detik
+
+      function startHold() {
+        const btn = document.getElementById("fingerprintBtn");
+        const txt = document.getElementById("instructionText");
+
+        btn.classList.add("scanning");
+        txt.innerText = "Memverifikasi Akses...";
+
+        holdTimer = setTimeout(() => {
+          txt.innerText = "Akses Diterima! Memuat...";
+          btn.style.background = "#10b981";
+
+          setTimeout(() => {
+            window.location.href = "karangsari.html";
+          }, 500);
+        }, holdDuration);
+      }
+
+      function cancelHold() {
+        clearTimeout(holdTimer);
+        const btn = document.getElementById("fingerprintBtn");
+        const txt = document.getElementById("instructionText");
+
+        btn.classList.remove("scanning");
+        txt.innerText = "Sentuh & Tahan";
+        btn.style.background = "";
+      }
+    </script>
+
     <!-- ==================== SECTION STATISTIK DESA KARANGSARI ==================== -->
     <section id="statistik-desa" class="krs-stats-section">
-      <div class="krs-stats-wrapper">
-        <!-- Judul Section (Proporsional, tidak kapital semua) -->
-        <div class="krs-stats-header">
-          <h2>Penduduk & Luas Wilayah</h2>
-        </div>
+      <!-- Wadah Scan Lokal Khusus Section Ini -->
+      <div class="krs-scan-container" id="krsScanContainer">
+        <div class="krs-scanner-beam" id="krsScanBeam"></div>
 
-        <!-- Wadah Kotak Statistik -->
-        <div class="krs-stats-grid">
-          <!-- Kotak 1: Jumlah Penduduk -->
-          <div class="krs-glass-card">
-            <div class="krs-stat-number">
-              <span class="krs-counter" data-target="7617">0</span
-              ><span class="krs-symbol">+</span>
+        <div class="krs-stats-wrapper">
+          <!-- Judul Section & Tombol Perbarui Sejajar di Kanan Atas -->
+          <div class="krs-stats-header">
+            <h2>Penduduk & Luas Wilayah</h2>
+
+            <div class="data-update-badge">
+              <i class="fa-solid fa-circle status-dot"></i>
+              <span id="txt-update-stat"
+                >Data diperbarui <strong id="year-stat">2025</strong></span
+              >
+              <button
+                class="btn-reload-data"
+                onclick="triggerStatLocalScan()"
+                title="Cek Pembaruan Data"
+              >
+                <i class="fa-solid fa-rotate-right" id="icon-reload-stat"></i>
+              </button>
+              <div
+                class="info-icon-wrapper"
+                onclick="toggleTooltip(event, 'tooltipStat')"
+              >
+                <i class="fa-solid fa-circle-info"></i>
+                <div class="info-tooltip" id="tooltipStat">
+                  Data resmi diambil dari pemerintah Desa Karangsari pada tahun
+                  2025 oleh pihak KRS.info dengan bantuan Karangsari Culture.
+                </div>
+              </div>
             </div>
-            <div class="krs-card-sub">Jiwa</div>
           </div>
 
-          <!-- Kotak 2: Luas Wilayah -->
-          <div class="krs-glass-card">
-            <div class="krs-stat-number">
-              <span class="krs-symbol-prefix">±</span
-              ><span class="krs-counter" data-target="120">0</span>
+          <!-- Wadah Kotak Statistik -->
+          <div class="krs-stats-grid">
+            <!-- Kotak 1: Jumlah Penduduk -->
+            <div class="krs-glass-card">
+              <div class="krs-stat-number">
+                <span class="krs-counter" data-target="7617">0</span
+                ><span class="krs-symbol">+</span>
+              </div>
+              <div class="krs-card-sub">Jiwa</div>
             </div>
-            <div class="krs-card-sub">Hektar</div>
+
+            <!-- Kotak 2: Luas Wilayah -->
+            <div class="krs-glass-card">
+              <div class="krs-stat-number">
+                <span class="krs-symbol-prefix">±</span
+                ><span class="krs-counter" data-target="120">0</span>
+              </div>
+              <div class="krs-card-sub">Hektar</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Styling Efek Kaca iOS & Tipografi Proporsional -->
+    <!-- Styling Efek Kaca iOS, Tipografi Proporsional, & Tata Letak Header -->
     <style>
       .krs-stats-section,
       .krs-stats-section * {
@@ -3215,30 +3211,192 @@
         margin: 20px 0;
       }
 
+      /* Wadah Scan Lokal */
+      .krs-scan-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        padding: 10px;
+      }
+
+      .krs-scanner-beam {
+        position: absolute;
+        left: 0;
+        top: -100px;
+        width: 100%;
+        height: 60px;
+        background: linear-gradient(
+          to bottom,
+          rgba(16, 185, 129, 0),
+          rgba(16, 185, 129, 0.4),
+          rgba(52, 211, 153, 0.8),
+          #ffffff
+        );
+        box-shadow:
+          0 4px 15px rgba(16, 185, 129, 0.8),
+          0 0 30px rgba(52, 211, 153, 0.6);
+        z-index: 99;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      .krs-scanner-beam.active-scan {
+        opacity: 1;
+        animation: scanStatLocal 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+
+      @keyframes scanStatLocal {
+        0% {
+          top: -60px;
+        }
+        100% {
+          top: 100%;
+        }
+      }
+
       .krs-stats-wrapper {
-        max-width: 580px;
+        max-width: 680px;
         margin: 0 auto;
         text-align: center;
       }
 
-      /* Judul Proporsional (Capitalize, tidak uppercase semua) */
+      /* Header: Judul di Kiri dan Tombol Perbarui Sejajar Persis di Kanan */
+      .krs-stats-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        gap: 15px;
+      }
+
+      /* Judul Proporsional */
       .krs-stats-header h2 {
         font-family: "Syne", sans-serif, system-ui;
-        font-size: 1.9rem;
+        font-size: 1.8rem;
         font-weight: 800;
         text-transform: none;
         letter-spacing: -0.5px;
-        margin: 0 0 6px 0;
+        margin: 0;
         color: #0f172a;
         line-height: 1.2;
+        text-align: left;
+        white-space: nowrap;
       }
 
-      .krs-stats-header p {
-        font-size: 13px;
+      /* Gaya Badge Indikator & Tombol Reload */
+      .data-update-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        padding: 5px 10px;
+        border-radius: 20px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        font-size: 11.5px;
         color: #64748b;
-        margin: 0 auto 24px auto;
-        max-width: 380px;
-        line-height: 1.4;
+        font-weight: 600;
+        user-select: none;
+        position: relative;
+        flex-shrink: 0;
+      }
+
+      .data-update-badge i.status-dot {
+        font-size: 7px;
+        color: #10b981;
+      }
+
+      .btn-reload-data {
+        background: rgba(128, 0, 0, 0.06);
+        border: 1px solid rgba(128, 0, 0, 0.2);
+        color: #800000;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 10px;
+        transition: all 0.25s ease;
+        outline: none;
+      }
+
+      .btn-reload-data:hover {
+        background: #800000;
+        color: #ffffff;
+        transform: rotate(180deg);
+      }
+
+      .btn-reload-data.spin-anim {
+        animation: spinReload 0.8s linear infinite;
+      }
+
+      @keyframes spinReload {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Styling Ikon Informasi (I Bunder) & Tooltip di Bawah */
+      .info-icon-wrapper {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #64748b;
+        font-size: 12px;
+        width: 17px;
+        height: 17px;
+        border-radius: 50%;
+        background: #f1f5f9;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+
+      .info-icon-wrapper:hover {
+        background: #800000;
+        color: #ffffff;
+      }
+
+      .info-tooltip {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        width: 250px;
+        background: #0f172a;
+        color: #ffffff;
+        padding: 10px 12px;
+        border-radius: 8px;
+        font-size: 11px;
+        line-height: 1.5;
+        font-weight: 400;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.25s ease;
+        pointer-events: none;
+        text-align: left;
+      }
+
+      .info-tooltip::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        right: 12px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent #0f172a transparent;
+      }
+
+      .info-icon-wrapper:hover .info-tooltip,
+      .info-tooltip.show-tooltip {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
       }
 
       /* Grid 2 Kolom */
@@ -3312,10 +3470,24 @@
         margin-top: 6px;
       }
 
-      /* Responsif Mobile */
-      @media screen and (max-width: 600px) {
+      /* Responsif Mobile agar tetap rapi berdampingan atau menyesuaikan layar kecil */
+      @media screen and (max-width: 650px) {
         .krs-stats-section {
-          padding: 30px 16px;
+          padding: 30px 12px;
+        }
+        .krs-stats-header {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          gap: 8px;
+        }
+        .krs-stats-header h2 {
+          font-size: 1.25rem;
+          white-space: normal;
+        }
+        .data-update-badge {
+          padding: 4px 8px;
+          font-size: 10px;
         }
         .krs-stats-grid {
           grid-template-columns: 1fr;
@@ -3323,41 +3495,99 @@
           max-width: 260px;
           margin: 0 auto;
         }
-        .krs-stats-header h2 {
-          font-size: 1.5rem;
-        }
         .krs-stat-number {
           font-size: 2.2rem;
         }
       }
     </style>
 
-    <!-- Skrip Animasi Counter Angka -->
+    <!-- Skrip Animasi Counter Angka & Tombol Perbarui Lokal -->
     <script>
+      const YEAR_STAT = "2025";
+
       document.addEventListener("DOMContentLoaded", function () {
-        const counters = document.querySelectorAll(".krs-counter");
-        let animated = false;
+        if (document.getElementById("year-stat")) {
+          document.getElementById("year-stat").innerText = YEAR_STAT;
+        }
+        initStatSection();
+      });
 
-        function runCounters() {
-          counters.forEach((counter) => {
-            const target = +counter.getAttribute("data-target");
-            let count = 0;
-            const speed = target / 45;
+      // Fungsi Tooltip Klik (Mobile) & Klik Sembarang
+      function toggleTooltip(event, tooltipId) {
+        event.stopPropagation();
+        const targetTooltip = document.getElementById(tooltipId);
 
-            function updateCount() {
-              count += speed;
-              if (count < target) {
-                counter.innerText = Math.floor(count).toLocaleString("id-ID");
-                setTimeout(updateCount, 30);
-              } else {
-                counter.innerText = target.toLocaleString("id-ID");
-              }
-            }
-            updateCount();
-          });
+        document.querySelectorAll(".info-tooltip").forEach((tip) => {
+          if (tip.id !== tooltipId) tip.classList.remove("show-tooltip");
+        });
+
+        if (targetTooltip) {
+          targetTooltip.classList.toggle("show-tooltip");
+        }
+      }
+
+      document.addEventListener("click", function () {
+        document.querySelectorAll(".info-tooltip").forEach((tip) => {
+          tip.classList.remove("show-tooltip");
+        });
+      });
+
+      // Fungsi Scan Lokal Hanya untuk Section Ini
+      function triggerStatLocalScan() {
+        const beamElem = document.getElementById("krsScanBeam");
+        const iconElem = document.getElementById("icon-reload-stat");
+        const txtElem = document.getElementById("txt-update-stat");
+
+        if (!beamElem || !iconElem) return;
+
+        iconElem.classList.add("spin-anim");
+        beamElem.classList.remove("active-scan");
+        void beamElem.offsetWidth; // Force Reflow
+        beamElem.classList.add("active-scan");
+
+        if (txtElem) {
+          txtElem.innerHTML = `<span style="color: #10b981;"><i class="fa-solid fa-arrows-rotate fa-spin"></i> Memeriksa...</span>`;
         }
 
+        setTimeout(() => {
+          iconElem.classList.remove("spin-anim");
+          beamElem.classList.remove("active-scan");
+
+          if (txtElem) {
+            txtElem.innerHTML = `<span style="color: #10b981; font-weight:700;"><i class="fa-solid fa-check"></i> Selesai Diperbarui</span>`;
+
+            setTimeout(() => {
+              txtElem.innerHTML = `Data diperbarui <strong>${YEAR_STAT}</strong>`;
+            }, 1800);
+          }
+
+          runCounters();
+        }, 1200);
+      }
+
+      function runCounters() {
+        const counters = document.querySelectorAll(".krs-counter");
+        counters.forEach((counter) => {
+          const target = +counter.getAttribute("data-target");
+          let count = 0;
+          const speed = Math.max(target / 45, 1);
+
+          function updateCount() {
+            count += speed;
+            if (count < target) {
+              counter.innerText = Math.floor(count).toLocaleString("id-ID");
+              setTimeout(updateCount, 30);
+            } else {
+              counter.innerText = target.toLocaleString("id-ID");
+            }
+          }
+          updateCount();
+        });
+      }
+
+      function initStatSection() {
         const statsSection = document.getElementById("statistik-desa");
+        let animated = false;
         if (statsSection) {
           const observer = new IntersectionObserver(
             (entries, observer) => {
@@ -3371,575 +3601,929 @@
             },
             { threshold: 0.3 },
           );
-
           observer.observe(statsSection);
         }
-      });
+      }
     </script>
 
-    <style>
-      /* Section Preview Krs.info - Spacing Proporsional */
-      .preview-section {
-        min-height: auto;
-        padding: 40px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #f4f4f4;
-        box-sizing: border-box;
-      }
 
-      .preview-container {
-        position: relative;
-        width: 100%;
-        max-width: 950px;
-        margin: 20px auto;
-        border-radius: 28px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 
-        /* Animasi Fade saat pertama di-scroll */
-        opacity: 0;
-        transform: translateY(30px);
-        transition:
-          opacity 0.8s ease-out,
-          transform 0.8s ease-out;
-      }
 
-      .preview-container.fade-in {
-        opacity: 1;
-        transform: translateY(0);
-      }
 
-      /* Animasi Kotak Bergetar/Goyang Berkala */
-      .preview-container.box-shake {
-        animation: containerShake 0.8s ease-in-out;
-      }
+<!-- ==================== SECTION MELU KUIS INTERAKTIF (HALAMAN DEPAN) ==================== -->
+<section id="kuis" class="kuis-interactive-section">
+  <div class="kuis-container">
+    
+    <!-- Judul Utama (Merah Darah & Hitam) -->
+    <div class="kuis-header-text">
+      <h2 class="kuis-main-title">
+        <span class="highlight-blood-red">Seberapa Karangsari</span> <span class="text-black">Kamu?</span>
+      </h2>
+      <p class="kuis-sub-title">Meluan Kuise Wong Karangsari</p>
+    </div>
 
-      @keyframes containerShake {
-        0%,
-        100% {
-          transform: translateY(0) rotate(0deg);
+    <!-- Galeri Gambar Interaktif -->
+    <div class="kuis-gallery-container">
+      
+      <!-- 
+        PENGATURAN GAMBAR & TEKS ADMIN:
+        - Ganti URL di dalam src="..." untuk mengubah gambar.
+        - Ganti teks di dalam <span class="card-title">...</span> untuk mengubah keterangan.
+      -->
+      <div class="kuis-img-card" onclick="toggleImageCard(this)">
+        <img src="ndul1.png" alt="Kuis Karangsari 1">
+        <div class="kuis-img-overlay">
+        </div>
+      </div>
+
+      <div class="kuis-img-card" onclick="toggleImageCard(this)">
+        <img src="kamu1.png" alt="Kuis Karangsari 2">
+        <div class="kuis-img-overlay">
+        </div>
+      </div>
+
+      <div class="kuis-img-card" onclick="toggleImageCard(this)">
+        <img src="buto.png" alt="Kuis Karangsari 3">
+        <div class="kuis-img-overlay">
+         
+        </div>
+      </div>
+
+      <div class="kuis-img-card" onclick="toggleImageCard(this)">
+        <img src="kamu2.png" alt="Kuis Karangsari 4">
+        <div class="kuis-img-overlay">
+        </div>
+      </div>
+
+      <div class="kuis-img-card" onclick="toggleImageCard(this)">
+        <img src="gondrong.png" alt="Kuis Karangsari 5">
+        <div class="kuis-img-overlay">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tombol Utama di Bawah -->
+    <div class="kuis-action-wrap">
+      <a href="melu-kuis.html" class="btn-meluan-kuise">
+        <i class="fa-solid fa-gamepad"></i> Meluan Kuise <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== STYLING CSS IDENTIK & PROPOSIONAL ==================== -->
+<style>
+  .kuis-interactive-section {
+    width: 100%;
+    padding: 70px 20px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .kuis-container {
+    max-width: 1050px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .kuis-header-text {
+    text-align: center;
+  }
+
+  .kuis-main-title {
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.5px;
+  }
+
+  .highlight-blood-red {
+    color: #800000;
+  }
+
+  .text-black {
+    color: #0f172a;
+  }
+
+  .kuis-sub-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #334155;
+    margin: 0;
+  }
+
+  /* Galeri Accordion Flexbox (Sama persis di Desktop & Mobile) */
+  .kuis-gallery-container {
+    display: flex;
+    flex-direction: row; /* Selalu berdiri sejajar horizontal */
+    gap: 12px;
+    width: 100%;
+    height: 400px;
+    box-sizing: border-box;
+  }
+
+  .kuis-img-card {
+    flex: 1; /* Posisi default mengecil & seimbang */
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    background-color: #e2e8f0;
+    transition: flex 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Menjaga rasio & ketajaman resolusi gambar */
+  .kuis-img-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  /* Overlay Gradien & Teks Keterangan */
+  .kuis-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.05) 60%);
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+  }
+
+  .card-title {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    transform: translateY(12px);
+    transition: transform 0.35s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Status Aktif saat Diklik (Membesar 3.8x lipat) */
+  .kuis-img-card.active {
+    flex: 3.8;
+  }
+
+  .kuis-img-card.active .kuis-img-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .kuis-img-card.active .card-title {
+    transform: translateY(0);
+  }
+
+  .kuis-img-card:hover img {
+    transform: scale(1.03);
+  }
+
+  /* Tombol Meluan Kuise */
+  .kuis-action-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .btn-meluan-kuise {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #800000 0%, #b91c1c 100%);
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 15px 40px;
+    border-radius: 14px;
+    text-decoration: none;
+    box-shadow: 0 8px 22px rgba(128, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-meluan-kuise:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(128, 0, 0, 0.4);
+    filter: brightness(1.05);
+  }
+
+  /* Penyesuaian Responsif Mobile (Animasi & Perilaku Tetap Sama Persis dengan Desktop) */
+  @media screen and (max-width: 768px) {
+    .kuis-interactive-section {
+      padding: 40px 14px;
+    }
+
+    .kuis-main-title {
+      font-size: 1.7rem;
+    }
+
+    .kuis-sub-title {
+      font-size: 1.05rem;
+    }
+
+    .kuis-gallery-container {
+      height: 300px; /* Tinggi disesuaikan agar proporsional di layar HP */
+      gap: 6px;
+    }
+
+    .kuis-img-card {
+      border-radius: 12px;
+    }
+
+    .kuis-img-overlay {
+      padding: 12px;
+    }
+
+    .card-title {
+      font-size: 0.85rem;
+    }
+
+    .btn-meluan-kuise {
+      width: 100%;
+      justify-content: center;
+      padding: 13px 24px;
+      font-size: 0.95rem;
+    }
+  }
+</style>
+
+<!-- ==================== SKRIP INTERAKTIF KLIK GAMBAR ==================== -->
+<script>
+  function toggleImageCard(selectedCard) {
+    const isActive = selectedCard.classList.contains('active');
+    
+    // Hapus kelas active dari semua kartu terlebih dahulu
+    document.querySelectorAll('.kuis-img-card').forEach(card => {
+      card.classList.remove('active');
+    });
+
+    // Jika gambar yang diklik tadinya belum aktif, jadikan aktif (membesar & teks muncul). 
+    // Jika tadinya sudah aktif, biarkan tertutup (mengecil & teks tersembunyi).
+    if (!isActive) {
+      selectedCard.classList.add('active');
+    }
+  }
+</script>
+ 
+
+
+
+
+   <!-- ==================== START: SECTION BERITA & INFORMASI TERKINI ==================== -->
+<section id="Berita" class="latest-news-section">
+  <div class="news-container">
+    <!-- Kolom Kiri: Judul, Deskripsi, Tombol Aksi, & Statistik -->
+    <div class="news-left-content">
+      <div class="badge-update">
+        <i class="fa-solid fa-tag"></i> Update Terbaru
+      </div>
+
+      <h2 class="news-main-title">Berita & Informasi Terkini</h2>
+
+      <p class="news-description">
+        Ikuti perkembangan terbaru dan berbagai kegiatan di Karangsari.
+      </p>
+
+      <!-- Container Tombol Aksi Sejajar & Seragam -->
+      <div class="news-action-buttons">
+        <a href="#SemuaBerita" class="btn-explore">
+          Jelajahi Berita <i class="fa-solid fa-arrow-right-long"></i>
+        </a>
+
+        <a
+          href="javascript:void(0);"
+          onclick="bukaModalProtokol('kirim-berita.html')"
+          id="btnKirimBerita"
+        >
+          <i class="fa-solid fa-paper-plane"></i> Kirim Berita
+        </a>
+      </div>
+
+      <div class="news-divider"></div>
+
+      <!-- Statistik Dinamis -->
+      <div class="news-stats">
+        <div class="stat-item">
+          <span class="stat-number" id="statTotalBerita">0+</span>
+          <span class="stat-label">Total Berita</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="statTotalKategori">0</span>
+          <span class="stat-label">Kategori</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="currentYearStat">2026</span>
+          <span class="stat-label">Tahun Ini</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kolom Kanan: Preview 1 Berita Unggulan Teratas -->
+    <div class="news-right-preview" id="previewBeritaContainer">
+      <div class="news-card-preview">
+        <div
+          class="news-image-wrapper"
+          style="
+            background: #fee2e2;
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #dc2626;
+            font-size: 0.9rem;
+            font-weight: 600;
+          "
+        >
+          <span>Memuat berita terbaru...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ==================== END: SECTION BERITA TERKINI ==================== -->
+
+
+<!-- ==================== START: SECTION SEMUA BERITA (DENGAN PENCARIAN, FILTER, & PAGINATION) ==================== -->
+<section id="SemuaBerita" class="all-news-section">
+  <div class="all-news-container">
+    
+    <!-- Header Flex: Judul di Kiri, Kolom Cari & Filter Kategori di Kanan -->
+    <div class="section-header-flex">
+      <div class="header-left-info">
+        <h2 class="all-news-title">Semua Berita</h2>
+        <p class="all-news-subtitle" id="totalBeritaInfo">
+          Memuat jumlah berita...
+        </p>
+      </div>
+
+      <!-- Kolom Pencarian & Filter Kategori -->
+      <div class="news-filter-search-box">
+        <!-- Input Pencarian Teks -->
+        <div class="search-input-wrap">
+          <i class="fa-solid fa-magnifying-glass search-icon" id="iconSearch"></i>
+          <input 
+            type="text" 
+            id="inputCariBerita" 
+            placeholder="Cari berita..." 
+            autocomplete="off"
+          />
+        </div>
+
+        <!-- Filter Dropdown Kategori (Diisi Otomatis via JS dari berita-data.js) -->
+        <div class="filter-select-wrap">
+          <select id="selectKategoriBerita">
+            <option value="ALL">Semua Kategori</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid Kartu Berita (Maksimal 8 Kartu per Halaman: 4 Atas & 4 Bawah di Desktop) -->
+    <div class="all-news-grid-8" id="gridSemuaBerita">
+      <!-- Di-render secara otomatis oleh JS -->
+    </div>
+
+    <!-- Navigasi Angka Halaman (Pagination) -->
+    <div class="news-pagination-wrap" id="paginationContainer">
+      <!-- Angka-angka 1, 2, 3... akan dibuat otomatis oleh JS -->
+    </div>
+
+  </div>
+</section>
+<!-- ==================== END: SECTION SEMUA BERITA ==================== -->
+
+
+
+
+
+<!-- ==================== CSS STYLING LENGKAP, PRESISI & RESPONSIF ==================== -->
+<style>
+  /* Header Flex Layout (Pencarian & Judul Sejajar) */
+  .section-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .news-filter-search-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .search-input-wrap {
+    position: relative;
+    min-width: 240px;
+  }
+
+  .search-input-wrap input {
+    width: 100%;
+    padding: 10px 16px 10px 40px;
+    border-radius: 50px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+  }
+
+  .search-input-wrap input:focus {
+    border-color: #800000;
+    box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.12);
+  }
+
+  .search-input-wrap .search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #64748b;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+
+  .filter-select-wrap select {
+    padding: 10px 18px;
+    border-radius: 50px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.88rem;
+    color: #0f172a;
+    background-color: #ffffff;
+    outline: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.25s ease;
+  }
+
+  .filter-select-wrap select:focus {
+    border-color: #800000;
+  }
+
+  /* Grid 8 Kartu Berita (Presisi & Mengunci Tinggi agar Pagination Tetap Diam di Bawah) */
+  .all-news-grid-8 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    min-height: 840px; /* Menjaga ruang grid tetap utuh meski isi berita kurang dari 8 */
+    align-content: start;
+  }
+
+  .news-card-item {
+    background: #ffffff;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px; /* Tinggi kartu stabil dan rata */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .news-card-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(128, 0, 0, 0.12);
+  }
+
+  .news-card-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+
+  .news-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* FIX BADGE KATEGORI: Rapi, Presisi & Mengambang di Pojok Kiri Bawah Foto */
+  .news-card-tag {
+    position: absolute !important;
+    bottom: 12px !important;
+    left: 12px !important;
+    top: auto !important;
+    right: auto !important;
+    background: #dc2626 !important; /* Merah cerah presisi */
+    color: #ffffff !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    padding: 5px 14px !important;
+    border-radius: 8px !important;
+    text-transform: none !important;
+    letter-spacing: 0.2px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18) !important;
+    z-index: 5 !important;
+    width: auto !important;
+    height: auto !important;
+    display: inline-block !important;
+    line-height: normal !important;
+  }
+
+  .news-card-body {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+
+  .news-card-heading {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.35;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .news-card-text {
+    font-size: 0.82rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .news-card-date-info {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .btn-baca-selengkapnya {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #800000;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .btn-baca-selengkapnya:hover {
+    color: #b91c1c;
+  }
+
+  /* Styling Pagination Nomor (Diam Tetap di Bawah) */
+  .news-pagination-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 35px;
+    padding-top: 15px;
+    clear: both;
+    flex-wrap: wrap;
+  }
+
+  .page-num-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    color: #334155;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+  }
+
+  .page-num-btn:hover {
+    background: #fee2e2;
+    color: #800000;
+    border-color: #fca5a5;
+  }
+
+  .page-num-btn.active {
+    background: #800000;
+    color: #ffffff;
+    border-color: #800000;
+    box-shadow: 0 4px 12px rgba(128, 0, 0, 0.3);
+  }
+
+  /* Tombol Back To Top Melayang */
+  .krs-back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #800000;
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .krs-back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .krs-back-to-top:hover {
+    background: #991b1b;
+    transform: translateY(-3px);
+  }
+
+  /* Responsif Mobile & Tablet */
+  @media screen and (max-width: 1024px) {
+    .all-news-grid-8 {
+      grid-template-columns: repeat(2, 1fr);
+      min-height: auto;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .section-header-flex {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .news-filter-search-box {
+      width: 100%;
+    }
+
+    .search-input-wrap, .filter-select-wrap {
+      width: 100%;
+    }
+
+    .filter-select-wrap select {
+      width: 100%;
+    }
+
+    .all-news-grid-8 {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .krs-back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 42px;
+      height: 42px;
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<script>
+  let currentPage = 1;
+  const itemsPerPage = 8; // Tepat 8 berita per halaman
+  let filteredData = [];
+
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof DATABASE_BERITA !== "undefined" && DATABASE_BERITA.length > 0) {
+      
+      // 1. Inisialisasi Data Berita Terurut berdasarkan Tanggal Rilis
+      const allNewsSorted = [...DATABASE_BERITA].sort(
+        (a, b) => new Date(b.tanggalRilis) - new Date(a.tanggalRilis)
+      );
+      filteredData = allNewsSorted;
+
+      // 2. Render Card Preview Utama di Kanan Atas
+      renderMainPreview(allNewsSorted[0]);
+
+      // 3. Update Statistik
+      document.getElementById("statTotalBerita").innerText = DATABASE_BERITA.length + "+";
+      const kategoriSet = new Set(DATABASE_BERITA.map((item) => item.kategori));
+      document.getElementById("statTotalKategori").innerText = kategoriSet.size;
+      document.getElementById("currentYearStat").innerText = new Date().getFullYear();
+
+      // 4. Populasikan Dropdown Filter Kategori Unik
+      const selectKategori = document.getElementById("selectKategoriBerita");
+      kategoriSet.forEach((kat) => {
+        const opt = document.createElement("option");
+        opt.value = kat;
+        opt.innerText = kat;
+        selectKategori.appendChild(opt);
+      });
+
+      // 5. Render Daftar Berita & Pagination Halaman 1
+      renderNewsGrid();
+
+      // 6. Event Listener Filter & Cari
+      const inputSearch = document.getElementById("inputCariBerita");
+      const iconSearch = document.getElementById("iconSearch");
+
+      inputSearch.addEventListener("input", filterAndSearchNews);
+      selectKategori.addEventListener("change", function () {
+        filterAndSearchNews();
+        closeKeyboard(inputSearch);
+      });
+
+      // Tutup Keyboard saat klik ikon pencarian atau area di luar
+      iconSearch.addEventListener("click", function () {
+        closeKeyboard(inputSearch);
+      });
+
+      document.addEventListener("click", function (e) {
+        if (!e.target.closest(".news-filter-search-box")) {
+          closeKeyboard(inputSearch);
         }
-        20% {
-          transform: translateY(0) rotate(-1.2deg);
-        }
-        40% {
-          transform: translateY(0) rotate(1.2deg);
-        }
-        60% {
-          transform: translateY(0) rotate(-0.8deg);
-        }
-        80% {
-          transform: translateY(0) rotate(0.8deg);
-        }
+      });
+    }
+
+    // 7. Logika Tombol Back To Top
+    const btnTop = document.getElementById("btnBackToTop");
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 300) {
+        btnTop.classList.add("show");
+      } else {
+        btnTop.classList.remove("show");
       }
+    });
 
-      /* KOTAK UTAMA: PUTIH BERSIH DENGAN OUTLINE EMAS MENGKILAU */
-      .preview-content-box {
-        position: relative;
-        z-index: 2;
-        padding: 35px 40px;
-        display: grid;
-        grid-template-columns: 260px 1fr auto;
-        gap: 30px;
-        align-items: center;
-        box-sizing: border-box;
-        border-radius: 28px;
+    btnTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
 
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+  // Fungsi Menutup Keyboard Handphone
+  function closeKeyboard(inputElem) {
+    if (inputElem) {
+      inputElem.blur();
+    }
+  }
 
-        border: 2px solid transparent;
-        background-clip: padding-box, border-box;
-        background-origin: padding-box, border-box;
-        background-image:
-          linear-gradient(135deg, #fff, #fff),
-          linear-gradient(135deg, #bf953f, #fc6, #b38728, #fbf5b7, #aa771c);
-        animation: goldShimmer 4s ease infinite;
-      }
-
-      @keyframes goldShimmer {
-        0% {
-          filter: brightness(1);
-        }
-        50% {
-          filter: brightness(1.2);
-        }
-        100% {
-          filter: brightness(1);
-        }
-      }
-
-      /* WADAH GAMBAR PREVIEW */
-      .preview-img-wrapper {
-        position: relative;
-        width: 100%;
-        height: 160px;
-        border-radius: 18px;
-        overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      }
-
-      .preview-img-wrapper::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80");
-        background-size: cover;
-        background-position: center;
-        filter: blur(8px);
-        transform: scale(1.1);
-      }
-
-      .preview-custom-img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80");
-        background-size: cover;
-        background-position: center;
-        border-radius: 18px;
-        transition: transform 0.5s ease;
-      }
-
-      .preview-img-wrapper:hover .preview-custom-img {
-        transform: scale(1.05);
-      }
-
-      /* KEDUA TEKS MENGGUNAKAN FONT FREDOKA YANG SAMA */
-      .preview-text h2 {
-        font-family: "Fredoka", cursive, sans-serif;
-        font-size: 2.2rem;
-        font-weight: 700;
-        margin: 0 0 10px 0;
-        color: #111111; /* Warna hitam untuk teks "Kenalan sama" */
-        letter-spacing: -0.5px;
-        transform-origin: left center;
-        line-height: 1.2;
-      }
-
-      /* Teks "krs.info" menggunakan font Fredoka yang sama, hanya dibedakan warnanya menjadi merah tua */
-      .preview-text h2 .brand-text {
-        font-family: "Fredoka", cursive, sans-serif;
-        color: #8b0000; /* Merah tua (DarkRed) */
-        font-weight: 700;
-      }
-
-      .preview-text h2.joyful-bounce {
-        animation: textBounceJoy 0.8s ease;
-      }
-
-      @keyframes textBounceJoy {
-        0%,
-        100% {
-          transform: scale(1) rotate(0deg);
-        }
-        25% {
-          transform: scale(1.08) rotate(-3deg);
-        }
-        50% {
-          transform: scale(1.12) rotate(3deg);
-        }
-        75% {
-          transform: scale(1.04) rotate(-1.5deg);
-        }
-      }
-
-      .preview-text p {
-        font-size: 0.98rem;
-        line-height: 1.5;
-        color: #555;
-        margin: 0;
-      }
-
-      /* Tombol Panah Interaktif */
-      .preview-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 52px;
-        height: 52px;
-        background: #111;
-        border-radius: 50%;
-        color: #fff;
-        text-decoration: none;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        flex-shrink: 0;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        animation: pulseArrow 2s infinite;
-      }
-
-      @keyframes pulseArrow {
-        0% {
-          transform: scale(1);
-          box-shadow: 0 0 0 0 rgba(191, 149, 63, 0.6);
-        }
-        50% {
-          transform: scale(1.08);
-          box-shadow: 0 0 0 12px rgba(191, 149, 63, 0);
-        }
-        100% {
-          transform: scale(1);
-          box-shadow: 0 0 0 0 rgba(191, 149, 63, 0);
-        }
-      }
-
-      .preview-btn svg {
-        width: 22px;
-        height: 22px;
-        transition: transform 0.3s ease;
-        animation: arrowMove 1.5s ease-in-out infinite;
-      }
-
-      @keyframes arrowMove {
-        0%,
-        100% {
-          transform: translateX(0);
-        }
-        50% {
-          transform: translateX(4px);
-        }
-      }
-
-      .preview-btn:hover {
-        background: #bf953f;
-        transform: scale(1.12) translateX(4px);
-        box-shadow: 0 0 20px rgba(191, 149, 63, 0.6);
-        animation: none;
-      }
-
-      .preview-btn:hover svg {
-        transform: translateX(6px);
-      }
-
-      /* Responsif Mobile */
-      @media (max-width: 768px) {
-        .preview-section {
-          padding: 25px 15px;
-        }
-
-        .preview-content-box {
-          grid-template-columns: 1fr;
-          padding: 25px;
-          gap: 18px;
-        }
-
-        .preview-img-wrapper {
-          height: 180px;
-        }
-
-        .preview-text h2 {
-          font-size: 1.6rem;
-        }
-
-        .preview-text p {
-          font-size: 0.9rem;
-        }
-
-        .preview-btn {
-          justify-self: flex-end;
-          width: 48px;
-          height: 48px;
-        }
-      }
-    </style>
-
-    <!-- Import Google Font Fredoka -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- HTML Preview Section -->
-    <section class="preview-section">
-      <div class="preview-container" id="previewContainer">
-        <!-- Kotak Utama Putih Bersih -->
-        <div class="preview-content-box">
-          <!-- Slot Gambar Preview -->
-          <div class="preview-img-wrapper">
-            <div class="."></div>
+  // Fungsi Render Preview Berita Teratas
+  function renderMainPreview(latestNews) {
+    const previewContainer = document.getElementById("previewBeritaContainer");
+    if (previewContainer && latestNews) {
+      previewContainer.innerHTML = `
+        <div class="news-card-preview" style="cursor: pointer;" title="Klik untuk baca selengkapnya">
+          <div class="news-image-wrapper">
+            <img src="${latestNews.gambar}" alt="${latestNews.judul}" style="width:100%; height:100%; object-fit:cover;">
+            <div class="news-category-tag">${latestNews.kategori}</div>
           </div>
-
-          <!-- Teks Preview -->
-          <div class="preview-text">
-            <h2 id="joyfulTitle">
-              Kenalan sama <span class="brand-text">krs.info</span>
-            </h2>
-            <p>.</p>
+          <div class="news-card-content" style="padding: 22px;">
+            <h3 class="news-card-title" style="font-size: 1.1rem; font-weight: 700; color: #0f172a; margin-bottom: 10px; line-height: 1.4;">${latestNews.judul}</h3>
+            <p class="news-card-snippet" style="font-size: 0.85rem; color: #64748b; line-height: 1.5; margin-bottom: 15px;">${latestNews.ringkasan}</p>
+            <div class="news-card-date" style="font-size: 0.8rem; color: #94a3b8; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-regular fa-calendar"></i> ${latestNews.waktuKejadian}
+            </div>
           </div>
+        </div>
+      `;
+      previewContainer.onclick = function () {
+        window.location.href = `berita.html?id=${latestNews.id}`;
+      };
+    }
+  }
 
-          <!-- Tombol Panah Menuju kenalan.html -->
-          <a href="kenalan.html" class="preview-btn" aria-label="Selanjutnya">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
+  // Fungsi Filter & Pencarian Berita
+  function filterAndSearchNews() {
+    const searchVal = document.getElementById("inputCariBerita").value.toLowerCase().trim();
+    const katVal = document.getElementById("selectKategoriBerita").value;
+
+    const allNewsSorted = [...DATABASE_BERITA].sort(
+      (a, b) => new Date(b.tanggalRilis) - new Date(a.tanggalRilis)
+    );
+
+    filteredData = allNewsSorted.filter((item) => {
+      const matchSearch =
+        item.judul.toLowerCase().includes(searchVal) ||
+        item.ringkasan.toLowerCase().includes(searchVal);
+      const matchCategory = katVal === "ALL" || item.kategori === katVal;
+      return matchSearch && matchCategory;
+    });
+
+    currentPage = 1; // Reset ke halaman pertama saat filter/cari
+    renderNewsGrid();
+  }
+
+  // Fungsi Render Grid Berita Berdasarkan Pagination (Maks 8 item)
+  function renderNewsGrid() {
+  const gridContainer = document.getElementById("gridSemuaBerita");
+  const infoText = document.getElementById("totalBeritaInfo");
+
+  if (!gridContainer) return;
+
+  gridContainer.innerHTML = "";
+  if (infoText) infoText.innerText = `${filteredData.length} berita ditemukan`;
+
+  if (filteredData.length === 0) {
+    gridContainer.innerHTML = `
+      <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #64748b;">
+        <i class="fa-solid fa-newspaper" style="font-size: 2.5rem; margin-bottom: 10px; color: #cbd5e1;"></i>
+        <p>Berita yang Anda cari tidak ditemukan.</p>
+      </div>
+    `;
+    renderPaginationControls();
+    return;
+  }
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const pageItems = filteredData.slice(startIndex, endIndex);
+
+  pageItems.forEach((item) => {
+    const card = document.createElement("div");
+    card.className = "news-card-item";
+    card.innerHTML = `
+      <div class="news-card-img-wrap">
+        <img src="${item.gambar}" alt="${item.judul}">
+        <span class="news-card-tag">${item.kategori}</span>
+      </div>
+      <div class="news-card-body">
+        <div>
+          <h3 class="news-card-heading">${item.judul}</h3>
+          <p class="news-card-text">${item.ringkasan}</p>
+        </div>
+        <div>
+          <div class="news-card-date-info">
+            <i class="fa-regular fa-calendar"></i> ${item.waktuKejadian}
+          </div>
+          <a href="berita.html?id=${item.id}" class="btn-baca-selengkapnya">
+            Baca Selengkapnya <i class="fa-solid fa-arrow-right-long"></i>
           </a>
         </div>
       </div>
-    </section>
+    `;
+    gridContainer.appendChild(card);
+  });
 
-    <script>
-      const container = document.getElementById("previewContainer");
-      const title = document.getElementById("joyfulTitle");
+  renderPaginationControls();
+}
 
-      // 1. Animasi Fade saat pertama di-scroll
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("fade-in");
-            }
-          });
-        },
-        { threshold: 0.2 },
-      );
+  // Fungsi Membuat Tombol Angka Pagination
+  function renderPaginationControls() {
+    const pagContainer = document.getElementById("paginationContainer");
+    pagContainer.innerHTML = "";
 
-      observer.observe(container);
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+    if (totalPages <= 1) return;
 
-      // 2. Logika Efek Goyang Kotak & Teks secara berkala
-      function triggerJoyfulActions() {
-        // Kotak bergetar/goyang lembut
-        container.classList.add("box-shake");
-        setTimeout(() => container.classList.remove("box-shake"), 800);
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement("button");
+      btn.className = `page-num-btn ${i === currentPage ? "active" : ""}`;
+      btn.innerText = i;
+      btn.onclick = function () {
+        currentPage = i;
+        renderNewsGrid();
 
-        // Teks ikut goyang ceria
-        title.classList.add("joyful-bounce");
-        setTimeout(() => title.classList.remove("joyful-bounce"), 800);
-      }
+        // Scroll halus ke header section berita
+        document.getElementById("SemuaBerita").scrollIntoView({ behavior: "smooth" });
+      };
+      pagContainer.appendChild(btn);
+    }
+  }
+</script>
 
-      // Jalankan siklus animasi berkala setelah 2 detik
-      setTimeout(() => {
-        triggerJoyfulActions();
-        // Ulangi goyangan tiap 8 detik
-        setInterval(triggerJoyfulActions, 8000);
-      }, 2000);
-    </script>
 
-    <!-- START: Section Berita & Informasi Terkini (Tema Merah krs.info) -->
-    <section id="Berita" class="latest-news-section">
-      <div class="news-container">
-        <!-- Kolom Kiri: Judul, Deskripsi, Tombol Aksi, & Statistik -->
-        <div class="news-left-content">
-          <div class="badge-update">
-            <i class="fa-solid fa-tag"></i> Update Terbaru
-          </div>
-
-          <h2 class="news-main-title">Berita & Informasi Terkini</h2>
-
-          <p class="news-description">
-            Ikuti perkembangan terbaru dan berbagai kegiatan di Karangsari.
-          </p>
-
-          <!-- Container Tombol Aksi Sejajar & Seragam -->
-          <div class="news-action-buttons">
-            <!-- Tombol Utama: Jelajahi Berita -->
-            <a href="#SemuaBerita" class="btn-explore">
-              Jelajahi Berita <i class="fa-solid fa-arrow-right-long"></i>
-            </a>
-
-            <!-- Tombol Kirim Berita dengan ID Khusus -->
-            <a
-              href="javascript:void(0);"
-              onclick="bukaModalProtokol('https://forms.gle/dTcjsJgK8dRCVYjZA')"
-              id="btnKirimBerita"
-            >
-              <i class="fa-solid fa-paper-plane"></i> Kirim Berita
-            </a>
-          </div>
-
-          <!-- Garis Pemisah -->
-          <div class="news-divider"></div>
-
-          <!-- Statistik Dinamis (Diisi otomatis dari DATABASE_BERITA & Kalender) -->
-          <div class="news-stats">
-            <div class="stat-item">
-              <span class="stat-number" id="statTotalBerita">0+</span>
-              <span class="stat-label">Total Berita</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number" id="statTotalKategori">0</span>
-              <span class="stat-label">Kategori</span>
-            </div>
-            <div class="stat-item">
-              <!-- Tahun otomatis mengikuti kalender perangkat secara real-time -->
-              <span class="stat-number" id="currentYearStat">2026</span>
-              <span class="stat-label">Tahun Ini</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Kolom Kanan: Preview 1 Berita Unggulan (Dimuat otomatis dari DATABASE_BERITA) -->
-        <div class="news-right-preview" id="previewBeritaContainer">
-          <!-- Konten preview default sebelum script memuat -->
-          <div class="news-card-preview">
-            <div
-              class="news-image-wrapper"
-              style="
-                background: #fee2e2;
-                height: 240px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #dc2626;
-                font-size: 0.9rem;
-                font-weight: 600;
-              "
-            >
-              <span>Memuat berita terbaru...</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- END: Section Berita & Informasi Terkini -->
-
-    <!-- Skrip Integrasi Otomatis dengan DATABASE_BERITA & Kalender Sistem -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // 1. Integrasi otomatis dengan DATABASE_BERITA
-        if (
-          typeof DATABASE_BERITA !== "undefined" &&
-          DATABASE_BERITA.length > 0
-        ) {
-          // Urutkan berita berdasarkan tanggalRilis terbaru
-          const sortedBerita = [...DATABASE_BERITA].sort(
-            (a, b) => new Date(b.tanggalRilis) - new Date(a.tanggalRilis),
-          );
-
-          // Ambil berita teratas (paling baru)
-          const latestNews = sortedBerita[0];
-
-          // Render ke card preview di sebelah kanan
-          const previewContainer = document.getElementById(
-            "previewBeritaContainer",
-          );
-          if (previewContainer) {
-            previewContainer.innerHTML = `
-          <div class="news-card-preview" style="cursor: pointer;" title="Klik untuk baca selengkapnya">
-            <div class="news-image-wrapper">
-              <img src="${latestNews.gambar}" alt="${latestNews.judul}" style="width:100%; height:100%; object-fit:cover;">
-              <div class="news-category-tag">${latestNews.kategori}</div>
-            </div>
-            <div class="news-card-content" style="padding: 22px;">
-              <h3 class="news-card-title" style="font-size: 1.1rem; font-weight: 700; color: #0f172a; margin-bottom: 10px; line-height: 1.4;">${latestNews.judul}</h3>
-              <p class="news-card-snippet" style="font-size: 0.85rem; color: #64748b; line-height: 1.5; margin-bottom: 15px;">${latestNews.ringkasan}</p>
-              <div class="news-card-date" style="font-size: 0.8rem; color: #94a3b8; display: flex; align-items: center; gap: 6px;">
-                <i class="fa-regular fa-calendar"></i> ${latestNews.waktuKejadian}
-              </div>
-            </div>
-          </div>
-        `;
-
-            // Ketika card diklik, diarahkan ke halaman detail
-            previewContainer.onclick = function () {
-              window.location.href = `berita.html?id=${latestNews.id}`;
-            };
-          }
-
-          // 2. Hitung Total Berita secara Otomatis
-          const totalBeritaEl = document.getElementById("statTotalBerita");
-          if (totalBeritaEl) {
-            totalBeritaEl.innerText = DATABASE_BERITA.length + "+";
-          }
-
-          // 3. Hitung Total Kategori Unik secara Otomatis
-          const kategoriSet = new Set(
-            DATABASE_BERITA.map((item) => item.kategori),
-          );
-          const totalKategoriEl = document.getElementById("statTotalKategori");
-          if (totalKategoriEl) {
-            totalKategoriEl.innerText = kategoriSet.size;
-          }
-        }
-
-        // 4. Tahun Real-Time Otomatis dari Kalender Perangkat
-        const yearElement = document.getElementById("currentYearStat");
-        if (yearElement) {
-          yearElement.innerText = new Date().getFullYear();
-        }
-      });
-    </script>
-
-    <!-- START: Section Semua Berita & Daftar Kartu (Tema Merah krs.info) -->
-    <section id="SemuaBerita" class="all-news-section">
-      <div class="all-news-container">
-        <!-- Judul & Keterangan Total Berita -->
-        <div class="section-header-flex">
-          <div>
-            <h2 class="all-news-title">Semua Berita</h2>
-            <p class="all-news-subtitle" id="totalBeritaInfo">
-              Memuat jumlah berita...
-            </p>
-          </div>
-        </div>
-
-        <!-- Container Grid Kartu Berita (Dirender Otomatis dari DATABASE_BERITA) -->
-        <div class="all-news-grid" id="gridSemuaBerita">
-          <!-- Kartu berita akan dimuat secara dinamis via JavaScript -->
-        </div>
-      </div>
-    </section>
-    <!-- END: Section Semua Berita & Daftar Kartu -->
-
-    <!-- Skrip Integrasi Otomatis dengan DATABASE_BERITA -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        if (
-          typeof DATABASE_BERITA !== "undefined" &&
-          DATABASE_BERITA.length > 0
-        ) {
-          // Update informasi jumlah berita
-          const infoText = document.getElementById("totalBeritaInfo");
-          if (infoText) {
-            infoText.innerText = `${DATABASE_BERITA.length} berita ditemukan`;
-          }
-
-          // Urutkan berita berdasarkan tanggalRilis terbaru
-          const sortedBerita = [...DATABASE_BERITA].sort(
-            (a, b) => new Date(b.tanggalRilis) - new Date(a.tanggalRilis),
-          );
-
-          const gridContainer = document.getElementById("gridSemuaBerita");
-          if (gridContainer) {
-            gridContainer.innerHTML = ""; // Bersihkan kontainer
-
-            // Loop data berita untuk dirender ke dalam kartu grid
-            sortedBerita.forEach((item) => {
-              const card = document.createElement("div");
-              card.className = "news-card-item";
-              card.innerHTML = `
-            <div class="news-card-img-wrap">
-              <img src="${item.gambar}" alt="${item.judul}">
-              <span class="news-card-tag">${item.kategori}</span>
-            </div>
-            <div class="news-card-body">
-              <h3 class="news-card-heading">${item.judul}</h3>
-              <p class="news-card-text">${item.ringkasan}</p>
-              <a href="berita.html?id=${item.id}" class="btn-baca-selengkapnya">
-                Baca Selengkapnya <i class="fa-solid fa-arrow-right-long"></i>
-              </a>
-            </div>
-          `;
-              gridContainer.appendChild(card);
-            });
-          }
-        }
-      });
-    </script>
 
     <!-- ==================== SECTION ACARA DI KARANGSARI ==================== -->
     <section id="agenda" class="krs-agenda-section">
@@ -3957,7 +4541,7 @@
           <div class="krs-header-buttons">
             <a
               href="javascript:void(0);"
-              onclick="bukaModalProtokol('https://forms.gle/MqVQMqBbxWkGoLXQ6')"
+              onclick="bukaModalProtokol('kirim-acara.html')"
               class="krs-btn-kirim-agenda"
             >
               <i class="fa-solid fa-paper-plane"></i> Kirim Acara Saya
@@ -4550,21 +5134,23 @@
           if (statJumlah) statJumlah.innerText = acaraTampil.length;
 
           if (acaraTampil.length > 0) {
-          function getStatusInfo(startDateStr, endDateStr) {
-    const now = new Date(); // Acuan waktu saat ini
-    
-    // Normalisasi format string tanggal agar konsisten dibaca oleh objek Date JavaScript
-    const start = new Date(startDateStr.replace(' ', 'T'));
-    const end = endDateStr ? new Date(endDateStr.replace(' ', 'T')) : new Date(start);
+            function getStatusInfo(startDateStr, endDateStr) {
+              const now = new Date(); // Acuan waktu saat ini
 
-    if (now < start) {
-        return { text: "Akan Datang", class: "mendatang" };
-    } else if (now >= start && now <= end) {
-        return { text: "Berlangsung", class: "berlangsung" };
-    } else {
-        return { text: "Selesai", class: "selesai" };
-    }
-}
+              // Normalisasi format string tanggal agar konsisten dibaca oleh objek Date JavaScript
+              const start = new Date(startDateStr.replace(" ", "T"));
+              const end = endDateStr
+                ? new Date(endDateStr.replace(" ", "T"))
+                : new Date(start);
+
+              if (now < start) {
+                return { text: "Akan Datang", class: "mendatang" };
+              } else if (now >= start && now <= end) {
+                return { text: "Berlangsung", class: "berlangsung" };
+              } else {
+                return { text: "Selesai", class: "selesai" };
+              }
+            }
 
             function renderPreview(agenda) {
               const tanggalFormatted = new Date(
@@ -4672,160 +5258,1559 @@
       });
     </script>
 
-    <!-- SECTION SARAN DAN MASUKAN -->
-    <section class="saran-section">
-      <div class="saran-card">
-        <div class="saran-info">
-          <h2>Saran & Masukan Warga</h2>
-          <p>
-            Punya ide, kritik, atau masukan untuk kemajuan Desa Karangsari?
-            Sampaikan melalui formulir di samping.
-          </p>
+
+<!-- ==================== SECTION TENTANG KRS.INFO & FAQ ==================== -->
+<section id="tentang-krs" class="krs-faq-section">
+  <div class="krs-faq-container">
+    
+    <!-- Judul Utama -->
+    <div class="krs-faq-header">
+      <h2 class="krs-faq-title">
+        <span class="text-blood-red">Siapa Sebenarnya</span> <span class="text-black">KRS.info?</span>
+      </h2>
+      <p class="krs-faq-subtitle">
+        Berikut adalah beberapa pertanyaan penting mengenai KRS.info.
+    </div>
+
+    <!-- Daftar Pertanyaan Dropdown (FAQ Accordion) -->
+    <!-- Admin dapat menambah atau mengedit pertanyaan dan jawaban di dalam elemen-elemen di bawah ini -->
+    <div class="krs-accordion-wrapper">
+      
+      <!-- Pertanyaan 1 -->
+      <div class="krs-accordion-item" onclick="toggleFaq(this)">
+        <div class="krs-accordion-question">
+          <span>Apa itu platform KRS.info dan apa tujuan utamanya?</span>
+          <i class="fa-solid fa-chevron-down krs-icon-arrow"></i>
         </div>
-        <form id="formSaran" class="saran-form">
-          <div class="form-group-saran">
-            <label for="namaWarga">Nama Lengkap</label>
-            <input
-              type="text"
-              id="namaWarga"
-              name="nama"
-              class="form-control-saran"
-              placeholder="Masukkan nama Anda..."
-              required
-            />
+        <div class="krs-accordion-answer">
+          <div class="krs-answer-inner">
+            KRS.info adalah platform informasi publik yang lahir dari inisiatif citizen untuk membagikan 
+            berbagai kabar dan kegiatan lokal secara terbuka. Selain itu, KRS.info juga berposisi sebagai 
+            anak media dari Karangsari Culture, namun dengan fokus dan konsentrasi informasi yang berbeda untuk melengkapi kebutuhan warga.
           </div>
-          <div class="form-group-saran">
-            <label for="pesanSaran">Saran / Masukan</label>
-            <textarea
-              id="pesanSaran"
-              name="pesan"
-              class="form-control-saran"
-              placeholder="Tuliskan saran atau masukan Anda di sini..."
+        </div>
+      </div>
+
+      <!-- Pertanyaan 2 -->
+      <div class="krs-accordion-item" onclick="toggleFaq(this)">
+        <div class="krs-accordion-question">
+          <span>Apa yang dimaksud dengan Citizen?</span>
+          <i class="fa-solid fa-chevron-down krs-icon-arrow"></i>
+        </div>
+        <div class="krs-accordion-answer">
+          <div class="krs-answer-inner">
+            Maksud dari "Citizen" di sini adalah warga atau masyarakat secara mandiri yang berperan aktif dalam menyampaikan informasi, liputan, 
+            serta berita lokal. Jadi, konten informasi yang ada di KRS.info dibuat dari warga, oleh warga, dan untuk kebaikan warga Karangsari bersama.
+          </div>
+        </div>
+      </div>
+
+      <!-- Pertanyaan 3 -->
+      <div class="krs-accordion-item" onclick="toggleFaq(this)">
+        <div class="krs-accordion-question">
+          <span>Siapa itu Karangsari Culture?</span>
+          <i class="fa-solid fa-chevron-down krs-icon-arrow"></i>
+        </div>
+        <div class="krs-accordion-answer">
+          <div class="krs-answer-inner">
+            Karangsari Culture adalah media informasi lokal yang berfokus mengangkat ragam pesona, keunikan, serta daya tarik Desa Karangsari dengan gaya 
+            penyampaian yang santai dan dekat dengan keseharian warga. Berposisi sebagai partner sekaligus media induk, Karangsari Culture dan KRS.info saling 
+            melengkapi untuk menyajikan kabar desa secara luas dari berbagai sudut pandang.
+          </div>
+        </div>
+      </div>
+
+      <!-- Pertanyaan 4 -->
+      <div class="krs-accordion-item" onclick="toggleFaq(this)">
+        <div class="krs-accordion-question">
+          <span>Apakah saya bisa mengirimkan aspirasi secara terbuka?</span>
+          <i class="fa-solid fa-chevron-down krs-icon-arrow"></i>
+        </div>
+        <div class="krs-accordion-answer">
+          <div class="krs-answer-inner">
+           Tentu saja! Siapapun dan dari manapun Anda berada, Anda dapat membagikan aspirasi, masukan, atau cerita secara terbuka. Cukup klik tombol <strong>"Kirim Aspirasi Saya"</strong> di bawah.
+          </div>
+        </div>
+      </div>
+
+      <!-- Pertanyaan 5 -->
+      <div class="krs-accordion-item" onclick="toggleFaq(this)">
+        <div class="krs-accordion-question">
+          <span>Apakah data dan identitas saya dijamin aman saat mengirim aspirasi?</span>
+          <i class="fa-solid fa-chevron-down krs-icon-arrow"></i>
+        </div>
+        <div class="krs-accordion-answer">
+          <div class="krs-answer-inner">
+           Dijamin <strong>100% aman!</strong> Privasi Anda adalah prioritas utama kami. Ketika mengirimkan aspirasi, identitas Anda akan diproses secara anonim sehingga 
+           bahkan pihak internal tim KRS.info pun tidak akan mengetahui siapa pengirimnya. Selain itu, kami juga menyediakan beberapa metode pengiriman aspirasi yang 
+           fleksibel sesuai kenyamanan Anda.
+          </div>
+        </div>
+      </div>
+
+      <!-- Pertanyaan 6 -->
+      <div class="krs-accordion-item" onclick="toggleFaq(this)">
+        <div class="krs-accordion-question">
+          <span>Siapa saja yang dapat mengakses dan menggunakan platform ini?</span>
+          <i class="fa-solid fa-chevron-down krs-icon-arrow"></i>
+        </div>
+        <div class="krs-accordion-answer">
+          <div class="krs-answer-inner">
+            Platform ini terbuka untuk seluruh warga dan masyarakat umum secara gratis untuk mendapatkan informasi terkini serta berpartisipasi aktif dalam komunitas.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tombol Kirim Aspirasi Saya di Bawah Dropdown -->
+    <div class="krs-action-bottom">
+      <a href="#saran-section" class="btn-kirim-aspirasi">
+        <i class="fa-solid fa-paper-plane"></i> Kirim Aspirasi Saya <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== STYLING CSS MERAH DARAH & HITAM ==================== -->
+<style>
+  .krs-faq-section {
+    width: 100%;
+    padding: 80px 20px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .krs-faq-container {
+    max-width: 850px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+  }
+
+  .krs-faq-header {
+    text-align: center;
+    max-width: 700px;
+  }
+
+  .krs-faq-title {
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.5px;
+  }
+
+  .text-blood-red {
+    color: #800000; /* Merah Darah */
+  }
+
+  .text-black {
+    color: #0f172a; /* Hitam Formal */
+  }
+
+  .krs-faq-subtitle {
+    font-size: 1.05rem;
+    color: #475569;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Wrapper Accordion */
+  .krs-accordion-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .krs-accordion-item {
+    background: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  }
+
+  .krs-accordion-item:hover {
+    border-color: #800000;
+  }
+
+  .krs-accordion-question {
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+    user-select: none;
+  }
+
+  .krs-icon-arrow {
+    font-size: 0.95rem;
+    color: #64748b;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Area Jawaban Dropdown */
+  .krs-accordion-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease;
+    background: #f8fafc;
+    border-top: 0px solid #e2e8f0;
+  }
+
+  .krs-answer-inner {
+    padding: 0 24px 20px 24px;
+    font-size: 0.95rem;
+    color: #334155;
+    line-height: 1.6;
+  }
+
+  /* Status Aktif saat Dropdown Dibuka */
+  .krs-accordion-item.active {
+    border-color: #800000;
+    box-shadow: 0 6px 20px rgba(128, 0, 0, 0.08);
+  }
+
+  .krs-accordion-item.active .krs-icon-arrow {
+    transform: rotate(180deg);
+    color: #800000;
+  }
+
+  .krs-accordion-item.active .krs-accordion-answer {
+    max-height: 250px; /* Cukup menampung teks jawaban */
+    border-top-width: 1px;
+    padding-top: 15px;
+  }
+
+  /* Tombol Kirim Aspirasi Saya di Bawah */
+  .krs-action-bottom {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .btn-kirim-aspirasi {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #800000 0%, #b91c1c 100%);
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 15px 36px;
+    border-radius: 14px;
+    text-decoration: none;
+    box-shadow: 0 8px 22px rgba(128, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-kirim-aspirasi:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(128, 0, 0, 0.4);
+    filter: brightness(1.05);
+  }
+
+  /* Responsif untuk Tampilan Mobile Smartphone */
+  @media screen and (max-width: 768px) {
+    .krs-faq-section {
+      padding: 50px 16px;
+    }
+
+    .krs-faq-title {
+      font-size: 1.8rem;
+    }
+
+    .krs-faq-subtitle {
+      font-size: 0.95rem;
+    }
+
+    .krs-accordion-question {
+      padding: 16px 18px;
+      font-size: 0.95rem;
+    }
+
+    .krs-answer-inner {
+      padding: 0 18px 16px 18px;
+      font-size: 0.88rem;
+    }
+
+    .btn-kirim-aspirasi {
+      width: 100%;
+      justify-content: center;
+      padding: 13px 20px;
+      font-size: 0.95rem;
+    }
+  }
+</style>
+
+<!-- ==================== SKRIP INTERAKTIF DROPDOWN (ACCORDION) ==================== -->
+<script>
+  function toggleFaq(selectedItem) {
+    const wasActive = selectedItem.classList.contains('active');
+    
+    // Tutup semua item FAQ terlebih dahulu agar tidak bertabrakan
+    document.querySelectorAll('.krs-accordion-item').forEach(item => {
+      item.classList.remove('active');
+    });
+
+    // Jika item yang diklik tadinya belum aktif, maka buka (aktifkan)
+    if (!wasActive) {
+      selectedItem.classList.add('active');
+    }
+  }
+</script>
+
+
+
+
+<!-- ==================== SECTION SARAN & MASUKAN WARGA ==================== -->
+<section id="saran-section" class="saran-section">
+  <div class="saran-container">
+    
+    <!-- KOTAK ATAS: HEADER & RATING KHUSUS PLATFORM KRS.INFO -->
+    <div class="saran-header-card">
+      <div class="saran-header-info">
+        <span class="badge-saran-tag"><i class="fa-solid fa-comments"></i> Partisipasi warga</span>
+        <h2>Suara & Aspirasi Warga</h2>
+        <p>Sampaikan ide, kritik, atau saran untuk kemajuan Desa Karangsari secara anonim.</p>
+        
+        <!-- Tombol Utama Pemicu Modal Aspirasi Warga -->
+        <button type="button" class="btn-trigger-saran" onclick="openPilihanModal()">
+          <i class="fa-solid fa-paper-plane"></i> Kirim Aspirasi Saya
+        </button>
+      </div>
+
+      <!-- KOTAK RATING KHUSUS KRS.INFO (TERPISAH DI KANAN ATAS) -->
+      <div class="krs-rating-card">
+        <div class="krs-rating-header">
+          <i class="fa-solid fa-star-half-stroke"></i> Rating KRS.info
+        </div>
+        
+        <div class="rating-score-display">
+          <span class="score-num" id="avgRatingScore">0.0</span>
+          <div class="score-stars-wrap">
+            <div class="score-stars" id="avgRatingStars">
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+            </div>
+            <span class="total-reviews-count" id="totalReviewsCount">0 Penilaian Warga</span>
+          </div>
+        </div>
+
+        <!-- Tombol Pemicu Modal Rating Platform -->
+        <button type="button" class="btn-trigger-rating" id="btnOpenRatingModal" onclick="openRatingModal()">
+          <i class="fa-solid fa-pen-to-square"></i> Beri Rating Platform
+        </button>
+      </div>
+    </div>
+
+    <!-- KOTAK BAWAH: ASPIRASI WARGA PUBLIK (DENGAN PAGINATION) -->
+    <div class="saran-public-feed">
+      <div class="feed-header-flex">
+        <h3 class="feed-title"><i class="fa-solid fa-users-line"></i> Aspirasi Warga Terbaru</h3>
+        <span class="feed-counter-info" id="feedCounterInfo">Memuat aspirasi...</span>
+      </div>
+
+      <!-- Grid Kartu Aspirasi Publik (Maksimal 6 per halaman) -->
+      <div class="saran-reviews-grid" id="publicReviewsGrid">
+        <div class="review-card-skeleton">Memuat aspirasi warga...</div>
+      </div>
+
+      <!-- Navigasi Nomor Halaman (Pagination) -->
+      <div class="reviews-pagination-wrap" id="reviewsPaginationContainer">
+        <!-- Digenerasi otomatis oleh JS -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== MODAL 1: PILIHAN ASPIRASI (PRIVAT / PUBLIK) ==================== -->
+<div class="saran-modal-overlay" id="modalPilihanOverlay">
+  <div class="saran-modal-box modal-choice-box">
+    <button type="button" class="btn-close-modal" onclick="closePilihanModal()">&times;</button>
+    <div class="choice-header">
+      <div class="choice-icon-wrap"><i class="fa-solid fa-shield-halved"></i></div>
+      <h3>Pilih Metode Aspirasi</h3>
+      <p>Kamu Sebagai   <strong id="choiceUserAnonID" style="color:#dc2626;">Warga-XXXX</strong></p>
+    </div>
+
+    <div class="choice-cards-grid">
+      <!-- Pilihan Privat -->
+      <div class="choice-card" onclick="openAspirasiModal('privat')">
+        <div class="choice-card-icon red"><i class="fa-solid fa-lock"></i></div>
+        <h4>Pesan Privat</h4>
+        <p>Hanya terkirim secara anonim. Tidak dipublikasikan di halaman website.</p>
+        <span class="btn-select-choice">Kirim Privat <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+
+      <!-- Pilihan Publik -->
+      <div class="choice-card" onclick="openAspirasiModal('publik')">
+        <div class="choice-card-icon blue"><i class="fa-solid fa-globe"></i></div>
+        <h4>Pesan Publik</h4>
+        <p>Pesan akan terkirim secara anonim dan ditampilkan di halaman Aspirasi Warga Terbaru.</p>
+        <span class="btn-select-choice">Kirim Publik <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MODAL 2: FORMULIR SURAT ASPIRASI WARGA ==================== -->
+<div class="saran-modal-overlay" id="modalAspirasiOverlay">
+  <div class="saran-modal-box modal-envelope-box">
+    <button type="button" class="btn-close-modal" onclick="closeAspirasiModal()">&times;</button>
+
+    <div class="envelope-wrapper">
+      <div class="envelope-paper">
+        <div class="paper-header">
+          <span class="paper-badge" id="paperTypeBadge">ASPIRASI PRIVAT</span>
+          <span class="paper-anon-tag"><i class="fa-solid fa-user-ninja"></i> <strong id="aspirasiAnonIDDisplay">Warga-XXXX</strong></span>
+        </div>
+
+        <form id="formAspirasiWarga" class="envelope-form" onsubmit="submitFormAspirasi(event)">
+          <input type="hidden" id="inputTipeAspirasi" value="privat" />
+
+          <div class="form-input-group">
+            <label for="pesanAspirasi">Isi Pesan / Masukan Anda:</label>
+            <textarea 
+              id="pesanAspirasi" 
+              placeholder="Tuliskan ide, saran, kritik, atau aspirasi Anda di sini..." 
               required
             ></textarea>
           </div>
-          <button type="submit" id="btnSubmitSaran" class="btn-kirim-saran">
-            <i class="fa-solid fa-paper-plane"></i> Kirim Saran
+
+          <div class="form-privacy-note">
+            <i class="fa-solid fa-circle-check"></i> Identitas Anda disamarkan secara terenkripsi oleh sistem.
+          </div>
+
+          <button type="submit" class="btn-submit-envelope" id="btnSubmitAspirasi">
+            <i class="fa-solid fa-paper-plane"></i> Kirim Aspirasi
           </button>
         </form>
       </div>
-    </section>
-    <style>
-      /* --- SECTION SARAN & MASUKAN --- */
-      .saran-section {
-        max-width: 1100px;
-        margin: 40px auto 60px auto;
-        padding: 0 20px;
-      }
+    </div>
+  </div>
+</div>
 
-      .saran-card {
-        background: var(--bg-surface);
-        border: 1px solid var(--border-light);
-        border-radius: 24px;
-        padding: 35px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-        display: grid;
-        grid-template-columns: 1fr 1.2fr;
-        gap: 40px;
-        align-items: center;
-      }
+<!-- ==================== MODAL 3: RATING KHUSUS PLATFORM KRS.INFO ==================== -->
+<div class="saran-modal-overlay" id="modalRatingOverlay">
+  <div class="saran-modal-box modal-choice-box" style="max-width: 480px;">
+    <button type="button" class="btn-close-modal" onclick="closeRatingModal()">&times;</button>
+    <div class="choice-header">
+      <div class="choice-icon-wrap" style="background:#fef3c7; color:#d97706;"><i class="fa-solid fa-star"></i></div>
+      <h3>Beri Rating Kami</h3>
+      <p>Kasih kami bintang dan apa yang mau kamu sampaikan?</p>
+    </div>
 
-      .saran-info h2 {
-        font-family: "Syne", sans-serif;
-        font-size: 1.8rem;
-        font-weight: 800;
-        color: var(--text-main);
-        margin-bottom: 12px;
-      }
+    <form id="formRatingKRS" class="envelope-form" onsubmit="submitFormRating(event)">
+      <!-- Rating Bintang -->
+      <div class="form-rating-group" style="text-align: center;">
+        <label>Pilih Bintang (1 - 5):</label>
+        <div class="star-rating-input" id="starInputContainer">
+          <i class="fa-regular fa-star star-btn" data-val="1"></i>
+          <i class="fa-regular fa-star star-btn" data-val="2"></i>
+          <i class="fa-regular fa-star star-btn" data-val="3"></i>
+          <i class="fa-regular fa-star star-btn" data-val="4"></i>
+          <i class="fa-regular fa-star star-btn" data-val="5"></i>
+        </div>
+        <span class="rating-status-hint" id="ratingHintText">Klik pada bintang</span>
+      </div>
 
-      .saran-info p {
-        color: var(--text-muted);
-        font-size: 14px;
-        line-height: 1.6;
-        margin: 0;
-      }
+      <!-- Ulasan Khusus Platform -->
+      <div class="form-input-group" style="margin-top: 15px;">
+        <label for="ulasanPlatform">Ulasan Platform</label>
+        <textarea 
+          id="ulasanPlatform" 
+          placeholder="Tulis pendapat kamu tentang Krs.info..."
+          style="min-height: 90px;"
+        ></textarea>
+      </div>
 
-      .saran-form {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        width: 100%;
-      }
+      <div class="form-privacy-note">
+        <i class="fa-solid fa-lock"></i> Ulasan tersimpan privat dan anonim.
+      </div>
 
-      .form-group-saran {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        width: 100%;
-      }
+      <button type="submit" class="btn-submit-envelope" id="btnSubmitRating" style="background: #0f172a;">
+        <i class="fa-solid fa-check-double"></i> Kirim Rating
+      </button>
+    </form>
+  </div>
+</div>
 
-      .form-control-saran {
-        padding: 12px 16px;
-        border-radius: 12px;
-        border: 1px solid var(--border-light);
-        background: #ffffff;
-        font-family: inherit;
-        font-size: 13px;
-        color: var(--text-main);
-        transition:
-          border-color 0.2s,
-          box-shadow 0.2s;
-        width: 100%;
-        box-sizing: border-box;
-      }
+<!-- ==================== STYLING CSS PRESISI & RESPONSIF ==================== -->
+<!-- ==================== STYLING CSS PRESISI & NYAMAN ==================== -->
+<style>
+  .saran-section {
+    width: 100%;
+    padding: 60px 20px;
+    background-color: #f8fafc;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
 
-      .form-control-saran:focus {
-        outline: none;
-        border-color: var(--accent-red);
-        box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
-      }
+  .saran-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
 
-      textarea.form-control-saran {
-        resize: vertical;
-        min-height: 100px;
-      }
+  .saran-header-card {
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
+    padding: 35px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
 
-      /* --- PERBAIKAN TOMBOL KIRIM SARAN --- */
-      /* --- PERBAIKAN WARNA TOMBOL KIRIM SARAN --- */
-      .btn-kirim-saran {
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 8px !important;
-        background: #dc2626 !important; /* Warna merah solid yang sangat kontras dan tegas */
-        color: #ffffff !important;
-        border: none !important;
-        padding: 14px 20px !important;
-        border-radius: 12px !important;
-        font-family: inherit !important;
-        font-size: 14px !important;
-        font-weight: 700 !important;
-        cursor: pointer !important;
-        box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3) !important;
-        transition: all 0.2s ease !important;
-        width: 100% !important;
-        margin-top: 5px !important;
-        box-sizing: border-box !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-      }
+  .saran-header-info {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-      .btn-kirim-saran:hover {
-        background: #b91c1c !important; /* Warna merah sedikit lebih gelap saat kursor diarahkan */
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(185, 28, 28, 0.4);
+  .badge-saran-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(220, 38, 38, 0.08);
+    color: #dc2626;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .saran-header-info h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 8px;
+  }
+
+  .saran-header-info p {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin: 0 0 20px 0;
+    line-height: 1.6;
+  }
+
+  .krs-rating-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 22px 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    min-width: 260px;
+    box-sizing: border-box;
+  }
+
+  .krs-rating-header {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .rating-score-display {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .score-num {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1;
+  }
+
+  .score-stars-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .score-stars {
+    color: #f59e0b;
+    font-size: 1rem;
+    display: flex;
+    gap: 3px;
+  }
+
+  .total-reviews-count {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 600;
+  }
+
+  .btn-trigger-rating {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #0f172a;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-trigger-rating:hover {
+    border-color: #0f172a;
+    background: #0f172a;
+    color: #ffffff;
+  }
+
+  .btn-trigger-rating.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #e2e8f0;
+    border-color: #e2e8f0;
+    color: #64748b;
+  }
+
+  .btn-trigger-saran {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    color: #ffffff;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 22px rgba(220, 38, 38, 0.3);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .btn-trigger-saran:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(220, 38, 38, 0.4);
+  }
+
+  .saran-public-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .feed-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .feed-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+  }
+
+  .feed-counter-info {
+    font-size: 0.82rem;
+    color: #64748b;
+    font-weight: 600;
+  }
+
+  .saran-reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    min-height: 380px;
+    align-content: start;
+  }
+
+  /* Tinggi kartu diperbesar sedikit agar lebih leluasa */
+  .review-card-item {
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #e2e8f0;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: 220px; 
+  }
+
+  .review-card-item:hover {
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.05);
+  }
+
+  .review-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .review-anon-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #dc2626;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fee2e2;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .review-card-date {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    font-weight: 500;
+  }
+
+  .review-text-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .review-text-content {
+    font-size: 0.86rem;
+    color: #334155;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+    word-break: break-word;
+    transition: all 0.3s ease;
+  }
+
+  /* Kotak scroll diperlebar tinggi maksimumnya (150px) agar nyaman dibaca */
+  .review-text-content.expanded {
+    display: block;
+    -webkit-line-clamp: unset;
+    max-height: 150px;
+    overflow-y: auto;
+    padding-right: 6px;
+  }
+
+  .review-text-content.expanded::-webkit-scrollbar {
+    width: 5px;
+  }
+  .review-text-content.expanded::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+
+  .btn-toggle-readmore {
+    background: none;
+    border: none;
+    color: #dc2626;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+    align-self: flex-start;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .btn-toggle-readmore:hover {
+    text-decoration: underline;
+  }
+
+  .review-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 10px;
+    margin-top: auto;
+    flex-shrink: 0;
+  }
+
+  .vote-action-btn {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+  }
+
+  .vote-action-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+  }
+
+  .vote-action-btn.liked {
+    background: #fee2e2;
+    border-color: #fca5a5;
+    color: #dc2626;
+  }
+
+  .vote-action-btn.disliked {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #334155;
+  }
+
+  .reviews-pagination-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+  }
+
+  .page-rev-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    color: #334155;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+  }
+
+  .page-rev-btn:hover {
+    background: #fee2e2;
+    color: #dc2626;
+    border-color: #fca5a5;
+  }
+
+  .page-rev-btn.active {
+    background: #dc2626;
+    color: #ffffff;
+    border-color: #dc2626;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+  }
+
+  .saran-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(5px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .saran-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .saran-modal-box {
+    background: #ffffff;
+    border-radius: 24px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+  }
+
+  .saran-modal-overlay.active .saran-modal-box {
+    transform: translateY(0) scale(1);
+  }
+
+  .btn-close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #94a3b8;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .modal-choice-box {
+    max-width: 600px;
+    padding: 40px;
+  }
+
+  .choice-header {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .choice-icon-wrap {
+    width: 50px;
+    height: 50px;
+    background: rgba(220, 38, 38, 0.1);
+    color: #dc2626;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin: 0 auto 12px auto;
+  }
+
+  .choice-header h3 { font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
+  .choice-header p { font-size: 0.85rem; color: #64748b; margin: 0; }
+
+  .choice-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .choice-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .choice-card:hover {
+    border-color: #dc2626;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(220, 38, 38, 0.1);
+  }
+
+  .choice-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  .choice-card-icon.red { background: #fee2e2; color: #dc2626; }
+  .choice-card-icon.blue { background: #e0f2fe; color: #0284c7; }
+
+  .choice-card h4 { font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 6px; }
+  .choice-card p { font-size: 0.78rem; color: #64748b; line-height: 1.5; margin-bottom: 15px; }
+
+  .btn-select-choice {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #dc2626;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .modal-envelope-box {
+    max-width: 550px;
+    padding: 0;
+    background: #f1f5f9;
+  }
+
+  .envelope-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+  }
+
+  .envelope-paper {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    animation: openEnvelopePaper 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes openEnvelopePaper {
+    0% { transform: translateY(30px) scale(0.92); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+  }
+
+  .paper-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 20px;
+  }
+
+  .paper-badge {
+    font-size: 0.72rem;
+    font-weight: 800;
+    background: #0f172a;
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  .paper-anon-tag {
+    font-size: 0.78rem;
+    color: #dc2626;
+  }
+
+  .envelope-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .star-rating-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    color: #cbd5e1;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .star-rating-input .star-btn.active {
+    color: #f59e0b;
+  }
+
+  .rating-status-hint {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    font-style: italic;
+  }
+
+  .form-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-input-group label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .form-input-group textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.88rem;
+    font-family: inherit;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+  }
+
+  .form-input-group textarea:focus {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+  }
+
+  .form-privacy-note {
+    font-size: 0.75rem;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #f8fafc;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .btn-submit-envelope {
+    background: #dc2626;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 6px 18px rgba(220, 38, 38, 0.25);
+    transition: background 0.2s;
+  }
+
+  .btn-submit-envelope:hover {
+    background: #b91c1c;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .saran-reviews-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media screen and (max-width: 768px) {
+    .saran-header-card { padding: 25px; flex-direction: column; align-items: stretch; }
+    .krs-rating-card { width: 100%; }
+    .btn-trigger-saran { width: 100%; justify-content: center; }
+    .saran-reviews-grid { grid-template-columns: 1fr; }
+    .choice-cards-grid { grid-template-columns: 1fr; }
+    .modal-choice-box { padding: 25px; }
+    .envelope-paper { padding: 20px; }
+  }
+</style>
+
+<!-- ==================== SKRIP LOGIKA JAVASCRIPT & DATABASE ==================== -->
+<script>
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzmPYhEUJDb4Qua90Mk0QWP_pTqzqxvSIpNbedjdHC5pdpG9gdtrkG5niPTVtn-iz9yVg/exec";
+
+  let anonDeviceID = "";
+  let selectedPlatformRating = 0;
+  let userHasRatedPlatform = false;
+  
+  let allPublicAspirasi = [];
+  let currentAspirasiPage = 1;
+  const aspirasiPerPage = 6;
+
+  document.addEventListener("DOMContentLoaded", function () {
+    initUniqueAnonDevice();
+    checkPlatformRatingStatus();
+    fetchPublicAspirasi();
+    initStarRatingEvents();
+  });
+
+  function formatTimeAgo(timestamp) {
+    if (!timestamp) return "Baru saja";
+
+    const past = new Date(timestamp);
+    const now = new Date();
+    const secondsAgo = Math.floor((now - past) / 1000);
+
+    if (isNaN(secondsAgo) || secondsAgo < 10) {
+      return "Baru saja";
+    }
+
+    const minutesAgo = Math.floor(secondsAgo / 60);
+    const hoursAgo = Math.floor(minutesAgo / 60);
+    const daysAgo = Math.floor(hoursAgo / 24);
+    const monthsAgo = Math.floor(daysAgo / 30);
+    const yearsAgo = Math.floor(daysAgo / 365);
+
+    if (secondsAgo < 60) {
+      return `${secondsAgo} detik yang lalu`;
+    } else if (minutesAgo < 60) {
+      return `${minutesAgo} menit yang lalu`;
+    } else if (hoursAgo < 24) {
+      return `${hoursAgo} jam yang lalu`;
+    } else if (daysAgo === 1) {
+      return "1 hari yang lalu";
+    } else if (daysAgo < 30) {
+      return `${daysAgo} hari yang lalu`;
+    } else if (monthsAgo < 12) {
+      return `${monthsAgo} bulan yang lalu`;
+    } else {
+      return `${yearsAgo} tahun yang lalu`;
+    }
+  }
+
+  function initUniqueAnonDevice() {
+    let savedID = localStorage.getItem("krs_unique_anon_id");
+    if (!savedID) {
+      const timestampPart = Date.now().toString(36).toUpperCase().slice(-4);
+      const randomPart = Math.floor(100 + Math.random() * 900);
+      savedID = `Warga-${timestampPart}${randomPart}`;
+      localStorage.setItem("krs_unique_anon_id", savedID);
+    }
+    anonDeviceID = savedID;
+
+    if (document.getElementById("choiceUserAnonID")) document.getElementById("choiceUserAnonID").innerText = anonDeviceID;
+    if (document.getElementById("aspirasiAnonIDDisplay")) document.getElementById("aspirasiAnonIDDisplay").innerText = anonDeviceID;
+  }
+
+  function checkPlatformRatingStatus() {
+    if (localStorage.getItem("krs_has_rated_platform") === "true") {
+      userHasRatedPlatform = true;
+      const btnRating = document.getElementById("btnOpenRatingModal");
+      if (btnRating) {
+        btnRating.innerHTML = `<i class="fa-solid fa-check-circle"></i> Sudah Memberi Rating`;
+        btnRating.classList.add("disabled");
+        btnRating.onclick = null;
       }
-      @media screen and (max-width: 768px) {
-        .saran-card {
-          grid-template-columns: 1fr;
-          padding: 24px;
-          gap: 24px;
+    }
+  }
+
+  function openPilihanModal() {
+    document.getElementById("modalPilihanOverlay").classList.add("active");
+  }
+  function closePilihanModal() {
+    document.getElementById("modalPilihanOverlay").classList.remove("active");
+  }
+
+  function openAspirasiModal(type) {
+    closePilihanModal();
+    const typeBadge = document.getElementById("paperTypeBadge");
+    document.getElementById("inputTipeAspirasi").value = type;
+
+    if (type === "privat") {
+      typeBadge.innerText = "ASPIRASI PRIVAT";
+      typeBadge.style.background = "#0f172a";
+    } else {
+      typeBadge.innerText = "ASPIRASI PUBLIK";
+      typeBadge.style.background = "#dc2626";
+    }
+
+    document.getElementById("modalAspirasiOverlay").classList.add("active");
+  }
+  function closeAspirasiModal() {
+    document.getElementById("modalAspirasiOverlay").classList.remove("active");
+  }
+
+  function openRatingModal() {
+    if (userHasRatedPlatform) return;
+    document.getElementById("modalRatingOverlay").classList.add("active");
+  }
+  function closeRatingModal() {
+    document.getElementById("modalRatingOverlay").classList.remove("active");
+  }
+
+  function initStarRatingEvents() {
+    const stars = document.querySelectorAll("#starInputContainer .star-btn");
+    const hint = document.getElementById("ratingHintText");
+
+    stars.forEach((star) => {
+      star.addEventListener("click", function () {
+        selectedPlatformRating = parseInt(this.getAttribute("data-val"));
+
+        stars.forEach((s, idx) => {
+          if (idx < selectedPlatformRating) {
+            s.classList.remove("fa-regular");
+            s.classList.add("fa-solid", "active");
+          } else {
+            s.classList.remove("fa-solid", "active");
+            s.classList.add("fa-regular");
+          }
+        });
+        hint.innerText = `Bintang ${selectedPlatformRating} dari 5`;
+        hint.style.color = "#d97706";
+      });
+    });
+  }
+
+  // SUBMIT ASPIRASI DENGAN JEDA WAKTU (DELAY) AGAR DATANYA TERSIMPAN DAN LANGSUNG TAMPIL
+  function submitFormAspirasi(e) {
+    e.preventDefault();
+    const tipe = document.getElementById("inputTipeAspirasi").value;
+    const pesan = document.getElementById("pesanAspirasi").value.trim();
+    const btnSubmit = document.getElementById("btnSubmitAspirasi");
+
+    if (!pesan) return alert("Silakan isi pesan aspirasi Anda!");
+
+    btnSubmit.disabled = true;
+    btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Mengirim...`;
+
+    const payload = {
+      action: "submitAspirasi",
+      anonID: anonDeviceID,
+      tipe: tipe,
+      pesan: pesan
+    };
+
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then(() => {
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = `<i class="fa-solid fa-check"></i> Terkirim!`;
+
+        setTimeout(() => {
+          closeAspirasiModal();
+          document.getElementById("formAspirasiWarga").reset();
+          btnSubmit.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Kirim Aspirasi`;
+          alert(tipe === "publik" ? "Aspirasi Anda berhasil dikirim ke halaman publik!" : "Aspirasi privat Anda berhasil dikirim secara rahasia.");
+          
+          if (tipe === "publik") {
+            // Beri jeda 1.5 detik agar Google Sheets sempat menulis baris baru sebelum ditarik ulang
+            setTimeout(fetchPublicAspirasi, 1500);
+          }
+        }, 1000);
+      })
+      .catch(() => {
+        alert("Terjadi kesalahan jaringan.");
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Kirim Aspirasi`;
+      });
+  }
+
+  function submitFormRating(e) {
+    e.preventDefault();
+    const ulasan = document.getElementById("ulasanPlatform").value.trim();
+    const btnSubmit = document.getElementById("btnSubmitRating");
+
+    if (selectedPlatformRating === 0) return alert("Silakan klik salah satu bintang!");
+
+    btnSubmit.disabled = true;
+    btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Mengirim Rating...`;
+
+    const payload = {
+      action: "submitRatingPlatform",
+      anonID: anonDeviceID,
+      rating: selectedPlatformRating,
+      ulasan: ulasan
+    };
+
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then(() => {
+        localStorage.setItem("krs_has_rated_platform", "true");
+        userHasRatedPlatform = true;
+
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = `<i class="fa-solid fa-check"></i> Rating Dikirim!`;
+
+        setTimeout(() => {
+          closeRatingModal();
+          checkPlatformRatingStatus();
+          alert("Terima kasih atas penilaian Anda terhadap platform Krs.info!");
+          setTimeout(fetchPublicAspirasi, 1500);
+        }, 1000);
+      })
+      .catch(() => {
+        alert("Gagal menyimpan rating.");
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = `<i class="fa-solid fa-check-double"></i> Kirim Rating Krs.info`;
+      });
+  }
+
+  function fetchPublicAspirasi() {
+    fetch(GOOGLE_SCRIPT_URL + "?action=getData")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          if (data.ratingStats) {
+            const avg = parseFloat(data.ratingStats.average || 0).toFixed(1);
+            document.getElementById("avgRatingScore").innerText = avg;
+            document.getElementById("totalReviewsCount").innerText = `${data.ratingStats.total || 0} Penilaian Warga`;
+
+            const starsWrap = document.getElementById("avgRatingStars");
+            starsWrap.innerHTML = "";
+            for (let i = 1; i <= 5; i++) {
+              starsWrap.innerHTML += i <= Math.round(avg) ? `<i class="fa-solid fa-star"></i>` : `<i class="fa-regular fa-star"></i>`;
+            }
+          }
+
+          allPublicAspirasi = data.aspirasiPublik || [];
+          renderAspirasiPage();
         }
-        .saran-info h2 {
-          font-size: 1.5rem;
+      })
+      .catch(() => {
+        document.getElementById("publicReviewsGrid").innerHTML = `<p style="grid-column: 1/-1; color:#94a3b8; font-size:0.85rem; text-align:center;">Sistem aspirasi siap menerima masukan.</p>`;
+        document.getElementById("feedCounterInfo").innerText = `0 aspirasi`;
+      });
+  }
+
+  function renderAspirasiPage() {
+    const grid = document.getElementById("publicReviewsGrid");
+    const counterInfo = document.getElementById("feedCounterInfo");
+
+    grid.innerHTML = "";
+    counterInfo.innerText = `${allPublicAspirasi.length} aspirasi ditemukan`;
+
+    if (allPublicAspirasi.length === 0) {
+      grid.innerHTML = `<p style="grid-column: 1/-1; color:#64748b; font-size:0.85rem; text-align:center; padding: 30px;">Belum ada aspirasi publik. Sampaikan gagasan Anda!</p>`;
+      document.getElementById("reviewsPaginationContainer").innerHTML = "";
+      return;
+    }
+
+    const startIndex = (currentAspirasiPage - 1) * aspirasiPerPage;
+    const endIndex = startIndex + aspirasiPerPage;
+    const pageItems = allPublicAspirasi.slice(startIndex, endIndex);
+
+    pageItems.forEach((item, index) => {
+      const realIndex = startIndex + index;
+      const card = document.createElement("div");
+      card.className = "review-card-item";
+
+      const relTime = formatTimeAgo(item.tanggal);
+      const cardID = item.id || `asp_${realIndex}`;
+
+      const userVote = localStorage.getItem(`krs_vote_${cardID}`) || null;
+
+      card.innerHTML = `
+        <div class="review-card-head">
+          <span class="review-anon-name"><i class="fa-solid fa-user-ninja"></i> ${item.anonID}</span>
+          <span class="review-card-date">${relTime}</span>
+        </div>
+        <div class="review-text-wrap">
+          <p class="review-text-content" id="desc_${cardID}">"${item.pesan}"</p>
+          <button type="button" class="btn-toggle-readmore" id="btn_readmore_${cardID}" style="display:none;" onclick="toggleReadMore('${cardID}')">Selengkapnya</button>
+        </div>
+        <div class="review-card-footer">
+          <button type="button" class="vote-action-btn ${userVote === 'like' ? 'liked' : ''}" onclick="handleVote('${cardID}', 'like')">
+            <i class="fa-solid fa-thumbs-up"></i> <span id="count_like_${cardID}">${item.likes || 0}</span>
+          </button>
+          <button type="button" class="vote-action-btn ${userVote === 'dislike' ? 'disliked' : ''}" onclick="handleVote('${cardID}', 'dislike')">
+            <i class="fa-solid fa-thumbs-down"></i> <span id="count_dislike_${cardID}">${item.dislikes || 0}</span>
+          </button>
+        </div>
+      `;
+      grid.appendChild(card);
+
+      setTimeout(() => {
+        const descEl = document.getElementById(`desc_${cardID}`);
+        const btnMore = document.getElementById(`btn_readmore_${cardID}`);
+        if (descEl && btnMore) {
+          if (descEl.scrollHeight > descEl.clientHeight || item.pesan.length > 90) {
+            btnMore.style.display = "inline-block";
+          }
         }
-      }
-    </style>
+      }, 50);
+    });
+
+    renderAspirasiPaginationControls();
+  }
+
+  function toggleReadMore(cardID) {
+    const descEl = document.getElementById(`desc_${cardID}`);
+    const btnMore = document.getElementById(`btn_readmore_${cardID}`);
+
+    if (descEl.classList.contains("expanded")) {
+      descEl.classList.remove("expanded");
+      btnMore.innerText = "Selengkapnya";
+    } else {
+      descEl.classList.add("expanded");
+      btnMore.innerText = "Tutup";
+    }
+  }
+
+  // SISTEM VOTE (LIKE / DISLIKE) TERHUBUNG KE DATABASE & INSTAN
+  function handleVote(cardID, type) {
+    const currentVote = localStorage.getItem(`krs_vote_${cardID}`);
+    if (currentVote === type) return; // Abaikan jika memilih tombol yang sama
+
+    localStorage.setItem(`krs_vote_${cardID}`, type);
+
+    // Update tampilan angka secara instan di browser sebelum fetch selesai
+    const likeBtnSpan = document.getElementById(`count_like_${cardID}`);
+    const dislikeBtnSpan = document.getElementById(`count_dislike_${cardID}`);
+    
+    if (likeBtnSpan && dislikeBtnSpan) {
+      let likes = parseInt(likeBtnSpan.innerText) || 0;
+      let dislikes = parseInt(dislikeBtnSpan.innerText) || 0;
+
+      if (currentVote === 'like') likes = Math.max(0, likes - 1);
+      if (currentVote === 'dislike') dislikes = Math.max(0, dislikes - 1);
+
+      if (type === 'like') likes += 1;
+      if (type === 'dislike') dislikes += 1;
+
+      likeBtnSpan.innerText = likes;
+      dislikeBtnSpan.innerText = dislikes;
+    }
+
+    // Kirim data ke Google Sheets database baru
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "voteAspirasi", id: cardID, vote: type, anonID: anonDeviceID })
+    }).catch(() => {});
+
+    // Sinkronkan ulang data setelah beberapa detik
+    setTimeout(fetchPublicAspirasi, 1200);
+  }
+
+  function renderAspirasiPaginationControls() {
+    const container = document.getElementById("reviewsPaginationContainer");
+    container.innerHTML = "";
+
+    const totalPages = Math.ceil(allPublicAspirasi.length / aspirasiPerPage);
+    if (totalPages <= 1) return;
+
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement("button");
+      btn.className = `page-rev-btn ${i === currentAspirasiPage ? "active" : ""}`;
+      btn.innerText = i;
+      btn.onclick = function () {
+        currentAspirasiPage = i;
+        renderAspirasiPage();
+      };
+      container.appendChild(btn);
+    }
+  }
+</script>
+
+
+
+
 
     <section id="kontak" class="contact-section">
       <div class="contact-container">
@@ -4957,9 +6942,7 @@
 
       <!-- Copyright Bawah -->
       <div class="footer-bottom">
-        <p>
-          &copy; 2026 #karangsarineweru. All rights reserved.
-        </p>
+        <p>&copy; 2026 #karangsarineweru. All rights reserved.</p>
       </div>
     </footer>
     <style>
@@ -5273,21 +7256,6 @@
             });
         });
       }
-
-// TENTUKAN STATUS MAINTENANCE DI SINI (true = aktif, false = matikan/web normal)
-    const isMaintenanceMode = true; 
-    
-    // Pengecekan otomatis waktu target (20 Oktober 2026)
-    const targetMaintenanceTime = new Date("2026-11-01T00:00:00").getTime();
-    const currentTime = new Date().getTime();
-
-    if (isMaintenanceMode && currentTime < targetMaintenanceTime) {
-        // Alihkan tampilan ke file maintenance tanpa mengubah isi index.html
-        window.location.replace("maintenance.html");
-    }
-      
-
-
     </script>
 
     <script src="persetujuan.js"></script>
