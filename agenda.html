@@ -9,6 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+<!-- Panggil file persetujuan.js -->
+  <script src="persetujuan.js" defer></script>
+
+
     <style>
         :root {
             --bg-primary: #ffffff;
@@ -31,116 +35,71 @@
             box-sizing: border-box;
             padding-top: 100px;
         }
+/* ==================== RESPONSIF MOBILE ==================== */
+    @media screen and (max-width: 768px) {
+      .navbar {
+        width: 92%;
+        border-radius: 25px;
+        padding: 10px 20px;
+      }
+      .hamburger {
+        display: block;
+      }
 
-        /* --- NAVBAR UTAMA --- */
-        .nav-wrapper {
-            position: fixed;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            width: 92%;
-            max-width: 1150px;
-        }
+      /* Desain Menu Dropdown Mobile di Sebelah Kanan */
+      .nav-links {
+        position: fixed;
+        top: 80px;
+        right: 4%;
+        left: auto;
+        transform: none;
+        width: 240px;
+        background: #ffffff;
+        border: 2px solid #800000;
+        border-radius: 20px;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        z-index: 999;
+        gap: 10px;
+        
+        /* Animasi Transisi Muncul */
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+      }
 
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1.5px solid var(--border-glass);
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(128, 0, 0, 0.08);
-            padding: 0 24px;
-        }
+      .nav-links.active {
+        opacity: 1;
+        visibility: visible;
+        top: 90px;
+      }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 65px;
-            position: relative;
-        }
+      .nav-links li {
+        width: 100%;
+      }
 
-        .nav-logo {
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-            text-decoration: none;
-        }
+      .nav-links li a {
+        display: block;
+        width: 100%;
+        padding: 10px 15px;
+        border-radius: 10px;
+        transition: background 0.2s, color 0.2s;
+      }
 
-        .nav-logo img {
-            height: 32px;
-            width: auto;
-            display: block;
-        }
+      .nav-links li a:hover {
+        background: rgba(128, 0, 0, 0.05);
+        color: #800000;
+      }
 
-        @keyframes shine {
-            0% { transform: translateX(-100%) rotate(30deg); }
-            100% { transform: translateX(200%) rotate(30deg); }
-        }
-
-        .nav-logo::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to right,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.6) 50%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: translateX(-100%) rotate(30deg);
-            animation: shine 3s infinite;
-            pointer-events: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-main);
-            transition: color 0.2s;
-        }
-
-        .nav-links a.active, .nav-links a:hover {
-            color: var(--accent-red);
-        }
-
-        .btn-kirim {
-            background: var(--accent-gradient) !important;
-            color: #ffffff !important;
-            padding: 10px 20px;
-            border-radius: 30px;
-            box-shadow: 0 4px 15px var(--accent-glow);
-            transition: all 0.2s ease !important;
-        }
-
-        .btn-kirim:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(127, 29, 29, 0.35);
-        }
-
-        .hamburger-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--accent-red);
-            font-size: 22px;
-            cursor: pointer;
-            padding: 8px;
-        }
+      .btn-kirim {
+        width: 100%;
+        justify-content: center;
+        margin-top: 5px;
+      }
+    }
+       
 
         /* --- CONTAINER UTAMA AGENDA --- */
         .agenda-container {
@@ -524,61 +483,7 @@
             body {
                 padding-top: 90px;
             }
-            .nav-wrapper {
-                width: 92%;
-                top: 12px;
-            }
-            .navbar {
-                padding: 0 18px;
-            }
-            .hamburger-btn {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 75px;
-                right: 0;
-                width: 280px;
-                background: #ffffff;
-                flex-direction: column;
-                align-items: stretch;
-                padding: 22px 18px;
-                gap: 12px;
-                border: 2px solid var(--border-glass);
-                border-radius: 24px;
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-                box-sizing: border-box;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li a {
-                font-size: 15px;
-                font-weight: 600;
-                color: var(--text-main);
-                padding: 10px 16px;
-                display: block;
-                border-radius: 12px;
-                background: transparent !important;
-            }
-
-            .nav-links li a:hover, .nav-links li a.active {
-                background: #f8fafc;
-                color: var(--accent-red);
-            }
-
-            .nav-links .btn-kirim {
-                text-align: center;
-                margin-top: 6px;
-                border-radius: 30px !important;
-                padding: 12px 20px !important;
-                background: var(--accent-gradient) !important;
-                color: #ffffff !important;
-            }
+          
 
             .agenda-layout {
                 grid-template-columns: 1fr;
@@ -688,32 +593,58 @@
 </head>
 <body>
 
-    <!-- NAVBAR UTAMA MENGAMBANG -->
-    <div class="nav-wrapper" id="navbarWrapper">
-      <nav class="navbar" id="mainNav">
-        <div class="nav-container">
-          <a href="index.html" class="nav-logo">
-            <img src="krs.png" alt="Logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/100x32?text=KRS.INFO';" />
-          </a>
+   <!-- Penampung Navbar Otomatis -->
+  <div id="navbar-placeholder"></div>
 
-          <ul class="nav-links" id="menu">
-            <li><a href="index.html#home" class="active">Beranda</a></li>
-            <li><a href="index.html#Berita">Berita</a></li>
-            <li><a href="index.html#agenda">Acara</a></li>
-            <li><a href="index.html#kontak">Kontak</a></li>
-            <li>
-              <a href="javascript:void(0);" onclick="triggerKirimBerita()" class="btn-kirim">
-                <i class="fa-solid fa-paper-plane"></i> Kirim Berita
-              </a>
-            </li>
-          </ul>
+  <!-- Skrip Pengambil Navbar & Inisialisasi Hamburger -->
+  <script>
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        
+        // Inisialisasi ulang event listener untuk hamburger SETELAH navbar masuk ke DOM
+        const hamburgerBtn = document.getElementById('hamburger');
+        const navMenu = document.getElementById('menu');
 
-          <button class="hamburger-btn" id="hamburgerToggle" aria-label="Menu">
-            <i class="fa-solid fa-bars"></i>
-          </button>
-        </div>
-      </nav>
-    </div>
+        if (hamburgerBtn && navMenu) {
+          hamburgerBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+          });
+        }
+      })
+      .catch(error => console.error('Gagal memuat navbar:', error));
+
+    // Tutup menu jika klik di luar
+    document.addEventListener("click", function(event) {
+      const menu = document.getElementById("menu");
+      const hamburger = document.getElementById("hamburger");
+
+      if (menu && hamburger) {
+        if (menu.classList.contains("active") && !menu.contains(event.target) && !hamburger.contains(event.target)) {
+          menu.classList.remove("active");
+        }
+      }
+    });
+
+    // TAMBAHKAN FUNGSI INI AGAR TIDAK ERROR "is not defined"
+    function handleKirimBerita(targetUrl) {
+        const menu = document.getElementById('menu');
+        if (menu) menu.classList.remove('active');
+        
+        // Jika fungsi bukaModalProtokol ada, jalankan; jika tidak, langsung arahkan ke form
+        if (typeof bukaModalProtokol === 'function') {
+            bukaModalProtokol(targetUrl || 'kirim-berita.html');
+        } else {
+            window.location.href = targetUrl || 'kirim-berita.html';
+        }
+    }
+
+    function triggerKirimBerita() {
+        handleKirimBerita('kirim-berita.html');
+    }
+  </script>
 
 
     
@@ -802,7 +733,7 @@
             });
         }
 
-        function formatFriendlyDate(startStr, endStr) {
+      function formatFriendlyDate(startStr, endStr) {
             const daysIndo = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
             const monthsIndo = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
             
