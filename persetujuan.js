@@ -363,7 +363,7 @@ function eksekusiLanjutGoogleForm() {
   const linkForm = window._linkTujuanFormSementara;
   
   if (linkForm) {
-    window.open(linkForm, "_blank");
+    window.location.href = linkForm; // <--- Diubah agar terbuka di tab/halaman yang sama
   }
 
   const protoWrapper = document.getElementById("modalProtokolLegal");
