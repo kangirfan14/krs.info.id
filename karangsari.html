@@ -13,7 +13,7 @@
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    body { background-color: #f8fafc; color: #0b192c; line-height: 1.7; padding-top: 130px; }
+    body { background-color: #f8fafc; color: #0b192c; line-height: 1.7; padding-top: 130px; position: relative; }
 
     /* ==================== NAVBAR ==================== */
     .navbar {
@@ -99,12 +99,46 @@
       max-width: 900px;
       margin: 20px auto 40px auto;
       padding: 0 20px;
+      position: relative;
+    }
+
+    /* WADAH UTAMA GLOBAL SCAN (UNTUK PERBARUI 1) */
+    .global-scan-wrapper {
+      position: relative;
+    }
+
+    .global-scanner-beam {
+      position: absolute;
+      left: 0;
+      top: -100px;
+      width: 100%;
+      height: 90px;
+      background: linear-gradient(to bottom, rgba(16, 185, 129, 0), rgba(16, 185, 129, 0.4), rgba(52, 211, 153, 0.85), #ffffff);
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.8), 0 0 35px rgba(52, 211, 153, 0.6);
+      z-index: 999;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .global-scanner-beam.active-global-scan {
+      opacity: 1;
+      animation: scanGlobalBeam 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes scanGlobalBeam {
+      0% { top: 0px; }
+      100% { top: 100%; }
     }
 
     .back-bar {
       max-width: 900px;
       margin: 0 auto 20px auto;
       padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .btn-kembali {
@@ -127,7 +161,147 @@
       transform: translateX(-3px);
     }
 
-    /* Slider Media */
+    /* FITUR INDIKATOR DATA DIPERBARUI & RELOAD */
+    .data-update-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      padding: 6px 12px;
+      border-radius: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 600;
+      user-select: none;
+      position: relative;
+    }
+
+    .data-update-badge i.status-dot {
+      font-size: 8px;
+      color: #10b981;
+    }
+
+    .btn-reload-data {
+      background: rgba(128, 0, 0, 0.06);
+      border: 1px solid rgba(128, 0, 0, 0.2);
+      color: #800000;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 11px;
+      transition: all 0.25s ease;
+      outline: none;
+    }
+
+    .btn-reload-data:hover {
+      background: #800000;
+      color: #ffffff;
+      transform: rotate(180deg);
+    }
+
+    .btn-reload-data.spin-anim {
+      animation: spinReload 0.8s linear infinite;
+    }
+
+    @keyframes spinReload {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* STYLING IKON INFORMASI (I BUNDER) & TOOLTIP (POSISI DI BAWAH) */
+    .info-icon-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #64748b;
+      font-size: 13px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .info-icon-wrapper:hover {
+      background: #800000;
+      color: #ffffff;
+    }
+
+    .info-tooltip {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: 260px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      line-height: 1.5;
+      font-weight: 400;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+      pointer-events: none;
+      text-align: left;
+    }
+
+    .info-tooltip::after {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      right: 12px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent transparent #0f172a transparent;
+    }
+
+    .info-icon-wrapper:hover .info-tooltip,
+    .info-tooltip.show-tooltip {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* ANIMASI SCANNING LOKAL UNTUK WADAH STATISTIK & SARPRAS (PERBARUI 2) */
+    .scan-container-relative {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .scanner-beam {
+      position: absolute;
+      left: 0;
+      top: -100px;
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(16, 185, 129, 0), rgba(16, 185, 129, 0.4), rgba(52, 211, 153, 0.8), #ffffff);
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.8), 0 0 30px rgba(52, 211, 153, 0.6);
+      z-index: 99;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .scanner-beam.active-scan {
+      opacity: 1;
+      animation: scanLaser 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes scanLaser {
+      0% { top: -60px; }
+      100% { top: 100%; }
+    }
+
     .media-slider-wrapper {
       position: relative;
       background: #000;
@@ -377,14 +551,24 @@
       line-height: 1.5;
     }
 
-    /* ==================== STATISTIK GRID KOTAK ==================== */
+    /* ==================== STATISTIK & SARPRAS ==================== */
+    .stats-header-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 35px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
     .stats-section-title {
       font-size: 20px;
       color: #0b192c;
-      margin-top: 35px;
-      margin-bottom: 15px;
       font-weight: 700;
+      margin: 0;
     }
+
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -550,301 +734,446 @@
       }
     });
   </script>
-  <!-- Tombol Kembali ke Beranda -->
+
+  <!-- Tombol Kembali ke Beranda & Indikator Data Diperbarui (Perbarui 1 / Global) -->
   <div class="back-bar">
     <a href="index.html" class="btn-kembali"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a>
+    
+    <div class="data-update-badge">
+      <i class="fa-solid fa-circle status-dot"></i>
+      <span id="txt-update-slider">Data diperbarui <strong id="year-slider">2025</strong></span>
+      <button class="btn-reload-data" onclick="triggerGlobalScan()" title="Cek Pembaruan Data">
+        <i class="fa-solid fa-rotate-right" id="icon-reload-slider"></i>
+      </button>
+      <div class="info-icon-wrapper" onclick="toggleTooltip(event, 'tooltipSlider')">
+        <i class="fa-solid fa-circle-info"></i>
+        <div class="info-tooltip" id="tooltipSlider">Data resmi diambil dari pemerintah Desa Karangsari pada tahun 2025 oleh pihak KRS.info dengan bantuan Karangsari Culture.</div>
+      </div>
+    </div>
   </div>
 
-  <!-- Konten Utama -->
+  <!-- Konten Utama & Wadah Global Scan (Perbarui 1 Mencakup Seluruh Halaman) -->
   <div class="profile-container">
-    <div class="media-slider-wrapper" id="mediaSlider">
-      <div class="slide-item active"><img src="slide (1).png" alt=""></div>
-      <div class="slide-item"><img src="slide (3).png" alt=""></div>
-      <div class="slide-item"><img src="slide (2).png" alt=""></div>
-      <div class="slide-item">
-        <iframe id="youtubeVideo" src="https://www.youtube.com/embed/UOyG1afD61Y?enablejsapi=1" title="Video Profil Desa Karangsari" allowfullscreen></iframe>
-      </div>
-    </div>
+    <div class="global-scan-wrapper" id="globalScanArea">
+      <div class="global-scanner-beam" id="globalScanBeam"></div>
 
-    <div class="video-hint-gesture" onclick="jumpToVideo()">
-      Geser untuk lihat video profil <i class="fa-solid fa-arrow-right"></i>
-    </div>
-
-    <div class="profile-body">
-     <h3>Sejarah Singkat Karangsari</h3>
-      <p style="text-align: justify;">Terbentuknya Desa Karangsari yang terletak di ujung barat Kecamatan Weru memiliki akar sejarah yang cukup panjang dan bermula
-         jauh sebelum tahun 1905. Pada masa lampau, wilayah ini awalnya dikenal dengan nama Desa Bode Kidul. Kala itu, pusat pemerintahan desa atau balai desanya menempati 
-         lokasi yang berhadapan secara langsung dengan wilayah Desa Bode Lor.</p>
-      
-      <p style="text-align: justify;">Seiring berjalannya waktu serta perkembangan wilayah, pusat pemerintahan desa kemudian mengalami perpindahan lokasi ke kawasan Blok Megulu.
-         Bersamaan dengan kepindahan pusat pemerintahan tersebut, nama desa ini resmi berganti menjadi Desa Karangsari yang dikenal oleh masyarakat luas hingga saat ini.</p>
-      
-      <p style="text-align: justify;">Selain perjalanan administratifnya, Desa Karangsari juga memiliki ikatan historis dan spiritual yang sangat kuat dengan seorang 
-        tokoh terkemuka. Desa ini pernah menjadi tempat perjuangan seorang tokoh pejuang kemerdekaan sekaligus penyebar agama Islam di Cirebon, yaitu Kiai Ishak Al-Maksyur yang juga
-         dikenal sebagai pendiri Pondok Pesantren Mukasyafaah Arifin Billah Karangsari.</p>
-
-      <!-- SECTION BATAS WILAYAH BERGAYA PETA / KORDINAT (TANPA GAMBAR) -->
-      <h3>Batas Wilayah Administratif</h3>
-      <p style="margin-bottom: 10px;">Secara geografis, ruang lingkup wilayah Desa Karangsari berdampingan langsung dengan beberapa kawasan desa dan kelurahan di sekitarnya</p>
-      
-      <div class="wilayah-map-container">
-        <div class="wilayah-header-info">
-          <span class="koordinat-teks"><i class="fa-solid fa-location-crosshairs"></i> Wilayah Administrasi: Kecamatan Weru, Kabupaten Cirebon</span>
-        </div>
-
-        <div class="wilayah-grid">
-          <div class="wilayah-item">
-            <span class="wilayah-badge"><i class="fa-solid fa-arrow-up"></i> Sebelah Utara</span>
-            <p>Berbatasan langsung dengan wilayah Desa Bodesari / Bode Lor (Kecamatan Plumbon).</p>
-          </div>
-          <div class="wilayah-item">
-            <span class="wilayah-badge"><i class="fa-solid fa-arrow-down"></i> Sebelah Selatan</span>
-            <p>Berbatasan langsung dengan wilayah Kelurahan Pasalakan (Kecamatan Sumber).</p>
-          </div>
-          <div class="wilayah-item">
-            <span class="wilayah-badge"><i class="fa-solid fa-arrow-right"></i> Sebelah Timur</span>
-            <p>Berbatasan langsung dengan wilayah Desa Kertasari & Desa Megu Cilik.</p>
-          </div>
-          <div class="wilayah-item">
-            <span class="wilayah-badge"><i class="fa-solid fa-arrow-left"></i> Sebelah Barat</span>
-            <p>Berbatasan langsung dengan wilayah Desa Pamijahan & Marikangen (Kecamatan Plumbon).</p>
-          </div>
+      <div class="media-slider-wrapper" id="mediaSlider">
+        <div class="slide-item active"><img src="slide (1).png" alt=""></div>
+        <div class="slide-item"><img src="slide (3).png" alt=""></div>
+        <div class="slide-item"><img src="slide (2).png" alt=""></div>
+        <div class="slide-item">
+          <iframe id="youtubeVideo" src="https://www.youtube.com/embed/UOyG1afD61Y?enablejsapi=1" title="Video Profil Desa Karangsari" allowfullscreen></iframe>
         </div>
       </div>
 
-      <h3>Potensi Desa</h3>
-      <!-- GRID POTENSI DENGAN SLOT GAMBAR -->
-      <div class="potensi-grid">
-        <div class="potensi-card">
-          <div class="potensi-img-wrapper">
-            <img src="rattan.png" alt="Pusat Kerajinan Rotan">
-          </div>
-          <div class="potensi-content">
-            <h4>Kerajinan Rotan</h4>
-            <p></p>
-          </div>
-        </div>
-        <div class="potensi-card">
-          <div class="potensi-img-wrapper">
-            <img src="tenun.jpeg" alt="Tenun">
-          </div>
-          <div class="potensi-content">
-            <h4>Kerajinan Kain Tenun</h4>
-            <p> </p>
-          </div>
-        </div>
-        <div class="potensi-card">
-          <div class="potensi-img-wrapper">
-            <img src="tahu jelawe.png" alt="Tahu Jelawe">
-          </div>
-          <div class="potensi-content">
-            <h4>Pembuatan Tahu Jelawe</h4>
-            <p> </p>
-          </div>
-          </div>
-
-           <div class="potensi-card">
-          <div class="potensi-img-wrapper">
-            <img src="krupuk khas.png" alt="Krupuk Khas">
-          </div>
-          <div class="potensi-content">
-            <h4>Krupuk Khas Karangsari</h4>
-            <p> .</p>
-          </div>
-          </div>
-
-           <div class="potensi-card">
-          <div class="potensi-img-wrapper">
-            <img src="tusuk sate.jpeg" alt="Tusuk Sate">
-          </div>
-          <div class="potensi-content">
-            <h4>Pembuatan Sujen / Tusuk Sate</h4>
-            <p> </p>
-          </div>
-          </div>
-
-           <div class="potensi-card">
-          <div class="potensi-img-wrapper">
-            <img src="pasar malam.png" alt="pm">
-          </div>
-          <div class="potensi-content">
-            <h4>Pasar Malam Minggu</h4>
-            <p> </p>
-          </div>
-          </div>
-
-           <div class="potensi-card">
-          <div class="potensi-img-wrapper">
-            <img src="olahraga.png" alt="gor">
-          </div>
-          <div class="potensi-content">
-            <h4>Sektor Olahraga</h4>
-            <p> </p>
-          </div>
-          </div>
-
-           <div class="potensi-card">
-          <div class="potensi-img-wrapper">
-            <img src="pertanian.png" alt="Sawah">
-          </div>
-          <div class="potensi-content">
-            <h4>Sektor Pertanian</h4>
-            <p> </p>
-          </div>
-          </div>
-
-           <div class="potensi-card">
-          <div class="potensi-img-wrapper">
-            <img src="perdagangan.png" alt="perdagangan">
-          </div>
-          <div class="potensi-content">
-            <h4>Sektor Perdagangan</h4>
-            <p> </p>
-          </div>
-          </div>
-          
+      <div class="video-hint-gesture" onclick="jumpToVideo()">
+        Geser untuk lihat video profil <i class="fa-solid fa-arrow-right"></i>
       </div>
 
-      <h3>Situs Bersejarah & Kesenian</h3>
-      <p style="margin-bottom: 15px;"></p>
-      
-      <!-- GRID HERITAGE/SITUS DENGAN SLOT GAMBAR -->
-      <div class="heritage-grid">
-        <div class="heritage-card">
-          <div class="heritage-img-wrapper">
-            <img src="tajug gede.png" alt="Tajug Gede">
+      <div class="profile-body">
+       <h3>Sejarah Singkat Karangsari</h3>
+        <p style="text-align: justify;">Terbentuknya Desa Karangsari yang terletak di ujung barat Kecamatan Weru memiliki akar sejarah yang cukup panjang dan bermula
+           jauh sebelum tahun 1905. Pada masa lampau, wilayah ini awalnya dikenal dengan nama Desa Bode Kidul. Kala itu, pusat pemerintahan desa atau balai desanya menempati 
+           lokasi yang berhadapan secara langsung dengan wilayah Desa Bode Lor.</p>
+        
+        <p style="text-align: justify;">Seiring berjalannya waktu serta perkembangan wilayah, pusat pemerintahan desa kemudian mengalami perpindahan lokasi ke kawasan Blok Megulu.
+           Bersamaan dengan kepindahan pusat pemerintahan tersebut, nama desa ini resmi berganti menjadi Desa Karangsari yang dikenal oleh masyarakat luas hingga saat ini.</p>
+        
+        <p style="text-align: justify;">Selain perjalanan administratifnya, Desa Karangsari juga memiliki ikatan historis dan spiritual yang sangat kuat dengan seorang 
+          tokoh terkemuka. Desa ini pernah menjadi tempat perjuangan seorang tokoh pejuang kemerdekaan sekaligus penyebar agama Islam di Cirebon, yaitu Kiai Ishak Al-Maksyur yang juga
+           dikenal sebagai pendiri Pondok Pesantren Mukasyafaah Arifin Billah Karangsari.</p>
+
+        <!-- SECTION BATAS WILAYAH BERGAYA PETA / KORDINAT (TANPA GAMBAR) -->
+        <h3>Batas Wilayah Administratif</h3>
+        <p style="margin-bottom: 10px;">Secara geografis, ruang lingkup wilayah Desa Karangsari berdampingan langsung dengan beberapa kawasan desa dan kelurahan di sekitarnya:</p>
+        
+        <div class="wilayah-map-container">
+          <div class="wilayah-header-info">
+            <span class="koordinat-teks"><i class="fa-solid fa-location-crosshairs"></i> Wilayah Administrasi: Kecamatan Weru, Kabupaten Cirebon</span>
           </div>
-          <div class="heritage-content">
-            <h4>Tajug Gede</h4>
-            <p></p>
+
+          <div class="wilayah-grid">
+            <div class="wilayah-item">
+              <span class="wilayah-badge"><i class="fa-solid fa-arrow-up"></i> Sebelah Utara</span>
+              <p>Berbatasan langsung dengan wilayah Desa Bodesari / Bode Lor (Kecamatan Plumbon).</p>
+            </div>
+            <div class="wilayah-item">
+              <span class="wilayah-badge"><i class="fa-solid fa-arrow-down"></i> Sebelah Selatan</span>
+              <p>Berbatasan langsung dengan wilayah Kelurahan Pasalakan (Kecamatan Sumber).</p>
+            </div>
+            <div class="wilayah-item">
+              <span class="wilayah-badge"><i class="fa-solid fa-arrow-right"></i> Sebelah Timur</span>
+              <p>Berbatasan langsung dengan wilayah Desa Kertasari & Desa Megu Cilik.</p>
+            </div>
+            <div class="wilayah-item">
+              <span class="wilayah-badge"><i class="fa-solid fa-arrow-left"></i> Sebelah Barat</span>
+              <p>Berbatasan langsung dengan wilayah Desa Pamijahan & Marikangen (Kecamatan Plumbon).</p>
+            </div>
           </div>
         </div>
 
-<div class="heritage-card">
-          <div class="heritage-img-wrapper">
-            <img src="sumur pitu.png" alt="Sumur Pitu">
+        <h3>Potensi Desa</h3>
+        <!-- GRID POTENSI DENGAN SLOT GAMBAR -->
+        <div class="potensi-grid">
+          <div class="potensi-card">
+            <div class="potensi-img-wrapper">
+              <img src="rattan.png" alt="Pusat Kerajinan Rotan">
+            </div>
+            <div class="potensi-content">
+              <h4>Kerajinan Rotan</h4>
+              <p></p>
+            </div>
           </div>
-          <div class="heritage-content">
-            <h4>Sumur Pitu</h4>
-            <p></p>
+          <div class="potensi-card">
+            <div class="potensi-img-wrapper">
+              <img src="tenun.jpeg" alt="Tenun">
+            </div>
+            <div class="potensi-content">
+              <h4>Kerajinan Kain Tenun</h4>
+              <p> </p>
+            </div>
+          </div>
+          <div class="potensi-card">
+            <div class="potensi-img-wrapper">
+              <img src="tahu jelawe.png" alt="Tahu Jelawe">
+            </div>
+            <div class="potensi-content">
+              <h4>Pembuatan Tahu Jelawe</h4>
+              <p> </p>
+            </div>
+            </div>
+
+             <div class="potensi-card">
+            <div class="potensi-img-wrapper">
+              <img src="krupuk khas.png" alt="Krupuk Khas">
+            </div>
+            <div class="potensi-content">
+              <h4>Krupuk Khas Karangsari</h4>
+              <p> .</p>
+            </div>
+            </div>
+
+             <div class="potensi-card">
+            <div class="potensi-img-wrapper">
+              <img src="tusuk sate.jpeg" alt="Tusuk Sate">
+            </div>
+            <div class="potensi-content">
+              <h4>Pembuatan Sujen / Tusuk Sate</h4>
+              <p> </p>
+            </div>
+            </div>
+
+             <div class="potensi-card">
+            <div class="potensi-img-wrapper">
+              <img src="pasar malam.png" alt="pm">
+            </div>
+            <div class="potensi-content">
+              <h4>Pasar Malam Minggu</h4>
+              <p> </p>
+            </div>
+            </div>
+
+             <div class="potensi-card">
+            <div class="potensi-img-wrapper">
+              <img src="olahraga.png" alt="gor">
+            </div>
+            <div class="potensi-content">
+              <h4>Sektor Olahraga</h4>
+              <p> </p>
+            </div>
+            </div>
+
+             <div class="potensi-card">
+            <div class="potensi-img-wrapper">
+              <img src="pertanian.png" alt="Sawah">
+            </div>
+            <div class="potensi-content">
+              <h4>Sektor Pertanian</h4>
+              <p> </p>
+            </div>
+            </div>
+
+             <div class="potensi-card">
+            <div class="potensi-img-wrapper">
+              <img src="perdagangan.png" alt="perdagangan">
+            </div>
+            <div class="potensi-content">
+              <h4>Sektor Perdagangan</h4>
+              <p> </p>
+            </div>
+            </div>
+            
+        </div>
+
+        <h3>Situs Bersejarah & Kesenian Tradisional</h3>
+        <p style="margin-bottom: 15px;">Sebagai desa yang kaya akan warisan leluhur, Karangsari merawat berbagai situs bersejarah serta melestarikan seni budaya tradisional.</p>
+        
+        <!-- GRID HERITAGE/SITUS DENGAN SLOT GAMBAR -->
+        <div class="heritage-grid">
+          <div class="heritage-card">
+            <div class="heritage-img-wrapper">
+              <img src="tajug gede.png" alt="Tajug Gede">
+            </div>
+            <div class="heritage-content">
+              <h4>Tajug Gede</h4>
+              <p></p>
+            </div>
+          </div>
+
+          <div class="heritage-card">
+            <div class="heritage-img-wrapper">
+              <img src="sumur pitu.png" alt="Sumur Pitu">
+            </div>
+            <div class="heritage-content">
+              <h4>Sumur Pitu</h4>
+              <p></p>
+            </div>
+          </div>
+
+          <div class="heritage-card">
+            <div class="heritage-img-wrapper">
+              <img src="sumur tanjung.png" alt="Sumur Tanjung">
+            </div>
+            <div class="heritage-content">
+              <h4>Sumur Tanjung</h4>
+              <p></p>
+            </div>
+          </div>
+
+          <div class="heritage-card">
+            <div class="heritage-img-wrapper">
+              <img src="kendang pencak.png" alt="Kendang Pencak Cipta Ganda Rasa">
+            </div>
+            <div class="heritage-content">
+              <h4>Kendang Pencak Cipta Ganda Rasa</h4>
+              <p></p>
+            </div>
+          </div>
+
+          <div class="heritage-card">
+            <div class="heritage-img-wrapper">
+              <img src="srimpi.png" alt="Tari Serimpi">
+            </div>
+            <div class="heritage-content">
+              <h4>Tari Serimpi</h4>
+              <p></p>
+            </div>
           </div>
         </div>
 
-        <div class="heritage-card">
-          <div class="heritage-img-wrapper">
-            <img src="sumur tanjung.png" alt="Sumur Tanjung">
+        <!-- WADAH GABUNGAN STATISTIK & SARPRAS UNTUK PERBARUI 2 (LOKAL GANDA) -->
+        <div class="scan-container-relative" id="boxDoubleSection">
+          <div class="scanner-beam" id="scanBeamDouble"></div>
+
+          <!-- STATISTIK DEMOGRAFI PENDUDUK -->
+          <div class="stats-header-wrapper">
+            <div class="stats-section-title">Statistik Demografi Penduduk</div>
+            <div class="data-update-badge">
+              <i class="fa-solid fa-circle status-dot"></i>
+              <span id="txt-update-demografi">Data diperbarui <strong id="year-demografi">2025</strong></span>
+              <button class="btn-reload-data" onclick="triggerDoubleScan()" title="Cek Pembaruan Data">
+                <i class="fa-solid fa-rotate-right" id="icon-reload-demografi"></i>
+              </button>
+              <div class="info-icon-wrapper" onclick="toggleTooltip(event, 'tooltipDemografi')">
+                <i class="fa-solid fa-circle-info"></i>
+                <div class="info-tooltip" id="tooltipDemografi">Data resmi diambil dari pemerintah Desa Karangsari pada tahun 2025 oleh pihak KRS.info dengan bantuan Karangsari Culture.</div>
+              </div>
+            </div>
           </div>
-          <div class="heritage-content">
-            <h4>Sumur Tanjung</h4>
-            <p></p>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-mars"></i></div>
+              <div class="stat-number" data-target="3919">0</div>
+              <div class="stat-label">Penduduk Laki-laki</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-venus"></i></div>
+              <div class="stat-number" data-target="3698">0</div>
+              <div class="stat-label">Penduduk Perempuan</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-child"></i></div>
+              <div class="stat-number" data-target="2315">0</div>
+              <div class="stat-label">Usia 0-17 Tahun</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-user-tie"></i></div>
+              <div class="stat-number" data-target="3758">0</div>
+              <div class="stat-label">Usia 18-55 Tahun</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-user-clock"></i></div>
+              <div class="stat-number" data-target="1554">0</div>
+              <div class="stat-label">Usia 55 Tahun Ke atas</div>
+            </div>
           </div>
-        </div>
-<div class="heritage-card">
-          <div class="heritage-img-wrapper">
-            <img src="kendang pencak.png" alt="Kendang Pencak Cipta Ganda Rasa">
+
+          <!-- STATISTIK SARANA & PRASARANA PENUNJANG -->
+          <div class="stats-header-wrapper">
+            <div class="stats-section-title">Sarana & Prasarana Penunjang</div>
           </div>
-          <div class="heritage-content">
-            <h4>Kendang Pencak Cipta Ganda Rasa</h4>
-            <p></p>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-book-open"></i></div>
+              <div class="stat-number" data-target="1">0</div>
+              <div class="stat-label">Perpustakaan Desa</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-shapes"></i></div>
+              <div class="stat-number" data-target="5">0</div>
+              <div class="stat-label">Gedung PAUD</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-school"></i></div>
+              <div class="stat-number" data-target="1">0</div>
+              <div class="stat-label">Gedung TK</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+              <div class="stat-number" data-target="1">0</div>
+              <div class="stat-label">Gedung SD</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-building-columns"></i></div>
+              <div class="stat-number" data-target="1">0</div>
+              <div class="stat-label">Gedung SMP</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-house-medical"></i></div>
+              <div class="stat-number" data-target="1">0</div>
+              <div class="stat-label">Puskesmas</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-notes-medical"></i></div>
+              <div class="stat-number" data-target="9">0</div>
+              <div class="stat-label">Posyandu & Polindes</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-mosque"></i></div>
+              <div class="stat-number" data-target="5">0</div>
+              <div class="stat-label">Masjid</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-place-of-worship"></i></div>
+              <div class="stat-number" data-target="16">0</div>
+              <div class="stat-label">Mushola</div>
+            </div>
           </div>
         </div>
 
-        <div class="heritage-card">
-          <div class="heritage-img-wrapper">
-            <img src="srimpi.png" alt="Tari Serimpi">
-          </div>
-          <div class="heritage-content">
-            <h4>Tari Serimpi</h4>
-            <p></p>
-          </div>
-        </div>
       </div>
-
-      <!-- STATISTIK DEMOGRAFI PENDUDUK (POIN A S.D. E) -->
-      <div class="stats-section-title">Statistik Demografi Penduduk</div>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-mars"></i></div>
-          <div class="stat-number" data-target="3919">0</div>
-          <div class="stat-label">Penduduk Laki-laki</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-venus"></i></div>
-          <div class="stat-number" data-target="3698">0</div>
-          <div class="stat-label">Penduduk Perempuan</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-child"></i></div>
-          <div class="stat-number" data-target="2315">0</div>
-          <div class="stat-label">Usia 0-17 Tahun</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-user-tie"></i></div>
-          <div class="stat-number" data-target="3758">0</div>
-          <div class="stat-label">Usia 18-55 Tahun</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-user-clock"></i></div>
-          <div class="stat-number" data-target="1554">0</div>
-          <div class="stat-label">Usia 55 Tahun Ke atas</div>
-        </div>
-      </div>
-
-      <!-- STATISTIK SARANA & PRASARANA PENUNJANG -->
-      <div class="stats-section-title">Sarana & Prasarana Penunjang</div>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-book-open"></i></div>
-          <div class="stat-number" data-target="1">0</div>
-          <div class="stat-label">Perpustakaan Desa</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-shapes"></i></div>
-          <div class="stat-number" data-target="5">0</div>
-          <div class="stat-label">Gedung PAUD</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-school"></i></div>
-          <div class="stat-number" data-target="1">0</div>
-          <div class="stat-label">Gedung TK</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-          <div class="stat-number" data-target="1">0</div>
-          <div class="stat-label">Gedung SD</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-building-columns"></i></div>
-          <div class="stat-number" data-target="1">0</div>
-          <div class="stat-label">Gedung SMP</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-house-medical"></i></div>
-          <div class="stat-number" data-target="1">0</div>
-          <div class="stat-label">Puskesmas</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-notes-medical"></i></div>
-          <div class="stat-number" data-target="9">0</div>
-          <div class="stat-label">Posyandu & Polindes</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-mosque"></i></div>
-          <div class="stat-number" data-target="5">0</div>
-          <div class="stat-label">Masjid</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-place-of-worship"></i></div>
-          <div class="stat-number" data-target="16">0</div>
-          <div class="stat-label">Mushola</div>
-        </div>
-      </div>
-
     </div>
   </div>
 
   <!-- Skrip Pendukung Halaman & Hamburger Interaktif -->
   <script>
+    /* ========================================================
+       PENGATURAN TAHUN OLEH ADMIN (DAPAT DIUBAH DI SINI)
+       ======================================================== */
+    const YEAR_SLIDER = "2025";
+    const YEAR_DOUBLE = "2025";
+
+    document.addEventListener("DOMContentLoaded", function() {
+      if(document.getElementById("year-slider")) document.getElementById("year-slider").innerText = YEAR_SLIDER;
+      if(document.getElementById("year-demografi")) document.getElementById("year-demografi").innerText = YEAR_DOUBLE;
+    });
+
+    /* ========================================================
+       FUNGSI TOOLTIP KLIK (UNTUK MOBILE) & KLIK SEMBARANG
+       ======================================================== */
+    function toggleTooltip(event, tooltipId) {
+      event.stopPropagation();
+      const targetTooltip = document.getElementById(tooltipId);
+      
+      document.querySelectorAll('.info-tooltip').forEach(tip => {
+        if (tip.id !== tooltipId) tip.classList.remove('show-tooltip');
+      });
+
+      if (targetTooltip) {
+        targetTooltip.classList.toggle('show-tooltip');
+      }
+    }
+
+    document.addEventListener("click", function() {
+      document.querySelectorAll('.info-tooltip').forEach(tip => {
+        tip.classList.remove('show-tooltip');
+      });
+    });
+
+    /* ========================================================
+       FUNGSI PERBARUI 1: SCANNING KESELURUHAN HALAMAN (GLOBAL)
+       ======================================================== */
+    function triggerGlobalScan() {
+      const beamElem = document.getElementById('globalScanBeam');
+      const iconElem = document.getElementById('icon-reload-slider');
+      const txtElem = document.getElementById('txt-update-slider');
+
+      if (!beamElem || !iconElem) return;
+
+      iconElem.classList.add('spin-anim');
+      beamElem.classList.remove('active-global-scan');
+      void beamElem.offsetWidth; // Force Reflow
+      beamElem.classList.add('active-global-scan');
+
+      if (txtElem) {
+        txtElem.innerHTML = `<span style="color: #10b981;"><i class="fa-solid fa-arrows-rotate fa-spin"></i> Memeriksa...</span>`;
+      }
+
+      setTimeout(() => {
+        iconElem.classList.remove('spin-anim');
+        beamElem.classList.remove('active-global-scan');
+        
+        if (txtElem) {
+          txtElem.innerHTML = `<span style="color: #10b981; font-weight:700;"><i class="fa-solid fa-check"></i> Selesai Diperbarui</span>`;
+          
+          setTimeout(() => {
+            txtElem.innerHTML = `Data diperbarui <strong>${YEAR_SLIDER}</strong>`;
+          }, 1800);
+        }
+
+        // Jalankan ulang seluruh counter statistik di halaman
+        runCounter();
+      }, 2500);
+    }
+
+    /* ========================================================
+       FUNGSI PERBARUI 2: SCANNING LOKAL UNTUK DEMOGRAFI & SARPRAS
+       ======================================================== */
+    function triggerDoubleScan() {
+      const beamElem = document.getElementById('scanBeamDouble');
+      const iconElem = document.getElementById('icon-reload-demografi');
+      const txtElem = document.getElementById('txt-update-demografi');
+
+      if (!beamElem || !iconElem) return;
+
+      iconElem.classList.add('spin-anim');
+      beamElem.classList.remove('active-scan');
+      void beamElem.offsetWidth; // Force Reflow
+      beamElem.classList.add('active-scan');
+
+      if (txtElem) {
+        txtElem.innerHTML = `<span style="color: #10b981;"><i class="fa-solid fa-arrows-rotate fa-spin"></i> Memeriksa...</span>`;
+      }
+
+      setTimeout(() => {
+        iconElem.classList.remove('spin-anim');
+        beamElem.classList.remove('active-scan');
+        
+        if (txtElem) {
+          txtElem.innerHTML = `<span style="color: #10b981; font-weight:700;"><i class="fa-solid fa-check"></i> Selesai Diperbarui</span>`;
+          
+          setTimeout(() => {
+            txtElem.innerHTML = `Data diperbarui <strong>${YEAR_DOUBLE}</strong>`;
+          }, 1800);
+        }
+
+        // Jalankan ulang counter angka statistik
+        runCounter();
+      }, 1500);
+    }
+
     // Fungsi Buka/Tutup Menu Hamburger (Dibuat Global agar terpanggil secara dinamis)
     window.toggleMenu = function(event) {
       if (event) event.stopPropagation();
